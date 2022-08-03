@@ -1,0 +1,43 @@
+@use 'variables' as *;
+@use 'sass:list';
+
+.show { display: block !important; }
+.hide { display: none !important; }
+
+.row.show {
+  display: flex !important;
+}
+
+
+// Mixin to run inside of for loop - creates visibility classes * Not for developer use *
+@mixin vis-factory($thisPrefix) {
+  .show-#{$thisPrefix} { display: block !important; }
+  .hide-#{$thisPrefix} { display: none !important; }
+
+  .row.show-#{$thisPrefix} {
+    display: flex !important;
+  }
+} // Mixin to run inside of for loop - creates visibility classes * Not for developer use *
+
+@for $i from 1 through length($breakpoint-all-prefixes) {
+  $this-prefix: list.nth($breakpoint-all-prefixes, $i);
+  @if $this-prefix == 'xs' {
+    @include vis-factory($this-prefix);
+  } @else if $this-prefix == 'xs-only' {
+    @media #{$breakpoint-xs-only} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'sm' {
+    @media #{$breakpoint-sm-up} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'sm-only' {
+    @media #{$breakpoint-sm-only} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'md' {
+    @media #{$breakpoint-md-up} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'md-only' {
+    @media #{$breakpoint-md-only} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'lg' {
+    @media #{$breakpoint-lg-up} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'lg-only' {
+    @media #{$breakpoint-lg-only} { @include vis-factory($this-prefix); }
+  } @else if $this-prefix == 'xl' {
+    @media #{$breakpoint-xl-up} { @include vis-factory($this-prefix); }
+  }
+}

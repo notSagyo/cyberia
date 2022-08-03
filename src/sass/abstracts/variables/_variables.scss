@@ -1,0 +1,34 @@
+@use 'colors' as colors;
+@use '../functions' as f;
+
+// Custom ====================================================================//
+
+// Typography ================================================================//
+/* stylelint-disable-next-line value-keyword-case */
+$font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// Colors ====================================================================//
+$primary-color: black; // Good contrast against secondary
+$secondary-color: yellow; // Good contrast against primary
+$terciary-color: blue; // Accents like links, etc
+
+$background-color: black; // Page's bg, ie. the <body> tag
+$foreground-color: white; // Text, svg, etc.
+
+// Shortforms
+$primary: $primary-color;
+$secondary: $secondary-color;
+$terciary: $terciary-color;
+
+$background: $background-color;
+$foreground: $foreground-color;
+
+$bg: $background-color;
+$fg: $foreground-color;
+
+// Breakpoints ===============================================================//
+$sm: f.em(576);
+$md: f.em(768);
+$lg: f.em(992);
+$xl: f.em(1200);
+$xxl: f.em(1400);

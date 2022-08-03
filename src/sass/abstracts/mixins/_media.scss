@@ -1,0 +1,23 @@
+@use '../variables' as var;
+@use '../functions' as f;
+
+// Mobile first ==============================================================//
+@mixin sm-up { @media only screen and (min-width: (var.$sm + f.em(1))) { @content; } }
+@mixin md-up { @media only screen and (min-width: (var.$md + f.em(1))) { @content; } }
+@mixin lg-up { @media only screen and (min-width: (var.$lg + f.em(1))) { @content; } }
+@mixin xl-up { @media only screen and (min-width: (var.$xl + f.em(1))) { @content; } }
+@mixin xxl-up { @media only screen and (min-width: (var.$xxl + f.em(1))) { @content; } }
+
+// Desktop first =============================================================//
+@mixin sm-down { @media only screen and (max-width: var.$sm) { @content; } }
+@mixin md-down { @media only screen and (max-width: var.$md) { @content; } }
+@mixin lg-down { @media only screen and (max-width: var.$lg) { @content; } }
+@mixin xl-down { @media only screen and (max-width: var.$xl) { @content; } }
+@mixin xxl-down { @media only screen and (max-width: var.$xxl) { @content; } }
+
+// Only ======================================================================//
+@mixin sm-only { @include sm-down { @content; } }
+@mixin md-only { @include md-up { @include lg-down { @content; } } }
+@mixin lg-only { @include lg-up { @include xl-down { @content; } } }
+@mixin xl-only { @include xl-up { @include xxl-down { @content; } } }
+@mixin xxl-only { @include xxl-up { @content; } }
