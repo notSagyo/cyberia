@@ -1,5 +1,5 @@
 @use '../../abstracts' as *;
-@use '../button/unstyled' as unstyledButton;
+@use '../buttons/unstyled' as unstyledButton;
 
 $border-width: 2px;
 $header-height: 2rem;
@@ -10,7 +10,6 @@ $header-height: 2rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background-color: $bg;
 
   border: solid $border-width $gray;
 }
@@ -38,7 +37,7 @@ $header-height: 2rem;
   .shellTitle ~ & { padding-bottom: $header-height * 0.35; }
 
   .shellHeaderItem {
-    @extend unstyledButton, .unstyledButton !optional;
+    @extend .unstyledButton;
     position: relative;
     height: 100%;
 

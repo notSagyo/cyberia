@@ -1,9 +1,24 @@
 @use '../abstracts' as *;
 
-
 body {
   line-height: 1;
   letter-spacing: $font-spacing;
   font-family: $font-stack;
   color: $foreground-color;
+}
+
+// stylelint-disable declaration-block-single-line-max-declarations
+.h1 { font-size: 3.125rem; display: inline; }
+.h2 { font-size: 2.625rem; display: inline; }
+.h3 { font-size: 2.25rem; display: inline; }
+.h4 { font-size: 1.875rem; display: inline; }
+.h5 { font-size: 1.5rem; display: inline; }
+.h6 { font-size: 1rem; display: inline; }
+
+.blink { animation: blink 1.5s ease infinite; }
+
+@keyframes blink {
+  0% { visibility: hidden; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
 }

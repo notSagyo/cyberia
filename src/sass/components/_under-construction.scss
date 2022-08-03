@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+.underConstruction {
+  width: fit-content;
+  padding-bottom: $spacing-sm;
+
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  color: $yellow;
+  border-bottom: solid $yellow 1px;
+}
