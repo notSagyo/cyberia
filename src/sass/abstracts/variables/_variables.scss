@@ -1,19 +1,27 @@
 @use 'colors' as colors;
+@use 'typography' as *;
 @use '../functions' as f;
 
 // Custom ====================================================================//
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
+
+$border-width: 4px;
 
 // Typography ================================================================//
 /* stylelint-disable-next-line value-keyword-case */
-$font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-stack: W95FA;
 
 // Colors ====================================================================//
 $primary-color: black; // Good contrast against secondary
 $secondary-color: yellow; // Good contrast against primary
 $terciary-color: blue; // Accents like links, etc
 
-$background-color: black; // Page's bg, ie. the <body> tag
-$foreground-color: white; // Text, svg, etc.
+$background-color: colors.$black; // Page's bg, ie. the <body> tag
+$foreground-color: colors.$green; // Text, svg, etc.
 
 // Shortforms
 $primary: $primary-color;

@@ -12,7 +12,13 @@
 @use 'base/base';
 
 // Components
-@use 'components/grid';
+@use 'components/grid/grid';
+@use 'components/shell/shell';
+@use 'components/shell/shell-controls';
+@use 'components/hr/hr';
+
+// Pages
+// @use 'pages/index';
 
 // Layout
 @use 'layout/footer';

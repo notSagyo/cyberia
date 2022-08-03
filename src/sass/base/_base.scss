@@ -1,10 +1,15 @@
 @use '../abstracts' as *;
-@use 'typography' as *;
+@use 'typography';
+
+* { box-sizing: border-box; }
+
+html { height: 100%; }
 
 body {
-  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   background-color: $background-color;
-  color: $foreground-color;
 }
 
 a { color: $terciary-color; }
