@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'W95FA';
+  src:
+    url('/fonts/w95fa.woff2') format('woff2'),
+    url('/fonts/w95fa.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* stylelint-disable-next-line value-keyword-case */
+$font-stack: W95FA, monospace;
+
+$font-spacing: 0.5px;
+
+$fs-sm: 0.75rem;
+$fs-md: 1rem;
+$fs-lg: 1.25rem;
+$fs-xl: 1.5rem;

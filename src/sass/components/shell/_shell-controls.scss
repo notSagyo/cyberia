@@ -1,9 +1,0 @@
-@use '../../abstracts' as *;
-
-.shellControlsWrapper {
-  letter-spacing: $spacing-sm;
-  display: flex;
-  gap: $spacing-sm;
-
-  * { cursor: pointer; }
-}

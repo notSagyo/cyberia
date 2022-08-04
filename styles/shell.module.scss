@@ -1,0 +1,97 @@
+@use '/styles/abstracts' as *;
+// @use '../buttons/unstyled' as unstyledButton;
+
+$border-width: 2px;
+$header-height: 2rem;
+
+// MAIN
+.shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  border: solid $border-width $gray;
+}
+
+.mainShell {
+  height: 100%;
+  width: 100%;
+}
+
+.title, .header {
+  gap: $spacing-lg;
+  height: $header-height;
+
+  display: flex;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: $fs-lg;
+  color: $black;
+  background-color: $gray;
+
+  a { color: $black; }
+}
+
+.title {
+  @include px($spacing-md);
+}
+
+.header {
+  @include px($spacing-lg);
+
+  // .title ~ & { padding-bottom: $header-height * 0.35; }
+
+  ul {
+    display: flex;
+    gap: $spacing-lg;
+    height: 100%;
+  }
+
+  li {
+    position: relative;
+    height: 100%;
+
+    a {
+      display: inline-block;
+      height: 100%;
+
+      &:hover { text-decoration: none; }
+    }
+
+    &:hover::after, &:focus::after {
+      content: '♦';
+      position: absolute;
+      left: -14px;
+
+      animation: item-hover-after 0.5s ease-in-out infinite;
+    }
+  }
+}
+
+.body {
+  padding: $spacing-sm;
+  height: 100%;
+  overflow: auto;
+}
+
+// OTHER
+.hr {
+  flex-grow: 1;
+  border: solid 1px $black;
+}
+
+.controls {
+  letter-spacing: $spacing-sm;
+
+  &::after {
+    content: '- □ ⨯';
+    display: block;
+  }
+}
+
+@keyframes item-hover-after {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(180deg); }
+}

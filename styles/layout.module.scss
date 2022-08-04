@@ -1,0 +1,7 @@
+@use '/styles/abstracts' as *;
+
+.date {
+  margin-left: auto;
+  text-align: end;
+  font-size: $fs-md;
+}

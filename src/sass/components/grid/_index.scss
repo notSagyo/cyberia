@@ -1,7 +1,0 @@
-@use 'variables';
-@use 'mixins';
-@use 'grid';
-@use 'visibility'; // Visibility last for precedence
-
-@forward 'grid';
-@forward 'visibility';

@@ -1,0 +1,31 @@
+@use '/styles/abstracts' as *;
+
+body {
+  line-height: 1;
+  letter-spacing: $font-spacing;
+  font-family: $font-stack;
+  color: $foreground-color;
+}
+
+a {
+  color: $terciary-color;
+  &:hover { text-decoration: underline; }
+}
+
+b { font-weight: bold; }
+
+// stylelint-disable declaration-block-single-line-max-declarations
+.h1 { @include h1; }
+.h2 { @include h2; }
+.h3 { @include h3; }
+.h4 { @include h4; }
+.h5 { @include h5; }
+.h6 { @include h6; }
+
+.blink { animation: blink 1.5s ease infinite; }
+
+@keyframes blink {
+  0% { visibility: hidden; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
+}

@@ -1,0 +1,67 @@
+@use '/styles/abstracts' as *;
+@use '/styles/classes/color-classes';
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// HORIZONTAL RULES
+.hrImg, .hrImgBlue, .hrImgFire, .hrImgBlood {
+  background-size: 100% 10px;
+  border: 0;
+  height: 10px;
+}
+
+.hrImgBlue {
+  @include my($spacing-md);
+  background-image: url('/img/hr-blue.gif');
+}
+
+.hrImgFire {
+  height: 30px;
+  background-repeat: round;
+  background-size: auto 30px;
+  background-image: url('/img/hr-fire.gif');
+}
+
+.hrImgBlood {
+  height: 30px;
+  background-repeat: round;
+  background-size: auto 30px;
+  background-image: url('/img/hr-blood.gif');
+}
+
+.bgNebula::before, .bgStars::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: move-background 100000s linear infinite;
+}
+
+.bgNebula::before {
+  filter: saturate(0.5);
+  background-image: url('/img/bg-nebula.jpg');
+}
+
+.bgStars::before {
+  filter: saturate(1);
+  background-image: url('/img/bg-stars.gif');
+  background-size: 128px auto;
+}
+
+@keyframes move-background {
+  0% { background-position: 0; }
+  100% { background-position: -1000000px; }
+}

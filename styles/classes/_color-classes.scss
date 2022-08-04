@@ -1,0 +1,24 @@
+@use '../abstracts' as *;
+@use '../abstracts/functions/' as f;
+@use 'sass:string';
+
+@each $color-name, $color-value in $colors {
+  // Text color
+  .#{$color-name} { color: $color-value; }
+
+  // Background color
+  .#{bg + f.capitalize($color-name)} {
+    background-color: $color-value;
+  }
+
+  // Text glow
+  .#{textGlow + f.capitalize($color-name)} {
+    @include text-glow($color-value, $color-value);
+  }
+
+  @each $color-name-2, $color-value-2 in $colors {
+    .#{textGlow + f.capitalize($color-name) + f.capitalize($color-name-2)} {
+      @include text-glow($color-value, $color-value-2);
+    }
+  }
+}

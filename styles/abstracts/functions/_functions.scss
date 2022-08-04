@@ -1,0 +1,20 @@
+@use 'sass:math';
+@use 'sass:string';
+
+// TODO: Add to template
+@function capitalize($str) {
+  $first-letter: string.to-upper-case(string.slice(#{$str}, 0, 1));
+  $rest-of-string: string.slice(#{$str}, 2, -1);
+  $result: $first-letter + $rest-of-string;
+  @return $result;
+}
+
+// Conversions (font-size 16px) ==============================================//
+@function em($px) {
+  $em: math.div($px, 16) * 1em;
+  @return $em;
+}
+@function rem($px) {
+  $rem: math.div($px, 16) * 1rem;
+  @return $rem;
+}

@@ -1,0 +1,71 @@
+@use '/styles/abstracts' as *;
+@use '/styles/reset';
+@use '/styles/typography';
+@use '/styles/classes/classes';
+
+* { box-sizing: border-box; }
+
+html { height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+
+  height: 100%;
+  min-height: fit-content;
+}
+
+#__next {
+  width: 100%;
+  max-width: 1240px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+#__next::after {
+  // content: '';
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+
+  // width: 100vw;
+  // height: 100vh;
+
+  // background-image:
+  //   linear-gradient(
+  //     0deg,
+  //     #fff1 25%,
+  //     #0000 25%,
+  //     #0000 50%,
+  //     #fff1 50%,
+  //     #fff1 75%,
+  //     #0000 75%,
+  //     #0000 100%
+  //   );
+
+  // background-size: 20px 20px;
+
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(
+      rgba(18, 16, 16, 0%) 50%,
+      rgba(0, 0, 0, 25%) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 6%),
+      rgba(0, 255, 0, 2%),
+      rgba(0, 0, 255, 6%)
+    );
+  z-index: 100;
+  background-size: 100% 3px, 4.5px 100%;
+  pointer-events: none;
+}

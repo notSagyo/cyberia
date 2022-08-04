@@ -1,0 +1,29 @@
+@use '/styles/abstracts' as *;
+
+.underConstruction {
+  width: fit-content;
+  padding-bottom: $spacing-sm;
+
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  color: $yellow;
+  // border-bottom: solid $yellow 1px;
+}
+
+.linkList {
+  li {
+    a {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+
+      width: fit-content;
+      margin-left: $spacing-md;
+      margin-top: $spacing-md;
+
+      color: $red;
+    }
+  }
+}
