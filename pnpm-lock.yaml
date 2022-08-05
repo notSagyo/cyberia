@@ -5,6 +5,7 @@ specifiers:
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
   '@types/webpack-env': ^1.17.0
+  classnames: ^2.3.1
   eslint: 8.21.0
   eslint-config-next: 12.2.3
   next: 12.2.3
@@ -17,6 +18,7 @@ specifiers:
   typescript: 4.7.4
 
 dependencies:
+  classnames: 2.3.1
   next: 12.2.3_gexlyrx7eq3ptscqrwr5bg5x7m
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -599,6 +601,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
+    dev: false
 
   /clone-regexp/2.2.0:
     resolution: {integrity: sha512-beMpP7BOtTipFuW8hrJvREQ2DrRu3BE7by0ZpibtfBA+qfHYvMGTc2Yb1JMYPKg/JUw0CHYvpg796aNTSW9z7Q==}

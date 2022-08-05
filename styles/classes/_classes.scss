@@ -7,11 +7,17 @@
   align-items: center;
 }
 
-.spaceBetween {
+.spaceBetween, .spaceEvenly {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
+
+.spaceBetween { justify-content: space-between; }
+.spaceEvenly { justify-content: space-evenly; }
+
+.dInlineBlock { display: inline-block; }
+.dInline { display: inline; }
+.dBlock { display: block; }
 
 // HORIZONTAL RULES
 .hrImg, .hrImgBlue, .hrImgFire, .hrImgBlood {
@@ -39,7 +45,7 @@
   background-image: url('/img/hr-blood.gif');
 }
 
-.bgNebula::before, .bgStars::before {
+.bgNebula::before, .bgStars::before, .bgSpace::before {
   content: '';
   position: absolute;
   top: 0;
@@ -56,12 +62,43 @@
 }
 
 .bgStars::before {
-  filter: saturate(1);
   background-image: url('/img/bg-stars.gif');
   background-size: 128px auto;
+}
+
+.bgSpace::before {
+  filter: saturate(1);
+  background-image: url('/img/bg-space.gif');
+  background-size: 256px auto;
 }
 
 @keyframes move-background {
   0% { background-position: 0; }
   100% { background-position: -1000000px; }
+}
+
+.tvShutdown {
+  animation: tv-shutdown 2s ease-in-out forwards;
+
+
+  @keyframes tv-shutdown {
+    0% { max-height: 100%; }
+
+    25% {
+      max-height: 5px;
+      max-width: $app-width;
+    }
+
+    50% {
+      filter: brightness(10000%);
+      max-height: 5px;
+      max-width: 5px;
+    }
+
+    100% {
+      border-radius: 50%;
+      max-height: 0;
+      max-width: 0;
+    }
+  }
 }

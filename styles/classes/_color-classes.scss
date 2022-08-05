@@ -12,13 +12,14 @@
   }
 
   // Text glow
+  $spread: 1;
   .#{textGlow + f.capitalize($color-name)} {
-    @include text-glow($color-value, $color-value);
+    @include text-glow($color-value, $color-value, $spread);
   }
 
   @each $color-name-2, $color-value-2 in $colors {
     .#{textGlow + f.capitalize($color-name) + f.capitalize($color-name-2)} {
-      @include text-glow($color-value, $color-value-2);
+      @include text-glow($color-value, $color-value-2, $spread);
     }
   }
 }

@@ -1,12 +1,16 @@
 @use '/styles/abstracts' as *;
+@use '/styles/classes/classes' as c;
 
 .banner {
-  @include h1;
+  @extend c, .bgSpace !optional;
 
-  // background-color: $black;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  // align-items: center;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: $spacing-sm;
+  border: 8px ridge $green;
 }
 
 .titleContainer {
@@ -15,4 +19,12 @@
   gap: $spacing-sm;
 
   font-weight: bold;
+}
+
+.nihongo {
+  margin-left: $spacing-sm;
+  font-size: $fs-lg;
+  font-weight: bold;
+  line-height: 2;
+  writing-mode: vertical-lr;
 }

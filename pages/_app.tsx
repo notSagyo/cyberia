@@ -2,7 +2,11 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <div id="appWrapper">
+      <Component {...pageProps}></Component>
+    </div>
+  );
 }
 
 export default MyApp;
