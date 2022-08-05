@@ -12,6 +12,14 @@ const links = [
     href: '/gallery/omori2',
     title: '../pages/gallery/omori2',
   },
+  {
+    href: '/gallery/omori3',
+    title: '../pages/gallery/omori3',
+  },
+  {
+    href: '/gallery/omori4',
+    title: '../pages/gallery/om.~??i4',
+  },
 ];
 
 const Gallery = () => {

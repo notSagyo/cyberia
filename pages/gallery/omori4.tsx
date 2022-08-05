@@ -1,16 +1,16 @@
 import Album from '../../components/album';
 import Layout from '../../components/layout';
 import styles from '/styles/omori.module.scss';
-import albumImages from '../../data/omoriAlbumImages2';
+import albumImages from '../../data/omoriAlbumImages4';
 
 const Gallery = () => {
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="Gallery" className={styles.bgGlitched}>
       <Album
-        descriptionClassname={styles.description}
+        descriptionClassname={styles.glitchedDescription}
         imagesFolderPath="/img/omori"
+        shellProps={{ bodyProps: { style: { overflow: 'hidden' } } }}
         images={albumImages}
-        shellProps={{ noHr: true }}
       />
     </Layout>
   );

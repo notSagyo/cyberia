@@ -4,6 +4,7 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   shellTitle?: React.ReactNode;
   navItems?: React.ReactNode;
   navContent?: React.ReactNode;
+  bodyProps?: React.HTMLProps<HTMLDivElement>;
   mainShell?: boolean;
   noPadding?: boolean;
   noHr?: boolean;
@@ -14,6 +15,7 @@ const Shell = ({
   shellTitle,
   navItems,
   navContent,
+  bodyProps,
   mainShell,
   noPadding,
   noHr,
@@ -45,8 +47,12 @@ const Shell = ({
         </div>
       )}
 
-      {/* CHILDREN */}
-      <div className={styles.body} style={{ ...(noPadding && { padding: 0 }) }}>
+      {/* BODY */}
+      <div
+        {...bodyProps}
+        className={`${styles.body} ${bodyProps?.className || ''}`}
+        style={{ ...(noPadding && { padding: 0 }), ...bodyProps?.style }}
+      >
         {children}
       </div>
     </div>

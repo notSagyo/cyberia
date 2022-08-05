@@ -1,7 +1,7 @@
 import Album from '../../components/album';
 import Layout from '../../components/layout';
 import styles from '/styles/omori.module.scss';
-import albumImages from '../../data/omoriAlbumImages2';
+import albumImages from '../../data/omoriAlbumImages3';
 
 const Gallery = () => {
   return (

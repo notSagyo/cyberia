@@ -33,7 +33,7 @@ const Album = ({
         {...shellProps}
         shellTitle={`${image.title || image.path.split('/').pop()}`}
         className={styles.photo}
-        style={{ maxWidth: photoWidth }}
+        style={{ maxWidth: photoWidth, ...shellProps.style }}
         noPadding
         key={i}
       >
@@ -41,7 +41,14 @@ const Album = ({
           <img src={image.path} alt={image.title} width={photoWidth} />
         </Anchor>
         {image.description && (
-          <div className={descriptionClassname}>{image.description}</div>
+          <div
+            className={descriptionClassname}
+            style={{
+              ...(image.description.length > 225 && { lineHeight: 0.8 }),
+            }}
+          >
+            {image.description}
+          </div>
         )}
       </Shell>
     ));

@@ -1,6 +1,9 @@
 @use '/styles/abstracts' as *;
+@use '/styles/classes/classes' as c;
+@use 'sass:math' as math;
+@use 'sass:color' as color;
 
-.description {
+.description, .glitchedDescription {
   display: flex;
   align-items: center;
   position: absolute;
@@ -12,4 +15,45 @@
   text-align: justify;
   font-weight: bold;
   color: $blue;
+}
+
+.glitchedDescription {
+  animation: glitched 1s infinite;
+  color: black;
+  filter: blur(1.5px);
+}
+
+.bgGlitched::before {
+  @extend c, .bgStars !optional;
+  filter: hue-rotate(90deg) saturate(5) brightness(0.1);
+  animation: move-background 7500s linear infinite;
+  background-size: 256px auto;
+}
+
+/* stylelint-disable */
+@keyframes glitched {
+  $skew-range: 10deg;
+  $line-height-range: 3;
+
+  $step: 0.5;
+  $i: 0;
+
+  @while $i < 100 {
+    $i: $i + $step;
+
+    #{$i}% {
+      transform:
+        skew((math.random() - 0.5) * $skew-range, (math.random() - 0.5) * $skew-range)
+        translateY(-100%);
+      line-height: (math.random() - 0.5) * $line-height-range;
+
+      @if math.random() > 0.5 {
+          color: white;
+      } @else if math.random() < 0.1 {
+        color: red;
+      } @else {
+        color: black;
+      }
+    }
+  }
 }
