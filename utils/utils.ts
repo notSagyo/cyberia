@@ -11,3 +11,15 @@ export const getTimeString = () => {
     minute: '2-digit',
   });
 };
+
+export function getImagesNamesInFolder(path: string) {
+  if (!path) return [];
+  const imagesContext = require.context('../public/img/omori', false);
+
+  let images = imagesContext.keys().map((imgPath, i) => {
+    imgPath = imgPath.replace('./', '');
+    return imgPath;
+  });
+
+  return images;
+}

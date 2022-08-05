@@ -1,20 +1,22 @@
 import styles from '/styles/shell.module.scss';
 
-interface ShellProps extends React.HTMLProps<HTMLDivElement> {
-  title?: string;
+export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
+  shellTitle?: React.ReactNode;
   navItems?: React.ReactNode;
   navContent?: React.ReactNode;
   mainShell?: boolean;
-  p0?: boolean;
+  noPadding?: boolean;
+  noHr?: boolean;
 }
 
 const Shell = ({
   children,
-  title,
+  shellTitle,
   navItems,
   navContent,
   mainShell,
-  p0,
+  noPadding,
+  noHr,
   ...props
 }: ShellProps) => {
   return (
@@ -23,14 +25,15 @@ const Shell = ({
       className={
         `${props.className ? props.className : ''}` +
         ` ${styles.shell}` +
-        ` ${mainShell ? styles.mainShell : ''}`
+        ` ${mainShell ? styles.mainShell : ''}` +
+        ` ${noHr ? styles.noHr : ''}`
       }
     >
       {/* TITLE BAR */}
       <div className={styles.title}>
         {mainShell && <div className={styles.hr}></div>}
-        {title}
-        <div className={styles.hr}></div>
+        {shellTitle}
+        {!noHr && <div className={styles.hr}></div>}
         <div className={styles.controls}></div>
       </div>
 
@@ -43,7 +46,7 @@ const Shell = ({
       )}
 
       {/* CHILDREN */}
-      <div className={styles.body} style={{ ...(p0 && { padding: 0 }) }}>
+      <div className={styles.body} style={{ ...(noPadding && { padding: 0 }) }}>
         {children}
       </div>
     </div>

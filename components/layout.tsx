@@ -11,7 +11,12 @@ interface LayoutProps extends HtmlHTMLAttributes<HTMLElement> {
   description?: string;
 }
 
-const Layout = ({ children, title, description, ...props }: LayoutProps) => {
+const Layout = ({
+  children: children,
+  title: title,
+  description,
+  ...props
+}: LayoutProps) => {
   const [currentDate, setCurrentDate] = useState<string>();
   const [currentTime, setCurrentTime] = useState<string>();
 
@@ -34,7 +39,7 @@ const Layout = ({ children, title, description, ...props }: LayoutProps) => {
       </Head>
 
       <Shell
-        title="CYBERIA.EXE"
+        shellTitle="CYBERIA.EXE"
         className="bgNebula"
         mainShell={true}
         {...props}
@@ -44,7 +49,10 @@ const Layout = ({ children, title, description, ...props }: LayoutProps) => {
             {navigableRoutes.map((name, i) => (
               <li key={i}>
                 <Link href={`/${name.toLocaleLowerCase()}`} passHref>
-                  <Anchor>{name}</Anchor>
+                  <Anchor>
+                    <u>{name[0]}</u>
+                    {name.slice(1)}
+                  </Anchor>
                 </Link>
               </li>
             ))}

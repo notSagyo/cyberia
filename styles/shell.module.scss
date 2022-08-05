@@ -41,8 +41,6 @@ $header-height: 2rem;
 .header {
   @include px($spacing-lg);
 
-  // .title ~ & { padding-bottom: $header-height * 0.35; }
-
   ul {
     display: flex;
     gap: $spacing-lg;
@@ -71,9 +69,10 @@ $header-height: 2rem;
 }
 
 .body {
-  padding: $spacing-sm;
-  height: 100%;
+  position: relative;
   overflow: auto;
+  height: 100%;
+  padding: $spacing-sm;
 }
 
 // OTHER
@@ -89,6 +88,12 @@ $header-height: 2rem;
     content: '- □ ⨯';
     display: block;
   }
+}
+
+// WITHOUT HR
+.noHr {
+  .title { gap: 0; }
+  .controls { margin-left: auto; }
 }
 
 @keyframes item-hover-after {

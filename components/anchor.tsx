@@ -1,4 +1,3 @@
-import { HtmlProps } from 'next/dist/shared/lib/html-context';
 import React, {
   AnchorHTMLAttributes,
   forwardRef,
@@ -6,29 +5,38 @@ import React, {
   useState,
 } from 'react';
 
-const Anchor = React.forwardRef<
-  HTMLAnchorElement,
-  React.HTMLProps<HTMLAnchorElement>
->(({ children, ...props }, ref) => {
-  const [hoverAudio, setHoverAudio] = useState<HTMLAudioElement | null>(null);
+interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  noDecoration?: boolean;
+}
 
-  useEffect(() => {
-    setHoverAudio(new Audio('/sound/link-hover.wav'));
-  }, []);
+const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
+  ({ children, noDecoration = false, ...props }, ref) => {
+    const [hoverAudio, setHoverAudio] = useState<HTMLAudioElement | null>(null);
 
-  function handleMouseOver(e: React.MouseEvent<HTMLAnchorElement>) {
-    if (!hoverAudio) return;
-    e.stopPropagation();
-    hoverAudio.currentTime = 0;
-    hoverAudio.play();
+    useEffect(() => {
+      setHoverAudio(new Audio('/sound/link-hover.wav'));
+    }, []);
+
+    function handleMouseOver(e: React.MouseEvent<HTMLAnchorElement>) {
+      if (!hoverAudio) return;
+      e.stopPropagation();
+      hoverAudio.currentTime = 0;
+      hoverAudio.play();
+    }
+
+    return (
+      <a
+        {...props}
+        onMouseEnter={handleMouseOver}
+        style={{
+          ...(noDecoration && { textDecoration: 'none' }),
+        }}
+      >
+        {children}
+      </a>
+    );
   }
-
-  return (
-    <a {...props} onMouseEnter={handleMouseOver}>
-      {children}
-    </a>
-  );
-});
+);
 
 Anchor.displayName = 'AnchorExtended';
 export default Anchor;

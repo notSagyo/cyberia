@@ -5,11 +5,9 @@ interface VideoProps {
   title?: string;
 }
 
-type iframe = any;
-
 const Video = ({ urlId, title }: VideoProps) => {
   return (
-    <Shell title={title || 'Video'} p0>
+    <Shell shellTitle={title || 'Video'} noPadding>
       <iframe
         style={{ display: 'block' }}
         width="560"

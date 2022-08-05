@@ -1,0 +1,21 @@
+@use '/styles/abstracts' as *;
+
+.title {
+  margin-top: $spacing-md;
+  margin-left: $spacing-sm;
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  margin: $spacing-lg;
+  gap: $spacing-lg;
+
+  img { display: block; }
+}
+
+.photo {
+  display: block;
+  box-sizing: content-box;
+  width: 100%;
+}
