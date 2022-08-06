@@ -5,6 +5,8 @@ import Link from 'next/link';
 import styles from '/styles/layout.module.scss';
 import Anchor from './anchor';
 import { getDateString, getTimeString, navigableRoutes } from '../utils/utils';
+import cn from 'classnames';
+import Void from './void';
 
 interface LayoutProps extends HtmlHTMLAttributes<HTMLElement> {
   title?: string;
@@ -17,6 +19,8 @@ const Layout = ({
   description,
   ...props
 }: LayoutProps) => {
+  const [shellOpened, setShellOpened] = useState<boolean>(true);
+  const [limboVisible, setLimboVisible] = useState<boolean>(false);
   const [currentDate, setCurrentDate] = useState<string>();
   const [currentTime, setCurrentTime] = useState<string>();
 
@@ -32,18 +36,26 @@ const Layout = ({
 
   return (
     <>
+      {/* PAGE HEAD ======================================================== */}
       <Head>
         <title>{title ? `${title} | Cyberia` : 'Cyberia'}</title>
         <meta name="description" content={description || 'bad end'} />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
 
+      {/* SHELL ============================================================ */}
       <Shell
         shellTitle="CYBERIA.EXE"
-        className="bgNebula"
         mainShell={true}
+        onClose={() => setShellOpened(false)}
         {...props}
-        // NAV ITEMS =========================================================//
+        className={cn(
+          'bgNebula',
+          styles.shell,
+          !shellOpened && 'tvShutdown',
+          props.className
+        )}
+        // NAV ITEMS
         navItems={
           <>
             {navigableRoutes.map((name, i) => (
@@ -58,7 +70,7 @@ const Layout = ({
             ))}
           </>
         }
-        // NAV CONTENT =======================================================//
+        // NAV CONTENT
         navContent={
           <div className={styles.date}>
             {currentDate || 'PRESENT DAY'}・プレゼント・デイ ■
@@ -69,6 +81,9 @@ const Layout = ({
       >
         {children}
       </Shell>
+
+      {/* SHELL CLOSED ===================================================== */}
+      <Void visible={!shellOpened} />
     </>
   );
 };

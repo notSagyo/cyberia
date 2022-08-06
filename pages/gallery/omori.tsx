@@ -10,7 +10,6 @@ const Gallery = () => {
         descriptionClassname={styles.description}
         imagesFolderPath="/img/omori"
         images={albumImages}
-        shellProps={{ noHr: true }}
       />
     </Layout>
   );

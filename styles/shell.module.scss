@@ -82,12 +82,9 @@ $header-height: 2rem;
 }
 
 .controls {
-  letter-spacing: $spacing-sm;
-
-  &::after {
-    content: '- □ ⨯';
-    display: block;
-  }
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
 }
 
 // WITHOUT HR

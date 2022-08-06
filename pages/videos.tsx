@@ -1,5 +1,4 @@
 import Layout from '../components/layout';
-import Video from '../components/video';
 
 function Videos() {
   return (

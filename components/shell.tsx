@@ -8,6 +8,9 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   mainShell?: boolean;
   noPadding?: boolean;
   noHr?: boolean;
+  onClose?: () => void;
+  onMinimize?: () => void;
+  onMaximize?: () => void;
 }
 
 const Shell = ({
@@ -19,6 +22,9 @@ const Shell = ({
   mainShell,
   noPadding,
   noHr,
+  onClose,
+  onMinimize,
+  onMaximize,
   ...props
 }: ShellProps) => {
   return (
@@ -36,7 +42,17 @@ const Shell = ({
         {mainShell && <div className={styles.hr}></div>}
         {shellTitle}
         {!noHr && <div className={styles.hr}></div>}
-        <div className={styles.controls}></div>
+        <div className={styles.controls}>
+          <span onClick={onMinimize} className={onMinimize ? 'pointer' : ''}>
+            -
+          </span>
+          <span onClick={onMaximize} className={onMaximize ? 'pointer' : ''}>
+            □
+          </span>
+          <span onClick={onClose} className={onClose ? 'pointer' : ''}>
+            ⨯
+          </span>
+        </div>
       </div>
 
       {/* HEADER */}

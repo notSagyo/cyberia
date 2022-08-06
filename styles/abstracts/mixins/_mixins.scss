@@ -23,12 +23,12 @@
 }
 
 // stylelint-disable declaration-block-single-line-max-declarations
-@mixin h1 { font-size: 3.125rem; display: block; }
-@mixin h2 { font-size: 2.625rem; display: block; }
-@mixin h3 { font-size: 2.25rem; display: block; }
-@mixin h4 { font-size: 1.875rem; display: block; }
-@mixin h5 { font-size: 1.5rem; display: block; }
-@mixin h6 { font-size: 1rem; display: block; }
+@mixin h1 { font-size: $fs-h1; display: block; }
+@mixin h2 { font-size: $fs-h2; display: block; }
+@mixin h3 { font-size: $fs-h3; display: block; }
+@mixin h4 { font-size: $fs-h4; display: block; }
+@mixin h5 { font-size: $fs-h5; display: block; }
+@mixin h6 { font-size: $fs-h6; display: block; }
 
 // Hacks / Fixes =============================================================//
 @mixin v-align {

@@ -5,3 +5,10 @@
   text-align: end;
   font-size: $fs-md;
 }
+
+.shell {
+  flex-grow: 1;
+  width: 100%;
+  max-width: $app-width;
+  overflow: hidden;
+}

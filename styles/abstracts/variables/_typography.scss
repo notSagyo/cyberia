@@ -7,6 +7,16 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: Cheltenham;
+  src:
+    url('/fonts/CheltenhamBT-BoldCondItalic.woff2') format('woff2'),
+    url('/fonts/CheltenhamBT-BoldCondItalic.woff') format('woff');
+  font-style: normal;
+  font-weight: normal;
+}
+
+
 /* stylelint-disable-next-line value-keyword-case */
 $font-stack: W95FA, monospace;
 
@@ -16,3 +26,11 @@ $fs-sm: 0.75rem;
 $fs-md: 1rem;
 $fs-lg: 1.25rem;
 $fs-xl: 1.5rem;
+$fs-xxl: 2rem;
+
+$fs-h1: 3.125rem;
+$fs-h2: 2.625rem;
+$fs-h3: 2.25rem;
+$fs-h4: 1.875rem;
+$fs-h5: 1.5rem;
+$fs-h6: 1rem;
