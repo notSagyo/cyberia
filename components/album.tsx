@@ -9,7 +9,7 @@ interface AlbumProps {
   title?: string;
   images?: iAlbumImage[];
   imagesFolderPath?: string;
-  photoWidth?: number;
+  photoWidth?: number | string;
   shellProps?: ShellProps;
   descriptionClassname?: string;
 }

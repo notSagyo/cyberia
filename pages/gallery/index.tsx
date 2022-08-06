@@ -20,6 +20,10 @@ const links = [
     href: '/gallery/omori4',
     title: '../pages/gallery/om.~??i4',
   },
+  {
+    href: '/gallery/visual-experiments',
+    title: '../pages/gallery/visual_experiments',
+  },
 ];
 
 const Gallery = () => {
