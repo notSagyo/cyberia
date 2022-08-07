@@ -12,6 +12,7 @@ body {
   background-color: black;
 }
 
+// CRT
 body::after {
   content: ' ';
   display: block;

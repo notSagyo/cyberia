@@ -30,7 +30,11 @@ const Gallery = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <div>
-        <h1 className="h1">GALLERY</h1>
+        <h1 className="h1 textGlowBluePink">
+          <u>
+            <b>GALLERY</b>
+          </u>
+        </h1>
       </div>
       {links.map((link, i) => (
         <h2 className="h3" key={i}>

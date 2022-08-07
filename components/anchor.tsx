@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React, {
   AnchorHTMLAttributes,
   forwardRef,
@@ -28,6 +29,7 @@ const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
       <a
         {...props}
         onMouseEnter={handleMouseOver}
+        className={cn('pointer', props.className)}
         style={{
           ...(noDecoration && { textDecoration: 'none' }),
         }}

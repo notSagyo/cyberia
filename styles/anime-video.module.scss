@@ -1,0 +1,23 @@
+@use '/styles/abstracts' as *;
+
+.videoAspectRatio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+
+  background-image: url('/img/tv-static.gif');
+  background-size: cover;
+}
+
+.iframeWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.shell, .shellBody {
+  max-width: 100%;
+}

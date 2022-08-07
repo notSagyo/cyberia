@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { getImagesNamesInFolder } from '../utils/utils';
 import Anchor from './anchor';
-import Shell, { ShellProps } from './shell';
+import Shell, { ShellProps } from './shell/shell';
 import styles from '/styles/album.module.scss';
 
 interface AlbumProps {

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Anchor from '../components/anchor';
 import Banner from '../components/banner';
 import Layout from '../components/layout';
+import animesData from '../data/animes';
+import { fetchGogoanimeEpisodes } from '../services/anime-service';
 import { navigableRoutes } from '../utils/utils';
 import styles from '/styles/index.module.scss';
 

@@ -1,6 +1,6 @@
 import { HtmlHTMLAttributes, useEffect, useState } from 'react';
 import Head from 'next/head';
-import Shell from './shell';
+import Shell from './shell/shell';
 import Link from 'next/link';
 import styles from '/styles/layout.module.scss';
 import Anchor from './anchor';
@@ -20,7 +20,6 @@ const Layout = ({
   ...props
 }: LayoutProps) => {
   const [shellOpened, setShellOpened] = useState<boolean>(true);
-  const [limboVisible, setLimboVisible] = useState<boolean>(false);
   const [currentDate, setCurrentDate] = useState<string>();
   const [currentTime, setCurrentTime] = useState<string>();
 
