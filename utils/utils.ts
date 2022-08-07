@@ -12,9 +12,10 @@ export const getTimeString = () => {
   });
 };
 
+//* KEEPING THIS FOR REFERENCE
 export function getImagesNamesInFolder(path: string) {
   if (!path) return [];
-  const imagesContext = require.context('../public/img/omori', false);
+  const imagesContext = require.context('../public/img', false); // CHANGE THIS
 
   let images = imagesContext.keys().map((imgPath, i) => {
     imgPath = imgPath.replace('./', '');

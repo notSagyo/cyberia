@@ -8,7 +8,7 @@ const Gallery = () => {
     <Layout title="Gallery" className={styles.bgGlitched}>
       <Album
         descriptionClassname={styles.glitchedDescription}
-        imagesFolderPath="/img/omori"
+        albumTitle="../public/img/omori/3"
         shellProps={{ bodyProps: { style: { overflow: 'hidden' } } }}
         images={albumImages}
       />

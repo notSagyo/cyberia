@@ -8,7 +8,7 @@ const Gallery = () => {
     <Layout title="Gallery" className="bgStars">
       <Album
         descriptionClassname={styles.description}
-        imagesFolderPath="/img/omori"
+        albumTitle="../public/img/omori/3"
         images={albumImages}
       />
     </Layout>
