@@ -5,6 +5,7 @@ import Banner from '../components/banner';
 import Layout from '../components/layout';
 import animesData from '../data/animes';
 import { fetchGogoanimeEpisodes } from '../services/anime-service';
+import { baseURL } from '../utils/url';
 import { navigableRoutes } from '../utils/utils';
 import styles from '/styles/index.module.scss';
 
@@ -60,7 +61,10 @@ const Home: NextPage = () => {
                 (name, i) =>
                   name.toUpperCase() != 'HOME' && (
                     <li key={i}>
-                      <Link href={`/${name.toLocaleLowerCase()}`} passHref>
+                      <Link
+                        href={`${baseURL}/${name.toLocaleLowerCase()}`}
+                        passHref
+                      >
                         <Anchor>
                           <img src="/img/sigil.gif" width={34} alt="sigil" />
                           <span>{name.toUpperCase()}</span>

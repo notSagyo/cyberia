@@ -1,8 +1,10 @@
-// ?TODO: Make request to anilist instead ?
+// ?TODO: Make request to anilist instead?
+const domain = 'https://consumet-api.herokuapp.com';
+
 const fetchGogoanimeReferer = async (episodeId: string) => {
   console.log(`Fetching episode "${episodeId}" from Gogoanime`);
   let src: Promise<string | void> = fetch(
-    `https://consumet-api.herokuapp.com/anime/gogoanime/watch/${episodeId}`
+    `${domain}/anime/gogoanime/watch/${episodeId}`
   )
     .then((res) => res.json())
     .then((data) => {
@@ -15,7 +17,7 @@ const fetchGogoanimeReferer = async (episodeId: string) => {
 const fetchGogoanimeInfo = async (animeId: string) => {
   console.log(`Fetching anime info for "${animeId}" from Gogoanime`);
   let info: Promise<Record<string, unknown> | undefined> = fetch(
-    `https://consumet-api.herokuapp.com/anime/gogoanime/info/${animeId}`
+    `${domain}/anime/gogoanime/info/${animeId}`
   )
     .then((res) => res.json())
     .then((data) => data)

@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import AnimeVideo from '../../../components/anime-video';
-import Layout from '../../../components/layout';
-import animesData from '../../../data/animes';
+import AnimeVideo from '../../../../components/anime-video';
+import Layout from '../../../../components/layout';
+import animesData from '../../../../data/animes';
 import {
   fetchGogoanimeReferer,
   fetchGogoanimeTotalEpisodes,
-} from '../../../services/anime-service';
+} from '../../../../services/anime-service';
 
 interface EpisodeProps {
   animeId: string;

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import cn from 'classnames';
 import Link from 'next/link';
+import { galleryURL } from '../utils/url';
 import Anchor from './anchor';
 import Shell, { ShellProps } from './shell/shell';
 import styles from '/styles/album.module.scss';
@@ -50,7 +51,7 @@ const Album = ({
   return (
     <>
       <h1 className={`${styles.title} h2`}>
-        <Link href="/gallery" passHref>
+        <Link href={galleryURL} passHref>
           <Anchor className="green">{albumTitle || 'IMAGE VISUALIZER'}</Anchor>
         </Link>
       </h1>

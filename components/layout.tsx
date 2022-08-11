@@ -7,6 +7,7 @@ import Anchor from './anchor';
 import { getDateString, getTimeString, navigableRoutes } from '../utils/utils';
 import cn from 'classnames';
 import Void from './void';
+import { baseURL } from '../utils/url';
 
 interface LayoutProps extends HtmlHTMLAttributes<HTMLElement> {
   title?: string;
@@ -59,7 +60,7 @@ const Layout = ({
           <>
             {navigableRoutes.map((name, i) => (
               <li key={i}>
-                <Link href={`/${name.toLocaleLowerCase()}`} passHref>
+                <Link href={`${baseURL}/${name.toLocaleLowerCase()}`} passHref>
                   <Anchor>
                     <u>{name[0]}</u>
                     {name.slice(1)}
