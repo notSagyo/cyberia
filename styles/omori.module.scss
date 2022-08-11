@@ -3,11 +3,14 @@
 @use 'sass:math' as math;
 @use 'sass:color' as color;
 
+$translate-y: -40%;
+
 .description, .glitchedDescription {
+  position: absolute;
+  bottom: 0;
   display: flex;
   align-items: center;
-  position: absolute;
-  transform: translateY(-100%);
+  transform: translateY($translate-y);
 
   height: 80px;
   padding: $spacing-sm;
@@ -44,7 +47,7 @@
     #{$i}% {
       transform:
         skew((math.random() - 0.5) * $skew-range, (math.random() - 0.5) * $skew-range)
-        translateY(-100%);
+        translateY($translate-y);
       line-height: (math.random() - 0.5) * $line-height-range;
 
       @if math.random() > 0.5 {

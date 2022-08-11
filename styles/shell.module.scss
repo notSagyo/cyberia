@@ -71,6 +71,10 @@ $header-height: 2rem;
 .body {
   position: relative;
   overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   padding: $spacing-sm;
 }

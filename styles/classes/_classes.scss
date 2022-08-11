@@ -26,7 +26,7 @@
 .hrImg, .hrImgBlue, .hrImgFire, .hrImgBlood {
   background-size: 100% 10px;
   border: 0;
-  height: 10px;
+  min-height: 10px;
 }
 
 .hrImgBlue {
@@ -35,14 +35,14 @@
 }
 
 .hrImgFire {
-  height: 30px;
+  min-height: 30px;
   background-repeat: round;
   background-size: auto 30px;
   background-image: url('/img/hr-fire.gif');
 }
 
 .hrImgBlood {
-  height: 30px;
+  min-height: 30px;
   background-repeat: round;
   background-size: auto 30px;
   background-image: url('/img/hr-blood.gif');
