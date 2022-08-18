@@ -1,4 +1,7 @@
-const domain = 'https://consumet-api.herokuapp.com';
+import fs from 'fs';
+import path from 'path';
+
+const domain = 'https://sagyo-consumet.herokuapp.com';
 
 const getMangaSearch = async (
   mangaTitle: string
@@ -50,4 +53,46 @@ const getChapterPages = async (
   return results;
 };
 
-export { getMangaSearch, getMangaInfo, getChapterPages };
+const cachePath = path.join(process.cwd(), '/data/temp');
+const pagesCachePath = path.join(cachePath, '/chapters-pages.json');
+
+const apiCache = {
+  clearCache: async () => {
+    console.log('Clearing cache...');
+    return fs.promises.writeFile(pagesCachePath, JSON.stringify({}));
+  },
+
+  hasCache: (mangaId: string) => {
+    const cache = fs.readFileSync(pagesCachePath);
+    let cacheParsed: { [key: string]: MangadexChapterPage[] } = {};
+
+    try {
+      cacheParsed = JSON.parse(cache.toString());
+    } catch (err) {
+      console.log(err);
+    }
+
+    const hasCache =
+      cacheParsed[mangaId] != undefined &&
+      cacheParsed[mangaId]?.[0]?.img != undefined;
+
+    return hasCache;
+  },
+
+  setChaptersPages: async (chapterId: string, pages: MangadexChapterPage[]) => {
+    const cache = await fs.promises.readFile(pagesCachePath);
+    let cacheParsed: { [key: string]: MangadexChapterPage[] } = {};
+
+    try {
+      const cacheString = cache.toString();
+      cacheString.length > 1 && (cacheParsed = JSON.parse(cacheString));
+    } catch (err) {
+      console.log(err);
+    }
+
+    cacheParsed[chapterId] = pages;
+    await fs.promises.writeFile(pagesCachePath, JSON.stringify(cacheParsed));
+  },
+};
+
+export { getMangaSearch, getMangaInfo, getChapterPages, apiCache };

@@ -1,17 +1,24 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
+import Layout from '../../../../../components/layout';
 import mangasData from '../../../../../data/mangas';
 import {
+  apiCache,
   getChapterPages,
   getMangaInfo,
 } from '../../../../../services/manga-service';
+import styles from '/styles/manga.module.scss';
 
 interface MangaProps {
   mangaId: string;
   chapterId: string;
   chapterLength: number;
   pageNumber: number;
+  hasNextPage: boolean;
   imageUrl: string;
 }
 
@@ -27,6 +34,7 @@ const Manga = ({
   chapterLength,
   pageNumber,
   imageUrl,
+  hasNextPage,
 }: MangaProps) => {
   // XXX: DEBUG
   console.log('\nManga ID:', mangaId);
@@ -35,13 +43,25 @@ const Manga = ({
   console.log('Chapter page:', pageNumber);
   console.log('Page image url:', imageUrl);
 
-  return <img src={imageUrl} />;
+  const router = useRouter();
+  const nextPageUrl =
+    router.pathname.split('/').slice(0, -1).join('/') + `/${pageNumber + 1}`;
+
+  return (
+    <Layout>
+      <div className={styles.pageContainer}>
+        <img className={styles.pageImage} src={imageUrl} alt={'manga page'} />
+      </div>
+      {hasNextPage && <Link href={nextPageUrl}>NEXT PAGE</Link>}
+    </Layout>
+  );
 };
 
 export const getStaticProps: GetStaticProps<MangaProps> = async (context) => {
   const { pageNumber, mangaId, chapterId } = context.params as iQueryParams;
   const chapterPages = await getChapterPages(chapterId);
   const chapterLength = chapterPages?.length || 0;
+  const hasNextPage = Number(pageNumber) < chapterLength;
   const imageUrl = chapterPages?.[parseInt(pageNumber) - 1]?.img || '';
 
   return {
@@ -50,6 +70,7 @@ export const getStaticProps: GetStaticProps<MangaProps> = async (context) => {
       chapterId: chapterId || 'CHAPTER_ID',
       pageNumber: parseInt(pageNumber) || 0,
       chapterLength,
+      hasNextPage,
       imageUrl,
     },
   };
@@ -68,7 +89,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let mangasIds: string[] = mangasData.map((manga) => manga.id);
   let mangasWithChapters: {
     mangaId: string;
-    chaptersIds: MangadexChapter[];
+    chapters: MangadexChapter[];
   }[] = [];
 
   // Wait until all mangas' chapter are loaded
@@ -79,7 +100,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       mangaInfo &&
         mangasWithChapters.push({
           mangaId: mangaId,
-          chaptersIds: mangaInfo.chapters,
+          chapters: mangaInfo.chapters,
         });
     });
 
@@ -90,8 +111,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   // Repeat each path for every page of every chapter
   mangasWithChapters.forEach((mangaWithChapters) => {
-    mangaWithChapters.chaptersIds.forEach((chapter) => {
+    mangaWithChapters.chapters.forEach((chapter) => {
       if (!chapter) return;
+      // Cache manga chapters pages
+      const hasCache = apiCache.hasCache(chapter.id);
+      !hasCache &&
+        getChapterPages(chapter.id).then(
+          (pages) => pages && apiCache.setChaptersPages(chapter.id, pages)
+        );
+
       for (let i = 0; i < chapter.pages; i++) {
         paths.push({
           params: {

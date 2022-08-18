@@ -1,5 +1,5 @@
 // ?TODO: Make request to anilist instead?
-const domain = 'https://consumet-api.herokuapp.com';
+const domain = 'https://sagyo-consumet.herokuapp.com';
 
 const fetchGogoanimeReferer = async (episodeId: string) => {
   console.log(`Fetching episode "${episodeId}" from Gogoanime`);

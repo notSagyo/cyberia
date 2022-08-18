@@ -1,4 +1,4 @@
-export const navigableRoutes = ['Home', 'Gallery', 'Videos', 'Music'];
+export const navigableRoutes = ['Home', 'Gallery', 'Videos', 'Music', 'Read'];
 
 export const getDateString = () => {
   return new Date().toLocaleDateString();

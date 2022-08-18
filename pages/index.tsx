@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Anchor from '../components/anchor';
 import Banner from '../components/banner';
 import Layout from '../components/layout';
+import Test from './test';
+import Hr from '../components/utils/hr';
 import { baseURL } from '../utils/url';
 import { navigableRoutes } from '../utils/utils';
 import styles from '/styles/index.module.scss';
@@ -13,7 +15,7 @@ const Home: NextPage = () => {
     <Layout>
       {/* BANNER */}
       <Banner />
-      <div className="hrImgBlood" />
+      <Hr variant="Blood" />
 
       <div className={styles.indexContainer}>
         {/* MAIN SIDE */}

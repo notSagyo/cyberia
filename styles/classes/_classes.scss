@@ -22,32 +22,6 @@
 
 .pointer { cursor: pointer; }
 
-// HORIZONTAL RULES
-.hrImg, .hrImgBlue, .hrImgFire, .hrImgBlood {
-  background-size: 100% 10px;
-  border: 0;
-  min-height: 10px;
-}
-
-.hrImgBlue {
-  @include my($spacing-md);
-  background-image: url('/img/hr-blue.gif');
-}
-
-.hrImgFire {
-  min-height: 30px;
-  background-repeat: round;
-  background-size: auto 30px;
-  background-image: url('/img/hr-fire.gif');
-}
-
-.hrImgBlood {
-  min-height: 30px;
-  background-repeat: round;
-  background-size: auto 30px;
-  background-image: url('/img/hr-blood.gif');
-}
-
 .bgNebula::before, .bgStars::before, .bgSpace::before {
   content: '';
   position: absolute;

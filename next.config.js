@@ -2,14 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  images: { domains: ['i.imgur.com'] },
+  images: { domains: ['i.imgur.com', 'uploads.mangadex.org'] },
   experimental: { images: { allowFutureImage: true } },
+
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+    return config;
+  },
 
   async rewrites() {
     return [{ source: '/home', destination: '/' }];
   },
 };
-
-// module.exports = nextConfig
 
 module.exports = nextConfig;
