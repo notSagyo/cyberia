@@ -7,23 +7,23 @@ import { galleryURL } from '../../utils/url';
 const links = [
   {
     href: `${galleryURL}/omori`,
-    title: '../pages/gallery/omori',
+    title: '/pages/gallery/omori',
   },
   {
     href: `${galleryURL}/omori2`,
-    title: '../pages/gallery/omori2',
+    title: '/pages/gallery/omori2',
   },
   {
     href: `${galleryURL}/omori3`,
-    title: '../pages/gallery/omori3',
+    title: '/pages/gallery/omori3',
   },
   {
     href: `${galleryURL}/omori4`,
-    title: '../pages/gallery/om.~??i4',
+    title: '/pages/gallery/om.~??i4',
   },
   {
     href: `${galleryURL}/visual-experiments`,
-    title: '../pages/gallery/visual_experiments',
+    title: '/pages/gallery/visual_experiments',
   },
 ];
 

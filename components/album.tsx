@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import cn from 'classnames';
 import Link from 'next/link';
 import { galleryURL } from '../utils/url';
@@ -14,6 +13,7 @@ interface AlbumProps {
   descriptionClassname?: string;
 }
 
+// *TODO: Make images large on click
 const Album = ({
   albumTitle,
   images,
@@ -27,13 +27,13 @@ const Album = ({
     <Shell
       key={i}
       noPadding
-      shellTitle={`${image.title || image.path.split('/').pop()}`}
+      shellTitle={`${image.title || image.src.split('/').pop()}`}
       {...shellProps}
       className={cn(styles.photo, shellProps.className)}
       style={{ maxWidth: photoWidth, ...shellProps.style }}
     >
-      <Anchor href={image.path} rel="noreferrer" target="_blank">
-        <img src={image.path} alt={image.title} width={photoWidth} />
+      <Anchor href={image.src} rel="noreferrer" target="_blank">
+        <img src={image.src} alt={image.title} width={photoWidth} />
       </Anchor>
       {image.description && (
         <div

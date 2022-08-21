@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import styles from '/styles/anchor.module.scss';
 
 interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   noDecoration?: boolean;
@@ -29,7 +30,7 @@ const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
       <a
         {...props}
         onMouseEnter={handleMouseOver}
-        className={cn('pointer', props.className)}
+        className={cn(styles.anchor, props.className)}
         style={{
           ...(noDecoration && { textDecoration: 'none' }),
         }}

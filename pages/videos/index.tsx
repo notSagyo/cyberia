@@ -13,7 +13,7 @@ function Videos() {
           <Link href={`${animeURL}/${anime.id}/1`} passHref>
             <Anchor>
               <h2 className="h3">
-                ../pages/videos/{anime.id.replaceAll('-', '_')}
+                /pages/videos/{anime.id.replaceAll('-', '_')}
               </h2>
             </Anchor>
           </Link>

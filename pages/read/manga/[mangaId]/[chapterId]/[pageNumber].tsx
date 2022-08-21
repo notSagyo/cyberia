@@ -1,138 +1,120 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import Image from 'next/image';
+import {
+  IMangaChapterPage,
+  IMangaInfo,
+} from '@consumet/extensions/dist/models';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Anchor from '../../../../../components/anchor';
 import Layout from '../../../../../components/layout';
-import mangasData from '../../../../../data/mangas';
-import {
-  apiCache,
-  getChapterPages,
-  getMangaInfo,
-} from '../../../../../services/manga-service';
+import { mangadex } from '../../../../../services/manga-service';
+import { mangaURL } from '../../../../../utils/url';
 import styles from '/styles/manga.module.scss';
 
-interface MangaProps {
-  mangaId: string;
-  chapterId: string;
-  chapterLength: number;
-  pageNumber: number;
-  hasNextPage: boolean;
-  imageUrl: string;
-}
+const Manga = () => {
+  const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
+  const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
+  const query = useRouter().query;
 
-interface iQueryParams extends ParsedUrlQuery {
-  mangaId: string;
-  chapterId: string;
-  pageNumber: string;
-}
+  const mangaId = String(query.mangaId || '');
+  const chapterId = String(query.chapterId || '');
+  const pageNumber = Number(query.pageNumber || 0);
+  const chapterLength = chapterPages?.length || 0;
+  const imageUrl = chapterPages?.[parseInt(String(pageNumber)) - 1]?.img || '';
 
-const Manga = ({
-  mangaId,
-  chapterId,
-  chapterLength,
-  pageNumber,
-  imageUrl,
-  hasNextPage,
-}: MangaProps) => {
-  // XXX: DEBUG
-  console.log('\nManga ID:', mangaId);
-  console.log('Chapter ID:', chapterId);
-  console.log('Chapter length:', chapterLength);
-  console.log('Chapter page:', pageNumber);
-  console.log('Page image url:', imageUrl);
+  // Adjacent pages
+  const hasNextPage = Number(pageNumber) < chapterLength;
+  const nextPageUrl = `${mangaURL}/${mangaId}/${chapterId}/${pageNumber + 1}`;
+  const prevPageUrl = `${mangaURL}/${mangaId}/${chapterId}/${pageNumber - 1}`;
 
-  const router = useRouter();
-  const nextPageUrl =
-    router.pathname.split('/').slice(0, -1).join('/') + `/${pageNumber + 1}`;
+  // Adjacent chapters
+  const chapterIndex = mangaInfo?.chapters?.findIndex((c) => c.id == chapterId);
+  const nextChapter =
+    chapterIndex != null ? mangaInfo?.chapters?.[chapterIndex + 1]?.id : null;
+  const prevChapter =
+    chapterIndex != null ? mangaInfo?.chapters?.[chapterIndex - 1]?.id : null;
+  const nextChapterUrl =
+    nextChapter && `${mangaURL}/${mangaId}/${nextChapter}/1`;
+  const prevChapterUrl =
+    prevChapter && `${mangaURL}/${mangaId}/${prevChapter}/1`;
+
+  // On chapter change fetch chapter pages
+  useEffect(() => {
+    if (chapterId)
+      mangadex
+        .fetchChapterPages(chapterId)
+        .then((pages) => setChapterPages(pages));
+    if (mangaId)
+      mangadex.fetchMangaInfo(mangaId).then((info) => setMangaInfo(info));
+  }, [chapterId, mangaId]);
+
+  // On page change scroll to top
+  useEffect(() => {
+    const scrollTarget = document.getElementById('scrollTarget');
+    scrollTarget && scrollTarget.scrollTo({ behavior: 'smooth', top: 0 });
+  }, [chapterId, pageNumber]);
 
   return (
-    <Layout>
+    <Layout bodyProps={{ id: 'scrollTarget' }}>
       <div className={styles.pageContainer}>
         <img className={styles.pageImage} src={imageUrl} alt={'manga page'} />
       </div>
-      {hasNextPage && <Link href={nextPageUrl}>NEXT PAGE</Link>}
+      <div className={styles.controlsContainer}>
+        {prevChapterUrl && (
+          <Link href={prevChapterUrl} passHref>
+            <Anchor>
+              <img
+                src="/img/arrow-blue-left.gif"
+                alt="previous chapter"
+                width={64}
+              />
+            </Anchor>
+          </Link>
+        )}
+        {pageNumber > 1 && (
+          <Link href={prevPageUrl} passHref>
+            <Anchor>
+              <img
+                src="/img/arrow-yellow-left.gif"
+                alt="previous page"
+                width={64}
+              />
+            </Anchor>
+          </Link>
+        )}
+        {hasNextPage && (
+          <Link href={nextPageUrl} passHref>
+            <Anchor>
+              <img
+                src="/img/arrow-yellow-right.gif"
+                alt="next page"
+                width={64}
+              />
+            </Anchor>
+          </Link>
+        )}
+        {nextChapterUrl && (
+          <Link href={nextChapterUrl} passHref>
+            <Anchor>
+              <img
+                src="/img/arrow-blue-right.gif"
+                alt="next chapter"
+                width={64}
+              />
+            </Anchor>
+          </Link>
+        )}
+      </div>
+      {/* PRELOAD NEXT IMAGE */}
+      {hasNextPage && (
+        <img
+          className={styles.nextPageImage}
+          src={chapterPages?.[pageNumber]?.img}
+          alt={'hidden'}
+        />
+      )}
     </Layout>
   );
-};
-
-export const getStaticProps: GetStaticProps<MangaProps> = async (context) => {
-  const { pageNumber, mangaId, chapterId } = context.params as iQueryParams;
-  const chapterPages = await getChapterPages(chapterId);
-  const chapterLength = chapterPages?.length || 0;
-  const hasNextPage = Number(pageNumber) < chapterLength;
-  const imageUrl = chapterPages?.[parseInt(pageNumber) - 1]?.img || '';
-
-  return {
-    props: {
-      mangaId: mangaId || 'MANGA_ID',
-      chapterId: chapterId || 'CHAPTER_ID',
-      pageNumber: parseInt(pageNumber) || 0,
-      chapterLength,
-      hasNextPage,
-      imageUrl,
-    },
-  };
-};
-
-/* paths should look like = [
-  { params: { mangaId: 'a', chapterId: 'ch1', pageNumber: 1 } },
-  { params: { mangaId: 'a', chapterId: 'ch2', pageNumber: 1 } },
-  { params: { mangaId: 'b', chapterId: 'ch1', pageNumber: 1 } },
-  { params: { mangaId: 'b', chapterId: 'ch1', pageNumber: 2 } },
-  { params: { mangaId: 'c', chapterId: 'ch1', pageNumber: 1 } },
-]; */
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: { params: iQueryParams }[] = [];
-
-  let mangasIds: string[] = mangasData.map((manga) => manga.id);
-  let mangasWithChapters: {
-    mangaId: string;
-    chapters: MangadexChapter[];
-  }[] = [];
-
-  // Wait until all mangas' chapter are loaded
-  const infoPromises: Promise<unknown>[] = [];
-
-  mangasIds.forEach((mangaId) => {
-    const promise = getMangaInfo(mangaId).then((mangaInfo) => {
-      mangaInfo &&
-        mangasWithChapters.push({
-          mangaId: mangaId,
-          chapters: mangaInfo.chapters,
-        });
-    });
-
-    infoPromises.push(promise);
-  });
-
-  await Promise.all(infoPromises);
-
-  // Repeat each path for every page of every chapter
-  mangasWithChapters.forEach((mangaWithChapters) => {
-    mangaWithChapters.chapters.forEach((chapter) => {
-      if (!chapter) return;
-      // Cache manga chapters pages
-      const hasCache = apiCache.hasCache(chapter.id);
-      !hasCache &&
-        getChapterPages(chapter.id).then(
-          (pages) => pages && apiCache.setChaptersPages(chapter.id, pages)
-        );
-
-      for (let i = 0; i < chapter.pages; i++) {
-        paths.push({
-          params: {
-            mangaId: mangaWithChapters.mangaId,
-            chapterId: chapter.id,
-            pageNumber: String(i + 1),
-          },
-        });
-      }
-    });
-  });
-
-  return { fallback: false, paths };
 };
 
 export default Manga;

@@ -1,5 +1,5 @@
 interface iAlbumImage {
-  path: string;
+  src: string;
   title?: string;
   description?: string;
 }

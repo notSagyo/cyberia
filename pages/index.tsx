@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Anchor from '../components/anchor';
 import Banner from '../components/banner';
 import Layout from '../components/layout';
-import Test from './test';
 import Hr from '../components/utils/hr';
 import { baseURL } from '../utils/url';
 import { navigableRoutes } from '../utils/utils';
+import Test from './test';
 import styles from '/styles/index.module.scss';
 
 /* eslint-disable @next/next/no-img-element */

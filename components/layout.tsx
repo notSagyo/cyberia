@@ -1,6 +1,6 @@
 import { HtmlHTMLAttributes, useEffect, useState } from 'react';
 import Head from 'next/head';
-import Shell from './shell/shell';
+import Shell, { ShellProps } from './shell/shell';
 import Link from 'next/link';
 import styles from '/styles/layout.module.scss';
 import Anchor from './anchor';
@@ -9,7 +9,7 @@ import cn from 'classnames';
 import Void from './void';
 import { baseURL } from '../utils/url';
 
-interface LayoutProps extends HtmlHTMLAttributes<HTMLElement> {
+interface LayoutProps extends ShellProps {
   title?: string;
   description?: string;
 }
