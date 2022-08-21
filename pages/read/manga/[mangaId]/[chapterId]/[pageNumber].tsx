@@ -56,7 +56,7 @@ const Manga = () => {
   }, [chapterId, pageNumber]);
 
   return (
-    <Layout bodyProps={{ id: 'scrollTarget' }}>
+    <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
       <div className={styles.pageContainer}>
         <Link
           href={

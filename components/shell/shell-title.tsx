@@ -4,9 +4,11 @@ interface ShellTitleProps {
   shellTitle?: React.ReactNode;
   mainShell?: boolean;
   noHr?: boolean;
+  // Controls
   onClose?: () => void;
   onMaximize?: () => void;
   onMinimize?: () => void;
+  maximized?: boolean;
 }
 
 const ShellTitle = ({
@@ -16,6 +18,7 @@ const ShellTitle = ({
   onClose,
   onMaximize,
   onMinimize,
+  maximized,
 }: ShellTitleProps) => {
   return (
     <div className={styles.title}>
@@ -27,7 +30,7 @@ const ShellTitle = ({
           -
         </span>
         <span onClick={onMaximize} className={onMaximize ? 'pointer' : ''}>
-          □
+          {maximized ? <span style={{ fontSize: '1rem' }}>❐</span> : '□'}
         </span>
         <span onClick={onClose} className={onClose ? 'pointer' : ''}>
           ⨯

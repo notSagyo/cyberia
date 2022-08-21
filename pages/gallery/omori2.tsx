@@ -1,4 +1,4 @@
-import Album from '../../components/album';
+import Album from '../../components/album/album';
 import Layout from '../../components/layout';
 import styles from '/styles/omori.module.scss';
 import albumImages from '../../data/omoriAlbumImages2';
@@ -7,10 +7,10 @@ const Gallery = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <Album
-        descriptionClassname={styles.description}
-        albumTitle="../public/img/omori/3"
+        albumTitle="../public/img/omori/2"
         images={albumImages}
-        shellProps={{ noHr: true }}
+        descriptionProps={{ className: styles.description }}
+        shellProps={{ className: styles.imageShell, noHr: true }}
       />
     </Layout>
   );

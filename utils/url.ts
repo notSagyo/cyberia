@@ -7,5 +7,4 @@ export const readURL = `${baseURL}/read`;
 export const mangaURL = `${readURL}/manga`;
 
 export const galleryURL = `${baseURL}/gallery`;
-
-export const hectorURL = `${baseURL}/hector`;
+export const hectorURL = `${galleryURL}/hector`;

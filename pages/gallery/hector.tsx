@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import Layout from '../components/layout';
-import hector from '../data/hector';
+import Layout from '../../components/layout';
+import hector from '../../data/hectorHtml';
 
 const Hector = () => {
   return (
-    <Layout>
+    <Layout className="bgStars">
       <h1>HECTOR</h1>
       <div
         style={{

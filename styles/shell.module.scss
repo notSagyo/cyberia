@@ -98,6 +98,15 @@ $header-height: 2rem;
   .controls { margin-left: auto; }
 }
 
+// MAXIMIZED
+.maximized {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
 @keyframes item-hover-after {
   from { transform: rotateY(0deg); }
   to { transform: rotateY(180deg); }

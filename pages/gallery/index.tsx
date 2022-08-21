@@ -25,6 +25,10 @@ const links = [
     href: `${galleryURL}/visual-experiments`,
     title: '/pages/gallery/visual_experiments',
   },
+  {
+    href: `${galleryURL}/hector`,
+    title: '/pages/gallery/hector',
+  },
 ];
 
 const Gallery = () => {
