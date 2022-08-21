@@ -20,6 +20,7 @@ const AnimeVideo = ({
     <Shell
       shellTitle={videoTitle}
       noPadding
+      closeable
       {...shellProps}
       className={cn(styles.shell, shellProps?.className)}
       bodyProps={{

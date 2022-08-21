@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { useState } from 'react';
 import ShellNav from './shell-nav';
 import ShellTitle from './shell-title';
 import styles from '/styles/shell.module.scss';
@@ -8,6 +9,7 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   shellTitle?: React.ReactNode;
   mainShell?: boolean;
   noHr?: boolean;
+  closeable?: boolean;
   onClose?: () => void;
   onMinimize?: () => void;
   onMaximize?: () => void;
@@ -28,11 +30,15 @@ const Shell = ({
   mainShell,
   noPadding,
   noHr,
+  closeable,
   onClose,
   onMinimize,
   onMaximize,
   ...props
 }: ShellProps) => {
+  const [closed, setClosed] = useState(true);
+  if (closeable && !onClose) onClose = () => setClosed(false);
+
   return (
     // SHELL
     <div
@@ -41,6 +47,7 @@ const Shell = ({
         [styles.mainShell]: mainShell,
         [styles.noHr]: noHr,
       })}
+      style={{ ...props.style, ...(!closed && { display: 'none' }) }}
     >
       {/* TITLE BAR */}
       <ShellTitle

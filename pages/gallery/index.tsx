@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import Anchor from '../../components/anchor';
+import Anchor from '../../components/utils/anchor';
 import Layout from '../../components/layout';
 import { galleryURL } from '../../utils/url';
 

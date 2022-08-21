@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import { galleryURL } from '../utils/url';
-import Anchor from './anchor';
+import Anchor from './utils/anchor';
 import Shell, { ShellProps } from './shell/shell';
 import styles from '/styles/album.module.scss';
 
@@ -27,6 +27,7 @@ const Album = ({
     <Shell
       key={i}
       noPadding
+      closeable={true}
       shellTitle={`${image.title || image.src.split('/').pop()}`}
       {...shellProps}
       className={cn(styles.photo, shellProps.className)}

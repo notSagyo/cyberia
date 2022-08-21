@@ -1,4 +1,5 @@
-export const navigableRoutes = ['Home', 'Gallery', 'Videos', 'Music', 'Read'];
+export const navbarRoutes = ['Home', 'Gallery', 'Videos', 'Music'];
+export const linkListRoutes = [...navbarRoutes, 'Read', 'Stuff'];
 
 export const getDateString = () => {
   return new Date().toLocaleDateString();

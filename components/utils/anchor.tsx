@@ -9,10 +9,11 @@ import styles from '/styles/anchor.module.scss';
 
 interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   noDecoration?: boolean;
+  noSound?: boolean;
 }
 
 const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
-  ({ children, noDecoration = false, ...props }, ref) => {
+  ({ children, noDecoration = false, noSound, ...props }, ref) => {
     const [hoverAudio, setHoverAudio] = useState<HTMLAudioElement | null>(null);
 
     useEffect(() => {
@@ -29,7 +30,7 @@ const Anchor = forwardRef<HTMLAnchorElement, AnchorProps>(
     return (
       <a
         {...props}
-        onMouseEnter={handleMouseOver}
+        onMouseEnter={noSound ? undefined : handleMouseOver}
         className={cn(styles.anchor, props.className)}
         style={{
           ...(noDecoration && { textDecoration: 'none' }),

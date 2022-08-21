@@ -87,6 +87,7 @@ $header-height: 2rem;
 
 .controls {
   display: flex;
+  user-select: none;
   align-items: center;
   gap: $spacing-md;
 }

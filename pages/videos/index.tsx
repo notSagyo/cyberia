@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Anchor from '../../components/anchor';
+import Anchor from '../../components/utils/anchor';
 import Layout from '../../components/layout';
 import animes from '../../data/animes';
 import { animeURL } from '../../utils/url';

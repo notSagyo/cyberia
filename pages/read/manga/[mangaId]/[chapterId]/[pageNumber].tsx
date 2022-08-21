@@ -5,11 +5,12 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Anchor from '../../../../../components/anchor';
+import Anchor from '../../../../../components/utils/anchor';
 import Layout from '../../../../../components/layout';
 import { mangadex } from '../../../../../services/manga-service';
 import { mangaURL } from '../../../../../utils/url';
 import styles from '/styles/manga.module.scss';
+import cn from 'classnames';
 
 const Manga = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
@@ -30,9 +31,9 @@ const Manga = () => {
   // Adjacent chapters
   const chapterIndex = mangaInfo?.chapters?.findIndex((c) => c.id == chapterId);
   const nextChapter =
-    chapterIndex != null ? mangaInfo?.chapters?.[chapterIndex + 1]?.id : null;
-  const prevChapter =
     chapterIndex != null ? mangaInfo?.chapters?.[chapterIndex - 1]?.id : null;
+  const prevChapter =
+    chapterIndex != null ? mangaInfo?.chapters?.[chapterIndex + 1]?.id : null;
   const nextChapterUrl =
     nextChapter && `${mangaURL}/${mangaId}/${nextChapter}/1`;
   const prevChapterUrl =
@@ -57,7 +58,17 @@ const Manga = () => {
   return (
     <Layout bodyProps={{ id: 'scrollTarget' }}>
       <div className={styles.pageContainer}>
-        <img className={styles.pageImage} src={imageUrl} alt={'manga page'} />
+        <Link
+          href={
+            hasNextPage ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'
+          }
+        >
+          <img
+            className={cn(styles.pageImage, 'pointer')}
+            src={imageUrl}
+            alt={'manga page'}
+          />
+        </Link>
       </div>
       <div className={styles.controlsContainer}>
         {prevChapterUrl && (

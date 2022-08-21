@@ -3,8 +3,8 @@ import Head from 'next/head';
 import Shell, { ShellProps } from './shell/shell';
 import Link from 'next/link';
 import styles from '/styles/layout.module.scss';
-import Anchor from './anchor';
-import { getDateString, getTimeString, navigableRoutes } from '../utils/utils';
+import Anchor from './utils/anchor';
+import { getDateString, getTimeString, navbarRoutes } from '../utils/utils';
 import cn from 'classnames';
 import Void from './void';
 import { baseURL } from '../utils/url';
@@ -58,7 +58,7 @@ const Layout = ({
         // NAV ITEMS
         navItems={
           <>
-            {navigableRoutes.map((name, i) => (
+            {navbarRoutes.map((name, i) => (
               <li key={i}>
                 <Link href={`${baseURL}/${name.toLocaleLowerCase()}`} passHref>
                   <Anchor>

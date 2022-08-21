@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import Anchor from '../components/anchor';
+import Anchor from '../components/utils/anchor';
 import Banner from '../components/banner';
 import Layout from '../components/layout';
 import Hr from '../components/utils/hr';
 import { baseURL } from '../utils/url';
-import { navigableRoutes } from '../utils/utils';
-import Test from './test';
+import { linkListRoutes } from '../utils/utils';
 import styles from '/styles/index.module.scss';
 
 /* eslint-disable @next/next/no-img-element */
@@ -57,7 +56,7 @@ const Home: NextPage = () => {
             </span>
 
             <ul className={`${styles.linkList} h5 red`}>
-              {navigableRoutes.map(
+              {linkListRoutes.map(
                 (name, i) =>
                   name.toUpperCase() != 'HOME' && (
                     <li key={i}>

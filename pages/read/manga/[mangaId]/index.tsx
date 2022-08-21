@@ -2,7 +2,7 @@ import { IMangaInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
-import Anchor from '../../../../components/anchor';
+import Anchor from '../../../../components/utils/anchor';
 import Layout from '../../../../components/layout';
 import mangas from '../../../../data/mangas';
 import { mangadex } from '../../../../services/manga-service';
@@ -18,7 +18,7 @@ interface iQueryParams extends ParsedUrlQuery {
 
 const MangaId = ({ mangaInfo }: MangaIdProps) => {
   const mangaId = mangaInfo.id;
-  const chapters = mangaInfo.chapters || [];
+  const chapters = mangaInfo.chapters?.reverse() || [];
 
   const mangaName =
     mangas
