@@ -59,7 +59,7 @@ const Gallery = () => {
   );
 
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="Gallery" className="bgOmori">
       <Album
         albumTitle="../public/img/omori"
         images={albumImages}

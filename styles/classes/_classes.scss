@@ -22,7 +22,7 @@
 
 .pointer { cursor: pointer; }
 
-.bgNebula::before, .bgStars::before, .bgSpace::before {
+.bgNebula::before, .bgStars::before, .bgSpace::before, .bgOmori::before {
   content: '';
   position: absolute;
   top: 0;
@@ -47,6 +47,12 @@
   filter: saturate(1);
   background-image: url('/img/bg-space.gif');
   background-size: 256px auto;
+}
+
+.bgOmori::before {
+  background-image: url('/img/bg-omori.jpg');
+  background-size: 512px auto;
+  filter: saturate(0.7);
 }
 
 @keyframes move-background {

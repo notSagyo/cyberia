@@ -1,12 +1,10 @@
+import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import AnimeVideo from '../../../../components/anime-video';
 import Layout from '../../../../components/layout';
 import animesData from '../../../../data/animes';
-import {
-  fetchGogoanimeReferer,
-  fetchGogoanimeTotalEpisodes,
-} from '../../../../services/anime-service';
+import { gogoanime } from '../../../../services/anime-service';
 
 interface EpisodeProps {
   animeId: string;
@@ -21,6 +19,7 @@ interface iQueryParams extends ParsedUrlQuery {
 
 // !TODO: Add support for next episode buttons
 const Episode = ({ animeId, episodeUrl, episodeNumber }: EpisodeProps) => {
+  // !TODO: change title
   return (
     <Layout title="Videos">
       <h1 className="h1">VIDEOS</h1>
@@ -36,14 +35,15 @@ const Episode = ({ animeId, episodeUrl, episodeNumber }: EpisodeProps) => {
 
 export const getStaticProps: GetStaticProps<EpisodeProps> = async (context) => {
   const { episode, animeId } = context.params as iQueryParams;
-  const episodeReferer = await fetchGogoanimeReferer(
+  const episodeServers = await gogoanime.fetchEpisodeServers(
     `${animeId}-episode-${episode}`
   );
+  const episodeUrl = episodeServers[0].url;
 
   return {
     props: {
       animeId: animeId || 'ANIME_VISUALIZER',
-      episodeUrl: episodeReferer || '',
+      episodeUrl: episodeUrl || '',
       episodeNumber: episode,
     },
   };
@@ -52,16 +52,21 @@ export const getStaticProps: GetStaticProps<EpisodeProps> = async (context) => {
 export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
   let animes: { animeId: string; length: number }[] = [];
 
-  // Get episode count for all animes in animesData.ts
-  const promises = [];
+  // Get episode info for all animes in data/animes.ts
+  const promises: Promise<IAnimeInfo>[] = [];
   for (let i = 0; i < animesData.length; i++) {
-    promises.push(fetchGogoanimeTotalEpisodes(animesData[i].id));
+    promises.push(gogoanime.fetchAnimeInfo(animesData[i].id));
   }
 
   // When all promises resolve, assign animes array with animes data
   await Promise.allSettled(promises).then((results) => {
-    results.forEach((settled: any, i) =>
-      animes.push({ animeId: animesData[i].id, length: settled.value || 1 })
+    results.forEach(
+      (settled: PromiseSettledResult<IAnimeInfo>, i) =>
+        settled.status === 'fulfilled' &&
+        animes.push({
+          animeId: animesData[i].id,
+          length: settled.value.episodes?.length || 1,
+        })
     );
   });
 

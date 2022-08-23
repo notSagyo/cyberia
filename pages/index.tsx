@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         {/* MAIN SIDE */}
         <main>
           {/* CONSTRUCTION */}
-          <div>
+          <section>
             <img
               src="/img/under-construction-line.gif"
               alt="construction"
@@ -46,10 +46,10 @@ const Home: NextPage = () => {
               alt="construction"
               height={48}
             />
-          </div>
+          </section>
 
           {/* LINKS LIST */}
-          <div>
+          <section>
             <img src="/img/arrow-tdr.gif" alt="construction" height={64} />
             <span className="h4 dInline">
               <b> LINKS</b>
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
                   )
               )}
             </ul>
-          </div>
+          </section>
         </main>
 
         {/* RIGHT SIDE */}

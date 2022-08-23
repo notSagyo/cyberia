@@ -10,7 +10,7 @@ function Videos() {
       <h1 className="h1">VIDEOS</h1>
       {animes.map((anime, i) => (
         <span key={i}>
-          <Link href={`${animeURL}/${anime.id}/1`} passHref>
+          <Link href={`${animeURL}/${anime.id}`} passHref>
             <Anchor>
               <h2 className="h3">
                 /pages/videos/{anime.id.replaceAll('-', '_')}
