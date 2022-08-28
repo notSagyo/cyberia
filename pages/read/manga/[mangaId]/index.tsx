@@ -1,12 +1,13 @@
 import { IMangaInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
-import Anchor from '../../../../components/utils/anchor';
 import Layout from '../../../../components/layout';
 import mangas from '../../../../data/mangas';
 import { mangadex } from '../../../../services/manga-service';
 import { mangaURL, readURL } from '../../../../utils/url';
+import LinkHeading from '../../../../components/link-heading';
+import LinkList from '../../../../components/link-list/link-list';
+import LinkListItem from '../../../../components/link-list/link-list-item';
 
 interface MangaIdProps {
   mangaInfo: IMangaInfo;
@@ -28,26 +29,22 @@ const MangaId = ({ mangaInfo }: MangaIdProps) => {
 
   return (
     <Layout>
-      <Link href={readURL} passHref>
-        <Anchor className="green">
-          <h1 className="h2">{`..${mangaURL}/${mangaName}`}</h1>
-        </Anchor>
-      </Link>
-      {chapters.map((chapter, index) => (
-        <Link
-          href={`${mangaURL}/${mangaId}/${chapter.id}/1`}
-          key={chapter.id}
-          passHref
-        >
-          <Anchor>
-            <h4 className="h3">{`${mangaURL}/${mangaName}/${index}`}</h4>
-          </Anchor>
-        </Link>
-      ))}
+      <LinkHeading href={`${readURL}`} goBack>
+        {mangaURL}/{mangaName}
+      </LinkHeading>
+
+      <LinkList>
+        {chapters.map((chapter, i) => (
+          <LinkListItem href={`${mangaURL}/${mangaId}/${chapter.id}/1`} key={i}>
+            {`${mangaURL}/${mangaName}/${i}`}
+          </LinkListItem>
+        ))}
+      </LinkList>
     </Layout>
   );
 };
 
+// Static stuff ==============================================================//
 export const getStaticProps: GetStaticProps<MangaIdProps> = async (context) => {
   const { mangaId } = context.params as iQueryParams;
   const mangaInfo = await mangadex.fetchMangaInfo(mangaId);

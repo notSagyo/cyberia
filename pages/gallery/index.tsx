@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
-import Anchor from '../../components/utils/anchor';
 import Layout from '../../components/layout';
 import { galleryURL } from '../../utils/url';
+import LinkList from '../../components/link-list/link-list';
+import LinkListItem from '../../components/link-list/link-list-item';
 
 const links = [
   {
@@ -41,13 +41,13 @@ const Gallery = () => {
           </u>
         </h1>
       </div>
-      {links.map((link, i) => (
-        <h2 className="h3" key={i}>
-          <Link href={link.href} passHref>
-            <Anchor>{link.title}</Anchor>
-          </Link>
-        </h2>
-      ))}
+      <LinkList>
+        {links.map((link, i) => (
+          <LinkListItem href={link.href} key={i}>
+            {link.title}
+          </LinkListItem>
+        ))}
+      </LinkList>
     </Layout>
   );
 };

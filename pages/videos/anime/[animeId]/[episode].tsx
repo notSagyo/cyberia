@@ -1,15 +1,20 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
 import AnimeVideo from '../../../../components/anime-video';
 import Layout from '../../../../components/layout';
+import LinkHeading from '../../../../components/link-heading';
+import Anchor from '../../../../components/utils/anchor';
 import animesData from '../../../../data/animes';
 import { gogoanime } from '../../../../services/anime-service';
+import { animeURL } from '../../../../utils/url';
+import styles from '/styles/anime.module.scss';
 
 interface EpisodeProps {
-  animeId: string;
+  animeInfo: IAnimeInfo;
   episodeUrl: string;
-  episodeNumber: string | number;
+  episodeNumber: number;
 }
 
 interface iQueryParams extends ParsedUrlQuery {
@@ -17,24 +22,53 @@ interface iQueryParams extends ParsedUrlQuery {
   episode: string;
 }
 
-// !TODO: Add support for next episode buttons
-const Episode = ({ animeId, episodeUrl, episodeNumber }: EpisodeProps) => {
-  // !TODO: change title
+const Episode = ({ episodeUrl, episodeNumber, animeInfo }: EpisodeProps) => {
+  const episodeCount = animeInfo?.totalEpisodes || 1;
+  const prevEpisodeUrl =
+    episodeNumber - 1 > 0 && `${animeURL}/${animeInfo.id}/${episodeNumber - 1}`;
+  const nextEpisodeUrl =
+    episodeNumber + 1 < episodeCount &&
+    `${animeURL}/${animeInfo.id}/${episodeNumber + 1}`;
+
   return (
-    <Layout title="Videos">
-      <h1 className="h1">VIDEOS</h1>
+    <Layout title={animeInfo.id}>
+      <LinkHeading href={`${animeURL}/${animeInfo.id}`} goBack />
+      {/* VIDEO */}
       <AnimeVideo
-        videoTitle={`${animeId.replaceAll('-', '_')}_${episodeNumber
+        className={styles.video}
+        videoTitle={`${animeInfo.id.replaceAll('-', '_')}_${episodeNumber
           .toString()
           .padStart(2, '0')}.mp4`}
         episodeUrl={episodeUrl || ''}
       />
+      {/* ARROWS */}
+      <div className={styles.arrowsContainer}>
+        {prevEpisodeUrl && (
+          <Anchor href={prevEpisodeUrl}>
+            <img
+              src="/img/arrow-yellow-left.gif"
+              alt="previous page"
+              width={64}
+            />
+          </Anchor>
+        )}
+        {nextEpisodeUrl && (
+          <Anchor href={nextEpisodeUrl}>
+            <img
+              src="/img/arrow-yellow-right.gif"
+              alt="previous page"
+              width={64}
+            />
+          </Anchor>
+        )}
+      </div>
     </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps<EpisodeProps> = async (context) => {
   const { episode, animeId } = context.params as iQueryParams;
+  const animeInfo = await gogoanime.fetchAnimeInfo(animeId);
   const episodeServers = await gogoanime.fetchEpisodeServers(
     `${animeId}-episode-${episode}`
   );
@@ -42,9 +76,9 @@ export const getStaticProps: GetStaticProps<EpisodeProps> = async (context) => {
 
   return {
     props: {
-      animeId: animeId || 'ANIME_VISUALIZER',
       episodeUrl: episodeUrl || '',
-      episodeNumber: episode,
+      episodeNumber: parseInt(episode),
+      animeInfo,
     },
   };
 };
@@ -54,9 +88,8 @@ export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
 
   // Get episode info for all animes in data/animes.ts
   const promises: Promise<IAnimeInfo>[] = [];
-  for (let i = 0; i < animesData.length; i++) {
+  for (let i = 0; i < animesData.length; i++)
     promises.push(gogoanime.fetchAnimeInfo(animesData[i].id));
-  }
 
   // When all promises resolve, assign animes array with animes data
   await Promise.allSettled(promises).then((results) => {

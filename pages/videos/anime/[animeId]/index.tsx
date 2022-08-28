@@ -1,9 +1,10 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
 import { ParsedUrlQuery } from 'querystring';
 import Layout from '../../../../components/layout';
-import Anchor from '../../../../components/utils/anchor';
+import LinkList from '../../../../components/link-list/link-list';
+import LinkListItem from '../../../../components/link-list/link-list-item';
+import LinkHeading from '../../../../components/link-heading';
 import animes from '../../../../data/animes';
 import { gogoanime } from '../../../../services/anime-service';
 import { animeURL, videosURL } from '../../../../utils/url';
@@ -16,7 +17,6 @@ interface iQueryParams extends ParsedUrlQuery {
   animeId: string;
 }
 
-// !TODO: Add support for next episode buttons
 const AnimeId = ({ animeInfo }: AnimeIdProps) => {
   const animeId = animeInfo.id;
   const episodes = animeInfo.episodes || [];
@@ -27,26 +27,17 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
 
   return (
     <Layout title="Videos">
-      <Link href={videosURL} passHref>
-        <Anchor className="green">
-          <h1 className="h2">{`..${animeURL}/${animeName}`}</h1>
-        </Anchor>
-      </Link>
-      {episodes.map((episode, index) => (
-        <Link
-          href={`${animeURL}/${animeId}/${index + 1}`}
-          key={episode.id}
-          passHref
-        >
-          <Anchor>
-            <h4 className="h3">{`${animeURL}/${animeId}/${index + 1}`}</h4>
-          </Anchor>
-        </Link>
-      ))}
+      <LinkHeading href={videosURL}>{`..${animeURL}/${animeName}`}</LinkHeading>
+      <LinkList>
+        {episodes.map((episode, i) => (
+          <LinkListItem href={`${animeURL}/${animeId}/${i + 1}`} key={i} />
+        ))}
+      </LinkList>
     </Layout>
   );
 };
 
+// Static stuff ==============================================================//
 export const getStaticProps: GetStaticProps<AnimeIdProps> = async (context) => {
   const { animeId } = context.params as iQueryParams;
   const animeInfo = await gogoanime.fetchAnimeInfo(animeId);

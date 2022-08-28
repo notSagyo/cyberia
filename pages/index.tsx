@@ -60,15 +60,10 @@ const Home: NextPage = () => {
                 (name, i) =>
                   name.toUpperCase() != 'HOME' && (
                     <li key={i}>
-                      <Link
-                        href={`${baseURL}/${name.toLocaleLowerCase()}`}
-                        passHref
-                      >
-                        <Anchor>
-                          <img src="/img/sigil.gif" width={34} alt="sigil" />
-                          <span>{name.toUpperCase()}</span>
-                        </Anchor>
-                      </Link>
+                      <Anchor href={`${baseURL}/${name.toLocaleLowerCase()}`}>
+                        <img src="/img/sigil.gif" width={34} alt="sigil" />
+                        <span>{name.toUpperCase()}</span>
+                      </Anchor>
                     </li>
                   )
               )}

@@ -1,4 +1,4 @@
-import { HtmlHTMLAttributes, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Shell, { ShellProps } from './shell/shell';
 import Link from 'next/link';
@@ -60,12 +60,10 @@ const Layout = ({
           <>
             {navbarRoutes.map((name, i) => (
               <li key={i}>
-                <Link href={`${baseURL}/${name.toLocaleLowerCase()}`} passHref>
-                  <Anchor>
-                    <u>{name[0]}</u>
-                    {name.slice(1)}
-                  </Anchor>
-                </Link>
+                <Anchor href={`${baseURL}/${name.toLocaleLowerCase()}`}>
+                  <u>{name[0]}</u>
+                  {name.slice(1)}
+                </Anchor>
               </li>
             ))}
           </>

@@ -7,7 +7,7 @@ const Gallery = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <Album
-        albumTitle="../public/img/omori/2"
+        albumTitle="/public/img/omori/2"
         images={albumImages}
         descriptionProps={{ className: styles.description }}
         shellProps={{ className: styles.imageShell, noHr: true }}

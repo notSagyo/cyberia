@@ -1,32 +1,30 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
 import Shell, { ShellProps } from './shell/shell';
 import styles from '/styles/anime-video.module.scss';
 
-interface VideoProps {
+interface VideoProps extends ShellProps {
   episodeUrl: string;
   videoTitle?: string;
   shellWidth?: string | number;
-  shellProps?: ShellProps;
 }
 
 const AnimeVideo = ({
   episodeUrl,
   videoTitle,
   shellWidth = 720,
-  shellProps,
+  ...props
 }: VideoProps) => {
   return (
     <Shell
       shellTitle={videoTitle}
       noPadding
       closeable
-      {...shellProps}
-      className={cn(styles.shell, shellProps?.className)}
+      {...props}
+      className={cn(styles.shell, props?.className)}
       bodyProps={{
-        ...shellProps?.bodyProps,
-        className: cn(styles.shellBody, shellProps?.bodyProps?.className),
-        style: { width: shellWidth, ...shellProps?.bodyProps?.style },
+        ...props?.bodyProps,
+        className: cn(styles.shellBody, props?.bodyProps?.className),
+        style: { width: shellWidth, ...props?.bodyProps?.style },
       }}
     >
       <div className={styles.videoAspectRatio}>

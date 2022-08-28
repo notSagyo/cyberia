@@ -1,22 +1,20 @@
-import Link from 'next/link';
-import Anchor from '../../components/utils/anchor';
 import Layout from '../../components/layout';
 import mangas from '../../data/mangas';
 import { mangaURL } from '../../utils/url';
+import LinkListItem from '../../components/link-list/link-list-item';
+import LinkList from '../../components/link-list/link-list';
 
 const Read = () => {
   return (
     <Layout>
       <h1 className="h1">READ</h1>
-      {mangas.map((manga) => (
-        <Link href={`${mangaURL}/${manga.id}`} key={manga.id} passHref>
-          <Anchor>
-            <h2 className="h3">
-              {mangaURL}/{manga.name.toLocaleLowerCase().replaceAll(' ', '_')}
-            </h2>
-          </Anchor>
-        </Link>
-      ))}
+      <LinkList>
+        {mangas.map((manga) => (
+          <LinkListItem href={`${mangaURL}/${manga.id}`} key={manga.id}>
+            {mangaURL}/{manga.name.toLocaleLowerCase().replaceAll(' ', '_')}
+          </LinkListItem>
+        ))}
+      </LinkList>
     </Layout>
   );
 };

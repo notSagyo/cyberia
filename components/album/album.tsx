@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import { galleryURL } from '../../utils/url';
-import Anchor from '../utils/anchor';
 import { ShellProps } from '../shell/shell';
 import styles from '/styles/album.module.scss';
 import AlbumPicture from './album-picture';
 import { Fragment, HTMLAttributes } from 'react';
+import LinkHeading from '../link-heading';
 
 interface AlbumProps {
   images: iAlbumImage[];
@@ -21,7 +20,7 @@ interface AlbumProps {
   }[];
 }
 
-// *TODO: Make images large on click
+// TODO: Fix unique key on inserted element
 const Album = ({
   albumTitle,
   images,
@@ -46,6 +45,7 @@ const Album = ({
         shellProps={shellProps}
       />
     );
+
     const elemAtIndex = putElementAtIndex.find((elem) => elem.position === i);
     if (elemAtIndex) {
       if (elemAtIndex.mode === 'override') pictureElement = elemAtIndex.element;
@@ -58,16 +58,19 @@ const Album = ({
           </Fragment>
         );
     }
+
     return pictureElement;
   });
 
   return (
     <>
-      <h1 className={`${styles.title} h2`}>
-        <Link href={galleryURL} passHref>
-          <Anchor className="green">{albumTitle || 'IMAGE VISUALIZER'}</Anchor>
-        </Link>
-      </h1>
+      <LinkHeading
+        href={galleryURL}
+        anchorProps={{ className: styles.title }}
+        goBack
+      >
+        {albumTitle || 'IMAGE VISUALIZER'}
+      </LinkHeading>
       <div className={styles.body}>{albumImages}</div>
     </>
   );

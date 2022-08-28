@@ -1,0 +1,10 @@
+@use '/styles/abstracts' as *;
+
+.video {
+  @include my($spacing-sm);
+}
+
+.arrowsContainer {
+  display: flex;
+  gap: $spacing-sm;
+}

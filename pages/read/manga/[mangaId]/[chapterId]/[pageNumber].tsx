@@ -17,6 +17,7 @@ const Manga = () => {
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
   const query = useRouter().query;
 
+  // Manga info
   const mangaId = String(query.mangaId || '');
   const chapterId = String(query.chapterId || '');
   const pageNumber = Number(query.pageNumber || 0);
@@ -57,6 +58,7 @@ const Manga = () => {
 
   return (
     <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
+      {/* PAGE */}
       <div className={styles.pageContainer}>
         <Link
           href={
@@ -70,52 +72,47 @@ const Manga = () => {
           />
         </Link>
       </div>
+
+      {/* CONTROLS */}
       <div className={styles.controlsContainer}>
+        {/* PREV CHAPTER */}
         {prevChapterUrl && (
-          <Link href={prevChapterUrl} passHref>
-            <Anchor>
-              <img
-                src="/img/arrow-blue-left.gif"
-                alt="previous chapter"
-                width={64}
-              />
-            </Anchor>
-          </Link>
+          <Anchor href={prevChapterUrl}>
+            <img
+              src="/img/arrow-blue-left.gif"
+              alt="previous chapter"
+              width={64}
+            />
+          </Anchor>
         )}
+        {/* PREV PAGE */}
         {pageNumber > 1 && (
-          <Link href={prevPageUrl} passHref>
-            <Anchor>
-              <img
-                src="/img/arrow-yellow-left.gif"
-                alt="previous page"
-                width={64}
-              />
-            </Anchor>
-          </Link>
+          <Anchor href={prevPageUrl}>
+            <img
+              src="/img/arrow-yellow-left.gif"
+              alt="previous page"
+              width={64}
+            />
+          </Anchor>
         )}
+        {/* NEXT PAGE */}
         {hasNextPage && (
-          <Link href={nextPageUrl} passHref>
-            <Anchor>
-              <img
-                src="/img/arrow-yellow-right.gif"
-                alt="next page"
-                width={64}
-              />
-            </Anchor>
-          </Link>
+          <Anchor href={nextPageUrl}>
+            <img src="/img/arrow-yellow-right.gif" alt="next page" width={64} />
+          </Anchor>
         )}
+        {/* NEXTCHAPTER */}
         {nextChapterUrl && (
-          <Link href={nextChapterUrl} passHref>
-            <Anchor>
-              <img
-                src="/img/arrow-blue-right.gif"
-                alt="next chapter"
-                width={64}
-              />
-            </Anchor>
-          </Link>
+          <Anchor href={nextChapterUrl}>
+            <img
+              src="/img/arrow-blue-right.gif"
+              alt="next chapter"
+              width={64}
+            />
+          </Anchor>
         )}
       </div>
+
       {/* PRELOAD NEXT IMAGE */}
       {hasNextPage && (
         <img

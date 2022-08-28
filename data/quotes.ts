@@ -47,4 +47,4 @@ const fortuneQuotes = [
   'BLAME NOBODY / BUT YOURSELF',
 ];
 
-export { closeShellQuotes };
+export { closeShellQuotes, fortuneQuotes };
