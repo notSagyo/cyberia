@@ -52,6 +52,11 @@ const Bartender = () => {
         <div className={styles.clouds} />
         <Shell className="mAuto" shellTitle="BARTENDER.EXE" noPadding>
           <div className={styles.board}>
+            {/* $$$ MULA */}
+            <div id="moneyText" className={styles.moneyText} data-value={0}>
+              $ 0
+            </div>
+            {/* DRINK NAME */}
             <div id="drinkName" className={styles.drinkName} />
             {/* INGREDIENTS */}
             {ingredientNames.map((ingredientName, index) => (

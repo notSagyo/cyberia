@@ -89,8 +89,7 @@ function serveMix(
   setBlended: Dispatch<SetStateAction<boolean>>
 ) {
   const foundDrink = findDrink(mix);
-  // !XXX:
-  console.log('Served:', foundDrink);
+  foundDrink && addMoney(foundDrink?.price);
   toggleHidden('serveButton', true);
   toggleHidden('drinkResult', true);
   toggleHidden('mixer', false);
@@ -221,6 +220,19 @@ function resetMixerSprite() {
   mixer.classList.remove(styles.blend);
   mixer.classList.remove('hidden');
   mixer.style.height = '';
+}
+
+function addMoney(amount: number) {
+  const moneyElem = document.getElementById('moneyText');
+  if (!moneyElem) throw new Error('Element with ID "moneyText" not found');
+
+  const currentValue = Number(moneyElem.dataset.value);
+  if (isNaN(currentValue))
+    throw new Error("Error parsing moneyText's data-value");
+
+  const newValue = currentValue + amount;
+  moneyElem.dataset.value = newValue.toString();
+  moneyElem.innerText = `$ ${newValue}`;
 }
 
 export {

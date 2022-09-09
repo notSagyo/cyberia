@@ -37,6 +37,25 @@ $color-karmotrine: #c9f1f1;
   user-select: none;
 }
 
+.moneyText {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  left: 1.5%;
+  top: 2.25%;
+
+  // background-color: red;
+  width: 26.5%;
+  height: 10.75%;
+  padding-left: 2%;
+
+  color: white;
+  // font-weight: bold;
+  font-size: $fs-h3;
+  letter-spacing: 3px;
+}
+
 // Ingredients ===============================================================//
 .ingredient {
   position: absolute;
@@ -62,7 +81,7 @@ $color-karmotrine: #c9f1f1;
   height: 32.0652%;
 
   &.shake { animation: shake 0.75s infinite ease-in-out; }
-  &.blend { animation: blend 0.35s infinite ease-in-out; }
+  &.blend { animation: blend 0.25s infinite ease-in-out; }
 }
 
 @keyframes shake {
@@ -71,8 +90,8 @@ $color-karmotrine: #c9f1f1;
 }
 
 @keyframes blend {
-  0%, 100% { transform: rotate(-35deg); }
-  50% { transform: rotate(35deg); }
+  0%, 100% { transform: rotate(-25deg); }
+  50% { transform: rotate(25deg); }
 }
 
 // Indicators ================================================================//
