@@ -8,7 +8,7 @@ import styles from '/styles/bartender.module.scss';
 const ingredientNames: IngredientNames[] = [
   'adelhyde',
   'bronson',
-  'pwd',
+  'delta',
   'flanergide',
   'karmotrine',
 ];
@@ -25,7 +25,7 @@ function findDrink(mix: IMix) {
       drink.blended == mix.blended &&
       drink.adelhyde == mix.adelhyde &&
       drink.bronson == mix.bronson &&
-      drink.pwd == mix.pwd &&
+      drink.delta == mix.delta &&
       drink.flanergide == mix.flanergide &&
       (drink.karmotrine === 'optional'
         ? true
@@ -33,6 +33,7 @@ function findDrink(mix: IMix) {
   );
 }
 
+// Prepare mix =======================//
 function mix(mix: IMix, setBlended: Dispatch<SetStateAction<boolean>>) {
   const mixer = document.querySelector('#mixer');
   if (!mixer) throw new Error('Element with ID "mixer" not found');
@@ -54,11 +55,12 @@ function mix(mix: IMix, setBlended: Dispatch<SetStateAction<boolean>>) {
     const drinkFileName =
       foundDrink?.name &&
       foundDrink.name.toLowerCase().replaceAll(' ', '-') + '.png';
-    setDrinkName(foundDrink?.name || '##20%!!');
+    setResultName(foundDrink?.name || '##20%!!');
     setResultSprite(`/img/va11halla/drink-${drinkFileName || 'glitch.png'}`);
-    toggleHiddenOff('serveButton');
-    toggleHiddenOff('drinkResult');
-    toggleHiddenOn('mixer');
+    toggleHidden('serveButton', false);
+    toggleHidden('drinkResult', false);
+    toggleHidden('mixer', true);
+    resetMixerIndicators();
     mixer.classList.remove(styles.shake, styles.blend);
   }
 }
@@ -67,14 +69,14 @@ function resetMix(
   setMix: Dispatch<SetStateAction<IMix>>,
   setBlended: Dispatch<SetStateAction<boolean>>
 ) {
-  toggleHiddenOn('drinkResult');
-  toggleHiddenOn('serveButton');
+  toggleHidden('drinkResult', true);
+  toggleHidden('serveButton', true);
+  resetAllIndicators();
   resetMixerSprite();
-  resetIndicators();
   setBlended(false);
-  setDrinkName('');
+  setResultName('');
   setMix((prev) => ({
-    ...{ adelhyde: 0, bronson: 0, pwd: 0, flanergide: 0, karmotrine: 0 },
+    ...{ adelhyde: 0, bronson: 0, delta: 0, flanergide: 0, karmotrine: 0 },
     ice: prev.ice,
     aged: prev.aged,
     blended: false,
@@ -87,15 +89,16 @@ function serveMix(
   setBlended: Dispatch<SetStateAction<boolean>>
 ) {
   const foundDrink = findDrink(mix);
-  // XXX:
+  // !XXX:
   console.log('Served:', foundDrink);
-  toggleHiddenOn('serveButton');
-  toggleHiddenOn('drinkResult');
-  toggleHiddenOff('mixer');
+  toggleHidden('serveButton', true);
+  toggleHidden('drinkResult', true);
+  toggleHidden('mixer', false);
   resetMix(setMix, setBlended);
 }
 
-function onDragDrink(ev: React.DragEvent) {
+// Event handlers ====================//
+function onDragIngredient(ev: React.DragEvent) {
   if (!ev.dataTransfer || !(ev.target instanceof HTMLElement)) return;
   ev.dataTransfer.setData('text', ev.target.id);
   ev.target.style.cursor = 'move !important';
@@ -122,16 +125,17 @@ function onDropMixer(
   ev.preventDefault();
   resetMixerSprite();
 
-  const drinkName = ev.dataTransfer.getData('text') as IngredientNames;
-  if (!ingredientNames.includes(drinkName)) return;
+  const ingredientName = ev.dataTransfer.getData('text') as IngredientNames;
+  if (!ingredientNames.includes(ingredientName)) return;
 
-  const indicator = document.querySelector(`#${drinkName}Indicator`);
-  const nextHiddenIndicator = indicator && indicator.querySelector('.hidden');
-  nextHiddenIndicator && nextHiddenIndicator.classList.remove('hidden');
+  unhideNextIndicator(ingredientName);
 
   setMix((prev) => ({
     ...prev,
-    [drinkName]: prev[drinkName] < 10 ? prev[drinkName] + 1 : prev[drinkName],
+    [ingredientName]:
+      prev[ingredientName] < 10
+        ? prev[ingredientName] + 1
+        : prev[ingredientName],
   }));
 }
 
@@ -145,36 +149,60 @@ function onToggleIceOrAged(
 }
 
 // UTILS =====================================================================//
-function resetMixerSprite() {
-  const mixer = document.querySelector('#mixer') as HTMLImageElement | null;
-  if (!mixer) throw new Error('Element with ID "mixer" not found');
-  mixer.src = '/img/va11halla/mixer.png';
-  mixer.classList.remove(styles.shake);
-  mixer.classList.remove(styles.blend);
-  mixer.classList.remove('hidden');
-  mixer.style.height = '';
+// Reset Indicators ==================//
+function resetAllIndicators() {
+  resetMixerIndicators();
+  resetIngredientIndicators();
 }
 
-function resetIndicators() {
-  const indicators = document.querySelectorAll(`.${styles.indicator}`);
-  if (indicators.length < 1)
-    throw new Error(`Elements with class "${styles.indicator}" not found`);
-  indicators.forEach((indicator) => {
-    const squares = indicator.querySelectorAll('div');
-    squares.forEach((square) => square.classList.add('hidden'));
+function resetMixerIndicators() {
+  resetIndicator(`.${styles.mixerIndicators}`);
+}
+
+function resetIngredientIndicators() {
+  resetIndicator(`.${styles.ingredientIndicators}`);
+}
+
+function resetIndicator(query: string) {
+  const elements = document.querySelectorAll(query);
+
+  if (elements.length < 1)
+    throw new Error(`Elements matching "${query}" not found`);
+  elements.forEach((indicators) => {
+    const indicatorsDiv = indicators.querySelectorAll('div');
+    indicatorsDiv.forEach((div) => div.classList.add('hidden'));
   });
 }
 
-function toggleHiddenOn(elemId: string) {
+// Hiding stuff ======================//
+function toggleHidden(elemId: string, value?: boolean) {
   const elem = document.querySelector(`#${elemId}`);
   if (!elem) throw new Error(`Element with ID "${elemId}" not found`);
-  elem.classList.add('hidden');
+  if (value === true) elem.classList.add('hidden');
+  else if (value === false) elem.classList.remove('hidden');
+  else elem.classList.toggle('hidden');
 }
 
-function toggleHiddenOff(elemId: string) {
-  const elem = document.querySelector(`#${elemId}`);
-  if (!elem) throw new Error(`Element with ID "${elemId}" not found`);
-  elem.classList.remove('hidden');
+function unhideNextIndicator(ingredient: string) {
+  const ingredientIndicators = document.querySelector(
+    `#${ingredient}Indicators`
+  );
+  const mixerIndicators = document.querySelector(`#mixerIndicators`);
+
+  const nextIngredientIndicator =
+    ingredientIndicators && ingredientIndicators.querySelector('.hidden');
+  const nextMixerIndicator =
+    mixerIndicators && mixerIndicators.querySelector('.hidden');
+
+  nextIngredientIndicator && nextIngredientIndicator.classList.remove('hidden');
+  nextMixerIndicator && nextMixerIndicator.classList.remove('hidden');
+}
+
+// Other =============================//
+function setResultName(name: string) {
+  const drinkNameElem = document.querySelector('#drinkName');
+  if (!drinkNameElem) throw new Error('Element with ID "drinkName" not found');
+  drinkNameElem.textContent = name;
 }
 
 function setResultSprite(imgPath: string) {
@@ -185,10 +213,14 @@ function setResultSprite(imgPath: string) {
   resultElem.src = imgPath;
 }
 
-function setDrinkName(name: string) {
-  const drinkNameElem = document.querySelector('#drinkName');
-  if (!drinkNameElem) throw new Error('Element with ID "drinkName" not found');
-  drinkNameElem.textContent = name;
+function resetMixerSprite() {
+  const mixer = document.querySelector('#mixer') as HTMLImageElement | null;
+  if (!mixer) throw new Error('Element with ID "mixer" not found');
+  mixer.src = '/img/va11halla/mixer.png';
+  mixer.classList.remove(styles.shake);
+  mixer.classList.remove(styles.blend);
+  mixer.classList.remove('hidden');
+  mixer.style.height = '';
 }
 
 export {
@@ -197,7 +229,7 @@ export {
   mix,
   resetMix,
   serveMix,
-  onDragDrink,
+  onDragIngredient,
   onDragOverMixer,
   onDragLeaveMixer,
   onDropMixer,

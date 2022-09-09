@@ -4,7 +4,7 @@ import Layout from '../../components/layout';
 import Shell from '../../components/shell/shell';
 import {
   ingredientNames,
-  onDragDrink,
+  onDragIngredient,
   onDragLeaveMixer,
   onDragOverMixer,
   onDropMixer,
@@ -18,7 +18,7 @@ import styles from '/styles/bartender.module.scss';
 export interface IMix {
   adelhyde: number;
   bronson: number;
-  pwd: number;
+  delta: number;
   flanergide: number;
   karmotrine: number;
   ice: boolean;
@@ -31,7 +31,7 @@ const Bartender = () => {
   const [blended, setBlended] = useState<boolean>(false);
   const [aged, setAged] = useState<boolean>(false);
   const [currentMix, setCurrentMix] = useState<IMix>({
-    ...{ adelhyde: 0, bronson: 0, pwd: 0, flanergide: 0, karmotrine: 0 },
+    ...{ adelhyde: 0, bronson: 0, delta: 0, flanergide: 0, karmotrine: 0 },
     ice,
     aged,
     blended,
@@ -53,26 +53,26 @@ const Bartender = () => {
         <Shell className="mAuto" shellTitle="BARTENDER.EXE" noPadding>
           <div className={styles.board}>
             <div id="drinkName" className={styles.drinkName} />
-            {/* DRINKS */}
-            {ingredientNames.map((drinkName, index) => (
+            {/* INGREDIENTS */}
+            {ingredientNames.map((ingredientName, index) => (
               <img
                 key={index}
-                id={drinkName}
-                className={cn(styles.drink, styles[drinkName])}
-                src={`/img/va11halla/${drinkName}.png`}
-                alt={drinkName}
+                id={ingredientName}
+                className={cn(styles.ingredient, styles[ingredientName])}
+                src={`/img/va11halla/${ingredientName}.png`}
+                alt={ingredientName}
                 draggable="true"
-                onDragStart={onDragDrink}
+                onDragStart={onDragIngredient}
               />
             ))}
-            {/* DRINKS INDICATORS */}
-            {ingredientNames.map((drinkName, index) => (
+            {/* INGREDIENTS INDICATORS */}
+            {ingredientNames.map((ingredientName, index) => (
               <div
                 key={index}
-                id={`${drinkName}Indicator`}
+                id={`${ingredientName}Indicators`}
                 className={cn(
-                  styles.indicator,
-                  styles[`${drinkName}Indicator`]
+                  styles.ingredientIndicators,
+                  styles[`${ingredientName}Indicators`]
                 )}
               >
                 {Array.from(new Array(10)).map((_, i) => (
@@ -123,6 +123,30 @@ const Bartender = () => {
               onDragLeave={onDragLeaveMixer}
               onDrop={(e) => onDropMixer(e, setCurrentMix)}
             />
+            {/* MIXER INDICATORS */}
+            <div id="mixerIndicators">
+              <div className={styles.mixerIndicators}>
+                {Array.from(new Array(10)).map((_, i) => (
+                  <div
+                    key={i}
+                    className={cn(styles.outerIndicator, 'hidden')}
+                  />
+                ))}
+              </div>
+              <div
+                className={cn(
+                  styles.mixerIndicators,
+                  styles.mixerInnerIndicators
+                )}
+              >
+                {Array.from(new Array(10)).map((_, i) => (
+                  <div
+                    key={i}
+                    className={cn(styles.innerIndicator, 'hidden')}
+                  />
+                ))}
+              </div>
+            </div>
             {/* RESULT */}
             <img
               id="drinkResult"

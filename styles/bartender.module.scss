@@ -5,25 +5,25 @@
 $board-width: 825px;
 $board-height: 552px;
 
-// Drinks
-$drink-width: 7.2727%;
-$drink-height: 20.6521%;
+// Ingredient
+$ingredient-width: 7.2727%;
+$ingredient-height: 20.6521%;
 
-$drink-top: 26%;
-$lower-drink-top: 59%;
+$ingredient-top: 26%;
+$lower-ingredient-top: 59%;
 $adelhyde-left: 19.25%;
 $bronson-left: 46.6%;
-$pwd-left: 73.8%;
+$delta-left: 73.8%;
 $flanergide-left: 19.25%;
 $karmotrine-left: 73.8%;
 
 // Indicators
-$indicator-left-offset: 8.35%;
-$lower-indicator-top-offset: 0.75%;
+$drink-indicators-left-offset: 8.35%;
+$lower-drink-indicators-top-offset: 0.75%;
 
 $color-adelhyde: #f57c97;
 $color-flanergide: #a5bb8f;
-$color-pwd: #7c8ebe;
+$color-delta: #7c8ebe;
 $color-bronson: #cba885;
 $color-karmotrine: #c9f1f1;
 
@@ -37,19 +37,19 @@ $color-karmotrine: #c9f1f1;
   user-select: none;
 }
 
-// Drinks ====================================================================//
-.drink {
+// Ingredients ===============================================================//
+.ingredient {
   position: absolute;
-  top: $drink-top;
-  width: $drink-width;
-  height: $drink-height;
+  top: $ingredient-top;
+  width: $ingredient-width;
+  height: $ingredient-height;
   cursor: move;
 }
 
-.flanergide, .karmotrine { top: $lower-drink-top; }
+.flanergide, .karmotrine { top: $lower-ingredient-top; }
 .adelhyde { left: $adelhyde-left; }
 .bronson { left: $bronson-left; }
-.pwd { left: $pwd-left; }
+.delta { left: $delta-left; }
 .flanergide { left: $flanergide-left; }
 .karmotrine { left: $karmotrine-left; }
 
@@ -65,31 +65,6 @@ $color-karmotrine: #c9f1f1;
   &.blend { animation: blend 0.35s infinite ease-in-out; }
 }
 
-.drinkResult {
-  position: absolute;
-  display: block;
-  left: 49%;
-  bottom: 10%;
-  width: 18.909%;
-  height: 43.3043%;
-}
-
-.drinkName {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  left: 46.6%;
-  top: 88.05%;
-
-  width: 24%;
-  height: 7.1%;
-
-  color: white;
-  font-size: $fs-xl;
-}
-
 @keyframes shake {
   0%, 100% { transform: rotate(-25deg); }
   50% { transform: rotate(25deg); }
@@ -101,43 +76,66 @@ $color-karmotrine: #c9f1f1;
 }
 
 // Indicators ================================================================//
-.indicator {
+.ingredientIndicators {
   display: grid;
   position: absolute;
-  top: $drink-top + 1.17%;
-  left: $adelhyde-left + $indicator-left-offset;
+  top: $ingredient-top + 1.17%;
+  left: $adelhyde-left + $drink-indicators-left-offset;
   width: 15.97%;
   height: 18.95%;
 
   column-gap: 2.5%;
   row-gap: 2.9%;
-  grid-template:
-    '1 1 1 1 1'
-    '1 1 1 1 1';
+  grid-template-columns: repeat(5, 1fr);
 
   div { border: $board-height * 0.0055 solid $color-adelhyde; }
 }
 
-.bronsonIndicator {
-  left: $bronson-left + $indicator-left-offset;
+.bronsonIndicators {
+  left: $bronson-left + $drink-indicators-left-offset;
   div { border-color: $color-bronson; }
 }
 
-.pwdIndicator {
-  left: $pwd-left + $indicator-left-offset;
-  div { border-color: $color-pwd; }
+.deltaIndicators {
+  left: $delta-left + $drink-indicators-left-offset;
+  div { border-color: $color-delta; }
 }
 
-.flanergideIndicator {
-  top: $lower-drink-top + $lower-indicator-top-offset;
-  left: $flanergide-left + $indicator-left-offset;
+.flanergideIndicators {
+  top: $lower-ingredient-top + $lower-drink-indicators-top-offset;
+  left: $flanergide-left + $drink-indicators-left-offset;
   div { border-color: $color-flanergide; }
 }
 
-.karmotrineIndicator {
-  top: $lower-drink-top + $lower-indicator-top-offset;
-  left: $karmotrine-left + $indicator-left-offset;
+.karmotrineIndicators {
+  top: $lower-ingredient-top + $lower-drink-indicators-top-offset;
+  left: $karmotrine-left + $drink-indicators-left-offset;
   div { border-color: $color-karmotrine; }
+}
+
+.mixerIndicators {
+  position: absolute;
+  left: 46.6%;
+  top: 88.05%;
+
+  display: grid;
+  width: 24%;
+  height: 7.1%;
+
+  padding: 0.45% 1%;
+
+  column-gap: 2.5%;
+  row-gap: 2.9%;
+  grid-template-columns: repeat(5, 1fr);
+
+  .outerIndicator { border: $board-height * 0.0055 solid white; }
+  .innerIndicator { background-color: white; }
+}
+
+.mixerInnerIndicators {
+  padding: 1.1% 2%;
+  column-gap: 12.5%;
+  row-gap: 60%;
 }
 
 // Buttons ===================================================================//
@@ -177,6 +175,32 @@ $color-karmotrine: #c9f1f1;
 
 .btnReset { left: 18.95%; }
 .btnMix, .btnServe { left: 73.8%; }
+
+// Drinks ====================================================================//
+.drinkResult {
+  position: absolute;
+  display: block;
+  left: 49%;
+  bottom: 11%;
+  width: 18.909%;
+  height: 41.3043%;
+}
+
+.drinkName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 46.6%;
+  top: 88.05%;
+
+  width: 24%;
+  height: 7.1%;
+
+  color: white;
+  font-size: $fs-xl;
+}
 
 // Layout ====================================================================//
 .layoutBody {
