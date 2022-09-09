@@ -67,6 +67,8 @@ function resetMix(
   setMix: Dispatch<SetStateAction<IMix>>,
   setBlended: Dispatch<SetStateAction<boolean>>
 ) {
+  toggleHiddenOn('drinkResult');
+  toggleHiddenOn('serveButton');
   resetMixerSprite();
   resetIndicators();
   setBlended(false);
@@ -133,6 +135,15 @@ function onDropMixer(
   }));
 }
 
+function onToggleIceOrAged(
+  e: React.MouseEvent,
+  setState: Dispatch<SetStateAction<boolean>>
+) {
+  if (!(e.target instanceof HTMLElement) || isMixing) return;
+  e.target.classList.toggle(styles.active);
+  setState((prev) => !prev);
+}
+
 // UTILS =====================================================================//
 function resetMixerSprite() {
   const mixer = document.querySelector('#mixer') as HTMLImageElement | null;
@@ -140,6 +151,7 @@ function resetMixerSprite() {
   mixer.src = '/img/va11halla/mixer.png';
   mixer.classList.remove(styles.shake);
   mixer.classList.remove(styles.blend);
+  mixer.classList.remove('hidden');
   mixer.style.height = '';
 }
 
@@ -151,15 +163,6 @@ function resetIndicators() {
     const squares = indicator.querySelectorAll('div');
     squares.forEach((square) => square.classList.add('hidden'));
   });
-}
-
-function onToggleIceOrAged(
-  e: React.MouseEvent,
-  setState: Dispatch<SetStateAction<boolean>>
-) {
-  if (!(e.target instanceof HTMLElement) || isMixing) return;
-  e.target.classList.toggle(styles.active);
-  setState((prev) => !prev);
 }
 
 function toggleHiddenOn(elemId: string) {
