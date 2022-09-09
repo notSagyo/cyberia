@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import { HTMLAttributes } from 'react';
+import { IAlbumImage } from '../../types';
 import Shell, { ShellProps } from '../shell/shell';
 import styles from '/styles/album.module.scss';
 
 interface AlbumPictureProps {
   // Shell props
-  image: iAlbumImage;
+  image: IAlbumImage;
   photoWidth?: number | string;
   shellProps?: ShellProps;
   // Shell titlebar props

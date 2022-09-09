@@ -1,0 +1,247 @@
+@use '/styles/abstracts' as *;
+@use '/styles/classes/classes';
+
+// Board
+$board-width: 825px;
+$board-height: 552px;
+
+// Drinks
+$drink-width: 7.2727%;
+$drink-height: 20.6521%;
+
+$drink-top: 26%;
+$lower-drink-top: 59%;
+$adelhyde-left: 19.25%;
+$bronson-left: 46.6%;
+$pwd-left: 73.8%;
+$flanergide-left: 19.25%;
+$karmotrine-left: 73.8%;
+
+// Indicators
+$indicator-left-offset: 8.35%;
+$lower-indicator-top-offset: 0.75%;
+
+$color-adelhyde: #f57c97;
+$color-flanergide: #a5bb8f;
+$color-pwd: #7c8ebe;
+$color-bronson: #cba885;
+$color-karmotrine: #c9f1f1;
+
+// Board =====================================================================//
+.board {
+  position: relative;
+  width: 825px;
+  height: 552px;
+  background-image: url('/img/va11halla/board.webp');
+  background-size: 100% 100%;
+  user-select: none;
+}
+
+// Drinks ====================================================================//
+.drink {
+  position: absolute;
+  top: $drink-top;
+  width: $drink-width;
+  height: $drink-height;
+  cursor: move;
+}
+
+.flanergide, .karmotrine { top: $lower-drink-top; }
+.adelhyde { left: $adelhyde-left; }
+.bronson { left: $bronson-left; }
+.pwd { left: $pwd-left; }
+.flanergide { left: $flanergide-left; }
+.karmotrine { left: $karmotrine-left; }
+
+.mixer {
+  position: absolute;
+  display: block;
+  left: 53%;
+  bottom: 14.5%;
+  width: 11.2727%;
+  height: 32.0652%;
+
+  &.shake { animation: shake 0.75s infinite ease-in-out; }
+  &.blend { animation: blend 0.35s infinite ease-in-out; }
+}
+
+.drinkResult {
+  position: absolute;
+  display: block;
+  left: 49%;
+  bottom: 10%;
+  width: 18.909%;
+  height: 43.3043%;
+}
+
+.drinkName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 46.6%;
+  top: 88.05%;
+
+  width: 24%;
+  height: 7.1%;
+
+  color: white;
+  font-size: $fs-xl;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(-25deg); }
+  50% { transform: rotate(25deg); }
+}
+
+@keyframes blend {
+  0%, 100% { transform: rotate(-35deg); }
+  50% { transform: rotate(35deg); }
+}
+
+// Indicators ================================================================//
+.indicator {
+  display: grid;
+  position: absolute;
+  top: $drink-top + 1.17%;
+  left: $adelhyde-left + $indicator-left-offset;
+  width: 15.97%;
+  height: 18.95%;
+
+  column-gap: 2.5%;
+  row-gap: 2.9%;
+  grid-template:
+    '1 1 1 1 1'
+    '1 1 1 1 1';
+
+  div { border: $board-height * 0.0055 solid $color-adelhyde; }
+}
+
+.bronsonIndicator {
+  left: $bronson-left + $indicator-left-offset;
+  div { border-color: $color-bronson; }
+}
+
+.pwdIndicator {
+  left: $pwd-left + $indicator-left-offset;
+  div { border-color: $color-pwd; }
+}
+
+.flanergideIndicator {
+  top: $lower-drink-top + $lower-indicator-top-offset;
+  left: $flanergide-left + $indicator-left-offset;
+  div { border-color: $color-flanergide; }
+}
+
+.karmotrineIndicator {
+  top: $lower-drink-top + $lower-indicator-top-offset;
+  left: $karmotrine-left + $indicator-left-offset;
+  div { border-color: $color-karmotrine; }
+}
+
+// Buttons ===================================================================//
+.age, .ice {
+  opacity: 0.45;
+  cursor: pointer;
+
+  &.active { opacity: 1; }
+}
+
+.ice {
+  position: absolute;
+  top: 30%;
+  left: 5.15%;
+  width: 9.0909%;
+  height: 11.413%;
+}
+
+.age {
+  position: absolute;
+  top: 62.5%;
+  left: 5.15%;
+  width: 9.0909%;
+  height: 14.1304%;
+}
+
+.btn {
+  position: absolute;
+  bottom: 3.85%;
+  width: 24.3636%;
+  height: 12.5%;
+  cursor: pointer;
+
+  &:hover { filter: brightness(1.25); }
+  &:active { filter: brightness(1); }
+}
+
+.btnReset { left: 18.95%; }
+.btnMix, .btnServe { left: 73.8%; }
+
+// Layout ====================================================================//
+.layoutBody {
+  background-image: url('https://i.imgur.com/hflIOXj.jpg');
+  background-size: auto 100%;
+  background-position: center;
+  z-index: 1;
+}
+
+.pageWrapper {
+  display: flex;
+  height: 100%;
+  overflow: auto;
+  padding: $spacing-sm;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &::before {
+    opacity: 0.95;
+    background-size: auto 32.5%;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-attachment: fixed;
+    background-image: url('/img/va11halla/trees-back.png');
+    animation: move-background 250000s linear infinite;
+  }
+
+  &::after {
+    opacity: 0.8;
+    background-image: url('/img/va11halla/trees-front.png');
+    background-size: auto 20%;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-attachment: fixed;
+    animation: move-background 50000s linear infinite;
+  }
+}
+
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0.45;
+    background-image: url('/img/va11halla/clouds.png');
+    animation: move-background 175000s linear infinite;
+  }
+}

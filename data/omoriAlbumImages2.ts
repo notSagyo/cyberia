@@ -1,4 +1,6 @@
-const albumImages: iAlbumImage[] = [
+import { IAlbumImage } from '../types';
+
+const albumImages: IAlbumImage[] = [
   {
     src: '/img/omori/2/DW_New_Polaroid_1.jpg',
     description: `"Everyone helped me water my plants today! I tend to ramble on for too long when I start talking about plants, so I'm glad my friends listened to me!"`,

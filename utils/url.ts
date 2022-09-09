@@ -8,3 +8,4 @@ export const mangaURL = `${readURL}/manga`;
 
 export const galleryURL = `${baseURL}/gallery`;
 export const hectorURL = `${galleryURL}/hector`;
+export const bartenderURL = `${baseURL}/bartender`;

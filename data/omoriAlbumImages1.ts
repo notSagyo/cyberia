@@ -1,4 +1,6 @@
-const albumImages: iAlbumImage[] = [
+import { IAlbumImage } from '../types';
+
+const albumImages: IAlbumImage[] = [
   {
     src: '/img/omori/1/DW_ALBUM_01.jpg',
     description: `"MARI is teaching everyone how to make flower crowns! OMORI and KEL are holding MARI's example. So pretty..."`,

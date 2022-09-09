@@ -1,6 +1,9 @@
 @use '/styles/abstracts' as *;
 @use '/styles/classes/color-classes';
 
+// Positioning
+.mAuto { margin: auto; }
+
 .center {
   display: flex;
   justify-content: center;
@@ -15,11 +18,14 @@
 .spaceBetween { justify-content: space-between; }
 .spaceEvenly { justify-content: space-evenly; }
 
+// Display and visibility
 .dInlineBlock { display: inline-block; }
 .dInline { display: inline; }
 .dBlock { display: block; }
 .dNone { display: none; }
+.hidden { visibility: hidden; }
 
+// Other
 .pointer { cursor: pointer; }
 
 .bgNebula::before, .bgStars::before, .bgSpace::before, .bgOmori::before {
@@ -56,8 +62,8 @@
 }
 
 @keyframes move-background {
-  0% { background-position: 0; }
-  100% { background-position: -1000000px; }
+  0% { background-position-x: 0; }
+  100% { background-position-x: -1000000px; }
 }
 
 .tvShutdown {

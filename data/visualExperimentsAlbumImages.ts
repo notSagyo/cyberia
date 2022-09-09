@@ -1,4 +1,6 @@
-const albumImages: iAlbumImage[] = [
+import { IAlbumImage } from '../types';
+
+const albumImages: IAlbumImage[] = [
   {
     src: 'https://i.imgur.com/gB7fq4t.jpg',
     title: 'visual_experiments_01.jpg',

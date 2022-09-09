@@ -4,9 +4,10 @@ import styles from '/styles/album.module.scss';
 import AlbumPicture from './album-picture';
 import { Fragment, HTMLAttributes } from 'react';
 import LinkHeading from '../link-heading';
+import { IAlbumImage } from '../../types';
 
 interface AlbumProps {
-  images: iAlbumImage[];
+  images: IAlbumImage[];
   albumTitle?: string;
   photoWidth?: number | string;
   shellProps?: ShellProps;

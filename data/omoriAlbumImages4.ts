@@ -1,4 +1,6 @@
-const albumImages: iAlbumImage[] = [
+import { IAlbumImage } from '../types';
+
+const albumImages: IAlbumImage[] = [
   {
     src: '/img/omori/4/The_Truth_01.jpg',
     description: `Photo of a Wall - You heard some scoffing from behind the wall, but paid it no notice. You were in no mood to focus. You were overcame. You were sick of everything. You know it wasn't a big deal, but you couldn't control yourself.

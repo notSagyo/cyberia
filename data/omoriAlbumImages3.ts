@@ -1,4 +1,6 @@
-const albumImages: iAlbumImage[] = [
+import { IAlbumImage } from '../types';
+
+const albumImages: IAlbumImage[] = [
   {
     src: '/img/omori/3/FA_ALBUM_01.jpg',
     description: `(12/25 - CHRISTMAS): My first photo! It's my best friend, SUNNY, trying out his new violin. He's starting to take lessons again so he can play at recitals with his sister, MARI. So exciting!`,
