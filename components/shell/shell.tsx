@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ShellNav from './shell-nav';
 import ShellTitle from './shell-title';
 import styles from '/styles/shell.module.scss';
@@ -44,9 +44,10 @@ const Shell = ({
 }: ShellProps) => {
   const [maximized, setMaximized] = useState(false);
   const [minimized, setMinimized] = useState(false);
-  const [closed, setClosed] = useState(false);
+  const shellRef = useRef<HTMLDivElement>(null);
 
-  if (closeable && !onClose) onClose = () => setClosed(true);
+  if (closeable && !onClose)
+    onClose = () => shellRef.current && shellRef.current.remove();
   if (maximizeable && !onMaximize) onMaximize = () => setMaximized(!maximized);
   if (minimizeable && !onMinimize) onMinimize = () => setMinimized(true);
 
@@ -62,6 +63,7 @@ const Shell = ({
     // SHELL
     <div
       {...props}
+      ref={shellRef}
       className={cn(props.className, styles.shell, {
         [styles.maximized]: maximized,
         [styles.mainShell]: mainShell,
@@ -75,7 +77,6 @@ const Shell = ({
           maxHeight: '100vh',
           overflow: 'auto',
         }),
-        ...(closed && { display: 'none' }),
       }}
     >
       {/* TITLE BAR */}
