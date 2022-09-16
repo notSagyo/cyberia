@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import Shell, { ShellProps } from './shell/shell';
+import Shell, { ShellProps } from './Shell/Shell';
 import styles from '/styles/anime-video.module.scss';
 
 interface VideoProps extends ShellProps {

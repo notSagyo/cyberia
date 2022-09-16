@@ -1,13 +1,13 @@
 import { IMangaInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import Layout from '../../../../components/layout';
+import Layout from '../../../../components/Layout';
 import mangas from '../../../../data/mangas';
 import { mangadex } from '../../../../services/manga-service';
 import { mangaURL, readURL } from '../../../../utils/url';
-import LinkHeading from '../../../../components/link-heading';
-import LinkList from '../../../../components/link-list/link-list';
-import LinkListItem from '../../../../components/link-list/link-list-item';
+import LinkHeading from '../../../../components/LinkHeading';
+import LinkList from '../../../../components/LinkList/LinkList';
+import LinkListItem from '../../../../components/LinkList/LinkListItem';
 
 interface MangaIdProps {
   mangaInfo: IMangaInfo;
@@ -17,6 +17,7 @@ interface iQueryParams extends ParsedUrlQuery {
   mangaId: string;
 }
 
+// !TODO: Fix wrong chapter order on build
 const MangaId = ({ mangaInfo }: MangaIdProps) => {
   const mangaId = mangaInfo.id;
   const chapters = mangaInfo.chapters?.reverse() || [];

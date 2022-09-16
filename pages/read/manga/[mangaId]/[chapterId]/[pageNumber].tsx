@@ -5,8 +5,8 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Anchor from '../../../../../components/utils/anchor';
-import Layout from '../../../../../components/layout';
+import Anchor from '../../../../../components/utils/Anchor';
+import Layout from '../../../../../components/Layout';
 import { mangadex } from '../../../../../services/manga-service';
 import { mangaURL } from '../../../../../utils/url';
 import styles from '/styles/manga.module.scss';

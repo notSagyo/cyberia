@@ -1,11 +1,11 @@
-import Shell from './shell/shell';
+import Shell from './Shell/Shell';
 
 interface VideoProps {
   urlId: string;
   title?: string;
 }
 
-const YTVideo = ({ urlId, title }: VideoProps) => {
+const YtVideo = ({ urlId, title }: VideoProps) => {
   return (
     <Shell shellTitle={title || 'Video'} noPadding>
       <iframe
@@ -17,9 +17,9 @@ const YTVideo = ({ urlId, title }: VideoProps) => {
         frameBorder="0"
         allow="encrypted-media;"
         allowFullScreen
-      ></iframe>
+      />
     </Shell>
   );
 };
 
-export default YTVideo;
+export default YtVideo;

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import hector from '../../data/hectorHtml';
 
 const Hector = () => {

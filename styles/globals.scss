@@ -2,6 +2,7 @@
 @use '/styles/reset';
 @use '/styles/typography';
 @use '/styles/classes/classes';
+@forward '/styles/vendor/plyr-override';
 
 * { box-sizing: border-box; }
 

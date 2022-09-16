@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useRef, useState } from 'react';
-import ShellNav from './shell-nav';
-import ShellTitle from './shell-title';
+import ShellNav from './ShellNav';
+import ShellTitle from './ShellTitle';
 import styles from '/styles/shell.module.scss';
 
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {

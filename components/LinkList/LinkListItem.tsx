@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
-import Anchor, { AnchorProps } from '../utils/anchor';
+import Anchor, { AnchorProps } from '../utils/Anchor';
 
 interface LinkListProps extends HTMLAttributes<HTMLAnchorElement> {
   href: string;
@@ -10,7 +10,6 @@ interface LinkListProps extends HTMLAttributes<HTMLAnchorElement> {
   goBack?: boolean;
 }
 
-// !TODO: Use this component insted of anchor non-lists everywhere!!
 const LinkListItem = ({
   href,
   anchorProps,

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import Shell, { ShellProps } from './shell/shell';
-import Link from 'next/link';
+import Shell, { ShellProps } from './Shell/Shell';
 import styles from '/styles/layout.module.scss';
-import Anchor from './utils/anchor';
+import Anchor from './utils/Anchor';
 import { getDateString, getTimeString, navbarRoutes } from '../utils/utils';
 import cn from 'classnames';
-import Void from './void';
+import Void from './Void';
 import { baseURL } from '../utils/url';
 
 interface LayoutProps extends ShellProps {

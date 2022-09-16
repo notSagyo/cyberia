@@ -1,10 +1,10 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import Layout from '../../../../components/layout';
-import LinkList from '../../../../components/link-list/link-list';
-import LinkListItem from '../../../../components/link-list/link-list-item';
-import LinkHeading from '../../../../components/link-heading';
+import Layout from '../../../../components/Layout';
+import LinkList from '../../../../components/LinkList/LinkList';
+import LinkListItem from '../../../../components/LinkList/LinkListItem';
+import LinkHeading from '../../../../components/LinkHeading';
 import animes from '../../../../data/animes';
 import { gogoanime } from '../../../../services/anime-service';
 import { animeURL, videosURL } from '../../../../utils/url';

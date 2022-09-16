@@ -1,8 +1,8 @@
-import Album from '../../components/album/album';
-import Layout from '../../components/layout';
+import Album from '../../components/Album/Album';
+import Layout from '../../components/Layout';
 import styles from '/styles/omori.module.scss';
 import albumImages from '../../data/omoriAlbumImages1';
-import AlbumPicture from '../../components/album/album-picture';
+import AlbumPicture from '../../components/Album/AlbumPicture';
 import { useEffect, useRef } from 'react';
 
 const Gallery = () => {

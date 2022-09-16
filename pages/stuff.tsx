@@ -1,6 +1,6 @@
-import Layout from '../components/layout';
-import LinkList from '../components/link-list/link-list';
-import LinkListItem from '../components/link-list/link-list-item';
+import Layout from '../components/Layout';
+import LinkList from '../components/LinkList/LinkList';
+import LinkListItem from '../components/LinkList/LinkListItem';
 import { bartenderURL, hectorURL } from '../utils/url';
 
 const Stuff = () => {

@@ -221,15 +221,16 @@ $color-karmotrine: #c9f1f1;
   font-size: $fs-xl;
 }
 
-// Layout ====================================================================//
-.layoutBody {
+// Container =================================================================//
+.container {
+  height: 100%;
   background-image: url('https://i.imgur.com/hflIOXj.jpg');
   background-size: auto 100%;
   background-position: center;
   z-index: 1;
 }
 
-.pageWrapper {
+.bartenderWrapper {
   display: flex;
   height: 100%;
   overflow: auto;

@@ -1,5 +1,5 @@
-import Album from '../../components/album/album';
-import Layout from '../../components/layout';
+import Album from '../../components/Album/Album';
+import Layout from '../../components/Layout';
 import albumImages from '../../data/visualExperimentsAlbumImages';
 
 const Gallery = () => {

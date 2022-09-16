@@ -1,7 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from '../components/layout';
-import Hr from '../components/utils/hr';
-import YTVideo from '../components/yt-video';
+import Layout from '../components/Layout';
+import MusicPlyr from '../components/MusicPlyr';
+import Hr from '../components/utils/Hr';
+
+const songs = [
+  { title: 'Cyberia > Mix', videId: 'bEHUFRRK9Sk' },
+  { title: 'VA-11 HALL-A > Second Round', videId: 'H8w_Q57RQJc' },
+  { title: 'Katana ZERO > OST', videId: 'P196hEuA_Xc' },
+  { title: 'OMORI > OST', videId: 'pw-2e3T03Co' },
+  { title: 'SEALTBELTS > COWBOY BEBOP', videId: '6Hj6hPqKiS4' },
+];
+
+const musicElems = songs.map((song, i) => (
+  <div key={i}>
+    <Hr variant="Blue" />
+    <MusicPlyr videoTitle={song.title} videoId={song.videId} />
+  </div>
+));
 
 function Music() {
   return (
@@ -11,14 +26,7 @@ function Music() {
         <h1 className="h1 textGlowBluePink"> MUSIC </h1>
         <img src="/img/cd.gif" alt="disc image" />
       </div>
-      <Hr variant="Blue" />
-      <YTVideo title="Cyberia > Mix" urlId="bEHUFRRK9Sk" />
-      <Hr variant="Blue" />
-      <YTVideo title="VA-11 HALL-A > Second Round" urlId="H8w_Q57RQJc" />
-      <Hr variant="Blue" />
-      <YTVideo title="Katana ZERO > OST" urlId="P196hEuA_Xc" />
-      <Hr variant="Blue" />
-      <YTVideo title="SEALTBELTS > COWBOY BEBOP" urlId="6Hj6hPqKiS4" />
+      <>{musicElems}</>
     </Layout>
   );
 }

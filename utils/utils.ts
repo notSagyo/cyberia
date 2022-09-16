@@ -18,7 +18,7 @@ export function getImagesNamesInFolder(path: string) {
   if (!path) return [];
   const imagesContext = require.context('../public/img', false); // CHANGE THIS
 
-  let images = imagesContext.keys().map((imgPath, i) => {
+  let images = imagesContext.keys().map((imgPath) => {
     imgPath = imgPath.replace('./', '');
     return imgPath;
   });

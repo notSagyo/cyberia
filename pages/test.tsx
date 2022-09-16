@@ -1,7 +1,7 @@
 // Page used to test stuff or smth
 import { GetStaticProps } from 'next';
 
-interface TestProps {}
+// interface TestProps {}
 
 const Test = () => {
   return <div>TEST</div>;

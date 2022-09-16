@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { IMix } from '.';
 import drinks from '../../data/drinks';
 import { IngredientNames } from '../../types';
+import { IMix } from './BartenderGame';
 import styles from '/styles/bartender.module.scss';
 
 // VARIABLES =================================================================//

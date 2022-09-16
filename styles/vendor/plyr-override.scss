@@ -1,0 +1,18 @@
+:root {
+  --plyr-color-main: darkgray;
+  --plyr-video-background: transparent;
+  --plyr-progress-loading-background: transparent;
+  --plyr-control-radius: 0;
+}
+
+.plyr {
+  overflow: visible;
+  z-index: 99 !important;
+  iframe { display: none !important; }
+
+  .plyr__controls {
+    background: none !important;
+    position: relative !important;
+    padding: 0 !important;
+  }
+}

@@ -1,5 +1,5 @@
-import Album from '../../components/album/album';
-import Layout from '../../components/layout';
+import Album from '../../components/Album/Album';
+import Layout from '../../components/Layout';
 import styles from '/styles/omori.module.scss';
 import albumImages from '../../data/omoriAlbumImages2';
 

@@ -1,9 +1,9 @@
 import { galleryURL } from '../../utils/url';
-import { ShellProps } from '../shell/shell';
+import { ShellProps } from '../Shell/Shell';
 import styles from '/styles/album.module.scss';
-import AlbumPicture from './album-picture';
+import AlbumPicture from './AlbumPicture';
 import { Fragment, HTMLAttributes } from 'react';
-import LinkHeading from '../link-heading';
+import LinkHeading from '../LinkHeading';
 import { IAlbumImage } from '../../types';
 
 interface AlbumProps {
