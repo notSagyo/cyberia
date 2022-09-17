@@ -3,8 +3,8 @@ import { GetStaticProps } from 'next';
 
 // interface TestProps {}
 
-const Test = () => {
-  return <div>TEST</div>;
+const Test = ({ ...props }: any) => {
+  return <button {...props}>TEST</button>;
 };
 
 export default Test;

@@ -36,6 +36,7 @@ const MusicPlyr = ({
           hideControls: false,
           controls: ['play', 'progress', 'current-time', 'mute', 'volume'],
           tooltips: { seek: false },
+          invertTime: false,
           ...videoOptions,
         }}
       />
