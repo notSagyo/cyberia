@@ -1,13 +1,22 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { APITypes } from 'plyr-react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import MusicPlyrMain from '../components/MusicPlyr/MusicPlyrMain';
+import { SetState } from '../types';
 
 interface IMusicPlyrContext {
   videoId: string;
-  setVideoId: React.Dispatch<React.SetStateAction<string>>;
+  setVideoId: SetState<string>;
   videoTitle: string;
-  setVideoTitle: React.Dispatch<React.SetStateAction<string>>;
-  plyr: React.ReactNode;
-  setPlyr: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setVideoTitle: SetState<string>;
+  plyrElem: React.ReactNode;
+  setPlyrElem: SetState<React.ReactNode>;
+  plyr: Plyr | null;
 }
 
 const MusicPlyrContext = createContext<
@@ -20,17 +29,29 @@ export const MusicPlyrContextProvider = ({
 }: React.HTMLAttributes<HTMLElement>) => {
   const [videoId, setVideoId] = useState<string>('bEHUFRRK9Sk');
   const [videoTitle, setVideoTitle] = useState<string>('Cyberia > Mix');
-  const [plyr, setPlyr] = useState<React.ReactNode>();
+  const [plyrElem, setPlyrElem] = useState<React.ReactNode>();
+  const plyrRef = useRef<APITypes>(null);
+  const plyr = plyrRef.current && plyrRef.current.plyr;
 
   useEffect(() => {
-    setPlyr(<MusicPlyrMain videoId={videoId} videoTitle={videoTitle} />);
+    setPlyrElem(
+      <MusicPlyrMain ref={plyrRef} videoId={videoId} videoTitle={videoTitle} />
+    );
   }, [videoId, videoTitle]);
 
   return (
     <MusicPlyrContext.Provider
-      value={{ videoId, setVideoId, videoTitle, setVideoTitle, plyr, setPlyr }}
+      value={{
+        videoId,
+        setVideoId,
+        videoTitle,
+        setVideoTitle,
+        plyrElem,
+        setPlyrElem,
+        plyr,
+      }}
     >
-      {plyr}
+      {plyrElem}
       {children}
     </MusicPlyrContext.Provider>
   );

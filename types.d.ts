@@ -10,3 +10,5 @@ export type YtThumbnailQuality =
   | 'mqdefault'
   | 'hqdefault'
   | 'maxresdefault';
+
+export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;

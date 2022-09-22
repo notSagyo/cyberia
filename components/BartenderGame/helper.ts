@@ -1,5 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import drinks from '../../data/drinks';
+import { SetState } from '../../types';
 import { IngredientNames } from '../../types/bartender';
 import { IMix } from './BartenderGame';
 import styles from '/styles/bartender.module.scss';
@@ -34,7 +35,7 @@ function findDrink(mix: IMix) {
 }
 
 // Prepare mix =======================//
-function mix(mix: IMix, setBlended: Dispatch<SetStateAction<boolean>>) {
+function mix(mix: IMix, setBlended: SetState<boolean>) {
   const mixer = document.querySelector('#mixer');
   if (!mixer) throw new Error('Element with ID "mixer" not found');
 
@@ -65,10 +66,7 @@ function mix(mix: IMix, setBlended: Dispatch<SetStateAction<boolean>>) {
   }
 }
 
-function resetMix(
-  setMix: Dispatch<SetStateAction<IMix>>,
-  setBlended: Dispatch<SetStateAction<boolean>>
-) {
+function resetMix(setMix: SetState<IMix>, setBlended: SetState<boolean>) {
   // Remove sprite to avoid previous drink flashes
   setResultSprite('/img/empty.png');
   toggleHidden('drinkResult', true);
@@ -87,8 +85,8 @@ function resetMix(
 
 function serveMix(
   mix: IMix,
-  setMix: Dispatch<SetStateAction<IMix>>,
-  setBlended: Dispatch<SetStateAction<boolean>>
+  setMix: SetState<IMix>,
+  setBlended: SetState<boolean>
 ) {
   const foundDrink = findDrink(mix);
   foundDrink && addMoney(foundDrink?.price);
@@ -118,10 +116,7 @@ function onDragLeaveMixer(ev: React.DragEvent) {
   resetMixerSprite();
 }
 
-function onDropMixer(
-  ev: React.DragEvent,
-  setMix: Dispatch<SetStateAction<IMix>>
-) {
+function onDropMixer(ev: React.DragEvent, setMix: SetState<IMix>) {
   if (!(ev.target instanceof HTMLElement) || isMixing) return;
   ev.preventDefault();
   resetMixerSprite();
@@ -140,10 +135,7 @@ function onDropMixer(
   }));
 }
 
-function onToggleIceOrAged(
-  e: React.MouseEvent,
-  setState: Dispatch<SetStateAction<boolean>>
-) {
+function onToggleIceOrAged(e: React.MouseEvent, setState: SetState<boolean>) {
   if (!(e.target instanceof HTMLElement) || isMixing) return;
   e.target.classList.toggle(styles.active);
   setState((prev) => !prev);
