@@ -31,7 +31,7 @@ const Shell = ({
   noHr = false,
   closeable = true,
   maximizeable = false,
-  minimizeable = false,
+  minimizeable = true,
   onClose,
   onMinimize,
   onMaximize,
@@ -45,11 +45,16 @@ const Shell = ({
   const [maximized, setMaximized] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   if (closeable && !onClose)
     onClose = () => shellRef.current && shellRef.current.remove();
   if (maximizeable && !onMaximize) onMaximize = () => setMaximized(!maximized);
-  if (minimizeable && !onMinimize) onMinimize = () => setMinimized(true);
+  if (minimizeable && !onMinimize)
+    onMinimize = () => {
+      setMinimized(!minimized);
+      bodyRef.current && bodyRef.current.classList.toggle('minimized');
+    };
 
   const onBodyClick = (() => {
     let action: undefined | (() => void) = undefined;
@@ -98,6 +103,7 @@ const Shell = ({
       {/* BODY */}
       <div
         {...bodyProps}
+        ref={bodyRef}
         onClick={
           (onBodyClick || bodyProps.onClick) &&
           ((e) =>

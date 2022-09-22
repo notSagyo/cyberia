@@ -1,3 +1,4 @@
+// TODO: Use these
 const closeShellQuotes = [
   'See you space cowboy....',
   'Easy come, easy go...',

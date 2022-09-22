@@ -9,7 +9,7 @@ const Gallery = () => {
         images={albumImages}
         photoWidth={'100%'}
         maximizeable
-        shellProps={{ style: { maxWidth: '48%', margin: 'auto' } }}
+        shellProps={{ style: { maxWidth: '48%', marginBottom: 'auto' } }}
         albumTitle="../public/img/visual_experiments"
       />
     </Layout>

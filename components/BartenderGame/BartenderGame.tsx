@@ -138,7 +138,7 @@ const BartenderGame = () => {
         <img
           id="drinkResult"
           className={cn(styles.drinkResult, 'hidden')}
-          src="/img/va11halla/drink-bad-touch.png"
+          src=""
           alt="result drink"
         />
       </div>

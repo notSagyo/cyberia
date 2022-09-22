@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  images: { domains: ['i.imgur.com', 'uploads.mangadex.org'] },
+  images: {
+    domains: ['i.imgur.com', 'uploads.mangadex.org', 'img.youtube.com'],
+  },
   experimental: { images: { allowFutureImage: true } },
 
   webpack: (config) => {

@@ -1,8 +1,9 @@
+import cn from 'classnames';
 import Plyr, { PlyrSource } from 'plyr-react';
-import React from 'react';
-import Shell, { ShellProps } from './Shell/Shell';
+import { HTMLAttributes } from 'react';
+import Shell, { ShellProps } from '../Shell/Shell';
 
-interface MusicPlyrProps {
+export interface MusicPlyrProps extends HTMLAttributes<HTMLElement> {
   videoId: string;
   videoTitle: string;
   source?: PlyrSource;
@@ -22,15 +23,17 @@ const MusicPlyr = ({
 }: MusicPlyrProps) => {
   return (
     <Shell
-      style={{ ...(shellProps && { ...shellProps.style }), width: 512 }}
       shellTitle={videoTitle}
+      minimizeable
+      {...shellProps}
+      className={cn('plyrContainer', shellProps?.className)}
     >
       <Plyr
         {...props}
         source={
           source
             ? source
-            : { type: 'audio', sources: [{ src: videoId, provider: provider }] }
+            : { type: 'video', sources: [{ src: videoId, provider: provider }] }
         }
         options={{
           hideControls: false,

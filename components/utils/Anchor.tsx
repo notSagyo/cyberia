@@ -46,7 +46,7 @@ const Anchor = ({
           {anchorElement}
         </Link>
       ) : (
-        { anchorElement }
+        <>{anchorElement}</>
       )}
     </>
   );

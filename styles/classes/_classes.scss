@@ -25,6 +25,13 @@
 .dNone { display: none; }
 .hidden { visibility: hidden; }
 
+.minimized {
+  height: 0 !important;
+  padding: 0 !important;
+  visibility: hidden;
+}
+
+
 // Other
 .pointer { cursor: pointer; }
 
@@ -58,7 +65,7 @@
 .bgOmori::before {
   background-image: url('/img/bg-omori.jpg');
   background-size: 512px auto;
-  filter: saturate(0.7);
+  filter: saturate(0.75);
 }
 
 @keyframes move-background {

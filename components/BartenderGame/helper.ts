@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import drinks from '../../data/drinks';
-import { IngredientNames } from '../../types';
+import { IngredientNames } from '../../types/bartender';
 import { IMix } from './BartenderGame';
 import styles from '/styles/bartender.module.scss';
 
@@ -69,6 +69,8 @@ function resetMix(
   setMix: Dispatch<SetStateAction<IMix>>,
   setBlended: Dispatch<SetStateAction<boolean>>
 ) {
+  // Remove sprite to avoid previous drink flashes
+  setResultSprite('/img/empty.png');
   toggleHidden('drinkResult', true);
   toggleHidden('serveButton', true);
   resetAllIndicators();

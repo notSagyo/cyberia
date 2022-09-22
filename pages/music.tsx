@@ -1,24 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '../components/Layout';
-import MusicPlyr from '../components/MusicPlyr';
+import MusicShowcase from '../components/MusicPlyr/MusicShowcase';
 import Hr from '../components/utils/Hr';
-
-const songs = [
-  { title: 'Cyberia > Mix', videId: 'bEHUFRRK9Sk' },
-  { title: 'VA-11 HALL-A > Second Round', videId: 'H8w_Q57RQJc' },
-  { title: 'Katana ZERO > OST', videId: 'P196hEuA_Xc' },
-  { title: 'OMORI > OST', videId: 'pw-2e3T03Co' },
-  { title: 'SEALTBELTS > COWBOY BEBOP', videId: '6Hj6hPqKiS4' },
-];
-
-const musicElems = songs.map((song, i) => (
-  <div key={i}>
-    <Hr variant="Blue" />
-    <MusicPlyr videoTitle={song.title} videoId={song.videId} />
-  </div>
-));
+import { useMusicPlyrContext } from '../contexts/MusicPlyrContext';
+import { songs } from '../data/songs';
 
 function Music() {
+  const musicPlyrContext = useMusicPlyrContext();
+
+  const onSongClick = (videoId: string, videoTitle: string) => {
+    musicPlyrContext.setVideoId(videoId);
+    musicPlyrContext.setVideoTitle(videoTitle);
+  };
+
   return (
     <Layout title="Music" className="bgStars">
       <div className="spaceBetween">
@@ -26,7 +20,21 @@ function Music() {
         <h1 className="h1 textGlowBluePink"> MUSIC </h1>
         <img src="/img/cd.gif" alt="disc image" />
       </div>
-      <>{musicElems}</>
+      <>
+        {songs.map((song, i) => (
+          <div key={i}>
+            <Hr variant="Blue" />
+            <MusicShowcase
+              videoId={song.id}
+              videoTitle={song.title}
+              thumbnailQuality={song?.res || undefined}
+              shellProps={{
+                bodyProps: { onClick: () => onSongClick(song.id, song.title) },
+              }}
+            />
+          </div>
+        ))}
+      </>
     </Layout>
   );
 }

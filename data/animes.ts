@@ -1,6 +1,10 @@
+interface IAnime {
+  id: string;
+}
+
 // GogoAnime Anime's ID
-// !TODO: Uncomment before build
-const animes = [
+// !TODO: Uncomment before production
+const animes: IAnime[] = [
   { id: 'serial-experiments-lain' },
   // { id: 'code-geass-lelouch-of-the-rebellion' },
   // { id: '-code-geass-lelouch-of-the-rebellion-r2' },

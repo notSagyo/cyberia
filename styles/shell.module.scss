@@ -1,8 +1,4 @@
 @use '/styles/abstracts' as *;
-// @use '../buttons/unstyled' as unstyledButton;
-
-$border-width: 2px;
-$header-height: 2rem;
 
 .shell {
   position: relative;
@@ -10,12 +6,12 @@ $header-height: 2rem;
   flex-direction: column;
   width: fit-content;
 
-  border: solid $border-width $gray;
+  border: solid $shell-border-width $gray;
 }
 
 .title, .header {
   gap: $spacing-lg;
-  height: $header-height;
+  height: $shell-header-height;
 
   display: flex;
   align-items: center;

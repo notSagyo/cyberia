@@ -1,0 +1,33 @@
+@use '/styles/abstracts' as *;
+@use '/styles/layout.module.scss' as layout;
+@use '/styles/shell.module.scss' as shell;
+
+$shell-size: 28rem;
+
+.mainPlyrShellContainer {
+  @extend layout, .shell !optional;
+
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mainPlyrShell {
+  position: absolute;
+  pointer-events: all;
+  min-width: 20rem;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+}
+
+.musicShowcaseShell {
+  // ?TODO: delete?
+}
+
+.musicShowcaseShellBody {
+  width: $shell-size;
+  height: $shell-size;
+}

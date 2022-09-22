@@ -1,4 +1,4 @@
-import { IDrink } from "../types"
+import { IDrink } from "../types/bartender"
 
 // TODO: Get supplex image
 const drinks: IDrink[] = [
