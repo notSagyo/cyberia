@@ -56,9 +56,9 @@ const Home: NextPage = () => {
 
             <ul className={`${styles.linkList} h5 red`}>
               {linkListRoutes.map(
-                (name, i) =>
+                (name) =>
                   name.toUpperCase() != 'HOME' && (
-                    <li key={i}>
+                    <li key={name}>
                       <Anchor href={`${baseURL}/${name.toLocaleLowerCase()}`}>
                         <img src="/img/sigil.gif" width={34} alt="sigil" />
                         <span>{name.toUpperCase()}</span>

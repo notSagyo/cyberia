@@ -36,7 +36,10 @@ const MangaId = ({ mangaInfo }: MangaIdProps) => {
 
       <LinkList>
         {chapters.map((chapter, i) => (
-          <LinkListItem href={`${mangaURL}/${mangaId}/${chapter.id}/1`} key={i}>
+          <LinkListItem
+            href={`${mangaURL}/${mangaId}/${chapter.id}/1`}
+            key={chapter.id}
+          >
             {`${mangaURL}/${mangaName}/${i}`}
           </LinkListItem>
         ))}

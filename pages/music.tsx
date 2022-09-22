@@ -21,8 +21,8 @@ function Music() {
         <img src="/img/cd.gif" alt="disc image" />
       </div>
       <>
-        {songs.map((song, i) => (
-          <div key={i}>
+        {songs.map((song) => (
+          <div key={song.id}>
             <Hr variant="Blue" />
             <MusicShowcase
               videoId={song.id}

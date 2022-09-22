@@ -17,7 +17,7 @@ $shell-size: 28rem;
 .mainPlyrShell {
   position: absolute;
   pointer-events: all;
-  min-width: 20rem;
+  min-width: $plyr-min-width;
   right: 0;
   bottom: 0;
   background-color: black;

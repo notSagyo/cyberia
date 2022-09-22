@@ -7,8 +7,8 @@ function Videos() {
   return (
     <Layout title="Videos">
       <h1 className="h1">VIDEOS</h1>
-      {animes.map((anime, i) => (
-        <span key={i}>
+      {animes.map((anime) => (
+        <span key={anime.id}>
           <Anchor href={`${animeURL}/${anime.id}`}>
             <h2 className="h3">
               /pages/videos/{anime.id.replaceAll('-', '_')}

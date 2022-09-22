@@ -10,10 +10,12 @@ interface AlbumProps {
   images: IAlbumImage[];
   albumTitle?: string;
   photoWidth?: number | string;
+  // Shell
   shellProps?: ShellProps;
   descriptionProps?: HTMLAttributes<HTMLDivElement>;
   closeable?: boolean;
   maximizeable?: boolean;
+  // Inject element at position
   putElementAtIndex?: {
     element: JSX.Element;
     position: number;
@@ -37,7 +39,7 @@ const Album = ({
   albumImages = images.map((image, i) => {
     let pictureElement = (
       <AlbumPicture
-        key={i}
+        key={image.src}
         image={image}
         closeable={closeable}
         maximizeable={maximizeable}

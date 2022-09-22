@@ -30,7 +30,10 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
       <LinkHeading href={videosURL}>{`..${animeURL}/${animeName}`}</LinkHeading>
       <LinkList>
         {episodes.map((episode, i) => (
-          <LinkListItem href={`${animeURL}/${animeId}/${i + 1}`} key={i} />
+          <LinkListItem
+            href={`${animeURL}/${animeId}/${i + 1}`}
+            key={episode.id}
+          />
         ))}
       </LinkList>
     </Layout>

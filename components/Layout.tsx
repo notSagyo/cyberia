@@ -66,8 +66,8 @@ const Layout = ({
         // NAV ITEMS
         navItems={
           <>
-            {navbarRoutes.map((name, i) => (
-              <li key={i}>
+            {navbarRoutes.map((name) => (
+              <li key={name}>
                 <Anchor href={`${baseURL}/${name.toLocaleLowerCase()}`}>
                   <u>{name[0]}</u>
                   {name.slice(1)}

@@ -42,8 +42,8 @@ const Gallery = () => {
         </h1>
       </div>
       <LinkList>
-        {links.map((link, i) => (
-          <LinkListItem href={link.href} key={i}>
+        {links.map((link) => (
+          <LinkListItem href={link.href} key={link.title}>
             {link.title}
           </LinkListItem>
         ))}
