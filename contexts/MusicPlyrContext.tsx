@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import MusicPlyrMain from '../components/MusicPlyr/MusicPlyrMain';
+import songs from '../data/songs';
 import { SetState } from '../types';
 
 interface IMusicPlyrContext {
@@ -27,8 +28,8 @@ export const useMusicPlyrContext = () => useContext(MusicPlyrContext);
 export const MusicPlyrContextProvider = ({
   children,
 }: React.HTMLAttributes<HTMLElement>) => {
-  const [videoId, setVideoId] = useState<string>('bEHUFRRK9Sk');
-  const [videoTitle, setVideoTitle] = useState<string>('Cyberia > Mix');
+  const [videoId, setVideoId] = useState<string>(songs[0].id);
+  const [videoTitle, setVideoTitle] = useState<string>(songs[0].title);
   const [plyrElem, setPlyrElem] = useState<React.ReactNode>();
   const plyrRef = useRef<APITypes>(null);
   const plyr = plyrRef.current && plyrRef.current.plyr;

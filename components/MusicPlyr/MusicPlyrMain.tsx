@@ -5,7 +5,7 @@ import MusicPlyr, { MusicPlyrProps } from './MusicPlyr';
 import styles from '/styles/music-plyr.module.scss';
 
 const MusicPlyrMain = React.forwardRef<APITypes, MusicPlyrProps>(
-  ({ ...props }, ref) => {
+  (props, ref) => {
     return (
       <div className={styles.mainPlyrShellContainer}>
         <MusicPlyr

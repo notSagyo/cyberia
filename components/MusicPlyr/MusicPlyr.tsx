@@ -1,13 +1,12 @@
 import cn from 'classnames';
-import Plyr, { APITypes, PlyrSource } from 'plyr-react';
-import React from 'react';
-import { HTMLAttributes } from 'react';
+import Plyr, { APITypes } from 'plyr-react';
+import React, { HTMLAttributes } from 'react';
 import Shell, { ShellProps } from '../Shell/Shell';
 
 export interface MusicPlyrProps extends HTMLAttributes<HTMLElement> {
   videoId: string;
   videoTitle: string;
-  source?: PlyrSource;
+  source?: Plyr.SourceInfo;
   provider?: Plyr.Provider;
   videoOptions?: Plyr.Options;
   shellProps?: ShellProps;

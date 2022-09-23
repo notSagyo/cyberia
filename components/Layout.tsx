@@ -54,7 +54,7 @@ const Layout = ({
         mainShell={true}
         onClose={() => {
           setShellOpened(false);
-          musicPlyrContext.setPlyr(null);
+          musicPlyrContext.setPlyrElem(null);
         }}
         {...props}
         className={cn(

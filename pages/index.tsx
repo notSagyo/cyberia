@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-import Anchor from '../components/utils/Anchor';
 import Banner from '../components/Banner';
 import Layout from '../components/Layout';
+import Anchor from '../components/utils/Anchor';
 import Hr from '../components/utils/Hr';
 import { baseURL } from '../utils/url';
 import { linkListRoutes } from '../utils/utils';

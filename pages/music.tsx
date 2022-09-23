@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import MusicShowcase from '../components/MusicPlyr/MusicShowcase';
 import Hr from '../components/utils/Hr';
 import { useMusicPlyrContext } from '../contexts/MusicPlyrContext';
-import { songs } from '../data/songs';
+import songs from '../data/songs';
 
 function Music() {
   const musicPlyrContext = useMusicPlyrContext();

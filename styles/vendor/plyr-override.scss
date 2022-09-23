@@ -24,4 +24,18 @@
     padding: 0 !important;
     background: none !important;
   }
+
+  .plyr__progress, .plyr__volume {
+    input[type='range'] {
+      &::-webkit-slider-runnable-track { border-radius: 0; }
+
+      &::-webkit-slider-thumb {
+        width: 6px;
+        background-color: lightgray;
+        border-radius: 0;
+      }
+    }
+
+    &__buffer { border-radius: 0 !important; }
+  }
 }
