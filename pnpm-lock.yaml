@@ -9,8 +9,9 @@ specifiers:
   classnames: ^2.3.1
   eslint: 8.21.0
   eslint-config-next: 12.2.3
+  lodash: ^4.17.21
   next: 12.2.3
-  plyr-react: ^5.1.0
+  plyr-react: 5.1.0
   react: 18.2.0
   react-dom: 18.2.0
   sass: ^1.54.1
@@ -22,6 +23,7 @@ specifiers:
 dependencies:
   '@consumet/extensions': 1.1.0
   classnames: 2.3.1
+  lodash: 4.17.21
   next: 12.2.3_gexlyrx7eq3ptscqrwr5bg5x7m
   plyr-react: 5.1.0_react@18.2.0
   react: 18.2.0
@@ -1841,7 +1843,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
