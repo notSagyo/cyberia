@@ -23,6 +23,8 @@
     height: 24px;
     padding: 0 !important;
     background: none !important;
+
+    .plyr__controls__item, .plyr__controls__item * { transition: none; }
   }
 
   .plyr__progress, .plyr__volume {

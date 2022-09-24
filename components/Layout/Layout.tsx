@@ -63,6 +63,7 @@ const Layout = ({
           !shellOpened && 'tvShutdown',
           props.className
         )}
+        minimizeable={false}
         // NAV ITEMS
         navItems={
           <>

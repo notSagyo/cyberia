@@ -1,7 +1,7 @@
 import Layout from '../components/Layout/Layout';
 import LinkList from '../components/LinkList/LinkList';
 import LinkListItem from '../components/LinkList/LinkListItem';
-import { bartenderURL, hectorURL } from '../utils/urls';
+import { bartenderURL, getMeOutURL, hectorURL } from '../utils/urls';
 
 const Stuff = () => {
   return (
@@ -10,6 +10,7 @@ const Stuff = () => {
       <LinkList>
         <LinkListItem href={hectorURL} />
         <LinkListItem href={bartenderURL} />
+        <LinkListItem href={getMeOutURL} />
       </LinkList>
     </Layout>
   );
