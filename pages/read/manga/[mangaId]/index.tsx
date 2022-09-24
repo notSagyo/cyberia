@@ -2,12 +2,12 @@ import { IMangaInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import Layout from '../../../../components/Layout';
-import mangas from '../../../../data/mangas';
-import { mangadex } from '../../../../services/manga-service';
-import { mangaURL, readURL } from '../../../../utils/url';
 import LinkHeading from '../../../../components/LinkHeading';
 import LinkList from '../../../../components/LinkList/LinkList';
 import LinkListItem from '../../../../components/LinkList/LinkListItem';
+import mangas from '../../../../data/mangas';
+import { mangadex } from '../../../../services/manga-service';
+import { mangaURL, readURL } from '../../../../utils/url';
 
 interface MangaIdProps {
   mangaInfo: IMangaInfo;
@@ -17,10 +17,9 @@ interface iQueryParams extends ParsedUrlQuery {
   mangaId: string;
 }
 
-// !TODO: Fix wrong chapter order on build
 const MangaId = ({ mangaInfo }: MangaIdProps) => {
   const mangaId = mangaInfo.id;
-  const chapters = mangaInfo.chapters?.reverse() || [];
+  const chapters = mangaInfo.chapters || [];
 
   const mangaName =
     mangas
@@ -35,12 +34,12 @@ const MangaId = ({ mangaInfo }: MangaIdProps) => {
       </LinkHeading>
 
       <LinkList>
-        {chapters.map((chapter, i) => (
+        {chapters.map((chapter) => (
           <LinkListItem
             href={`${mangaURL}/${mangaId}/${chapter.id}/1`}
             key={chapter.id}
           >
-            {`${mangaURL}/${mangaName}/${i}`}
+            {`${mangaURL}/${mangaName}/${chapter.title}`}
           </LinkListItem>
         ))}
       </LinkList>
@@ -53,7 +52,13 @@ export const getStaticProps: GetStaticProps<MangaIdProps> = async (context) => {
   const { mangaId } = context.params as iQueryParams;
   const mangaInfo = await mangadex.fetchMangaInfo(mangaId);
   return {
-    props: { mangaInfo: { ...mangaInfo, title: mangaInfo.title || '' } },
+    props: {
+      mangaInfo: {
+        ...mangaInfo,
+        title: mangaInfo.title || '',
+        chapters: mangaInfo.chapters?.reverse(),
+      },
+    },
   };
 };
 

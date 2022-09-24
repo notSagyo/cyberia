@@ -11,7 +11,7 @@ const MusicPlyrMain = React.forwardRef<APITypes, MusicPlyrProps>(
         <MusicPlyr
           ref={ref}
           {...props}
-          videoOptions={{ autoplay: true }}
+          videoOptions={{ autoplay: true, volume: 20 }}
           shellProps={{
             className: cn('musicPlyrMainContainer', styles.mainPlyrShell),
           }}
