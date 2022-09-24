@@ -1,7 +1,7 @@
-import Anchor from '../../components/utils/Anchor';
-import Layout from '../../components/Layout';
+import Anchor from '../../components/utils/Anchor/Anchor';
+import Layout from '../../components/Layout/Layout';
 import animes from '../../data/animes';
-import { animeURL } from '../../utils/url';
+import { animeURL } from '../../utils/urls';
 
 function Videos() {
   return (

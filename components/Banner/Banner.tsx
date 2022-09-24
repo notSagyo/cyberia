@@ -1,4 +1,4 @@
-import styles from '/styles/banner.module.scss';
+import styles from './Banner.module.scss';
 import cn from 'classnames';
 
 const Banner = () => {

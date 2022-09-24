@@ -1,13 +1,13 @@
 import { IMangaInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import Layout from '../../../../components/Layout';
-import LinkHeading from '../../../../components/LinkHeading';
+import Layout from '../../../../components/Layout/Layout';
+import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
 import LinkList from '../../../../components/LinkList/LinkList';
 import LinkListItem from '../../../../components/LinkList/LinkListItem';
 import mangas from '../../../../data/mangas';
 import { mangadex } from '../../../../services/manga-service';
-import { mangaURL, readURL } from '../../../../utils/url';
+import { mangaURL, readURL } from '../../../../utils/urls';
 
 interface MangaIdProps {
   mangaInfo: IMangaInfo;

@@ -1,7 +1,7 @@
 import React from 'react';
 import BartenderGame from '../components/BartenderGame/BartenderGame';
 import BartenderGameContainer from '../components/BartenderGame/BartenderGameContainer';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
 const Bartender = () => {
   return (

@@ -1,6 +1,6 @@
 import Album from '../../components/Album/Album';
-import Layout from '../../components/Layout';
-import styles from '/styles/omori.module.scss';
+import Layout from '../../components/Layout/Layout';
+import styles from '/styles/pages/omori.module.scss';
 import albumImages from '../../data/omoriAlbumImages2';
 
 const Gallery = () => {

@@ -1,4 +1,4 @@
-import Shell from './Shell/Shell';
+import Shell from '../Shell/Shell';
 
 interface VideoProps {
   urlId: string;

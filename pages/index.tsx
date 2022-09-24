@@ -1,13 +1,12 @@
 import type { NextPage } from 'next';
-import Banner from '../components/Banner';
-import Layout from '../components/Layout';
-import Anchor from '../components/utils/Anchor';
-import Hr from '../components/utils/Hr';
-import { baseURL } from '../utils/url';
+import Banner from '../components/Banner/Banner';
+import Layout from '../components/Layout/Layout';
+import Anchor from '../components/utils/Anchor/Anchor';
+import Hr from '../components/utils/Hr/Hr';
+import { baseURL } from '../utils/urls';
 import { linkListRoutes } from '../utils/utils';
-import styles from '/styles/index.module.scss';
+import styles from '/styles/pages/index.module.scss';
 
-/* eslint-disable @next/next/no-img-element */
 const Home: NextPage = () => {
   return (
     <Layout>

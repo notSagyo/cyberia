@@ -1,7 +1,7 @@
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import LinkList from '../components/LinkList/LinkList';
 import LinkListItem from '../components/LinkList/LinkListItem';
-import { bartenderURL, hectorURL } from '../utils/url';
+import { bartenderURL, hectorURL } from '../utils/urls';
 
 const Stuff = () => {
   return (

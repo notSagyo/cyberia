@@ -1,6 +1,6 @@
-import Layout from '../../components/Layout';
+import Layout from '../../components/Layout/Layout';
 import mangas from '../../data/mangas';
-import { mangaURL } from '../../utils/url';
+import { mangaURL } from '../../utils/urls';
 import LinkListItem from '../../components/LinkList/LinkListItem';
 import LinkList from '../../components/LinkList/LinkList';
 

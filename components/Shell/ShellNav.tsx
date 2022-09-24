@@ -1,4 +1,4 @@
-import styles from '/styles/shell.module.scss';
+import styles from './Shell.module.scss';
 
 interface ShellHeaderProps {
   navItems?: React.ReactNode;

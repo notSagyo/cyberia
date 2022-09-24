@@ -12,7 +12,7 @@ import {
   onDragLeaveMixer,
   onDropMixer,
 } from './helper';
-import styles from '/styles/bartender.module.scss';
+import styles from './BartenderGame.module.scss';
 
 export interface IMix {
   adelhyde: number;

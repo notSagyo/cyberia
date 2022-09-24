@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';
-import Anchor, { AnchorProps } from './utils/Anchor';
+import Anchor, { AnchorProps } from '../utils/Anchor/Anchor';
 
 interface TitleLinkProps extends HTMLAttributes<HTMLAnchorElement> {
   href: string;

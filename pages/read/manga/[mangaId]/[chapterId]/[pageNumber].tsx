@@ -5,11 +5,11 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Anchor from '../../../../../components/utils/Anchor';
-import Layout from '../../../../../components/Layout';
+import Anchor from '../../../../../components/utils/Anchor/Anchor';
+import Layout from '../../../../../components/Layout/Layout';
 import { mangadex } from '../../../../../services/manga-service';
-import { mangaURL } from '../../../../../utils/url';
-import styles from '/styles/manga.module.scss';
+import { mangaURL } from '../../../../../utils/urls';
+import styles from '/styles/pages/manga.module.scss';
 import cn from 'classnames';
 
 const Manga = () => {

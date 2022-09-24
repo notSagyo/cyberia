@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import styles from '/styles/bartender.module.scss';
+import styles from './BartenderGame.module.scss';
 
 const BartenderGameContainer = ({
   children,

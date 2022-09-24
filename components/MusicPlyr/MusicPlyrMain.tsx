@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { APITypes } from 'plyr-react';
 import React from 'react';
 import MusicPlyr, { MusicPlyrProps } from './MusicPlyr';
-import styles from '/styles/music-plyr.module.scss';
+import styles from './MusicPlyr.module.scss';
 
 const MusicPlyrMain = React.forwardRef<APITypes, MusicPlyrProps>(
   (props, ref) => {

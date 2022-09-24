@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from '../../components/Layout';
-import { galleryURL } from '../../utils/url';
+import Layout from '../../components/Layout/Layout';
+import { galleryURL } from '../../utils/urls';
 import LinkList from '../../components/LinkList/LinkList';
 import LinkListItem from '../../components/LinkList/LinkListItem';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '/styles/hr.module.scss';
+import styles from './Hr.module.scss';
 
 interface HrProps {
   variant: 'Blood' | 'Blue' | 'Fire';

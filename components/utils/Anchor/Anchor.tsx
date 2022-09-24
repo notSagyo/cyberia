@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from 'next/link';
 import React, { AnchorHTMLAttributes, useEffect, useState } from 'react';
-import styles from '/styles/anchor.module.scss';
+import styles from './Anchor.module.scss';
 
 export interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   noDecoration?: boolean;

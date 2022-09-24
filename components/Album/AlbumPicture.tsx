@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { HTMLAttributes } from 'react';
 import { IAlbumImage } from '../../types';
 import Shell, { ShellProps } from '../Shell/Shell';
-import styles from '/styles/album.module.scss';
+import styles from './Album.module.scss';
 
 interface AlbumPictureProps {
   // Shell props
