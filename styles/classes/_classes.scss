@@ -1,8 +1,9 @@
 @use '/styles/abstracts' as *;
 @use '/styles/classes/color-classes';
 
-// Positioning
+// Positioning & display
 .mAuto { margin: auto; }
+.flex { display: flex; }
 
 .center {
   display: flex;

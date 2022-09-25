@@ -5,7 +5,7 @@ import Hr from '../components/utils/Hr/Hr';
 import { useMusicPlyrContext } from '../contexts/MusicPlyrContext';
 import songs from '../data/songs';
 
-function Music() {
+function MusicPage() {
   const musicPlyrContext = useMusicPlyrContext();
 
   const onSongClick = (videoId: string, videoTitle: string) => {
@@ -39,4 +39,4 @@ function Music() {
   );
 }
 
-export default Music;
+export default MusicPage;

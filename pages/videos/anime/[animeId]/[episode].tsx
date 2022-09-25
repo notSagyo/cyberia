@@ -8,7 +8,7 @@ import Anchor from '../../../../components/utils/Anchor/Anchor';
 import animesData from '../../../../data/animes';
 import { gogoanime } from '../../../../services/anime-service';
 import { animeURL } from '../../../../utils/urls';
-import styles from '/styles/anime.module.scss';
+import styles from '/styles/pages/anime.module.scss';
 
 interface EpisodeProps {
   animeInfo: IAnimeInfo;
@@ -21,7 +21,11 @@ interface iQueryParams extends ParsedUrlQuery {
   episode: string;
 }
 
-const Episode = ({ episodeUrl, episodeNumber, animeInfo }: EpisodeProps) => {
+const EpisodePage = ({
+  episodeUrl,
+  episodeNumber,
+  animeInfo,
+}: EpisodeProps) => {
   const episodeCount = animeInfo?.totalEpisodes || 1;
   const prevEpisodeUrl =
     episodeNumber - 1 > 0 && `${animeURL}/${animeInfo.id}/${episodeNumber - 1}`;
@@ -112,4 +116,4 @@ export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
   return { paths, fallback: false };
 };
 
-export default Episode;
+export default EpisodePage;

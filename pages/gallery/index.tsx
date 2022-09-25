@@ -31,7 +31,7 @@ const links = [
   },
 ];
 
-const Gallery = () => {
+const GalleryPage = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <div>
@@ -52,4 +52,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default GalleryPage;

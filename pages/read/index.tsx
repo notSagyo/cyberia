@@ -4,7 +4,7 @@ import { mangaURL } from '../../utils/urls';
 import LinkListItem from '../../components/LinkList/LinkListItem';
 import LinkList from '../../components/LinkList/LinkList';
 
-const Read = () => {
+const ReadPage = () => {
   return (
     <Layout>
       <h1 className="h1">READ</h1>
@@ -19,4 +19,4 @@ const Read = () => {
   );
 };
 
-export default Read;
+export default ReadPage;

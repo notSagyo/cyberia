@@ -17,7 +17,7 @@ interface iQueryParams extends ParsedUrlQuery {
   mangaId: string;
 }
 
-const MangaId = ({ mangaInfo }: MangaIdProps) => {
+const MangaIdPage = ({ mangaInfo }: MangaIdProps) => {
   const mangaId = mangaInfo.id;
   const chapters = mangaInfo.chapters || [];
 
@@ -67,4 +67,4 @@ export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
   return { paths, fallback: false };
 };
 
-export default MangaId;
+export default MangaIdPage;

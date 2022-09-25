@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import animes from '../../data/animes';
 import { animeURL } from '../../utils/urls';
 
-function Videos() {
+function VideosPage() {
   return (
     <Layout title="Videos">
       <h1 className="h1">VIDEOS</h1>
@@ -20,4 +20,4 @@ function Videos() {
   );
 }
 
-export default Videos;
+export default VideosPage;

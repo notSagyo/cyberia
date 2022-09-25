@@ -39,32 +39,3 @@
     div:last-of-type { margin-top: 50px; }
   }
 }
-
-.indexContainer { display: flex; }
-
-.underConstruction {
-  display: flex;
-  align-items: center;
-  gap: $spacing-md;
-
-  width: fit-content;
-  padding-bottom: $spacing-sm;
-
-  color: $yellow;
-}
-
-.linkList {
-  li {
-    a {
-      display: flex;
-      align-items: center;
-      gap: $spacing-sm;
-
-      width: fit-content;
-      margin-left: $spacing-md;
-      margin-top: $spacing-md;
-
-      color: $red;
-    }
-  }
-}

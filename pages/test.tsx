@@ -3,11 +3,11 @@ import { GetStaticProps } from 'next';
 
 // interface TestProps {}
 
-const Test = ({ ...props }: any) => {
+const TestPage = ({ ...props }: any) => {
   return <button {...props}>TEST</button>;
 };
 
-export default Test;
+export default TestPage;
 
 export const getStaticProps: GetStaticProps = async () => {
   return { props: {} };

@@ -1,9 +1,8 @@
-import React from 'react';
 import drinks from '../../data/drinks';
 import { SetState } from '../../types';
 import { IngredientNames } from '../../types/bartender';
-import { IMix } from './BartenderGame';
-import styles from './BartenderGame.module.scss';
+import { IMix } from './Bartender';
+import styles from './Bartender.module.scss';
 
 // VARIABLES =================================================================//
 const ingredientNames: IngredientNames[] = [

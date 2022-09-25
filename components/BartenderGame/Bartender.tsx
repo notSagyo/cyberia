@@ -1,18 +1,19 @@
 import cn from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import Shell from '../Shell/Shell';
+import styles from './Bartender.module.scss';
 import {
   ingredientNames,
+  mix,
   onDragIngredient,
+  onDragLeaveMixer,
+  onDragOverMixer,
+  onDropMixer,
   onToggleIceOrAged,
   resetMix,
-  mix,
   serveMix,
-  onDragOverMixer,
-  onDragLeaveMixer,
-  onDropMixer,
 } from './helper';
-import styles from './BartenderGame.module.scss';
 
 export interface IMix {
   adelhyde: number;
@@ -25,15 +26,13 @@ export interface IMix {
   blended: boolean;
 }
 
-const BartenderGame = () => {
+const Bartender = () => {
   const [ice, setIce] = useState<boolean>(false);
-  const [blended, setBlended] = useState<boolean>(false);
   const [aged, setAged] = useState<boolean>(false);
+  const [blended, setBlended] = useState<boolean>(false);
   const [currentMix, setCurrentMix] = useState<IMix>({
     ...{ adelhyde: 0, bronson: 0, delta: 0, flanergide: 0, karmotrine: 0 },
-    ice,
-    aged,
-    blended,
+    ...{ ice, aged, blended },
   });
 
   useEffect(() => {
@@ -146,4 +145,5 @@ const BartenderGame = () => {
   );
 };
 
-export default BartenderGame;
+Bartender.displayName = 'Bartender';
+export default Bartender;

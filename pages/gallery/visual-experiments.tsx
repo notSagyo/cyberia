@@ -2,7 +2,7 @@ import Album from '../../components/Album/Album';
 import Layout from '../../components/Layout/Layout';
 import albumImages from '../../data/visualExperimentsAlbumImages';
 
-const Gallery = () => {
+const VisualExperimentsPage = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <Album
@@ -16,4 +16,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default VisualExperimentsPage;

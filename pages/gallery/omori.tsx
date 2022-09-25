@@ -8,7 +8,7 @@ import albumImages from '../../data/omoriAlbumImages1';
 import { omoriSong } from '../../data/songs';
 import styles from '/styles/pages/omori.module.scss';
 
-const Gallery = () => {
+const OmoriPage = () => {
   const catEyesRef = useRef<HTMLDivElement>(null);
   const { setVideoId, setVideoTitle } = useMusicPlyrContext();
 
@@ -83,4 +83,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default OmoriPage;

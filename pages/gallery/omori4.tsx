@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import styles from '/styles/pages/omori.module.scss';
 import albumImages from '../../data/omoriAlbumImages4';
 
-const Gallery = () => {
+const Omori4Page = () => {
   return (
     <Layout title="Gallery" className={styles.bgGlitched}>
       <Album
@@ -19,4 +19,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default Omori4Page;

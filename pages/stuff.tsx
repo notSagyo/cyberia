@@ -3,7 +3,7 @@ import LinkList from '../components/LinkList/LinkList';
 import LinkListItem from '../components/LinkList/LinkListItem';
 import { bartenderURL, getMeOutURL, hectorURL } from '../utils/urls';
 
-const Stuff = () => {
+const StuffPage = () => {
   return (
     <Layout>
       <h1 className="h1">STUFF</h1>
@@ -16,4 +16,4 @@ const Stuff = () => {
   );
 };
 
-export default Stuff;
+export default StuffPage;

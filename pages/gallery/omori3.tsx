@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout';
 import styles from '/styles/pages/omori.module.scss';
 import albumImages from '../../data/omoriAlbumImages3';
 
-const Gallery = () => {
+const Omori3Page = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <Album
@@ -16,4 +16,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default Omori3Page;

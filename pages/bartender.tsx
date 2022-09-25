@@ -1,16 +1,15 @@
-import React from 'react';
-import BartenderGame from '../components/BartenderGame/BartenderGame';
-import BartenderGameContainer from '../components/BartenderGame/BartenderGameContainer';
+import Bartender from '../components/BartenderGame/Bartender';
+import BartenderContainer from '../components/BartenderGame/BartenderContainer';
 import Layout from '../components/Layout/Layout';
 
-const Bartender = () => {
+const BartenderPage = () => {
   return (
     <Layout noPadding title="bartender.exe">
-      <BartenderGameContainer>
-        <BartenderGame />
-      </BartenderGameContainer>
+      <BartenderContainer>
+        <Bartender />
+      </BartenderContainer>
     </Layout>
   );
 };
 
-export default Bartender;
+export default BartenderPage;

@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import hector from '../../data/hectorHtml';
 
-const Hector = () => {
+const HectorPage = () => {
   return (
     <Layout className="bgStars">
       <h1>HECTOR</h1>
@@ -22,4 +22,4 @@ const Hector = () => {
   );
 };
 
-export default Hector;
+export default HectorPage;

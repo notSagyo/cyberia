@@ -1,7 +1,7 @@
 import GetMeOut from '../../components/GetMeOut/GetMeOut';
 
-const GetMeOut5 = () => {
+const GetMeOut5Page = () => {
   return <GetMeOut src="/getmeout/getmeout6" />;
 };
 
-export default GetMeOut5;
+export default GetMeOut5Page;

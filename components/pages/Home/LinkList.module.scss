@@ -1,0 +1,17 @@
+@use '/styles/abstracts' as *;
+
+.linkList {
+  li {
+    a {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+
+      width: fit-content;
+      margin-left: $spacing-md;
+      margin-top: $spacing-md;
+
+      color: $red;
+    }
+  }
+}

@@ -12,7 +12,7 @@ import { mangaURL } from '../../../../../utils/urls';
 import styles from '/styles/pages/manga.module.scss';
 import cn from 'classnames';
 
-const Manga = () => {
+const MangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
   const query = useRouter().query;
@@ -125,4 +125,4 @@ const Manga = () => {
   );
 };
 
-export default Manga;
+export default MangaPage;
