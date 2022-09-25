@@ -54,18 +54,16 @@ const Gallery = () => {
   );
 
   const pictureWithCat = (
-    <>
-      <div className={styles.catContainer}>
-        {catEyes}
-        {catBody}
-        <AlbumPicture
-          // Middle image will have the cat on it
-          image={albumImages[1]}
-          descriptionProps={{ className: styles.description }}
-          shellProps={{ closeable: false, bodyProps: { children: catBody } }}
-        />
-      </div>
-    </>
+    <div>
+      {catEyes}
+      {catBody}
+      <AlbumPicture
+        // Middle image will have the cat on it
+        image={albumImages[1]}
+        descriptionProps={{ className: styles.description }}
+        shellProps={{ closeable: false, bodyProps: { children: catBody } }}
+      />
+    </div>
   );
 
   return (
@@ -73,8 +71,9 @@ const Gallery = () => {
       <Album
         albumTitle="/public/img/omori"
         images={albumImages}
-        descriptionProps={{ className: styles.description }}
+        className={styles.catAlbum}
         shellProps={{ className: styles.imageShell }}
+        descriptionProps={{ className: styles.description }}
         putElementAtIndex={[
           // Override the image at index 1 for the picture with the cat
           { element: pictureWithCat, mode: 'override', position: 1 },

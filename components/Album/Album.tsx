@@ -1,12 +1,13 @@
-import { galleryURL } from '../../utils/urls';
-import { ShellProps } from '../Shell/Shell';
-import styles from './album.module.scss';
-import AlbumPicture from './AlbumPicture';
-import { Fragment, HTMLAttributes } from 'react';
-import LinkHeading from '../LinkHeading/LinkHeading';
+import cn from 'classnames';
+import React, { Fragment, HTMLAttributes } from 'react';
 import { IAlbumImage } from '../../types';
+import { galleryURL } from '../../utils/urls';
+import LinkHeading from '../LinkHeading/LinkHeading';
+import { ShellProps } from '../Shell/Shell';
+import styles from './Album.module.scss';
+import AlbumPicture from './AlbumPicture';
 
-interface AlbumProps {
+interface AlbumProps extends React.HTMLAttributes<HTMLDivElement> {
   images: IAlbumImage[];
   albumTitle?: string;
   photoWidth?: number | string;
@@ -23,7 +24,7 @@ interface AlbumProps {
   }[];
 }
 
-// TODO: Fix unique key on inserted element
+// FIXME: Fix unique key on inserted element
 const Album = ({
   albumTitle,
   images,
@@ -33,6 +34,7 @@ const Album = ({
   closeable = true,
   maximizeable = false,
   putElementAtIndex = [],
+  ...props
 }: AlbumProps) => {
   let albumImages: JSX.Element[] = [];
 
@@ -51,15 +53,15 @@ const Album = ({
 
     const elemAtIndex = putElementAtIndex.find((elem) => elem.position === i);
     if (elemAtIndex) {
-      if (elemAtIndex.mode === 'override') pictureElement = elemAtIndex.element;
-      else
-        pictureElement = (
-          <Fragment key={i}>
-            {elemAtIndex.mode === 'prepend' && elemAtIndex.element}
-            {pictureElement}
-            {elemAtIndex.mode === 'append' && elemAtIndex.element}
-          </Fragment>
-        );
+      pictureElement = (
+        <Fragment key={i}>
+          {elemAtIndex.mode === 'prepend' && elemAtIndex.element}
+          {elemAtIndex.mode === 'override'
+            ? elemAtIndex.element
+            : pictureElement}
+          {elemAtIndex.mode === 'append' && elemAtIndex.element}
+        </Fragment>
+      );
     }
 
     return pictureElement;
@@ -74,7 +76,9 @@ const Album = ({
       >
         {albumTitle || 'IMAGE VISUALIZER'}
       </LinkHeading>
-      <div className={styles.body}>{albumImages}</div>
+      <div {...props} className={cn(styles.body, props?.className)}>
+        {albumImages}
+      </div>
     </>
   );
 };
