@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import React from 'react';
 import { useEffect, useState } from 'react';
 import Shell from '../Shell/Shell';
 import styles from './Bartender.module.scss';
@@ -34,17 +33,24 @@ const Bartender = () => {
     ...{ adelhyde: 0, bronson: 0, delta: 0, flanergide: 0, karmotrine: 0 },
     ...{ ice, aged, blended },
   });
+  const [money, setMoney] = useState(
+    Number(localStorage.getItem('money')) || 0
+  );
 
   useEffect(() => {
     setCurrentMix((prev) => ({ ...prev, ice, aged, blended }));
   }, [ice, aged, blended]);
+
+  useEffect(() => {
+    localStorage.setItem('money', String(money));
+  }, [money]);
 
   return (
     <Shell className="mAuto" shellTitle="BARTENDER.EXE" noPadding>
       <div className={styles.board}>
         {/* $$$ MULA */}
         <div id="moneyText" className={styles.moneyText} data-value={0}>
-          $ 0
+          $ {money}
         </div>
         {/* DRINK NAME */}
         <div id="drinkName" className={styles.drinkName} />
@@ -106,7 +112,9 @@ const Bartender = () => {
           className={cn(styles.btn, styles.btnServe, 'hidden')}
           src="/img/va11halla/button-serve.png"
           alt="serve button"
-          onClick={() => serveMix(currentMix, setCurrentMix, setBlended)}
+          onClick={() =>
+            serveMix(currentMix, setCurrentMix, setMoney, setBlended)
+          }
         />
         {/* MIXER */}
         <img
@@ -116,7 +124,7 @@ const Bartender = () => {
           alt="mixer"
           onDragOver={onDragOverMixer}
           onDragLeave={onDragLeaveMixer}
-          onDrop={(e) => onDropMixer(e, setCurrentMix)}
+          onDrop={(e) => onDropMixer(e, currentMix, setCurrentMix)}
         />
         {/* MIXER INDICATORS */}
         <div id="mixerIndicators">

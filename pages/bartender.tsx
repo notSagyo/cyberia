@@ -1,5 +1,5 @@
-import Bartender from '../components/BartenderGame/Bartender';
-import BartenderContainer from '../components/BartenderGame/BartenderContainer';
+import Bartender from '../components/Bartender/Bartender';
+import BartenderContainer from '../components/Bartender/BartenderContainer';
 import Layout from '../components/Layout/Layout';
 
 const BartenderPage = () => {

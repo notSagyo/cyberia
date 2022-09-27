@@ -1,6 +1,6 @@
 import drinks from '../../data/drinks';
 import { SetState } from '../../types';
-import { IngredientNames } from '../../types/bartender';
+import { IDrink, IngredientNames } from '../../types/bartender';
 import { IMix } from './Bartender';
 import styles from './Bartender.module.scss';
 
@@ -17,8 +17,8 @@ let isMixing = false;
 let mixingTimeout: NodeJS.Timeout;
 
 // FUNCTIONS =================================================================//
-function findDrink(mix: IMix) {
-  return drinks.find(
+function findDrink(mix: IMix, isSmallDrink = true): IDrink | null {
+  const drink = drinks.find(
     (drink) =>
       drink.ice == mix.ice &&
       drink.aged == mix.aged &&
@@ -31,6 +31,24 @@ function findDrink(mix: IMix) {
         ? true
         : drink.karmotrine == mix.karmotrine)
   );
+
+  // If drink found and is a big drink, double the price
+  if (drink) return isSmallDrink ? drink : { ...drink, price: drink.price * 2 };
+  //  If drink not found and already checked for big drink, return
+  if (!isSmallDrink) return null;
+
+  // If drink wasn't found, try to compare again with half the ingredients
+  const halfDrink: IMix = {
+    ice: mix.ice,
+    aged: mix.aged,
+    blended: mix.blended,
+    adelhyde: mix.adelhyde * 0.5,
+    bronson: mix.bronson * 0.5,
+    delta: mix.delta * 0.5,
+    flanergide: mix.flanergide * 0.5,
+    karmotrine: mix.karmotrine * 0.5,
+  };
+  return findDrink(halfDrink, false);
 }
 
 // Prepare mix =======================//
@@ -41,7 +59,7 @@ function mix(mix: IMix, setBlended: SetState<boolean>) {
   clearTimeout(mixingTimeout);
   isMixing = !isMixing;
 
-  // If mix: In 5 seconds if still mixing set blended state and styles
+  // If mixing: In 5 seconds if still mixing set blended state and styles
   // If stop: remove mixing styles and update result
   if (isMixing) {
     mixer.classList.add(styles.shake);
@@ -52,11 +70,8 @@ function mix(mix: IMix, setBlended: SetState<boolean>) {
     }, 5000);
   } else {
     const foundDrink = findDrink(mix);
-    const drinkFileName =
-      foundDrink?.name &&
-      foundDrink.name.toLowerCase().replaceAll(' ', '-') + '.png';
     setResultName(foundDrink?.name || '##20%!!');
-    setResultSprite(`/img/va11halla/drink-${drinkFileName || 'glitch.png'}`);
+    setResultSprite(foundDrink?.name);
     toggleHidden('serveButton', false);
     toggleHidden('drinkResult', false);
     toggleHidden('mixer', true);
@@ -85,10 +100,11 @@ function resetMix(setMix: SetState<IMix>, setBlended: SetState<boolean>) {
 function serveMix(
   mix: IMix,
   setMix: SetState<IMix>,
+  setMoney: SetState<number>,
   setBlended: SetState<boolean>
 ) {
   const foundDrink = findDrink(mix);
-  foundDrink && addMoney(foundDrink?.price);
+  foundDrink && setMoney((p) => p + foundDrink.price);
   toggleHidden('serveButton', true);
   toggleHidden('drinkResult', true);
   toggleHidden('mixer', false);
@@ -115,7 +131,7 @@ function onDragLeaveMixer(ev: React.DragEvent) {
   resetMixerSprite();
 }
 
-function onDropMixer(ev: React.DragEvent, setMix: SetState<IMix>) {
+function onDropMixer(ev: React.DragEvent, mix: IMix, setMix: SetState<IMix>) {
   if (!(ev.target instanceof HTMLElement) || isMixing) return;
   ev.preventDefault();
   resetMixerSprite();
@@ -123,15 +139,9 @@ function onDropMixer(ev: React.DragEvent, setMix: SetState<IMix>) {
   const ingredientName = ev.dataTransfer.getData('text') as IngredientNames;
   if (!ingredientNames.includes(ingredientName)) return;
 
+  if (mix[ingredientName] >= 10) return;
   unhideNextIndicator(ingredientName);
-
-  setMix((prev) => ({
-    ...prev,
-    [ingredientName]:
-      prev[ingredientName] < 10
-        ? prev[ingredientName] + 1
-        : prev[ingredientName],
-  }));
+  setMix((prev) => ({ ...prev, [ingredientName]: prev[ingredientName] + 1 }));
 }
 
 function onToggleIceOrAged(e: React.MouseEvent, setState: SetState<boolean>) {
@@ -197,12 +207,16 @@ function setResultName(name: string) {
   drinkNameElem.textContent = name;
 }
 
-function setResultSprite(imgPath: string) {
+function setResultSprite(drinkName: string | undefined) {
   const resultElem = document.querySelector('#drinkResult') as
     | HTMLImageElement
     | undefined;
   if (!resultElem) throw new Error('Element with ID "drinkResult" not found');
-  resultElem.src = imgPath;
+  const fileName = drinkName
+    ? drinkName.toLowerCase().replaceAll(' ', '-')
+    : 'glitch';
+  const imagePath = `/img/va11halla/drink-${fileName}.png`;
+  resultElem.src = imagePath;
 }
 
 function resetMixerSprite() {
@@ -213,19 +227,6 @@ function resetMixerSprite() {
   mixer.classList.remove(styles.blend);
   mixer.classList.remove('hidden');
   mixer.style.height = '';
-}
-
-function addMoney(amount: number) {
-  const moneyElem = document.getElementById('moneyText');
-  if (!moneyElem) throw new Error('Element with ID "moneyText" not found');
-
-  const currentValue = Number(moneyElem.dataset.value);
-  if (isNaN(currentValue))
-    throw new Error("Error parsing moneyText's data-value");
-
-  const newValue = currentValue + amount;
-  moneyElem.dataset.value = newValue.toString();
-  moneyElem.innerText = `$ ${newValue}`;
 }
 
 export {
