@@ -71,7 +71,7 @@ function mix(mix: IMix, setBlended: SetState<boolean>) {
   } else {
     const foundDrink = findDrink(mix);
     setResultName(foundDrink?.name || '##20%!!');
-    setResultSprite(foundDrink?.name);
+    setResultSprite(foundDrink?.image);
     toggleHidden('serveButton', false);
     toggleHidden('drinkResult', false);
     toggleHidden('mixer', true);
@@ -207,16 +207,12 @@ function setResultName(name: string) {
   drinkNameElem.textContent = name;
 }
 
-function setResultSprite(drinkName: string | undefined) {
+function setResultSprite(imagePath: string | undefined) {
   const resultElem = document.querySelector('#drinkResult') as
     | HTMLImageElement
     | undefined;
   if (!resultElem) throw new Error('Element with ID "drinkResult" not found');
-  const fileName = drinkName
-    ? drinkName.toLowerCase().replaceAll(' ', '-')
-    : 'glitch';
-  const imagePath = `/img/va11halla/drink-${fileName}.png`;
-  resultElem.src = imagePath;
+  resultElem.src = imagePath || '/img/va11halla/drink-glitch.png';
 }
 
 function resetMixerSprite() {
