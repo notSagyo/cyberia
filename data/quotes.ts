@@ -1,4 +1,3 @@
-// TODO: Use these
 const closeShellQuotes = [
   'See you space cowboy....',
   'Easy come, easy go...',
@@ -10,7 +9,8 @@ const closeShellQuotes = [
 ];
 
 const fortuneQuotes = [
-  'You are dying',
+  'YOU ARE DYING',
+  // Isaac Fortune Teller
   "DON'T LEAVE THE / HOUSE TODAY",
   'WE WILL ALL / DIE ONE DAY',
   'YOU ARE THROWING / YOUR LIFE AWAY',
@@ -46,6 +46,10 @@ const fortuneQuotes = [
   'YOUR OLD LIFE / LIES IN RUIN',
   'MAY YOUR TROUBLES / BE MANY',
   'BLAME NOBODY / BUT YOURSELF',
+  // Va11halla
+  'I HAVE NO IDEA WHAT / THE BRIGHTER SIDE IS / BUT YOU SHOULD TOTALLY FIND IT',
+  // Punpun
+  'DEAR GOD / DEAR GOD / TINKLE HOY',
 ];
 
 export { closeShellQuotes, fortuneQuotes };

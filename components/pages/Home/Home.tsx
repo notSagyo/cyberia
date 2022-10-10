@@ -29,7 +29,7 @@ const Home = () => {
             <section className={styles.ipSection}>
               <p>Welcome {ip?.ip}</p>
               <p>
-                from ({ip?.country_name}, {ip?.region}, {ip?.city})
+                from ({ip?.country_name}, {ip?.region})
               </p>
             </section>
           )}

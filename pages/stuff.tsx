@@ -1,7 +1,12 @@
 import Layout from '../components/Layout/Layout';
 import LinkList from '../components/LinkList/LinkList';
 import LinkListItem from '../components/LinkList/LinkListItem';
-import { bartenderURL, getMeOutURL, hectorURL } from '../utils/urls';
+import {
+  bartenderURL,
+  fortuneURL,
+  getMeOutURL,
+  hectorURL,
+} from '../utils/urls';
 
 const StuffPage = () => {
   return (
@@ -11,6 +16,7 @@ const StuffPage = () => {
         <LinkListItem href={hectorURL} />
         <LinkListItem href={bartenderURL} />
         <LinkListItem href={getMeOutURL} />
+        <LinkListItem href={fortuneURL} />
       </LinkList>
     </Layout>
   );
