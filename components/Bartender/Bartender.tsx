@@ -33,17 +33,17 @@ const Bartender = () => {
     ...{ adelhyde: 0, bronson: 0, delta: 0, flanergide: 0, karmotrine: 0 },
     ...{ ice, aged, blended },
   });
-  const [money, setMoney] = useState(
-    Number(localStorage.getItem('money')) || 0
-  );
+  const [money, setMoney] = useState(0);
 
   useEffect(() => {
     setCurrentMix((prev) => ({ ...prev, ice, aged, blended }));
   }, [ice, aged, blended]);
 
   useEffect(() => {
-    localStorage.setItem('money', String(money));
+    if (money != 0) localStorage.setItem('money', String(money));
   }, [money]);
+
+  useEffect(() => setMoney(Number(localStorage.getItem('money')) || 0), []);
 
   return (
     <Shell className="mAuto" shellTitle="BARTENDER.EXE" noPadding>
