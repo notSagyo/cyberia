@@ -1,8 +1,10 @@
 import cn from 'classnames';
 import { useRef, useState } from 'react';
+import styles from './Shell.module.scss';
 import ShellNav from './ShellNav';
 import ShellTitle from './ShellTitle';
-import styles from './Shell.module.scss';
+
+export const maxShellWidth = 1240;
 
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   // Shell title
@@ -77,8 +79,7 @@ const Shell = ({
       style={{
         ...props.style,
         ...(maximized && {
-          // TODO: remove magic number
-          maxWidth: 1240,
+          maxWidth: maxShellWidth,
           maxHeight: '100vh',
           overflow: 'auto',
         }),

@@ -11,3 +11,4 @@ export const fortuneURL = `${baseURL}/fortune`;
 export const hectorURL = `${galleryURL}/hector`;
 export const bartenderURL = `${baseURL}/bartender`;
 export const getMeOutURL = `${baseURL}/getmeout`;
+export const matrixUrl = `${baseURL}/matrix`;
