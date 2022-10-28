@@ -1,5 +1,5 @@
 @use '/styles/abstracts' as *;
-@use '../Layout/layout.module.scss' as layout;
+@use '/components/Layout/Layout.module.scss' as layout;
 
 $shell-size: 28rem;
 
