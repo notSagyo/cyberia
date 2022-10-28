@@ -1,7 +1,7 @@
 import Album from '../../components/Album/Album';
 import Layout from '../../components/Layout/Layout';
+import albumImages from '../../data/omori-album-images-4';
 import styles from '/styles/pages/omori.module.scss';
-import albumImages from '../../data/omoriAlbumImages4';
 
 const Omori4Page = () => {
   return (

@@ -13,7 +13,7 @@ body {
   background-color: black;
 }
 
-// CRT
+// CRT Effect: http://aleclownes.com/2017/02/01/crt-display.html
 body::after {
   content: ' ';
   display: block;

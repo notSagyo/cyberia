@@ -5,7 +5,7 @@ import Layout from '../../Layout/Layout';
 import Hr from '../../utils/Hr/Hr';
 import Banner from './Banner';
 import styles from './Home.module.scss';
-import LinkList from './LinkList';
+import HomeLinkList from './HomeLinkList';
 import SpookyAd from './SpookyAd';
 import UnderConstruction from './UnderConstruction';
 
@@ -33,7 +33,7 @@ const Home = () => {
               </p>
             </section>
           )}
-          <LinkList />
+          <HomeLinkList />
         </main>
 
         {/* RIGHT SIDE */}
