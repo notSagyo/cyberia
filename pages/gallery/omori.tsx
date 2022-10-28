@@ -8,14 +8,19 @@ import albumImages from '../../data/omori-album-images-1';
 import { omoriSong } from '../../data/songs';
 import styles from '/styles/pages/omori.module.scss';
 
+const didPlaySongKey = 'did-play-omori-song';
+
 const OmoriPage = () => {
   const catEyesRef = useRef<HTMLDivElement>(null);
   const { setVideoId, setVideoTitle } = useMusicPlyrContext();
 
   useEffect(() => {
-    // Change songs
-    setVideoId(omoriSong.id);
-    setVideoTitle(omoriSong.title);
+    // Change songs only first time visting
+    if (localStorage.getItem(didPlaySongKey) !== 'true') {
+      setVideoId(omoriSong.id);
+      setVideoTitle(omoriSong.title);
+      localStorage.setItem(didPlaySongKey, 'true');
+    }
 
     // Cat eyes movement
     const moveEyes = (eyes: HTMLElement, mousePosX: number) => {
