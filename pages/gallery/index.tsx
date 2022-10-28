@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '../../components/Layout/Layout';
-import { galleryURL } from '../../utils/urls';
 import LinkList from '../../components/LinkList/LinkList';
 import LinkListItem from '../../components/LinkList/LinkListItem';
+import { galleryURL } from '../../utils/urls';
 
 const links = [
   {
@@ -28,6 +28,10 @@ const links = [
   {
     href: `${galleryURL}/hector`,
     title: '/pages/gallery/hector',
+  },
+  {
+    href: `${galleryURL}/psych-ward`,
+    title: '/pages/gallery/psych_ward',
   },
 ];
 

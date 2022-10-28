@@ -6,7 +6,7 @@ import {
   fortuneURL,
   getMeOutURL,
   hectorURL,
-  matrixUrl,
+  matrixURL,
 } from '../utils/urls';
 
 const StuffPage = () => {
@@ -17,7 +17,7 @@ const StuffPage = () => {
         <LinkListItem href={hectorURL} />
         <LinkListItem href={bartenderURL} />
         <LinkListItem href={fortuneURL} />
-        <LinkListItem href={matrixUrl} />
+        <LinkListItem href={matrixURL} />
         <LinkListItem href={getMeOutURL} />
       </LinkList>
     </Layout>
