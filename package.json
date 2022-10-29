@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@consumet/extensions": "^1.1.0",
+    "@consumet/extensions": "^1.2.3",
     "@types/lodash": "^4.14.185",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",

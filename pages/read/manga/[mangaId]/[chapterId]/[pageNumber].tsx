@@ -8,8 +8,12 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Layout from '../../../../../components/Layout/Layout';
 import Anchor from '../../../../../components/utils/Anchor/Anchor';
-import { mangaProvider } from '../../../../../services/manga-service';
-import { corsProxy, mangaURL } from '../../../../../utils/urls';
+import {
+  corsProxy,
+  mangaInfoURL,
+  mangaReadURL,
+  mangaURL,
+} from '../../../../../utils/urls';
 import styles from '/styles/pages/manga.module.scss';
 
 const MangaPage = () => {
@@ -22,8 +26,8 @@ const MangaPage = () => {
   const chapterId = String(query.chapterId || '');
   const pageNumber = Number(query.pageNumber || 0);
   const chapterLength = chapterPages?.length || 0;
-  const imageUrl =
-    corsProxy + chapterPages?.[parseInt(String(pageNumber)) - 1]?.img || '';
+  const imageUrl = corsProxy + chapterPages?.[pageNumber - 1]?.img || '';
+  const nextImageUrl = corsProxy + chapterPages?.[pageNumber]?.img || '';
 
   // Adjacent pages
   const hasNextPage = Number(pageNumber) < chapterLength;
@@ -43,13 +47,19 @@ const MangaPage = () => {
 
   // On chapter change fetch chapter pages
   useEffect(() => {
-    if (chapterId)
-      mangaProvider
-        .fetchChapterPages(chapterId)
-        .then((pages) => setChapterPages(pages));
-    if (mangaId)
-      mangaProvider.fetchMangaInfo(mangaId).then((info) => setMangaInfo(info));
-  }, [chapterId, mangaId]);
+    chapterId &&
+      fetch(`${mangaReadURL}/${chapterId}`)
+        .then((data) => data.json())
+        .then((chapterPages) => setChapterPages(chapterPages));
+  }, [chapterId]);
+
+  // On manga change fetch manga info
+  useEffect(() => {
+    mangaId &&
+      fetch(`${mangaInfoURL}/${mangaId}`)
+        .then((data) => data.json())
+        .then((mangaInfo) => setMangaInfo(mangaInfo));
+  }, [mangaId]);
 
   // On page change scroll to top
   useEffect(() => {
@@ -118,7 +128,7 @@ const MangaPage = () => {
       {hasNextPage && (
         <img
           className={styles.nextPageImage}
-          src={chapterPages?.[pageNumber]?.img}
+          src={nextImageUrl}
           alt={'hidden'}
         />
       )}
