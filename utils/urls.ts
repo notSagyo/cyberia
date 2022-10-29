@@ -12,3 +12,5 @@ export const hectorURL = `${galleryURL}/hector`;
 export const bartenderURL = `${baseURL}/bartender`;
 export const getMeOutURL = `${baseURL}/getmeout`;
 export const matrixURL = `${baseURL}/matrix`;
+
+export const corsProxy = 'https://cors.proxy.consumet.org/';

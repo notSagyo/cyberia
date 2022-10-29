@@ -6,7 +6,7 @@ import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
 import LinkList from '../../../../components/LinkList/LinkList';
 import LinkListItem from '../../../../components/LinkList/LinkListItem';
 import mangas from '../../../../data/mangas';
-import { mangadex } from '../../../../services/manga-service';
+import { mangaProvider } from '../../../../services/manga-service';
 import { mangaURL, readURL } from '../../../../utils/urls';
 
 interface MangaIdProps {
@@ -50,7 +50,7 @@ const MangaIdPage = ({ mangaInfo }: MangaIdProps) => {
 // Static stuff ==============================================================//
 export const getStaticProps: GetStaticProps<MangaIdProps> = async (context) => {
   const { mangaId } = context.params as iQueryParams;
-  const mangaInfo = await mangadex.fetchMangaInfo(mangaId);
+  const mangaInfo = await mangaProvider.fetchMangaInfo(mangaId);
   return {
     props: {
       mangaInfo: {

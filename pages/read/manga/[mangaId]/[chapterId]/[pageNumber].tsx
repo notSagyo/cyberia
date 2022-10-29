@@ -2,15 +2,15 @@ import {
   IMangaChapterPage,
   IMangaInfo,
 } from '@consumet/extensions/dist/models';
+import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import Anchor from '../../../../../components/utils/Anchor/Anchor';
+import { useEffect, useState } from 'react';
 import Layout from '../../../../../components/Layout/Layout';
-import { mangadex } from '../../../../../services/manga-service';
-import { mangaURL } from '../../../../../utils/urls';
+import Anchor from '../../../../../components/utils/Anchor/Anchor';
+import { mangaProvider } from '../../../../../services/manga-service';
+import { corsProxy, mangaURL } from '../../../../../utils/urls';
 import styles from '/styles/pages/manga.module.scss';
-import cn from 'classnames';
 
 const MangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
@@ -22,7 +22,8 @@ const MangaPage = () => {
   const chapterId = String(query.chapterId || '');
   const pageNumber = Number(query.pageNumber || 0);
   const chapterLength = chapterPages?.length || 0;
-  const imageUrl = chapterPages?.[parseInt(String(pageNumber)) - 1]?.img || '';
+  const imageUrl =
+    corsProxy + chapterPages?.[parseInt(String(pageNumber)) - 1]?.img || '';
 
   // Adjacent pages
   const hasNextPage = Number(pageNumber) < chapterLength;
@@ -43,11 +44,11 @@ const MangaPage = () => {
   // On chapter change fetch chapter pages
   useEffect(() => {
     if (chapterId)
-      mangadex
+      mangaProvider
         .fetchChapterPages(chapterId)
         .then((pages) => setChapterPages(pages));
     if (mangaId)
-      mangadex.fetchMangaInfo(mangaId).then((info) => setMangaInfo(info));
+      mangaProvider.fetchMangaInfo(mangaId).then((info) => setMangaInfo(info));
   }, [chapterId, mangaId]);
 
   // On page change scroll to top
