@@ -26,8 +26,8 @@ const FortunePage = () => {
       className="bgSpace"
       bodyProps={{ className: 'center' }}
     >
-      {randomQuote.map((quote) => (
-        <h2 key={quote} className="h4">
+      {randomQuote.map((quote, i) => (
+        <h2 key={i} className="h4">
           {quote}
         </h2>
       ))}

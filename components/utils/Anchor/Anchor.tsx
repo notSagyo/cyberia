@@ -18,6 +18,7 @@ const Anchor = React.forwardRef(
     function handleMouseOver(e: React.MouseEvent<HTMLAnchorElement>) {
       if (!hoverAudio) return;
       e.stopPropagation();
+      hoverAudio.volume = 0.5;
       hoverAudio.currentTime = 0;
       hoverAudio.play();
     }

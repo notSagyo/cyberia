@@ -16,6 +16,7 @@ import {
 } from '../../../../../utils/urls';
 import styles from '/styles/pages/manga.module.scss';
 
+// TODO: Update to mangasee123
 const MangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
