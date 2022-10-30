@@ -27,26 +27,22 @@ const Anchor = React.forwardRef(
       setHoverAudio(new Audio('/sound/link-hover.wav'));
     }, []);
 
-    const anchorElement = (
-      <a
-        {...props}
-        ref={ref}
-        onMouseEnter={noSound ? undefined : handleMouseOver}
-        className={cn(styles.anchor, props.className)}
-        style={{ ...(noDecoration && { textDecoration: 'none' }) }}
-      >
-        {children}
-      </a>
-    );
+    const attributes = {
+      ...props,
+      ref: ref,
+      onMouseEnter: noSound ? undefined : handleMouseOver,
+      className: cn(styles.anchor, props.className),
+      style: { ...(noDecoration && { textDecoration: 'none' }) },
+    };
 
     return (
       <>
         {href ? (
-          <Link href={href} passHref>
-            {anchorElement}
+          <Link {...attributes} href={href}>
+            {children}
           </Link>
         ) : (
-          <>{anchorElement}</>
+          <a {...attributes}>{children}</a>
         )}
       </>
     );

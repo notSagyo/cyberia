@@ -35,8 +35,8 @@ const MusicShowcase = ({
       <Anchor>
         <Image
           alt={videoTitle}
-          layout="fill"
-          objectFit="cover"
+          fill={true}
+          className={styles.musicShowcaseImage}
           {...props}
           src={`https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`}
         />

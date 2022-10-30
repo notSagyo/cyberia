@@ -4,7 +4,6 @@ import { ParsedUrlQuery } from 'querystring';
 import Layout from '../../../../components/Layout/Layout';
 import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
 import LinkList from '../../../../components/LinkList/LinkList';
-import LinkListItem from '../../../../components/LinkList/LinkListItem';
 import mangas from '../../../../data/mangas';
 import { mangaProvider } from '../../../../services/manga-service';
 import { mangaURL, readURL } from '../../../../utils/urls';
@@ -33,16 +32,13 @@ const MangaIdPage = ({ mangaInfo }: MangaIdProps) => {
         {mangaURL}/{mangaName}
       </LinkHeading>
 
-      <LinkList>
-        {chapters.map((chapter, i) => (
-          <LinkListItem
-            href={`${mangaURL}/${mangaId}/${chapter.id}/1`}
-            key={chapter.id}
-          >
-            {`${mangaURL}/${mangaName}/${i}`}
-          </LinkListItem>
-        ))}
-      </LinkList>
+      <LinkList
+        links={chapters.map((chapter, i) => ({
+          href: `${mangaURL}/${mangaId}/${chapter.id}/1`,
+          title: `${mangaURL}/${mangaName}/${i}`,
+          key: chapter.id,
+        }))}
+      />
     </Layout>
   );
 };

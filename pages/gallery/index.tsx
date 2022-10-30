@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '../../components/Layout/Layout';
 import LinkList from '../../components/LinkList/LinkList';
-import LinkListItem from '../../components/LinkList/LinkListItem';
 import { galleryURL } from '../../utils/urls';
 
 const links = [
@@ -45,13 +44,7 @@ const GalleryPage = () => {
           </u>
         </h1>
       </div>
-      <LinkList>
-        {links.map((link) => (
-          <LinkListItem href={link.href} key={link.title}>
-            {link.title}
-          </LinkListItem>
-        ))}
-      </LinkList>
+      <LinkList links={links} />
     </Layout>
   );
 };
