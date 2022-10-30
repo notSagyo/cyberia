@@ -26,4 +26,9 @@ $shell-size: 28rem;
 .musicShowcaseShellBody {
   width: $shell-size;
   height: $shell-size;
+  overflow: hidden;
+}
+
+.musicShowcaseImage {
+  object-fit: cover;
 }
