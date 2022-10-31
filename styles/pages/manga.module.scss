@@ -1,7 +1,6 @@
 @use '/styles/abstracts' as *;
 
 .pageContainer {
-  @include mx-auto;
   display: flex;
   justify-content: center;
   max-width: 100%;

@@ -16,7 +16,8 @@ import {
 } from '../../../../../utils/urls';
 import styles from '/styles/pages/manga.module.scss';
 
-// TODO: Update to mangasee123
+// ?TODO: Update to mangasee123
+// TODO: Remove link preview from image hover
 const MangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
@@ -71,19 +72,14 @@ const MangaPage = () => {
   return (
     <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
       {/* PAGE */}
-      <div className={styles.pageContainer}>
-        <Link
-          href={
-            hasNextPage ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'
-          }
-        >
-          <img
-            className={cn(styles.pageImage, 'pointer')}
-            src={imageUrl}
-            alt={'manga page'}
-          />
-        </Link>
-      </div>
+      <Link
+        href={hasNextPage ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'}
+        legacyBehavior
+      >
+        <div className={cn(styles.pageContainer, 'pointer')}>
+          <img className={styles.pageImage} src={imageUrl} alt={'manga page'} />
+        </div>
+      </Link>
 
       {/* CONTROLS */}
       <div className={styles.controlsContainer}>
