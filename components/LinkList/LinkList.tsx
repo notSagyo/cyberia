@@ -1,8 +1,14 @@
 import { HTMLAttributes } from 'react';
 import LinkListItem from './LinkListItem';
 
+export interface Link {
+  href: string;
+  title?: string;
+  key?: string;
+}
+
 interface LinkListProps extends HTMLAttributes<HTMLUListElement> {
-  links?: { href: string; title?: string; key?: string }[];
+  links?: Link[];
 }
 
 const LinkList = ({ children, links, ...props }: LinkListProps) => {

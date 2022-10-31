@@ -12,7 +12,7 @@ const AnimePage: NextPage = () => {
       <LinkList
         links={animes.map((anime) => ({
           href: `${animeURL}/${anime.id}`,
-          title: `/pages/videos/${anime.id.replaceAll('-', '_')}`,
+          title: `/pages${animeURL}/${anime.id.replaceAll('-', '_')}`,
           key: anime.id,
         }))}
       />

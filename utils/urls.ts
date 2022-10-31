@@ -3,6 +3,7 @@ export const baseURL = '';
 
 export const videosURL = `${baseURL}/videos`;
 export const animeURL = `${videosURL}/anime`;
+export const surfaceURL = `${videosURL}/surface`;
 
 export const readURL = `${baseURL}/read`;
 export const mangaURL = `${readURL}/manga`;

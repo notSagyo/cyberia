@@ -1,11 +1,15 @@
 import Layout from '../../components/Layout/Layout';
-import LinkList from '../../components/LinkList/LinkList';
-import { animeURL } from '../../utils/urls';
+import LinkList, { Link } from '../../components/LinkList/LinkList';
+import { animeURL, surfaceURL } from '../../utils/urls';
 
-const links = [
+const links: Link[] = [
   {
     href: animeURL,
-    title: 'pages/videos/anime',
+    title: `/pages${animeURL}`,
+  },
+  {
+    href: surfaceURL,
+    title: `/pages${surfaceURL}`,
   },
 ];
 

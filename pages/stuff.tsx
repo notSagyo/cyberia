@@ -1,5 +1,5 @@
 import Layout from '../components/Layout/Layout';
-import LinkList from '../components/LinkList/LinkList';
+import LinkList, { Link } from '../components/LinkList/LinkList';
 import {
   bartenderURL,
   fortuneURL,
@@ -8,7 +8,7 @@ import {
   matrixURL,
 } from '../utils/urls';
 
-const links = [
+const links: Link[] = [
   { href: hectorURL },
   { href: bartenderURL },
   { href: fortuneURL },

@@ -1,13 +1,15 @@
-import Shell from '../Shell/Shell';
+import React from 'react';
+import Shell, { ShellProps } from '../Shell/Shell';
 
-interface VideoProps {
+interface VideoProps extends React.HtmlHTMLAttributes<HTMLIFrameElement> {
   urlId: string;
   title?: string;
+  shellProps?: ShellProps;
 }
 
-const YtVideo = ({ urlId, title }: VideoProps) => {
+const YtVideo = ({ urlId, title, shellProps, ...props }: VideoProps) => {
   return (
-    <Shell shellTitle={title || 'Video'} noPadding>
+    <Shell noPadding {...shellProps} shellTitle={title || 'Video'}>
       <iframe
         style={{ display: 'block' }}
         width="560"
@@ -17,6 +19,7 @@ const YtVideo = ({ urlId, title }: VideoProps) => {
         frameBorder="0"
         allow="encrypted-media;"
         allowFullScreen
+        {...props}
       />
     </Shell>
   );

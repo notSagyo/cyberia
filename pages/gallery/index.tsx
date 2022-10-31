@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '../../components/Layout/Layout';
-import LinkList from '../../components/LinkList/LinkList';
+import LinkList, { Link } from '../../components/LinkList/LinkList';
 import { galleryURL } from '../../utils/urls';
 
-const links = [
+const links: Link[] = [
   {
     href: `${galleryURL}/omori`,
     title: '/pages/gallery/omori',
