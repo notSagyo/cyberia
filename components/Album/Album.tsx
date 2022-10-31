@@ -69,11 +69,7 @@ const Album = ({
 
   return (
     <>
-      <LinkHeading
-        href={galleryURL}
-        anchorProps={{ className: styles.title }}
-        goBack
-      >
+      <LinkHeading href={galleryURL} className={styles.title} goBack>
         {albumTitle || 'IMAGE VISUALIZER'}
       </LinkHeading>
       <div {...props} className={cn(styles.body, props?.className)}>
