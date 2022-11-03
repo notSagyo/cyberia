@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next';
 // interface TestProps {}
 
 const TestPage = ({ ...props }: any) => {
-  return <button {...props}>TEST</button>;
+  return <></>;
 };
 
 export default TestPage;

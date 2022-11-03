@@ -1,10 +1,10 @@
 interface IAnime {
   id: string;
+  title?: string;
 }
 
-// GogoAnime Anime's ID
 // !TODO: Uncomment before production
-const animes: IAnime[] = [
+const gogoanimeAnimes: IAnime[] = [
   { id: 'serial-experiments-lain' },
   { id: 'code-geass-lelouch-of-the-rebellion' },
   { id: '-code-geass-lelouch-of-the-rebellion-r2' },
@@ -30,5 +30,7 @@ const animes: IAnime[] = [
   { id: 'bishoujo-senshi-sailor-moon-sailor-stars' },
   { id: 'monster' },
 ];
+
+const animes: IAnime[] = gogoanimeAnimes;
 
 export default animes;

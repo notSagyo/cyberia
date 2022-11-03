@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import TestPage from '../../../pages/test';
 import { geIpapi } from '../../../services/ipapi-service';
 import { ipapi } from '../../../types/ipapi';
 import Layout from '../../Layout/Layout';
@@ -39,6 +40,7 @@ const Home = () => {
         {/* RIGHT SIDE */}
         <SpookyAd />
       </div>
+      <TestPage />
     </Layout>
   );
 };

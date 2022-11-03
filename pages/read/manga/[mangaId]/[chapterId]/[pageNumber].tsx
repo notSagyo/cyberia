@@ -17,7 +17,6 @@ import {
 import styles from '/styles/pages/manga.module.scss';
 
 // ?TODO: Update to mangasee123
-// TODO: Remove link preview from image hover
 const MangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();

@@ -6,7 +6,7 @@ import Layout from '../../../../components/Layout/Layout';
 import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
 import Anchor from '../../../../components/utils/Anchor/Anchor';
 import animesData from '../../../../data/animes';
-import { gogoanime } from '../../../../services/anime-service';
+import { provider } from '../../../../services/anime-service';
 import { animeURL } from '../../../../utils/urls';
 import styles from '/styles/pages/anime.module.scss';
 
@@ -71,8 +71,8 @@ const EpisodePage = ({
 
 export const getStaticProps: GetStaticProps<EpisodeProps> = async (context) => {
   const { episode, animeId } = context.params as iQueryParams;
-  const animeInfo = await gogoanime.fetchAnimeInfo(animeId);
-  const episodeServers = await gogoanime.fetchEpisodeServers(
+  const animeInfo = await provider.fetchAnimeInfo(animeId);
+  const episodeServers = await provider.fetchEpisodeServers(
     `${animeId}-episode-${episode}`
   );
   const episodeUrl = episodeServers[0].url;
@@ -92,7 +92,7 @@ export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
   // Get episode info for all animes in data/animes.ts
   const promises: Promise<IAnimeInfo>[] = [];
   for (let i = 0; i < animesData.length; i++)
-    promises.push(gogoanime.fetchAnimeInfo(animesData[i].id));
+    promises.push(provider.fetchAnimeInfo(animesData[i].id));
 
   // When all promises resolve, assign animes array with animes data
   await Promise.allSettled(promises).then((results) => {

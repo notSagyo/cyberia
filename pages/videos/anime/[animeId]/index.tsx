@@ -5,7 +5,7 @@ import Layout from '../../../../components/Layout/Layout';
 import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
 import LinkList from '../../../../components/LinkList/LinkList';
 import animes from '../../../../data/animes';
-import { gogoanime } from '../../../../services/anime-service';
+import { provider } from '../../../../services/anime-service';
 import { animeURL, videosURL } from '../../../../utils/urls';
 
 interface AnimeIdProps {
@@ -40,7 +40,7 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
 // Static stuff ==============================================================//
 export const getStaticProps: GetStaticProps<AnimeIdProps> = async (context) => {
   const { animeId } = context.params as iQueryParams;
-  const animeInfo = await gogoanime.fetchAnimeInfo(animeId);
+  const animeInfo = await provider.fetchAnimeInfo(animeId);
   return { props: { animeInfo } };
 };
 
