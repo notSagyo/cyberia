@@ -19,6 +19,8 @@ export const matrixURL = `${baseURL}/matrix`;
 export const apiURL = `${baseURL}/api`;
 export const mangaInfoURL = `${apiURL}/manga`;
 export const mangaReadURL = `${mangaInfoURL}/read`;
+export const animeInfoURL = `${apiURL}/anime`;
+export const animeSourcesURL = `${animeInfoURL}/sources`;
 
 // OTHER
 export const corsProxy = 'https://cors.proxy.consumet.org/';

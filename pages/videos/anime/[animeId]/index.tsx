@@ -6,7 +6,7 @@ import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
 import LinkList from '../../../../components/LinkList/LinkList';
 import animes from '../../../../data/animes';
 import { provider } from '../../../../services/anime-service';
-import { animeURL, videosURL } from '../../../../utils/urls';
+import { animeURL } from '../../../../utils/urls';
 
 interface AnimeIdProps {
   animeInfo: IAnimeInfo;
@@ -20,15 +20,18 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
   const animeId = animeInfo.id;
   const episodes = animeInfo.episodes || [];
 
-  const animeName = animes
-    .find((anime) => anime.id == animeId)
-    ?.id.toLocaleLowerCase();
+  const animeName = (() => {
+    const anime = animes.find((anime) => anime.id == animeId);
+    const name = anime?.title || anime?.id;
+    return name;
+  })();
 
   return (
     <Layout title="Videos">
-      <LinkHeading href={videosURL}>{`..${animeURL}/${animeName}`}</LinkHeading>
+      <LinkHeading href={animeURL}>{`..${animeURL}/${animeName}`}</LinkHeading>
       <LinkList
         links={episodes.map((episode, i) => ({
+          title: `${animeURL}/${animeName}/${i + 1}`,
           href: `${animeURL}/${animeId}/${i + 1}`,
           key: episode.id,
         }))}

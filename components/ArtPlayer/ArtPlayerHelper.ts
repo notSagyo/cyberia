@@ -48,3 +48,10 @@ export const createArtPlayer = (
 
   return art;
 };
+
+export const updateSubtitleStyles = (art: Artplayer) => {
+  art.subtitle.style({
+    marginBottom: '2.5%',
+    fontSize: `${16 + art.height * 0.025}px`,
+  });
+};

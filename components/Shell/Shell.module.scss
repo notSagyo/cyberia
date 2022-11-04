@@ -26,6 +26,12 @@
 
 .title {
   @include px($spacing-md);
+
+  .titleText {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .header {

@@ -1,49 +1,90 @@
-import { IAnimeInfo } from '@consumet/extensions/dist/models';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
-import AnimeVideo from '../../../../components/AnimeVideo/AnimeVideo';
-import Layout from '../../../../components/Layout/Layout';
-import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
-import Anchor from '../../../../components/utils/Anchor/Anchor';
-import animesData from '../../../../data/animes';
-import { provider } from '../../../../services/anime-service';
-import { animeURL } from '../../../../utils/urls';
+import {
+  IAnimeInfo,
+  ISource,
+  ISubtitle,
+} from '@consumet/extensions/dist/models';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import AnimeVideo from '/components/AnimeVideo/AnimeVideo';
+import ArtPlayer from '/components/ArtPlayer/ArtPlayer';
+import Layout from '/components/Layout/Layout';
+import LinkHeading from '/components/LinkHeading/LinkHeading';
+import Anchor from '/components/utils/Anchor/Anchor';
 import styles from '/styles/pages/anime.module.scss';
+import { animeInfoURL, animeSourcesURL, animeURL } from '/utils/urls';
 
-interface EpisodeProps {
-  animeInfo: IAnimeInfo;
-  episodeUrl: string;
-  episodeNumber: number;
-}
+const fetchAnimeInfo = async (animeId: string): Promise<IAnimeInfo> => {
+  return fetch(`${animeInfoURL}/${animeId}`).then((res) => res.json());
+};
 
-interface iQueryParams extends ParsedUrlQuery {
-  animeId: string;
-  episode: string;
-}
+const fetchSources = async (episodeId: string): Promise<ISource> => {
+  return fetch(`${animeSourcesURL}/${episodeId}`).then((res) => res.json());
+};
 
-const EpisodePage = ({
-  episodeUrl,
-  episodeNumber,
-  animeInfo,
-}: EpisodeProps) => {
+const EpisodePage: NextPage = () => {
+  const { animeId, episode } = useRouter().query as Record<string, string>;
+  const [animeInfo, setAnimeInfo] = useState<IAnimeInfo>();
+  const [episodeSources, setEpisodeSources] = useState<ISource>();
+  const [episodeUrl, setEpisodeUrl] = useState<string>('');
+  const [subtitles, setSubtitles] = useState<ISubtitle[]>([]);
+
   const episodeCount = animeInfo?.totalEpisodes || 1;
   const prevEpisodeUrl =
-    episodeNumber - 1 > 0 && `${animeURL}/${animeInfo.id}/${episodeNumber - 1}`;
+    animeInfo &&
+    parseInt(episode) - 1 > 0 &&
+    `${animeURL}/${animeInfo.id}/${parseInt(episode) - 1}`;
   const nextEpisodeUrl =
-    episodeNumber + 1 < episodeCount &&
-    `${animeURL}/${animeInfo.id}/${episodeNumber + 1}`;
+    animeInfo &&
+    parseInt(episode) + 1 < episodeCount &&
+    `${animeURL}/${animeInfo.id}/${parseInt(episode) + 1}`;
+
+  useEffect(() => {
+    setEpisodeSources(undefined);
+    (async () => {
+      try {
+        const info = await fetchAnimeInfo(animeId);
+        const sources = await fetchSources(
+          info?.episodes?.[parseInt(episode) - 1].id || ''
+        );
+        if (!info || !sources) throw new Error('Error fetching data');
+        const url = sources.sources.find((src) => src.quality === 'auto')?.url;
+        setAnimeInfo(info);
+        setEpisodeSources(sources);
+        setEpisodeUrl(url || sources.sources?.[0].url || '');
+        sources.subtitles && setSubtitles(sources.subtitles);
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, [animeId, episode]);
 
   return (
-    <Layout title={animeInfo.id}>
-      <LinkHeading href={`${animeURL}/${animeInfo.id}`} goBack />
+    <Layout title={`${animeId}/${episode}`}>
+      <LinkHeading
+        href={`${animeURL}/${animeId}`}
+        goBack
+      >{`${animeURL}/${animeId}/${episode}`}</LinkHeading>
+
       {/* VIDEO */}
       <AnimeVideo
-        className={styles.video}
-        videoTitle={`${animeInfo.id.replaceAll('-', '_')}_${episodeNumber
-          .toString()
-          .padStart(2, '0')}.mp4`}
-        episodeUrl={episodeUrl || ''}
-      />
+        videoTitle={`${animeId}-${episode}.mp4`}
+        className={styles.videoShell}
+      >
+        {episodeSources && (
+          <ArtPlayer
+            url={episodeUrl}
+            className={styles.videoPlayer}
+            quality={episodeSources.sources.map((s) => ({
+              default: s.quality === 'auto',
+              url: s.url,
+              html: s.quality || 'unknown',
+            }))}
+            subtitles={subtitles || []}
+          />
+        )}
+      </AnimeVideo>
+
       {/* ARROWS */}
       <div className={styles.arrowsContainer}>
         {prevEpisodeUrl && (
@@ -67,53 +108,6 @@ const EpisodePage = ({
       </div>
     </Layout>
   );
-};
-
-export const getStaticProps: GetStaticProps<EpisodeProps> = async (context) => {
-  const { episode, animeId } = context.params as iQueryParams;
-  const animeInfo = await provider.fetchAnimeInfo(animeId);
-  const episodeServers = await provider.fetchEpisodeServers(
-    `${animeId}-episode-${episode}`
-  );
-  const episodeUrl = episodeServers[0].url;
-
-  return {
-    props: {
-      episodeUrl: episodeUrl || '',
-      episodeNumber: parseInt(episode),
-      animeInfo,
-    },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
-  let animes: { animeId: string; length: number }[] = [];
-
-  // Get episode info for all animes in data/animes.ts
-  const promises: Promise<IAnimeInfo>[] = [];
-  for (let i = 0; i < animesData.length; i++)
-    promises.push(provider.fetchAnimeInfo(animesData[i].id));
-
-  // When all promises resolve, assign animes array with animes data
-  await Promise.allSettled(promises).then((results) => {
-    results.forEach(
-      (settled: PromiseSettledResult<IAnimeInfo>, i) =>
-        settled.status === 'fulfilled' &&
-        animes.push({
-          animeId: animesData[i].id,
-          length: settled.value.episodes?.length || 1,
-        })
-    );
-  });
-
-  // For each anime in animes array, create a path for each episode
-  let paths: { params: iQueryParams }[] = [];
-  animes.forEach((anime) => {
-    for (let i = 1; i <= anime.length; i++)
-      paths.push({ params: { animeId: anime.animeId, episode: i.toString() } });
-  });
-
-  return { paths, fallback: false };
 };
 
 export default EpisodePage;

@@ -23,7 +23,7 @@ const ShellTitle = ({
   return (
     <div className={styles.title}>
       {mainShell && <div className={styles.hr}></div>}
-      {shellTitle}
+      <div className={styles.titleText}>{shellTitle}</div>
       {!noHr && <div className={styles.hr}></div>}
       <div className={styles.controls}>
         <span onClick={onMinimize} className={onMinimize ? 'pointer' : ''}>

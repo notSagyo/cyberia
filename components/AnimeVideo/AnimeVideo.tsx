@@ -3,7 +3,7 @@ import Shell, { ShellProps } from '../Shell/Shell';
 import styles from './AnimeVideo.module.scss';
 
 interface VideoProps extends ShellProps {
-  episodeUrl: string;
+  episodeUrl?: string;
   videoTitle?: string;
   shellWidth?: string | number;
 }
@@ -11,7 +11,8 @@ interface VideoProps extends ShellProps {
 const AnimeVideo = ({
   episodeUrl,
   videoTitle,
-  shellWidth = 720,
+  shellWidth = 800,
+  children,
   ...props
 }: VideoProps) => {
   return (
@@ -20,28 +21,32 @@ const AnimeVideo = ({
       noPadding
       closeable
       {...props}
+      style={{ width: shellWidth }}
       className={cn(styles.shell, props?.className)}
       bodyProps={{
         ...props?.bodyProps,
         className: cn(styles.shellBody, props?.bodyProps?.className),
-        style: { width: shellWidth, ...props?.bodyProps?.style },
       }}
     >
       <div className={styles.videoAspectRatio}>
         <div className={styles.iframeWrapper}>
-          <iframe
-            scrolling="no"
-            id="videoIframe"
-            src={episodeUrl}
-            frameBorder="0"
-            allowFullScreen
-            width={'100%'}
-            height={'100%'}
-            style={{
-              display: 'block',
-              overflow: 'hidden',
-            }}
-          ></iframe>
+          {children ? (
+            children
+          ) : (
+            <iframe
+              scrolling="no"
+              id="videoIframe"
+              src={episodeUrl}
+              frameBorder="0"
+              allowFullScreen
+              width={'100%'}
+              height={'100%'}
+              style={{
+                display: 'block',
+                overflow: 'hidden',
+              }}
+            ></iframe>
+          )}
         </div>
       </div>
     </Shell>

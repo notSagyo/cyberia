@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { IMangaInfo } from '@consumet/extensions/dist/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { mangaProvider } from '../../../services/manga-service';
