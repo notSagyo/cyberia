@@ -39,6 +39,7 @@ const OmoriPage = () => {
 
     window.addEventListener('mousemove', _.throttle(onMouseMove, 20));
     return () => window.removeEventListener('mousemove', onMouseMove);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const catBody = (
