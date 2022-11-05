@@ -1,11 +1,9 @@
 @use '/styles/abstracts' as *;
 
-.videoAspectRatio {
+.videoContainer {
   position: relative;
   width: 100%;
-  /* stylelint-disable-next-line number-max-precision */
   overflow: hidden;
-  padding-bottom: 56.2%;
 
   background-image: url('/img/tv-static.gif');
   background-size: cover;

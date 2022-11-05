@@ -1,6 +1,6 @@
 import { IVideo } from '@consumet/extensions/dist/models';
 import _ from 'lodash';
-import { HTMLAttributes, useRef } from 'react';
+import { HTMLAttributes, useRef, useState } from 'react';
 import { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
 import 'videojs-hotkeys';
 import AnimeVideo, { AnimeVideoProps } from './AnimeVideo';
@@ -23,6 +23,7 @@ const AnimeVideoJS = ({
   shellProps,
   ...props
 }: AnimeVideoJSProps) => {
+  const [aspectRatio, setAspectRatio] = useState<number>();
   const playerRef = useRef<VideoJsPlayer | null>(null);
   const currentTime = useRef(0);
 
@@ -40,6 +41,14 @@ const AnimeVideoJS = ({
 
   const handlePlayerReady = (player: VideoJsPlayer) => {
     playerRef.current = player;
+
+    player.on('resize', () => {
+      try {
+        const dimensions = player.currentDimensions();
+        setAspectRatio(dimensions.height / dimensions.width);
+      } catch (e) {}
+    });
+
     player.on(
       'timeupdate',
       _.throttle(() => {
@@ -50,17 +59,19 @@ const AnimeVideoJS = ({
     );
   };
 
-  const qualityButtons =
-    sources &&
-    sources.map((src) => (
-      <button key={src.url} onClick={() => changeSource(src.url)}>
-        {src.quality}
-      </button>
-    ));
+  const qualityButtons = sources?.map((src) => (
+    <button key={src.url} onClick={() => changeSource(src.url)}>
+      {src.quality}
+    </button>
+  ));
 
   return (
     <div {...props}>
-      <AnimeVideo {...shellProps} videoTitle={videoTitle}>
+      <AnimeVideo
+        {...shellProps}
+        videoTitle={videoTitle}
+        aspectRatio={aspectRatio}
+      >
         {url && (
           <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
         )}

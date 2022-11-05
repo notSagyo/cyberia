@@ -6,12 +6,14 @@ export interface AnimeVideoProps extends ShellProps {
   episodeUrl?: string;
   videoTitle?: string;
   shellWidth?: string | number;
+  aspectRatio?: number;
 }
 
 const AnimeVideo = ({
   episodeUrl,
   videoTitle,
   shellWidth = 800,
+  aspectRatio = 0.5625,
   children,
   ...props
 }: AnimeVideoProps) => {
@@ -28,7 +30,10 @@ const AnimeVideo = ({
         className: cn(styles.shellBody, props?.bodyProps?.className),
       }}
     >
-      <div className={styles.videoAspectRatio}>
+      <div
+        className={styles.videoContainer}
+        style={{ paddingBottom: aspectRatio * 100 + '%' }}
+      >
         <div className={styles.iframeWrapper}>
           {children ? (
             children
