@@ -6,8 +6,7 @@ import {
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import AnimeVideo from '/components/AnimeVideo/AnimeVideo';
-import ArtPlayer from '/components/ArtPlayer/ArtPlayer';
+import AnimeVideoJS from '/components/AnimeVideo/AnimeVideoJS';
 import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import Anchor from '/components/utils/Anchor/Anchor';
@@ -25,7 +24,7 @@ const fetchSources = async (episodeId: string): Promise<ISource> => {
 const EpisodePage: NextPage = () => {
   const { animeId, episode } = useRouter().query as Record<string, string>;
   const [animeInfo, setAnimeInfo] = useState<IAnimeInfo>();
-  const [episodeSources, setEpisodeSources] = useState<ISource>();
+  const [source, setSource] = useState<ISource>({ sources: [] });
   const [episodeUrl, setEpisodeUrl] = useState<string>('');
   const [subtitles, setSubtitles] = useState<ISubtitle[]>([]);
 
@@ -39,8 +38,10 @@ const EpisodePage: NextPage = () => {
     parseInt(episode) + 1 < episodeCount &&
     `${animeURL}/${animeInfo.id}/${parseInt(episode) + 1}`;
 
+  // Fetch anime and episode data
   useEffect(() => {
-    setEpisodeSources(undefined);
+    setSource({ sources: [] });
+    setEpisodeUrl('');
     (async () => {
       try {
         const info = await fetchAnimeInfo(animeId);
@@ -48,9 +49,11 @@ const EpisodePage: NextPage = () => {
           info?.episodes?.[parseInt(episode) - 1].id || ''
         );
         if (!info || !sources) throw new Error('Error fetching data');
-        const url = sources.sources.find((src) => src.quality === 'auto')?.url;
+        const url = sources.sources.find(
+          (src) => src.quality === 'auto' || src.quality === 'default'
+        )?.url;
         setAnimeInfo(info);
-        setEpisodeSources(sources);
+        setSource(sources);
         setEpisodeUrl(url || sources.sources?.[0].url || '');
         sources.subtitles && setSubtitles(sources.subtitles);
       } catch (err) {
@@ -61,29 +64,18 @@ const EpisodePage: NextPage = () => {
 
   return (
     <Layout title={`${animeId}/${episode}`}>
-      <LinkHeading
-        href={`${animeURL}/${animeId}`}
-        goBack
-      >{`${animeURL}/${animeId}/${episode}`}</LinkHeading>
+      {/* HEADING */}
+      <LinkHeading href={`${animeURL}/${animeId}`} goBack>
+        {`${animeURL}/${animeId}/${episode}`}
+      </LinkHeading>
 
       {/* VIDEO */}
-      <AnimeVideo
+      <AnimeVideoJS
+        url={episodeUrl}
         videoTitle={`${animeId}-${episode}.mp4`}
-        className={styles.videoShell}
-      >
-        {episodeSources && (
-          <ArtPlayer
-            url={episodeUrl}
-            className={styles.videoPlayer}
-            quality={episodeSources.sources.map((s) => ({
-              default: s.quality === 'auto',
-              url: s.url,
-              html: s.quality || 'unknown',
-            }))}
-            subtitles={subtitles || []}
-          />
-        )}
-      </AnimeVideo>
+        sources={source?.sources || []}
+        shellProps={{ className: styles.videoShell }}
+      />
 
       {/* ARROWS */}
       <div className={styles.arrowsContainer}>

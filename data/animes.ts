@@ -59,6 +59,6 @@ export const zoroAnimes: IAnime[] = [
   { id: 'monster-37' },
 ];
 
-const animes: IAnime[] = zoroAnimes;
+const animes: IAnime[] = gogoanimeAnimes;
 
 export default animes;

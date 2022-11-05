@@ -2,7 +2,7 @@ import cn from 'classnames';
 import Shell, { ShellProps } from '../Shell/Shell';
 import styles from './AnimeVideo.module.scss';
 
-interface VideoProps extends ShellProps {
+export interface AnimeVideoProps extends ShellProps {
   episodeUrl?: string;
   videoTitle?: string;
   shellWidth?: string | number;
@@ -14,7 +14,7 @@ const AnimeVideo = ({
   shellWidth = 800,
   children,
   ...props
-}: VideoProps) => {
+}: AnimeVideoProps) => {
   return (
     <Shell
       shellTitle={videoTitle}

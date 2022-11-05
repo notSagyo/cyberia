@@ -3,7 +3,9 @@
 .videoAspectRatio {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%;
+  /* stylelint-disable-next-line number-max-precision */
+  overflow: hidden;
+  padding-bottom: 56.2%;
 
   background-image: url('/img/tv-static.gif');
   background-size: cover;
