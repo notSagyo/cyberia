@@ -60,5 +60,11 @@ const mangasee123Mangas: IManga[] = [
 ];
 
 const mangas: IManga[] = mangasee123Mangas;
+// export const mangas = {
+//   mangadex: mangadexMangas,
+//   mangasee123: mangasee123Mangas,
+//   default: mangadexMangas
+//   // get default() { return this[defaultProvider] || [] }
+// } satisfies Partial<Record<MangaProvidersNames, IManga[]>>
 
 export default mangas;

@@ -10,7 +10,7 @@ const VisualExperimentsPage = () => {
         photoWidth={'100%'}
         maximizeable
         shellProps={{ style: { maxWidth: '48%', marginBottom: 'auto' } }}
-        albumTitle="../public/img/visual_experiments"
+        albumTitle="/public/img/visual_experiments"
       />
     </Layout>
   );

@@ -14,7 +14,7 @@ const Va11hallaPage: NextPage = () => {
           style: { maxWidth: '48%', marginBottom: 'auto' },
           className: 'bgBlack',
         }}
-        albumTitle="../public/img/visual_experiments"
+        albumTitle="/public/img/visual_experiments"
       />
     </Layout>
   );

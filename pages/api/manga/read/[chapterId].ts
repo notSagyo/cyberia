@@ -1,6 +1,6 @@
 import { IMangaChapterPage } from '@consumet/extensions/dist/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { mangaProvider } from '../../../../services/manga-service';
+import { mangaProvider } from '/services/manga-service';
 
 type Data = IMangaChapterPage[] | string;
 
