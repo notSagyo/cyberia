@@ -6,15 +6,16 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Layout from '../../../../../components/Layout/Layout';
-import Anchor from '../../../../../components/utils/Anchor/Anchor';
+import Layout from '/components/Layout/Layout';
+import Anchor from '/components/utils/Anchor/Anchor';
+import { mangaProvider } from '/services/consumet-service';
+import styles from '/styles/pages/manga.module.scss';
 import {
   corsProxy,
-  mangaInfoURL,
-  mangaReadURL,
+  getMangaInfoURL,
+  getMangaReadURL,
   mangaURL,
-} from '../../../../../utils/urls';
-import styles from '/styles/pages/manga.module.scss';
+} from '/utils/urls';
 
 // ?TODO: Update to mangasee123
 const MangaPage = () => {
@@ -49,7 +50,7 @@ const MangaPage = () => {
   // On chapter change fetch chapter pages
   useEffect(() => {
     chapterId &&
-      fetch(`${mangaReadURL}/${chapterId}`)
+      fetch(`${getMangaReadURL(mangaProvider)}/${chapterId}`)
         .then((data) => data.json())
         .then((chapterPages) => setChapterPages(chapterPages));
   }, [chapterId]);
@@ -57,7 +58,7 @@ const MangaPage = () => {
   // On manga change fetch manga info
   useEffect(() => {
     mangaId &&
-      fetch(`${mangaInfoURL}/${mangaId}`)
+      fetch(`${getMangaInfoURL(mangaProvider)}/${mangaId}`)
         .then((data) => data.json())
         .then((mangaInfo) => setMangaInfo(mangaInfo));
   }, [mangaId]);

@@ -1,3 +1,5 @@
+import { animeProvider, AnimeProvidersNames } from "/services/consumet-service";
+
 interface IAnime {
   id: string;
   title?: string;
@@ -59,6 +61,11 @@ export const zoroAnimes: IAnime[] = [
   { id: 'monster-37' },
 ];
 
-const animes: IAnime[] = gogoanimeAnimes;
+const animes = {
+  gogoanime: gogoanimeAnimes,
+  zoro: zoroAnimes,
+  get default() { return this[animeProvider] || [] },
+} satisfies Partial<Record<AnimeProvidersNames, IAnime[]>>
+
 
 export default animes;

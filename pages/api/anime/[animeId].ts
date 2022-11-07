@@ -1,6 +1,6 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { provider } from '../../../services/anime-service';
+import { animeProviders } from '/services/consumet-service-server';
 
 type Data = IAnimeInfo | string;
 
@@ -13,7 +13,7 @@ export default async function getAnimeInfo(
   if (typeof animeId !== 'string')
     return res.status(400).send('Error parsing animeId');
   try {
-    const animeInfo = await provider.fetchAnimeInfo(animeId);
+    const animeInfo = await animeProviders.default.fetchAnimeInfo(animeId);
     console.log('Request complete animeId:', animeId);
     return res.status(200).json(animeInfo);
   } catch (error) {

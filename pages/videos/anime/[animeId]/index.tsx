@@ -1,12 +1,12 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import Layout from '../../../../components/Layout/Layout';
-import LinkHeading from '../../../../components/LinkHeading/LinkHeading';
-import LinkList from '../../../../components/LinkList/LinkList';
-import animes from '../../../../data/animes';
-import { provider } from '../../../../services/anime-service';
-import { animeURL } from '../../../../utils/urls';
+import Layout from '/components/Layout/Layout';
+import LinkHeading from '/components/LinkHeading/LinkHeading';
+import LinkList from '/components/LinkList/LinkList';
+import animes from '/data/animes';
+import { animeProviders } from '/services/consumet-service-server';
+import { animeURL } from '/utils/urls';
 
 interface AnimeIdProps {
   animeInfo: IAnimeInfo;
@@ -21,7 +21,7 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
   const episodes = animeInfo.episodes || [];
 
   const animeName = (() => {
-    const anime = animes.find((anime) => anime.id == animeId);
+    const anime = animes.default.find((anime) => anime.id == animeId);
     const name = anime?.title || anime?.id;
     return name;
   })();
@@ -43,12 +43,14 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
 // Static stuff ==============================================================//
 export const getStaticProps: GetStaticProps<AnimeIdProps> = async (context) => {
   const { animeId } = context.params as iQueryParams;
-  const animeInfo = await provider.fetchAnimeInfo(animeId);
+  const animeInfo = await animeProviders.default.fetchAnimeInfo(animeId);
   return { props: { animeInfo } };
 };
 
 export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
-  const paths = animes.map((anime) => ({ params: { animeId: anime?.id } }));
+  const paths = animes.default.map((anime) => ({
+    params: { animeId: anime?.id },
+  }));
   return { paths, fallback: false };
 };
 

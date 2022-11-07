@@ -17,10 +17,12 @@ export const matrixURL = `${baseURL}/matrix`;
 
 // API
 export const apiURL = `${baseURL}/api`;
-export const mangaInfoURL = `${apiURL}/manga`;
-export const mangaReadURL = `${mangaInfoURL}/read`;
 export const animeInfoURL = `${apiURL}/anime`;
 export const animeSourcesURL = `${animeInfoURL}/sources`;
+export const getMangaInfoURL = (provider: string) =>
+  `${apiURL}/manga/${provider}`;
+export const getMangaReadURL = (provider: string) =>
+  `${getMangaInfoURL(provider)}/read`;
 
 // OTHER
 export const corsProxy = 'https://cors.proxy.consumet.org/';
