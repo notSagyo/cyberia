@@ -7,6 +7,7 @@ import LinkList from '/components/LinkList/LinkList';
 import mangas from '/data/mangas';
 import { mangaProviders } from '/services/consumet-service-server';
 import { mangaURL, readURL } from '/utils/urls';
+import { toUrlikeString } from '/utils/utils';
 
 interface MangaIdProps {
   mangaInfo: IMangaInfo;
@@ -20,11 +21,9 @@ const MangaIdPage = ({ mangaInfo }: MangaIdProps) => {
   const mangaId = mangaInfo.id;
   const chapters = mangaInfo.chapters || [];
 
-  const mangaName = (
-    mangas.default
-      .find((manga) => manga.id == mangaId)
-      ?.name?.toLocaleLowerCase() || mangaId
-  ).replaceAll(' ', '_');
+  const mangaName = toUrlikeString(
+    mangas.default.find((manga) => manga.id == mangaId)?.title || mangaId
+  );
 
   return (
     <Layout>

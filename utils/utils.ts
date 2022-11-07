@@ -13,6 +13,10 @@ export const getTimeString = () => {
   });
 };
 
+export const toUrlikeString = (str: string) => {
+  return str.toLowerCase().replaceAll(/-| /g, '_');
+};
+
 //* KEEPING THIS FOR REFERENCE
 export function getImagesNamesInFolder(path: string) {
   if (!path) return [];

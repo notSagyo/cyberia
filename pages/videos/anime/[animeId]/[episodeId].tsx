@@ -22,7 +22,7 @@ const fetchSources = async (episodeId: string): Promise<ISource> => {
 };
 
 const EpisodePage: NextPage = () => {
-  const { animeId, episode } = useRouter().query as Record<string, string>;
+  const { animeId, episodeId } = useRouter().query as Record<string, string>;
   const [animeInfo, setAnimeInfo] = useState<IAnimeInfo>();
   const [source, setSource] = useState<ISource>({ sources: [] });
   const [episodeUrl, setEpisodeUrl] = useState<string>('');
@@ -31,12 +31,12 @@ const EpisodePage: NextPage = () => {
   const episodeCount = animeInfo?.totalEpisodes || 1;
   const prevEpisodeUrl =
     animeInfo &&
-    parseInt(episode) - 1 > 0 &&
-    `${animeURL}/${animeInfo.id}/${parseInt(episode) - 1}`;
+    parseInt(episodeId) - 1 > 0 &&
+    `${animeURL}/${animeInfo.id}/${parseInt(episodeId) - 1}`;
   const nextEpisodeUrl =
     animeInfo &&
-    parseInt(episode) + 1 < episodeCount &&
-    `${animeURL}/${animeInfo.id}/${parseInt(episode) + 1}`;
+    parseInt(episodeId) + 1 < episodeCount &&
+    `${animeURL}/${animeInfo.id}/${parseInt(episodeId) + 1}`;
 
   // Fetch anime and episode data
   useEffect(() => {
@@ -46,7 +46,7 @@ const EpisodePage: NextPage = () => {
       try {
         const info = await fetchAnimeInfo(animeId);
         const sources = await fetchSources(
-          info?.episodes?.[parseInt(episode) - 1].id || ''
+          info?.episodes?.[parseInt(episodeId) - 1].id || ''
         );
         if (!info || !sources) throw new Error('Error fetching data');
         const url = sources.sources.find(
@@ -60,20 +60,21 @@ const EpisodePage: NextPage = () => {
         console.error(err);
       }
     })();
-  }, [animeId, episode]);
+  }, [animeId, episodeId]);
 
   return (
-    <Layout title={`${animeId}/${episode}`}>
+    <Layout title={`${animeId}/${episodeId}`}>
       {/* HEADING */}
       <LinkHeading href={`${animeURL}/${animeId}`} goBack>
-        {`${animeURL}/${animeId}/${episode}`}
+        {`${animeURL}/${animeId}/${episodeId}`}
       </LinkHeading>
 
       {/* VIDEO */}
       <AnimeVideoJS
         url={episodeUrl}
-        videoTitle={`${animeId}-${episode}.mp4`}
-        sources={source?.sources || []}
+        videoTitle={`${animeId}-${episodeId}.mp4`}
+        sources={source.sources}
+        tracks={subtitles}
         shellProps={{ className: styles.videoShell }}
       />
 

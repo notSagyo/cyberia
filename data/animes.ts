@@ -5,67 +5,121 @@ interface IAnime {
   title?: string;
 }
 
-// !TODO: Uncomment before production
-export const gogoanimeAnimes: IAnime[] = [
-  { id: 'serial-experiments-lain' },
-  { id: 'code-geass-lelouch-of-the-rebellion' },
-  { id: '-code-geass-lelouch-of-the-rebellion-r2' },
-  { id: 'cowboy-bebop' },
-  { id: 'ghost-in-the-shell' },
-  { id: 'ergo-proxy' },
-  { id: 'neon-genesis-evangelion-' },
-  { id: 'evangelion-the-end-of-evangelion' },
-  { id: 'perfect-blue' },
-  { id: 'psycho-pass' },
-  { id: 'psycho-pass-2' },
-  { id: 'psycho-pass-3' },
-  { id: 'steinsgate' },
-  { id: 'steinsgate-0' },
-  { id: 'akira' },
-  { id: 'blame' },
-  { id: 'claymore' },
-  { id: 'devilman-crybaby' },
-  { id: 'sailor-moon-' },
-  { id: 'sailor-moon-r' },
-  { id: 'sailor-moon-s' },
-  { id: 'sailor-moon-supers' },
-  { id: 'bishoujo-senshi-sailor-moon-sailor-stars' },
-  { id: 'monster' },
-];
+const animesMap =
+  new Map<string, Partial<Record<AnimeProvidersNames, string>>>([
+    ['Serial Experiments Lain', {
+      gogoanime: 'serial-experiments-lain',
+      zoro: 'serial-experiments-lain-503',
+    }],
+    ['Code Geass Lelouch Of The Rebellion', {
+      gogoanime: 'code-geass-lelouch-of-the-rebellion',
+      zoro: 'code-geass-lelouch-of-the-rebellion-41',
+    }],
+    ['Code Geass Lelouch Of The Rebellion R2', {
+      gogoanime: '-code-geass-lelouch-of-the-rebellion-r2',
+      zoro: 'code-geass-lelouch-of-the-rebellion-r2-17',
+    }],
+    ['Cowboy Bebop', {
+      gogoanime: 'cowboy-bebop',
+      zoro: 'cowboy-bebop-27',
+    }],
+    ['Ghost In The Shell', {
+      gogoanime: 'ghost-in-the-shell',
+      zoro: 'ghost-in-the-shell-220',
+    }],
+    ['Ergo Proxy', {
+      gogoanime: 'ergo-proxy',
+      zoro: 'ergo-proxy-626',
+    }],
+    ['Neon Genesis Evangelion', {
+      gogoanime: 'neon-genesis-evangelion-',
+      zoro: 'neon-genesis-evangelion-209',
+    }],
+    ['Evangelion The End Of Evangelion', {
+      gogoanime: 'evangelion-the-end-of-evangelion',
+      zoro: 'neon-genesis-evangelion-movie-the-end-of-evangelion-93',
+    }],
+    ['Perfect Blue', {
+      gogoanime: 'perfect-blue',
+      zoro: 'perfect-blue-127',
+    }],
+    ['Psycho Pass', {
+      gogoanime: 'psycho-pass',
+      zoro: 'psycho-pass-158',
+    }],
+    ['Psycho Pass 2', {
+      gogoanime: 'psycho-pass-2',
+      zoro: 'psycho-pass-2-1774',
+    }],
+    ['Psycho Pass 3', {
+      gogoanime: 'psycho-pass-3',
+      zoro: 'psycho-pass-3-1360',
+    }],
+    ['Steins;Gate', {
+      gogoanime: 'steinsgate',
+      zoro: 'steinsgate-3',
+    }],
+    ['Steins;Gate 0', {
+      gogoanime: 'steinsgate-0',
+      zoro: 'steinsgate-0-92',
+    }],
+    ['Akira', {
+      gogoanime: 'akira',
+      zoro: 'akira-337',
+    }],
+    ['Blame', {
+      gogoanime: 'blame',
+      zoro: 'blame-movie-2863',
+    }],
+    ['Claymore', {
+      gogoanime: 'claymore',
+      zoro: 'claymore-844',
+    }],
+    ['Devilman Crybaby', {
+      gogoanime: 'devilman-crybaby',
+      zoro: 'devilman-crybaby-702',
+    }],
+    ['Sailor Moon', {
+      gogoanime: 'sailor-moon-',
+      zoro: 'sailor-moon-1067',
+    }],
+    ['Sailor Moon R', {
+      gogoanime: 'sailor-moon-r',
+      zoro: 'sailor-moon-r-1057',
+    }],
+    ['Sailor Moon S', {
+      gogoanime: 'sailor-moon-s',
+      zoro: 'sailor-moon-s-720',
+    }],
+    ['Sailor Moon Supers', {
+      gogoanime: 'sailor-moon-supers',
+      zoro: 'sailor-moon-supers-1308',
+    }],
+    ['Sailor Moon Sailor Stars', {
+      gogoanime: 'bishoujo-senshi-sailor-moon-sailor-stars',
+      zoro: 'sailor-moon-sailor-stars-643',
+    }],
+    ['Sailor moong Crystal Stars', {
+      zoro: 'sailor-moon-sailor-stars-643',
+    }],
+    ['Monster', {
+      gogoanime: 'monster',
+      zoro: 'monster-37',
+    }],
+  ])
 
-export const zoroAnimes: IAnime[] = [
-  { id: 'serial-experiments-lain-503' },
-  { id: 'code-geass-lelouch-of-the-rebellion-41' },
-  { id: 'code-geass-lelouch-of-the-rebellion-r2-17' },
-  { id: 'cowboy-bebop-27' },
-  { id: 'ghost-in-the-shell-220' },
-  { id: 'ergo-proxy-626' },
-  { id: 'neon-genesis-evangelion-209' },
-  { id: 'neon-genesis-evangelion-movie-the-end-of-evangelion-93' },
-  { id: 'perfect-blue-127' },
-  { id: 'psycho-pass-158' },
-  { id: 'psycho-pass-2-1774' },
-  { id: 'psycho-pass-3-1360' },
-  { id: 'steinsgate-3' },
-  { id: 'steinsgate-0-92' },
-  { id: 'akira-337' },
-  { id: 'blame-movie-2863' },
-  { id: 'claymore-844' },
-  { id: 'devilman-crybaby-702' },
-  { id: 'sailor-moon-1067' },
-  { id: 'sailor-moon-r-1057' },
-  { id: 'sailor-moon-s-720' },
-  { id: 'sailor-moon-supers-1308' },
-  { id: 'sailor-moon-sailor-stars-643' },
-  { id: 'sailor-moon-crystal-season-i-ii-3635' },
-  { id: 'monster-37' },
-];
+const getAnimes = (provider: AnimeProvidersNames) => {
+  const animes: IAnime[] = [];
+  animesMap.forEach((v, k) => {
+    v[provider] && animes.push({ title: k, id: v[provider] as string})
+  })
+  return animes;
+}
 
 const animes = {
-  gogoanime: gogoanimeAnimes,
-  zoro: zoroAnimes,
+  gogoanime: getAnimes('gogoanime'),
+  zoro: getAnimes('zoro'),
   get default() { return this[animeProvider] || [] },
 } satisfies Partial<Record<AnimeProvidersNames, IAnime[]>>
-
 
 export default animes;

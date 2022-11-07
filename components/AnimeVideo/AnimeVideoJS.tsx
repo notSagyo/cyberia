@@ -1,15 +1,20 @@
-import { IVideo } from '@consumet/extensions/dist/models';
+import { ISubtitle, IVideo } from '@consumet/extensions/dist/models';
 import _ from 'lodash';
 import { HTMLAttributes, useRef, useState } from 'react';
 import { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
 import 'videojs-hotkeys';
 import AnimeVideo, { AnimeVideoProps } from './AnimeVideo';
-import { animeVideoJSOptions } from './AnimeVideoJSHelper';
+import {
+  animeVideoJSOptions,
+  subtitlesToTracks,
+  videosToSources,
+} from './AnimeVideoJSHelper';
 import VideoJS from '/components/VideoJS/VideoJS';
 
 interface AnimeVideoJSProps extends HTMLAttributes<HTMLDivElement> {
   url: string;
   sources?: IVideo[];
+  tracks?: ISubtitle[];
   options?: VideoJsPlayerOptions;
   videoTitle?: string;
   shellProps?: AnimeVideoProps;
@@ -18,6 +23,7 @@ interface AnimeVideoJSProps extends HTMLAttributes<HTMLDivElement> {
 const AnimeVideoJS = ({
   url,
   sources,
+  tracks,
   options,
   videoTitle,
   shellProps,
@@ -30,7 +36,8 @@ const AnimeVideoJS = ({
   const videoJsOptions: VideoJsPlayerOptions = {
     ...animeVideoJSOptions,
     ...options,
-    sources: sources?.map((src) => ({ src: src.url })),
+    sources: videosToSources(sources || []),
+    tracks: subtitlesToTracks(tracks || []),
   };
 
   const changeSource = (url: string) => {

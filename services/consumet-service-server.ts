@@ -2,8 +2,6 @@ import { AnimeParser, MangaParser } from '@consumet/extensions/dist/models';
 import Gogoanime from '@consumet/extensions/dist/providers/anime/gogoanime';
 import Zoro from '@consumet/extensions/dist/providers/anime/zoro';
 import MangaDex from '@consumet/extensions/dist/providers/manga/mangadex';
-import MangaHere from '@consumet/extensions/dist/providers/manga/mangahere';
-import MangaKakalot from '@consumet/extensions/dist/providers/manga/mangakakalot';
 import Mangasee123 from '@consumet/extensions/dist/providers/manga/mangasee123';
 import {
   animeProvider,
@@ -15,8 +13,6 @@ import {
 // Manga =====================================================================//
 export const mangaProviders: Record<MangaProvidersNames, MangaParser> = {
   mangadex: new MangaDex(),
-  mangahere: new MangaHere(),
-  mangakakalot: new MangaKakalot(),
   mangasee123: new Mangasee123(),
   get default() {
     return this[mangaProvider];
