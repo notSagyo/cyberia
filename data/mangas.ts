@@ -47,7 +47,7 @@ const mangasee123Mangas: IManga[] = [
   { name: 'Hellstar Remina', id: 'Remina' },
   { id: 'Ibitsu' },
   { id: 'Berserk' },
-  { id: 'Neon-Genesis-Evangelionn' },
+  { id: 'Neon-Genesis-Evangelion' },
   { id: 'Akira' },
   { id: 'Battle-Angel-Alita' },
   {

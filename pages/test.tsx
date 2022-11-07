@@ -1,10 +1,11 @@
 // Page used to test stuff or smth
 import { GetStaticProps } from 'next';
+import React from 'react';
 
-// interface TestProps {}
+interface TestProps {}
 
-const TestPage = ({ ...props }: any) => {
-  return <></>;
+const TestPage = ({ ...props }: TestProps) => {
+  return <React.Fragment {...props}></React.Fragment>;
 };
 
 export default TestPage;
