@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Layout from '../components/Layout/Layout';
-import Anchor from '../components/utils/Anchor/Anchor';
-import { fortuneQuotes } from '../data/quotes';
+import Layout from '/components/Layout/Layout';
+import Anchor from '/components/utils/Anchor/Anchor';
+import { fortuneQuotes } from '/data/quotes';
 
 const unusedQuotes = [...fortuneQuotes];
 

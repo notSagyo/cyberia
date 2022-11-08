@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
-import Album from '../../components/Album/Album';
-import Layout from '../../components/Layout/Layout';
-import albumImages from '../../data/va11halla-album-images';
+import Album from '/components/Album/Album';
+import Layout from '/components/Layout/Layout';
+import albumImages from '/data/va11halla-album-images';
 
 const Va11hallaPage: NextPage = () => {
   return (

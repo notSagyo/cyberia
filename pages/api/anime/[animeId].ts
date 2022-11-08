@@ -20,6 +20,9 @@ export default async function getAnimeInfo(
     console.log(`Request complete animeId (${animeId})`);
     return res.status(200).json(animeInfo);
   } catch (error) {
-    return res.send((error as Error).message);
+    if (error instanceof Error) {
+      console.log(`${error.message} (${animeId})`);
+      return res.send(error.message);
+    }
   }
 }

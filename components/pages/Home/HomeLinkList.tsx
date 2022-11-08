@@ -1,7 +1,7 @@
-import { baseURL } from '../../../utils/urls';
-import { linkListRoutes } from '../../../utils/utils';
-import Anchor from '../../utils/Anchor/Anchor';
 import styles from './HomeLinkList.module.scss';
+import Anchor from '/components/utils/Anchor/Anchor';
+import { baseURL } from '/utils/urls';
+import { linkListRoutes } from '/utils/utils';
 
 const HomeLinkList = ({ ...props }: React.HTMLAttributes<HTMLElement>) => {
   return (

@@ -1,8 +1,8 @@
-import drinks from '../../data/drinks';
-import { SetState } from '../../types';
-import { IDrink, IngredientNames } from '../../types/bartender';
 import { IMix } from './Bartender';
 import styles from './Bartender.module.scss';
+import drinks from '/data/drinks';
+import { SetState } from '/types';
+import { IDrink, IngredientNames } from '/types/bartender';
 
 // VARIABLES =================================================================//
 const ingredientNames: IngredientNames[] = [

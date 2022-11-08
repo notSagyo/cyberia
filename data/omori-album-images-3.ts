@@ -1,4 +1,4 @@
-import { IAlbumImage } from '../types';
+import { IAlbumImage } from '/types';
 
 const albumImages: IAlbumImage[] = [
   {

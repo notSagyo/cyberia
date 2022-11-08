@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import 'plyr-react/plyr.css';
-import { MusicPlyrContextProvider } from '../contexts/MusicPlyrContext';
+import { MusicPlyrContextProvider } from '/context/MusicPlyrContext';
 import '/styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {

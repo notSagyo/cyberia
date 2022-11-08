@@ -24,6 +24,9 @@ export default async function getEpisodeSources(
     }
     return res.status(200).json(animeSources);
   } catch (error) {
-    return res.send((error as Error).message);
+    if (error instanceof Error) {
+      console.log(`${error.message} (${episodeId})`);
+      return res.send(error.message);
+    }
   }
 }

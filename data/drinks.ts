@@ -1,5 +1,6 @@
-import { IDrink } from "../types/bartender"
+import { IDrink } from '/types/bartender';
 
+// prettier-ignore
 const drinks: IDrink[] = [
   { name: 'Bad Touch',      price: 250,	flavour: 'Sour',   type: 'Classy',  adelhyde:0, bronson: 2, delta: 2, flanergide:2, karmotrine: 4,          ice: true,  aged: false, blended: false, image: '/img/va11halla/drink-bad-touch.png'      },
   { name: 'Beer',           price: 200,	flavour: 'Bubbly', type: 'Classic', adelhyde:1, bronson: 2, delta: 1, flanergide:2, karmotrine: 4,          ice: false, aged: false, blended: false, image: '/img/va11halla/drink-beer.png'           },
@@ -28,4 +29,4 @@ const drinks: IDrink[] = [
   { name: 'Zen Star',       price: 210,	flavour: 'Sour',   type: 'Promo',   adelhyde:4, bronson: 4, delta: 4, flanergide:4, karmotrine: 4,          ice: true,  aged: false, blended: false, image: '/img/va11halla/drink-zen-star.png'       },
 ]
 
-export default drinks
+export default drinks;

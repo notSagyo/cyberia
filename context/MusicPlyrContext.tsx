@@ -6,9 +6,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import MusicPlyrMain from '../components/MusicPlyr/MusicPlyrMain';
-import songs from '../data/songs';
-import { SetState } from '../types';
+import MusicPlyrMain from '/components/MusicPlyr/MusicPlyrMain';
+import songs from '/data/songs';
+import { SetState } from '/types';
 
 interface IMusicPlyrContext {
   videoId: string;

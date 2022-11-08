@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from '../../components/Layout/Layout';
-import LinkList, { Link } from '../../components/LinkList/LinkList';
-import { galleryURL } from '../../utils/urls';
+import Layout from '/components/Layout/Layout';
+import LinkList, { Link } from '/components/LinkList/LinkList';
+import { galleryURL } from '/utils/urls';
 
 const links: Link[] = [
   {

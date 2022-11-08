@@ -1,4 +1,4 @@
-import { mangaProvider, MangaProvidersNames } from "../services/consumet-service";
+import { mangaProvider, MangaProvidersNames } from "/services/consumet-service";
 
 interface IManga {
   id: string;

@@ -1,12 +1,12 @@
-import Layout from '../components/Layout/Layout';
-import LinkList, { Link } from '../components/LinkList/LinkList';
+import Layout from '/components/Layout/Layout';
+import LinkList, { Link } from '/components/LinkList/LinkList';
 import {
   bartenderURL,
   fortuneURL,
   getMeOutURL,
   hectorURL,
   matrixURL,
-} from '../utils/urls';
+} from '/utils/urls';
 
 const links: Link[] = [
   { href: hectorURL },

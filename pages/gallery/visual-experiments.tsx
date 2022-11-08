@@ -1,6 +1,6 @@
-import Album from '../../components/Album/Album';
-import Layout from '../../components/Layout/Layout';
-import albumImages from '../../data/visual-experiments-album-images';
+import Album from '/components/Album/Album';
+import Layout from '/components/Layout/Layout';
+import albumImages from '/data/visual-experiments-album-images';
 
 const VisualExperimentsPage = () => {
   return (

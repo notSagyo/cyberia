@@ -1,6 +1,6 @@
-import Layout from '../../components/Layout/Layout';
-import LinkList, { Link } from '../../components/LinkList/LinkList';
-import { animeURL, surfaceURL } from '../../utils/urls';
+import Layout from '/components/Layout/Layout';
+import LinkList, { Link } from '/components/LinkList/LinkList';
+import { animeURL, surfaceURL } from '/utils/urls';
 
 const links: Link[] = [
   {

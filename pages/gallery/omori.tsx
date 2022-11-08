@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import { useEffect, useRef } from 'react';
-import Album from '../../components/Album/Album';
-import AlbumPicture from '../../components/Album/AlbumPicture';
-import Layout from '../../components/Layout/Layout';
-import { useMusicPlyrContext } from '../../contexts/MusicPlyrContext';
-import albumImages from '../../data/omori-album-images-1';
-import { omoriSong } from '../../data/songs';
+import Album from '/components/Album/Album';
+import AlbumPicture from '/components/Album/AlbumPicture';
+import Layout from '/components/Layout/Layout';
+import { useMusicPlyrContext } from '/context/MusicPlyrContext';
+import albumImages from '/data/omori-album-images-1';
+import { omoriSong } from '/data/songs';
 import styles from '/styles/pages/omori.module.scss';
 
 const didPlaySongKey = 'did-play-omori-song';

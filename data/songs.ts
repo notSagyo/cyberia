@@ -1,4 +1,4 @@
-import { YtThumbnailQuality as YtThumbnailResolution } from '../types';
+import { YtThumbnailQuality as YtThumbnailResolution } from '/types';
 
 interface ISong {
   id: string;

@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
-import Shell, { ShellProps } from '../Shell/Shell';
-import styles from './Layout.module.scss';
-import Anchor from '../utils/Anchor/Anchor';
-import { getDateString, getTimeString, navbarRoutes } from '../../utils/utils';
 import cn from 'classnames';
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import { getDateString, getTimeString, navbarRoutes } from '../../utils/utils';
+import Shell, { ShellProps } from '../Shell/Shell';
+import Anchor from '../utils/Anchor/Anchor';
 import Void from '../Void/Void';
-import { baseURL } from '../../utils/urls';
-import { useMusicPlyrContext } from '../../contexts/MusicPlyrContext';
+import styles from './Layout.module.scss';
+import { useMusicPlyrContext } from '/context/MusicPlyrContext';
+import { baseURL } from '/utils/urls';
 
 interface LayoutProps extends ShellProps {
   title?: string;

@@ -1,4 +1,4 @@
-import GetMeOutComponent from '../../components/GetMeOut/GetMeOut';
+import GetMeOutComponent from '/components/GetMeOut/GetMeOut';
 
 const GetMeOutPage = () => {
   return <GetMeOutComponent src="/getmeout/getmeout2" />;

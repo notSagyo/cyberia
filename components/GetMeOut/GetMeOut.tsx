@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { getMeOutURL } from '../../utils/urls';
 import Layout from '../Layout/Layout';
 import Anchor from '../utils/Anchor/Anchor';

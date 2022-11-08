@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './Void.module.scss';
-import { closeShellQuotes } from '../../data/quotes';
+import { closeShellQuotes } from '/data/quotes';
 
 interface VoidProps {
   visible: boolean;

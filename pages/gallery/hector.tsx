@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from '../../components/Layout/Layout';
-import hector from '../../data/hector-html';
+import Layout from '/components/Layout/Layout';
+import hector from '/data/hector-html';
 
 const HectorPage = () => {
   return (

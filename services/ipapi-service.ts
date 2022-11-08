@@ -1,4 +1,4 @@
-import { ipapi } from '../types/ipapi';
+import { ipapi } from '/types/ipapi';
 
 const storageKey = 'ipapi';
 

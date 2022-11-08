@@ -1,6 +1,6 @@
-import Album from '../../components/Album/Album';
-import Layout from '../../components/Layout/Layout';
-import albumImages from '../../data/omori-album-images-3';
+import Album from '/components/Album/Album';
+import Layout from '/components/Layout/Layout';
+import albumImages from '/data/omori-album-images-3';
 import styles from '/styles/pages/omori.module.scss';
 
 const Omori3Page = () => {
