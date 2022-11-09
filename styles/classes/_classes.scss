@@ -34,9 +34,13 @@
 
 
 // Other
-.pointer { cursor: pointer; }
+.pointer { cursor: url('/img/cursor-pointer.png'), pointer; }
 
-.bgNebula::before, .bgStars::before, .bgSpace::before, .bgOmori::before {
+.bgNebula::before,
+.bgStars::before,
+.bgSpace::before,
+.bgOmori::before,
+.bgMoon::before {
   content: '';
   position: absolute;
   top: 0;
@@ -67,6 +71,13 @@
   background-image: url('/img/bg-omori.jpg');
   background-size: 512px auto;
   filter: saturate(0.75);
+}
+
+.bgMoon::before {
+  background-image: url('/img/bg-moon.webp');
+  background-size: cover;
+  background-position: top left;
+  animation: none;
 }
 
 @keyframes move-background {

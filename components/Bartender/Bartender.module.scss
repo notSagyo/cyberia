@@ -1,5 +1,5 @@
 @use '/styles/abstracts' as *;
-@use '/styles/classes/classes';
+@use '/styles/classes/classes' as c;
 
 // Board
 $board-width: 825px;
@@ -159,8 +159,8 @@ $color-karmotrine: #c9f1f1;
 
 // Buttons ===================================================================//
 .age, .ice {
+  @extend c, .pointer !optional;
   opacity: 0.45;
-  cursor: pointer;
 
   &.active { opacity: 1; }
 }
@@ -182,11 +182,11 @@ $color-karmotrine: #c9f1f1;
 }
 
 .btn {
+  @extend c, .pointer !optional;
   position: absolute;
   bottom: 3.85%;
   width: 24.3636%;
   height: 12.5%;
-  cursor: pointer;
 
   &:hover { filter: brightness(1.25); }
   &:active { filter: brightness(1); }

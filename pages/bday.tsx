@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import type { NextPage } from 'next';
 import { useEffect, useRef } from 'react';
 import Layout from '/components/Layout/Layout';
@@ -27,7 +28,7 @@ const BdayPage: NextPage = () => {
             <img src="/img/tfm.png" alt="transformice marry" />
           </div>
         </div>
-        <div className={styles.badSide}>
+        <div className={classNames('bgMoon', styles.badSide)}>
           <canvas ref={canvas} />
         </div>
       </div>

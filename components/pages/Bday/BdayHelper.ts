@@ -37,7 +37,7 @@ const initCanvas = (canvas: HTMLCanvasElement) => {
 
 const initContext = (canvas: HTMLCanvasElement) => {
   // Get Context
-  const ctx = canvas.getContext('2d', { alpha: false });
+  const ctx = canvas.getContext('2d');
   if (!ctx) return ctx;
   ctx.font = `${canvas.width * 0.035}px w95fa`;
   ctx.textAlign = 'center';

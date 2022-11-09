@@ -1,7 +1,7 @@
-@use '/styles/abstracts' as *;
 @use '/styles/classes/classes' as c;
 
-.anchor {
+html { cursor: url('/img/cursor.png'), default; }
+
+a, button {
   @extend c, .pointer !optional;
-  width: fit-content;
 }

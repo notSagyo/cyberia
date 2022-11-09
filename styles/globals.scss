@@ -2,11 +2,16 @@
 @use '/styles/reset';
 @use '/styles/typography';
 @use '/styles/classes/classes';
+@use '/styles/cursors';
 @forward '/styles/vendor/plyr-override';
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { height: 100%; }
+html {
+  height: 100%;
+}
 
 body {
   height: 100%;
@@ -23,10 +28,7 @@ body::after {
   width: 100vw;
   height: 100vh;
   background:
-    linear-gradient(
-      rgba(18, 16, 16, 0%) 50%,
-      rgba(0, 0, 0, 25%) 50%
-    ),
+    linear-gradient(rgba(18, 16, 16, 0%) 50%, rgba(0, 0, 0, 25%) 50%),
     linear-gradient(
       90deg,
       rgba(255, 0, 0, 6%),
