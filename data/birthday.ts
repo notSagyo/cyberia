@@ -23,7 +23,7 @@ export const quotesAndWeight = {
   SOON: 10,
 };
 
-export const colorsAndWeight: Partial<Record<keyof typeof colors, number>> = {
+export const colorsAndWeight = {
   red: 100_000,
   maroon: 100_000,
   firebrick: 50_000,
@@ -32,6 +32,6 @@ export const colorsAndWeight: Partial<Record<keyof typeof colors, number>> = {
   deeppink: 500,
   white: 350,
   black: 125,
-};
+} satisfies Partial<Record<keyof typeof colors, number>>;
 
 export default quotesAndWeight;

@@ -19,11 +19,11 @@ export const toUrlikeString = (str: string) => {
   return str.toLowerCase().replaceAll(/-| /g, '_');
 };
 
-export const getWeightedRandomPicker = (
-  record: Record<string, number>,
+export const getWeightedRandomPicker = <T extends string>(
+  record: Record<T, number>,
   floating = false
-): (() => string) => {
-  const weightedRecord: Record<string, number> = {};
+): (() => T) => {
+  const weightedRecord: Record<T, number> = {} as Record<T, number>;
   let highest = 0;
 
   for (const elem in record) {
@@ -33,8 +33,10 @@ export const getWeightedRandomPicker = (
 
   return () => {
     const rand = floating ? Math.random() * highest : _.random(highest);
-    const elem = _.keys(weightedRecord).find((k) => weightedRecord[k] >= rand);
-    return elem || '';
+    const elem =
+      (_.keys(weightedRecord) as T[]).find((k) => weightedRecord[k] >= rand) ||
+      (Object.keys(weightedRecord)[0] as T);
+    return elem;
   };
 };
 
