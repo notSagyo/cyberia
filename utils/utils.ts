@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const navbarRoutes = ['Home', 'Gallery', 'Videos', 'Music'];
 export const linkListRoutes = [...navbarRoutes, 'Read', 'Stuff'];
 
@@ -15,6 +17,25 @@ export const getTimeString = () => {
 
 export const toUrlikeString = (str: string) => {
   return str.toLowerCase().replaceAll(/-| /g, '_');
+};
+
+export const getWeightedRandomPicker = (
+  record: Record<string, number>,
+  floating = false
+): (() => string) => {
+  const weightedRecord: Record<string, number> = {};
+  let highest = 0;
+
+  for (const elem in record) {
+    highest += record[elem];
+    weightedRecord[elem] = highest;
+  }
+
+  return () => {
+    const rand = floating ? Math.random() * highest : _.random(highest);
+    const elem = _.keys(weightedRecord).find((k) => weightedRecord[k] >= rand);
+    return elem || '';
+  };
 };
 
 //* KEEPING THIS FOR REFERENCE

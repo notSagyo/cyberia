@@ -1,0 +1,34 @@
+@use '/styles/abstracts' as *;
+
+.bdayContainer {
+  height: 100%;
+}
+
+.goodSide {
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: hotpink;
+  color: black;
+  height: 100%;
+}
+
+.badSide {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+}
+
+.title {
+  @include my($spacing-md);
+  font-size: $fs-h4;
+}
+
+.quote {
+  position: absolute;
+  font-size: $fs-h5;
+}

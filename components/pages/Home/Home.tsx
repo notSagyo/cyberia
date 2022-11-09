@@ -12,9 +12,10 @@ import { ipapi } from '/types/ipapi';
 const Home = () => {
   const [ip, setIp] = useState<ipapi | null>(null);
 
-  useEffect(() => {
-    geIpapi().then((data) => setIp(data));
-  }, []);
+  // !TODO: uncomment before production
+  // useEffect(() => {
+  //   geIpapi().then((data) => setIp(data));
+  // }, []);
 
   return (
     <Layout>
