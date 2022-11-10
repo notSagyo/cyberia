@@ -17,24 +17,29 @@ import {
   mangaURL,
 } from '/utils/urls';
 
-// ?TODO: Update to mangasee123
 const MangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
   const query = useRouter().query;
+  const router = useRouter();
 
   // Manga info
   const mangaId = String(query.mangaId || '');
   const chapterId = String(query.chapterId || '');
-  const pageNumber = Number(query.pageNumber || 0);
+  const pageNumber = Number(query.pageNumber || 1);
   const chapterLength = chapterPages?.length || 0;
   const imageUrl = corsProxy + chapterPages?.[pageNumber - 1]?.img || '';
   const nextImageUrl = corsProxy + chapterPages?.[pageNumber]?.img || '';
 
   // Adjacent pages
-  const hasNextPage = Number(pageNumber) < chapterLength;
-  const nextPageUrl = `${mangaURL}/${mangaId}/${chapterId}/${pageNumber + 1}`;
-  const prevPageUrl = `${mangaURL}/${mangaId}/${chapterId}/${pageNumber - 1}`;
+  const nextPageUrl =
+    Number(pageNumber) < chapterLength
+      ? `${mangaURL}/${mangaId}/${chapterId}/${pageNumber + 1}`
+      : null;
+  const prevPageUrl =
+    pageNumber > 1
+      ? `${mangaURL}/${mangaId}/${chapterId}/${pageNumber - 1}`
+      : null;
 
   // Adjacent chapters
   const chapterIndex = mangaInfo?.chapters?.findIndex((c) => c.id == chapterId);
@@ -69,11 +74,28 @@ const MangaPage = () => {
     scrollTarget && scrollTarget.scrollTo({ behavior: 'smooth', top: 0 });
   }, [chapterId, pageNumber]);
 
+  // On key down try to change page/chapter
+  useEffect(() => {
+    const keyDownHandler = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (key === 'arrowleft' || key === 'a') {
+        if (prevPageUrl) router.push(prevPageUrl);
+        else if (prevChapterUrl) router.push(prevChapterUrl);
+      } else if (key === 'arrowright' || key === 'd') {
+        if (nextPageUrl) router.push(nextPageUrl);
+        else if (nextChapterUrl) router.push(nextChapterUrl);
+      }
+    };
+    document.addEventListener('keydown', keyDownHandler);
+    return () => document.removeEventListener('keydown', keyDownHandler);
+  }, [nextChapterUrl, nextPageUrl, prevChapterUrl, prevPageUrl, router]);
+
   return (
     <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
       {/* PAGE */}
       <Link
-        href={hasNextPage ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'}
+        href={nextPageUrl ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'}
+        tabIndex={0}
         legacyBehavior
       >
         <div className={cn(styles.pageContainer, 'pointer')}>
@@ -94,7 +116,7 @@ const MangaPage = () => {
           </Anchor>
         )}
         {/* PREV PAGE */}
-        {pageNumber > 1 && (
+        {prevPageUrl && (
           <Anchor href={prevPageUrl}>
             <img
               src="/img/arrow-yellow-left.gif"
@@ -104,7 +126,7 @@ const MangaPage = () => {
           </Anchor>
         )}
         {/* NEXT PAGE */}
-        {hasNextPage && (
+        {nextPageUrl && (
           <Anchor href={nextPageUrl}>
             <img src="/img/arrow-yellow-right.gif" alt="next page" width={64} />
           </Anchor>
@@ -122,7 +144,7 @@ const MangaPage = () => {
       </div>
 
       {/* PRELOAD NEXT IMAGE */}
-      {hasNextPage && (
+      {nextPageUrl && (
         <img
           className={styles.nextPageImage}
           src={nextImageUrl}

@@ -10,14 +10,16 @@ export default async function getMangaInfo(
   res: NextApiResponse<Data>
 ) {
   const { provider, mangaId } = req.query;
+  console.log(`Requested to (${provider}) manga (${mangaId})`);
   if (typeof provider !== 'string' || typeof mangaId !== 'string')
     return res.status(400).send('Error parsing provider / mangaId');
   try {
     if (!Object.hasOwn(mangaProviders, provider))
       res.status(400).send('Invalid provider');
     const mangaInfo = await mangaProviders[
-      mangaId as MangaProvidersNames
+      provider as MangaProvidersNames
     ].fetchMangaInfo(mangaId);
+    console.log(`Request complete mangaId (${mangaId})`);
     return res.status(200).json(mangaInfo);
   } catch (error) {
     return res.send((error as Error).message);

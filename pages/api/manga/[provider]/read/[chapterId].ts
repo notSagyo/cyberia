@@ -19,6 +19,7 @@ export default async function getChapterPages(
     const pages = await mangaProviders?.[
       provider as MangaProvidersNames
     ].fetchChapterPages(chapterId);
+    console.log(`Request complete chapterId (${chapterId})`);
     return res.status(200).json(pages);
   } catch (error) {
     return res.send((error as Error).message);
