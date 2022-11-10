@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@consumet/extensions": "^1.2.3",
+    "@consumet/extensions": "^1.2.7",
     "@silvermine/videojs-quality-selector": "^1.2.5",
     "@types/lodash": "^4.14.185",
     "@types/video.js": "^7.3.49",
