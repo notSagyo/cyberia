@@ -5,23 +5,27 @@ import Shell, { ShellProps } from '../Shell/Shell';
 import Anchor from '../utils/Anchor/Anchor';
 import styles from './MusicPlyr.module.scss';
 
-interface MusicShowcaseProps extends Partial<ImageProps> {
-  videoId: string;
-  videoTitle: string;
+type MusicShowcaseProps = Partial<ImageProps> & {
+  videoId?: string;
+  imageUrl?: string;
+  showcaseTitle: string;
   thumbnailQuality?: YtThumbnailQuality;
   shellProps: ShellProps;
-}
+} & ({ imageUrl: string } | { videoId: string });
 
+/** imageUrl or YouTube videoId prop required */
 const MusicShowcase = ({
   videoId,
-  videoTitle,
+  imageUrl,
+  showcaseTitle,
   thumbnailQuality = 'maxresdefault',
   shellProps,
   ...props
 }: MusicShowcaseProps) => {
   return (
     <Shell
-      shellTitle={videoTitle}
+      shellTitle={showcaseTitle}
+      minimizeable={false}
       {...shellProps}
       className={cn(styles.musicShowcaseShell, shellProps?.className)}
       bodyProps={{
@@ -34,11 +38,14 @@ const MusicShowcase = ({
     >
       <Anchor>
         <Image
-          alt={videoTitle}
+          alt={showcaseTitle}
           fill={true}
           className={styles.musicShowcaseImage}
           {...props}
-          src={`https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`}
+          src={
+            imageUrl ||
+            `https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`
+          }
         />
       </Anchor>
     </Shell>
