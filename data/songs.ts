@@ -60,6 +60,13 @@ const songs: ISong[] = [
     title: 'Devilman Crybaby > OST CD2',
     id: 'hKyi5phGbek',
   },
+  // ALBUMS
+  {
+    tag: 'Albums',
+    title: 'Slowdive > Souvlaki',
+    imageUrl: 'https://i.imgur.com/k5i4BFL.jpg',
+    id: 'HpzZ_sslsHM',
+  },
 ];
 
 export const omoriSong: ISong = {

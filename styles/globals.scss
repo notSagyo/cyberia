@@ -3,7 +3,6 @@
 @use '/styles/typography';
 @use '/styles/classes/classes';
 @use '/styles/cursors';
-@forward '/styles/vendor/plyr-override';
 
 * {
   box-sizing: border-box;

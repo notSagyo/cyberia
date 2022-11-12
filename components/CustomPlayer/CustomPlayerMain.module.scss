@@ -1,9 +1,7 @@
 @use '/styles/abstracts' as *;
 @use '/components/Layout/Layout.module.scss' as layout;
 
-$shell-size: 28rem;
-
-.mainPlyrShellContainer {
+.mainPlayerContainer {
   @extend layout, .shell !optional;
 
   position: fixed;
@@ -14,21 +12,11 @@ $shell-size: 28rem;
   pointer-events: none;
 }
 
-.mainPlyrShell {
+.mainPlayerShell {
   position: absolute;
   pointer-events: all;
-  min-width: $plyr-min-width;
+  min-width: $custom-player-min-width;
   right: 0;
   bottom: 0;
   background-color: black;
-}
-
-.musicShowcaseShellBody {
-  width: $shell-size;
-  height: $shell-size;
-  overflow: hidden;
-}
-
-.musicShowcaseImage {
-  object-fit: cover;
 }

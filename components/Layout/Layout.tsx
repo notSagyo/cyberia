@@ -6,7 +6,6 @@ import Shell, { ShellProps } from '../Shell/Shell';
 import Anchor from '../utils/Anchor/Anchor';
 import Void from '../Void/Void';
 import styles from './Layout.module.scss';
-import { useMusicPlyrContext } from '/context/MusicPlyrContext';
 import { baseURL } from '/utils/urls';
 
 interface LayoutProps extends ShellProps {
@@ -25,8 +24,6 @@ const Layout = ({
   const [shellOpened, setShellOpened] = useState<boolean>(true);
   const [currentDate, setCurrentDate] = useState<string>();
   const [currentTime, setCurrentTime] = useState<string>();
-
-  const musicPlyrContext = useMusicPlyrContext();
 
   function updateDate() {
     setCurrentDate(getDateString());
@@ -54,7 +51,6 @@ const Layout = ({
         mainShell={true}
         onClose={() => {
           setShellOpened(false);
-          musicPlyrContext.setPlyrElem(null);
         }}
         {...props}
         className={cn(

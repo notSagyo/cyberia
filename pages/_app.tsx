@@ -1,13 +1,12 @@
 import type { AppProps } from 'next/app';
-import 'plyr-react/plyr.css';
-import { MusicPlyrContextProvider } from '/context/MusicPlyrContext';
+import { MusicContextProvider } from '../context/MusicContext';
 import '/styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MusicPlyrContextProvider>
+    <MusicContextProvider>
       <Component {...pageProps} />
-    </MusicPlyrContextProvider>
+    </MusicContextProvider>
   );
 }
 

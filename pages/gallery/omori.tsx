@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { useEffect, useRef } from 'react';
+import { useMusicContext } from '../../context/MusicContext';
 import Album from '/components/Album/Album';
 import AlbumPicture from '/components/Album/AlbumPicture';
 import Layout from '/components/Layout/Layout';
-import { useMusicPlyrContext } from '/context/MusicPlyrContext';
 import albumImages from '/data/omori-album-images-1';
 import { omoriSong } from '/data/songs';
 import styles from '/styles/pages/omori.module.scss';
@@ -12,7 +12,7 @@ const didPlaySongKey = 'did-play-omori-song';
 
 const OmoriPage = () => {
   const catEyesRef = useRef<HTMLDivElement>(null);
-  const { setVideoId, setVideoTitle } = useMusicPlyrContext();
+  const { setVideoId, setVideoTitle } = useMusicContext();
 
   useEffect(() => {
     // Change songs only first time visting

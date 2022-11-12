@@ -24,7 +24,13 @@
 .dInline { display: inline; }
 .dBlock { display: block; }
 .dNone { display: none; }
-.hidden { visibility: hidden; }
+
+.hidden {
+  position: absolute !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+}
 
 .minimized {
   height: 0 !important;
@@ -32,9 +38,9 @@
   visibility: hidden;
 }
 
-
 // Other
-.pointer { cursor: url('/img/cursor-pointer.png'), pointer; }
+.pointer { cursor: url('/img/cursor-pointer.png') 10 0, pointer; }
+.default { cursor: url('/img/cursor.png') 10 0, default; }
 
 .bgNebula::before,
 .bgStars::before,

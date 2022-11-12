@@ -8,7 +8,7 @@ export const getDateString = () => {
 };
 
 export const getTimeString = () => {
-  return new Date().toLocaleTimeString(undefined, {
+  return new Date().toLocaleTimeString([], {
     hour12: false,
     hour: '2-digit',
     minute: '2-digit',

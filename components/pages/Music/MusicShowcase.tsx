@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import Image, { ImageProps } from 'next/image';
-import { YtThumbnailQuality } from '../../types';
-import Shell, { ShellProps } from '../Shell/Shell';
-import Anchor from '../utils/Anchor/Anchor';
-import styles from './MusicPlyr.module.scss';
+import { YtThumbnailQuality } from '../../../types';
+import Shell, { ShellProps } from '../../Shell/Shell';
+import Anchor from '../../utils/Anchor/Anchor';
+import styles from './Music.module.scss';
 
 type MusicShowcaseProps = Partial<ImageProps> & {
   videoId?: string;

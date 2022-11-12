@@ -71,7 +71,7 @@ const Shell = ({
     <div
       {...props}
       ref={shellRef}
-      className={cn(props.className, styles.shell, {
+      className={cn(styles.shell, props.className, {
         [styles.maximized]: maximized,
         [styles.mainShell]: mainShell,
         [styles.noHr]: noHr,

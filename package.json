@@ -16,9 +16,9 @@
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
     "next": "13.0.0",
-    "plyr-react": "5.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-player": "^2.11.0",
     "video.js": "^7.20.3",
     "videojs-hotkeys": "^0.2.28"
   },

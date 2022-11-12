@@ -1,0 +1,31 @@
+@use '/styles/abstracts' as *;
+
+$shell-size: 28rem;
+$gap-size: $spacing-md;
+
+.musicShowcaseShellBody {
+  width: $shell-size;
+  height: $shell-size;
+  overflow: hidden;
+}
+
+.musicShowcaseImage {
+  object-fit: cover;
+}
+
+.showcasesContainer {
+  @include py($gap-size);
+  display: flex;
+  flex-shrink: 0;
+  gap: $gap-size;
+  overflow-x: auto;
+}
+
+.tag {
+  @include h3;
+  text-transform: uppercase;
+}
+
+.searchContainer {
+  @include py($gap-size);
+}

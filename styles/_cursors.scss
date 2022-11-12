@@ -1,6 +1,6 @@
 @use '/styles/classes/classes' as c;
 
-html { cursor: url('/img/cursor.png'), default; }
+html { @extend c, .default !optional; }
 
 a, button {
   @extend c, .pointer !optional;
