@@ -1,10 +1,10 @@
 import cn from 'classnames';
 import React, { Fragment, HTMLAttributes } from 'react';
+import { IAlbumImage } from '../../types/types';
 import LinkHeading from '../LinkHeading/LinkHeading';
 import { ShellProps } from '../Shell/Shell';
 import styles from './Album.module.scss';
 import AlbumPicture from './AlbumPicture';
-import { IAlbumImage } from '/types';
 import { galleryURL } from '/utils/urls';
 
 interface AlbumProps extends React.HTMLAttributes<HTMLDivElement> {

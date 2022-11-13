@@ -1,12 +1,4 @@
-import { YtThumbnailQuality as YtThumbnailResolution } from '/types';
-
-interface ISong {
-  url: string;
-  title: string;
-  tag?: string;
-  imageUrl?: string;
-  res?: YtThumbnailResolution;
-}
+import { ISong } from '/types/song';
 
 const songs: ISong[] = [
   // First song is played by default on site visit
@@ -77,7 +69,7 @@ const songs: ISong[] = [
     tag: 'Albums',
     title: 'Slowdive > Souvlaki',
     imageUrl: 'https://i.imgur.com/k5i4BFL.jpg',
-    url: 'https://youtu.be/HpzZ_sslsHM',
+    url: 'https://www.youtube.com/playlist?list=OLAK5uy_kL4-koXbPqeBxIGNoPO5d60Lb0o5cuUAA',
   },
 ];
 

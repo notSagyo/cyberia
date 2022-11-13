@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import Image, { ImageProps } from 'next/image';
-import { YtThumbnailQuality } from '../../../types';
+import { YtThumbnailQuality } from '../../../types/types';
 import Shell, { ShellProps } from '../../Shell/Shell';
 import Anchor from '../../utils/Anchor/Anchor';
 import styles from './Music.module.scss';

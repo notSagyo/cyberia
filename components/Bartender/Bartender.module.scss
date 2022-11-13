@@ -289,3 +289,9 @@ $color-karmotrine: #c9f1f1;
     animation: move-background 175000s linear infinite;
   }
 }
+
+// OTHER =====================================================================//
+.hidden {
+  @extend c, .hidden !optional;
+  position: static !important;
+}

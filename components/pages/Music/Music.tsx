@@ -10,9 +10,8 @@ const musicTags = new Set(songs.map((s) => s.tag));
 const Music = () => {
   const musicContext = useMusicContext();
 
-  const changeSong = (videoId: string, videoTitle: string) => {
-    musicContext.setSongUrl(videoId);
-    musicContext.setSongTitle(videoTitle);
+  const changeSong = (url: string, title: string) => {
+    musicContext.setSong({ url, title });
   };
 
   const onSearch = (e: SyntheticEvent) => {

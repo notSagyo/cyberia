@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import Shell from '../Shell/Shell';
-import styles from './Bartender.module.scss';
+import s from './Bartender.module.scss';
 import {
   ingredientNames,
   mix,
@@ -12,7 +12,7 @@ import {
   onToggleIceOrAged,
   resetMix,
   serveMix,
-} from './helper';
+} from './BartenderHelper';
 
 export interface IMix {
   adelhyde: number;
@@ -47,19 +47,19 @@ const Bartender = () => {
 
   return (
     <Shell className="mAuto" shellTitle="BARTENDER.EXE" noPadding>
-      <div className={styles.board}>
+      <div className={s.board}>
         {/* $$$ MULA */}
-        <div id="moneyText" className={styles.moneyText} data-value={0}>
+        <div id="moneyText" className={s.moneyText} data-value={0}>
           $ {money}
         </div>
         {/* DRINK NAME */}
-        <div id="drinkName" className={styles.drinkName} />
+        <div id="drinkName" className={s.drinkName} />
         {/* INGREDIENTS */}
         {ingredientNames.map((ingredientName, index) => (
           <img
             key={index}
             id={ingredientName}
-            className={cn(styles.ingredient, styles[ingredientName])}
+            className={cn(s.ingredient, s[ingredientName])}
             src={`/img/va11halla/${ingredientName}.png`}
             alt={ingredientName}
             draggable="true"
@@ -72,44 +72,44 @@ const Bartender = () => {
             key={index}
             id={`${ingredientName}Indicators`}
             className={cn(
-              styles.ingredientIndicators,
-              styles[`${ingredientName}Indicators`]
+              s.ingredientIndicators,
+              s[`${ingredientName}Indicators`]
             )}
           >
             {Array.from(new Array(10)).map((_, i) => (
-              <div key={i} className="hidden" />
+              <div key={i} className={s.hidden} />
             ))}
           </div>
         ))}
         {/* ICE / AGE */}
         <img
-          className={styles.ice}
+          className={s.ice}
           src="/img/va11halla/ice.png"
           alt="ice"
           onClick={(e) => onToggleIceOrAged(e, setIce)}
         />
         <img
-          className={styles.age}
+          className={s.age}
           src="/img/va11halla/age.png"
           alt="aged"
           onClick={(e) => onToggleIceOrAged(e, setAged)}
         />
         {/* BUTTONS */}
         <img
-          className={cn(styles.btn, styles.btnReset)}
+          className={cn(s.btn, s.btnReset)}
           src="/img/va11halla/button-reset.png"
           alt="reset button"
           onClick={() => resetMix(setCurrentMix, setBlended)}
         />
         <img
-          className={cn(styles.btn, styles.btnMix)}
+          className={cn(s.btn, s.btnMix)}
           src="/img/va11halla/button-mix.png"
           alt="mix button"
           onClick={() => mix(currentMix, setBlended)}
         />
         <img
           id="serveButton"
-          className={cn(styles.btn, styles.btnServe, 'hidden')}
+          className={cn(s.btn, s.btnServe, s.hidden)}
           src="/img/va11halla/button-serve.png"
           alt="serve button"
           onClick={() =>
@@ -119,7 +119,7 @@ const Bartender = () => {
         {/* MIXER */}
         <img
           id="mixer"
-          className={styles.mixer}
+          className={s.mixer}
           src="/img/va11halla/mixer.png"
           alt="mixer"
           onDragOver={onDragOverMixer}
@@ -128,23 +128,21 @@ const Bartender = () => {
         />
         {/* MIXER INDICATORS */}
         <div id="mixerIndicators">
-          <div className={styles.mixerIndicators}>
+          <div className={s.mixerIndicators}>
             {Array.from(new Array(10)).map((_, i) => (
-              <div key={i} className={cn(styles.outerIndicator, 'hidden')} />
+              <div key={i} className={cn(s.outerIndicator, s.hidden)} />
             ))}
           </div>
-          <div
-            className={cn(styles.mixerIndicators, styles.mixerInnerIndicators)}
-          >
+          <div className={cn(s.mixerIndicators, s.mixerInnerIndicators)}>
             {Array.from(new Array(10)).map((_, i) => (
-              <div key={i} className={cn(styles.innerIndicator, 'hidden')} />
+              <div key={i} className={cn(s.innerIndicator, s.hidden)} />
             ))}
           </div>
         </div>
         {/* RESULT */}
         <img
           id="drinkResult"
-          className={cn(styles.drinkResult, 'hidden')}
+          className={cn(s.drinkResult, s.hidden)}
           src=""
           alt="result drink"
         />

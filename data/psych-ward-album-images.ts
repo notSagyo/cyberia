@@ -1,4 +1,4 @@
-import { IAlbumImage } from '/types';
+import { IAlbumImage } from '/types/types';
 
 const lebensgefahrAlbumImages: IAlbumImage[] = [
   { title: 'NO FUTURE', src: 'https://i.imgur.com/gjCGiH4.gif' },

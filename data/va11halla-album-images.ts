@@ -1,4 +1,4 @@
-import { IAlbumImage } from '/types';
+import { IAlbumImage } from '/types/types';
 
 const albumImages: IAlbumImage[] = [
   { src: 'https://i.imgur.com/KoFyfOG.png', title: 'data_00001.png' },

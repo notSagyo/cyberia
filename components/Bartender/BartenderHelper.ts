@@ -1,8 +1,8 @@
 import { IMix } from './Bartender';
-import styles from './Bartender.module.scss';
+import s from './Bartender.module.scss';
 import drinks from '/data/drinks';
-import { SetState } from '/types';
 import { IDrink, IngredientNames } from '/types/bartender';
+import { SetState } from '/types/types';
 
 // VARIABLES =================================================================//
 const ingredientNames: IngredientNames[] = [
@@ -62,10 +62,10 @@ function mix(mix: IMix, setBlended: SetState<boolean>) {
   // If mixing: In 5 seconds if still mixing set blended state and styles
   // If stop: remove mixing styles and update result
   if (isMixing) {
-    mixer.classList.add(styles.shake);
+    mixer.classList.add(s.shake);
     mixingTimeout = setTimeout(() => {
       if (!isMixing) return;
-      mixer.classList.add(styles.blend);
+      mixer.classList.add(s.blend);
       setBlended(true);
     }, 5000);
   } else {
@@ -76,7 +76,7 @@ function mix(mix: IMix, setBlended: SetState<boolean>) {
     toggleHidden('drinkResult', false);
     toggleHidden('mixer', true);
     resetMixerIndicators();
-    mixer.classList.remove(styles.shake, styles.blend);
+    mixer.classList.remove(s.shake, s.blend);
   }
 }
 
@@ -146,7 +146,7 @@ function onDropMixer(ev: React.DragEvent, mix: IMix, setMix: SetState<IMix>) {
 
 function onToggleIceOrAged(e: React.MouseEvent, setState: SetState<boolean>) {
   if (!(e.target instanceof HTMLElement) || isMixing) return;
-  e.target.classList.toggle(styles.active);
+  e.target.classList.toggle(s.active);
   setState((prev) => !prev);
 }
 
@@ -158,11 +158,11 @@ function resetAllIndicators() {
 }
 
 function resetMixerIndicators() {
-  resetIndicator(`.${styles.mixerIndicators}`);
+  resetIndicator(`.${s.mixerIndicators}`);
 }
 
 function resetIngredientIndicators() {
-  resetIndicator(`.${styles.ingredientIndicators}`);
+  resetIndicator(`.${s.ingredientIndicators}`);
 }
 
 function resetIndicator(query: string) {
@@ -172,7 +172,7 @@ function resetIndicator(query: string) {
     throw new Error(`Elements matching "${query}" not found`);
   elements.forEach((indicators) => {
     const indicatorsDiv = indicators.querySelectorAll('div');
-    indicatorsDiv.forEach((div) => div.classList.add('hidden'));
+    indicatorsDiv.forEach((div) => div.classList.add(s.hidden));
   });
 }
 
@@ -180,9 +180,9 @@ function resetIndicator(query: string) {
 function toggleHidden(elemId: string, value?: boolean) {
   const elem = document.querySelector(`#${elemId}`);
   if (!elem) throw new Error(`Element with ID "${elemId}" not found`);
-  if (value === true) elem.classList.add('hidden');
-  else if (value === false) elem.classList.remove('hidden');
-  else elem.classList.toggle('hidden');
+  if (value === true) elem.classList.add(s.hidden);
+  else if (value === false) elem.classList.remove(s.hidden);
+  else elem.classList.toggle(s.hidden);
 }
 
 function unhideNextIndicator(ingredient: string) {
@@ -192,12 +192,12 @@ function unhideNextIndicator(ingredient: string) {
   const mixerIndicators = document.querySelector(`#mixerIndicators`);
 
   const nextIngredientIndicator =
-    ingredientIndicators && ingredientIndicators.querySelector('.hidden');
+    ingredientIndicators && ingredientIndicators.querySelector('.' + s.hidden);
   const nextMixerIndicator =
-    mixerIndicators && mixerIndicators.querySelector('.hidden');
+    mixerIndicators && mixerIndicators.querySelector('.' + s.hidden);
 
-  nextIngredientIndicator && nextIngredientIndicator.classList.remove('hidden');
-  nextMixerIndicator && nextMixerIndicator.classList.remove('hidden');
+  nextIngredientIndicator && nextIngredientIndicator.classList.remove(s.hidden);
+  nextMixerIndicator && nextMixerIndicator.classList.remove(s.hidden);
 }
 
 // Other =============================//
@@ -219,9 +219,9 @@ function resetMixerSprite() {
   const mixer = document.querySelector('#mixer') as HTMLImageElement | null;
   if (!mixer) throw new Error('Element with ID "mixer" not found');
   mixer.src = '/img/va11halla/mixer.png';
-  mixer.classList.remove(styles.shake);
-  mixer.classList.remove(styles.blend);
-  mixer.classList.remove('hidden');
+  mixer.classList.remove(s.shake);
+  mixer.classList.remove(s.blend);
+  mixer.classList.remove(s.hidden);
   mixer.style.height = '';
 }
 

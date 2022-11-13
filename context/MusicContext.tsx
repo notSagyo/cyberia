@@ -1,13 +1,12 @@
 import dynamic from 'next/dynamic';
 import React, { createContext, useContext, useState } from 'react';
 import songs from '/data/songs';
-import { SetState } from '/types';
+import { ISong } from '/types/song';
+import { SetState } from '/types/types';
 
 interface IMusicContext {
-  songUrl: string;
-  setSongUrl: SetState<string>;
-  songTitle: string;
-  setSongTitle: SetState<string>;
+  song: ISong;
+  setSong: SetState<ISong>;
   enabled: boolean;
   setEnabled: SetState<boolean>;
 }
@@ -23,22 +22,19 @@ const CustomPlayerMain = dynamic(
 export const MusicContextProvider = ({
   children,
 }: React.HTMLAttributes<HTMLElement>) => {
-  const [songUrl, setSongUrl] = useState<string>(songs[0].url);
-  const [songTitle, setSongTitle] = useState<string>(songs[0].title);
+  const [song, setSong] = useState<ISong>(songs[0]);
   const [enabled, setEnabled] = useState(true);
 
   return (
     <MusicContext.Provider
       value={{
-        songUrl,
-        setSongUrl,
-        songTitle,
-        setSongTitle,
+        song,
+        setSong,
         enabled,
         setEnabled,
       }}
     >
-      {enabled && <CustomPlayerMain autoplay url={songUrl} title={songTitle} />}
+      {enabled && <CustomPlayerMain autoplay song={song} />}
       {children}
     </MusicContext.Provider>
   );
