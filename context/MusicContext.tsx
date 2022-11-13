@@ -4,10 +4,10 @@ import songs from '/data/songs';
 import { SetState } from '/types';
 
 interface IMusicContext {
-  videoId: string;
-  setVideoId: SetState<string>;
-  videoTitle: string;
-  setVideoTitle: SetState<string>;
+  songUrl: string;
+  setSongUrl: SetState<string>;
+  songTitle: string;
+  setSongTitle: SetState<string>;
 }
 
 const MusicContext = createContext<Record<string, never> | IMusicContext>({});
@@ -21,23 +21,19 @@ const CustomPlayerMain = dynamic(
 export const MusicContextProvider = ({
   children,
 }: React.HTMLAttributes<HTMLElement>) => {
-  const [videoId, setVideoId] = useState<string>(songs[0].id);
-  const [videoTitle, setVideoTitle] = useState<string>(songs[0].title);
+  const [songUrl, setSongUrl] = useState<string>(songs[0].url);
+  const [songTitle, setSongTitle] = useState<string>(songs[0].title);
 
   return (
     <MusicContext.Provider
       value={{
-        videoId,
-        setVideoId,
-        videoTitle,
-        setVideoTitle,
+        songUrl,
+        setSongUrl,
+        songTitle,
+        setSongTitle,
       }}
     >
-      <CustomPlayerMain
-        autoplay
-        url={`https://www.youtube.com/watch?v=${videoId}`}
-        title={videoTitle}
-      />
+      <CustomPlayerMain autoplay url={songUrl} title={songTitle} />
       {children}
     </MusicContext.Provider>
   );

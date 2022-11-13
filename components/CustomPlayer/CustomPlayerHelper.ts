@@ -9,7 +9,7 @@ export const isPlaylist = (url?: any) => {
  * @param duration in seconds
  * @param played from 0 to 1
  * @param remaining get remaining time instead
- * @returns mm:ss
+ * @returns (-)(h:)mm:ss (optional)
  */
 export const getPlayedString = (
   duration: number,

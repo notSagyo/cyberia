@@ -1,7 +1,7 @@
 import { YtThumbnailQuality as YtThumbnailResolution } from '/types';
 
 interface ISong {
-  id: string;
+  url: string;
   title: string;
   tag?: string;
   imageUrl?: string;
@@ -10,68 +10,80 @@ interface ISong {
 
 const songs: ISong[] = [
   // First song is played by default on site visit
-  { tag: 'Cyberia', title: 'Cyberia > Mix', id: 'bEHUFRRK9Sk' },
-  { tag: 'Cyberia', title: 'Serial Experiments Lain > OST', id: 'bty0bNS7i0g' },
+  {
+    tag: 'Cyberia',
+    title: 'Cyberia > Mix',
+    url: 'https://youtu.be/bEHUFRRK9Sk',
+  },
+  {
+    tag: 'Cyberia',
+    title: 'Serial Experiments Lain > OST',
+    url: 'https://youtu.be/bty0bNS7i0g',
+  },
   // GAMES
-  { tag: 'Games', title: 'VA-11 HALL-A > Second Round', id: 'H8w_Q57RQJc' },
+  {
+    tag: 'Games',
+    title: 'VA-11 HALL-A > Second Round',
+    url: 'https://youtu.be/H8w_Q57RQJc',
+  },
   {
     tag: 'Games',
     title: 'OMORI > OST',
-    id: 'pw-2e3T03Co',
+    url: 'https://youtu.be/pw-2e3T03Co',
     imageUrl: 'https://i.imgur.com/g6m8wFY.jpg',
   },
   {
     tag: 'Games',
     title: 'Katana ZERO > OST',
-    id: 'P196hEuA_Xc',
+    url: 'https://youtu.be/P196hEuA_Xc',
     imageUrl: 'https://i.imgur.com/mLRe76X.jpg',
   },
   {
     tag: 'Games',
     title: 'Gris > OST',
-    id: 'I6rufOlNyYM',
+    url: 'https://youtu.be/I6rufOlNyYM',
   },
   {
     tag: 'Games',
     title: 'Little Nightmares > OST',
-    id: 'zN-n5WmQoLc',
+    url: 'https://youtu.be/zN-n5WmQoLc',
     imageUrl: 'https://i.imgur.com/0ZxPZIs.jpg',
   },
   // ANIME
   {
     tag: 'Anime',
     title: 'SEALTBELTS > COWBOY BEBOP',
-    id: '6Hj6hPqKiS4',
+    url: 'https://youtu.be/6Hj6hPqKiS4',
     res: 'hqdefault',
   },
   {
     tag: 'Anime',
     title: 'Perfect Blue > OST',
-    id: 'KmBG4UV48X8',
+    url: 'https://youtu.be/KmBG4UV48X8',
     imageUrl: 'https://i.imgur.com/VhQ3qRk.jpg',
   },
   {
     tag: 'Anime',
     title: 'Devilman Crybaby > OST CD1',
-    id: '_JFTgoGa2Dk',
+    url: 'https://youtu.be/_JFTgoGa2Dk',
   },
   {
     tag: 'Anime',
     title: 'Devilman Crybaby > OST CD2',
-    id: 'hKyi5phGbek',
+    url: 'https://youtu.be/hKyi5phGbek',
   },
   // ALBUMS
   {
     tag: 'Albums',
     title: 'Slowdive > Souvlaki',
     imageUrl: 'https://i.imgur.com/k5i4BFL.jpg',
-    id: 'HpzZ_sslsHM',
+    url: 'https://youtu.be/HpzZ_sslsHM',
   },
 ];
 
 export const omoriSong: ISong = {
   title: 'OMORI > Lost At A Sleepover',
-  id: 'fmuGHGL70Qc',
+  url: 'https://youtu.be/fmuGHGL70Qc',
 };
 
 export default songs;

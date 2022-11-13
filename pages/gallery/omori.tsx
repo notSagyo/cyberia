@@ -12,13 +12,13 @@ const didPlaySongKey = 'did-play-omori-song';
 
 const OmoriPage = () => {
   const catEyesRef = useRef<HTMLDivElement>(null);
-  const { setVideoId, setVideoTitle } = useMusicContext();
+  const { setSongUrl, setSongTitle } = useMusicContext();
 
   useEffect(() => {
     // Change songs only first time visting
     if (localStorage.getItem(didPlaySongKey) !== 'true') {
-      setVideoId(omoriSong.id);
-      setVideoTitle(omoriSong.title);
+      setSongUrl(omoriSong.url);
+      setSongTitle(omoriSong.title);
       localStorage.setItem(didPlaySongKey, 'true');
     }
 

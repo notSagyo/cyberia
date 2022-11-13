@@ -6,16 +6,16 @@ import Anchor from '../../utils/Anchor/Anchor';
 import styles from './Music.module.scss';
 
 type MusicShowcaseProps = Partial<ImageProps> & {
-  videoId?: string;
+  videoUrl?: string;
   imageUrl?: string;
   showcaseTitle: string;
   thumbnailQuality?: YtThumbnailQuality;
   shellProps: ShellProps;
-} & ({ imageUrl: string } | { videoId: string });
+} & ({ imageUrl: string } | { videoUrl: string });
 
-/** imageUrl or YouTube videoId prop required */
+/** imageUrl or videoUrl (YouTube) prop required */
 const MusicShowcase = ({
-  videoId,
+  videoUrl,
   imageUrl,
   showcaseTitle,
   thumbnailQuality = 'maxresdefault',
@@ -44,7 +44,9 @@ const MusicShowcase = ({
           {...props}
           src={
             imageUrl ||
-            `https://img.youtube.com/vi/${videoId}/${thumbnailQuality}.jpg`
+            `https://img.youtube.com/vi/${videoUrl
+              ?.split('/')
+              .at(-1)}/${thumbnailQuality}.jpg`
           }
         />
       </Anchor>

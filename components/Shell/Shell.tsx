@@ -26,6 +26,7 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   noPadding?: boolean;
 }
 
+// TODO: Maximize removes minimized, minimize removes maximized
 const Shell = ({
   children,
   shellTitle,

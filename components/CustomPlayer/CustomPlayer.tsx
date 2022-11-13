@@ -16,7 +16,9 @@ export interface CustomPlayerProps extends ReactPlayerProps {
   onSeekEnd?: Function;
 }
 
+// TODO: Maximizable
 // TODO: Fix console play messages
+// TODO: Save volume on localStorage
 /** Always import this component with next/dynamic */
 const CustomPlayer = ({
   title,
@@ -100,6 +102,7 @@ const CustomPlayer = ({
     props.handlePlay && props.handlePlay();
     playerRef.current && setDuration(playerRef.current.getDuration());
   };
+
   return (
     <Shell
       {...shellProps}

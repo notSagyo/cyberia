@@ -11,8 +11,8 @@ const Music = () => {
   const musicContext = useMusicContext();
 
   const changeSong = (videoId: string, videoTitle: string) => {
-    musicContext.setVideoId(videoId);
-    musicContext.setVideoTitle(videoTitle);
+    musicContext.setSongUrl(videoId);
+    musicContext.setSongTitle(videoTitle);
   };
 
   const onSearch = (e: SyntheticEvent) => {
@@ -30,13 +30,13 @@ const Music = () => {
           .filter((song) => song.tag === tag)
           .map((song) => (
             <MusicShowcase
-              key={song.id}
-              videoId={song.id}
+              key={song.url}
+              videoUrl={song.url}
               thumbnailQuality={song?.res}
               showcaseTitle={song.title}
               imageUrl={song.imageUrl}
               shellProps={{
-                bodyProps: { onClick: () => changeSong(song.id, song.title) },
+                bodyProps: { onClick: () => changeSong(song.url, song.title) },
               }}
             />
           ))}
