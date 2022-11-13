@@ -6,6 +6,7 @@ import Shell, { ShellProps } from '../Shell/Shell';
 import Anchor from '../utils/Anchor/Anchor';
 import Void from '../Void/Void';
 import styles from './Layout.module.scss';
+import { useMusicContext } from '/context/MusicContext';
 import { baseURL } from '/utils/urls';
 
 interface LayoutProps extends ShellProps {
@@ -24,15 +25,14 @@ const Layout = ({
   const [shellOpened, setShellOpened] = useState<boolean>(true);
   const [currentDate, setCurrentDate] = useState<string>();
   const [currentTime, setCurrentTime] = useState<string>();
-
-  function updateDate() {
-    setCurrentDate(getDateString());
-    setCurrentTime(getTimeString());
-  }
+  const musicContext = useMusicContext();
 
   useEffect(() => {
-    updateDate();
-    setInterval(() => updateDate(), 1 * 60 * 1000);
+    const updateDateInterval = setInterval(() => {
+      setCurrentDate(getDateString());
+      setCurrentTime(getTimeString());
+    }, 1 * 60 * 1000);
+    return () => clearInterval(updateDateInterval);
   }, []);
 
   return (
@@ -51,6 +51,7 @@ const Layout = ({
         mainShell={true}
         onClose={() => {
           setShellOpened(false);
+          musicContext.setEnabled(false);
         }}
         {...props}
         className={cn(

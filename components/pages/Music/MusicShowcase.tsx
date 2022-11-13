@@ -46,7 +46,7 @@ const MusicShowcase = ({
             imageUrl ||
             `https://img.youtube.com/vi/${videoUrl
               ?.split('/')
-              .at(-1)}/${thumbnailQuality}.jpg`
+              .pop()}/${thumbnailQuality}.jpg`
           }
         />
       </Anchor>

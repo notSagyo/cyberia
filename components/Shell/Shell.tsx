@@ -1,6 +1,7 @@
 import cn from 'classnames';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import styles from './Shell.module.scss';
+import { useShellControls } from './ShellHelper';
 import ShellNav from './ShellNav';
 import ShellTitle from './ShellTitle';
 
@@ -14,9 +15,9 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   closeable?: boolean;
   maximizeable?: boolean;
   minimizeable?: boolean;
-  onClose?: () => void;
-  onMinimize?: () => void;
-  onMaximize?: () => void;
+  onClose?: (closed: boolean) => void;
+  onMinimize?: (minimized: boolean) => void;
+  onMaximize?: (maximized: boolean) => void;
   // Shell nav
   navItems?: React.ReactNode;
   navContent?: React.ReactNode;
@@ -26,7 +27,8 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   noPadding?: boolean;
 }
 
-// TODO: Maximize removes minimized, minimize removes maximized
+// TODO: Move body to new component
+// TODO: Move classnames out of return
 const Shell = ({
   children,
   shellTitle,
@@ -45,25 +47,16 @@ const Shell = ({
   noPadding = false,
   ...props
 }: ShellProps) => {
-  const [maximized, setMaximized] = useState(false);
-  const [minimized, setMinimized] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  const { maximized, minimized, handleClose, handleMaximize, handleMinimize } =
+    useShellControls({ onClose, onMaximize, onMinimize, shellRef });
 
-  if (closeable && !onClose)
-    onClose = () => shellRef.current && shellRef.current.remove();
-  if (maximizeable && !onMaximize) onMaximize = () => setMaximized(!maximized);
-  if (minimizeable && !onMinimize)
-    onMinimize = () => {
-      setMinimized(!minimized);
-      bodyRef.current && bodyRef.current.classList.toggle('minimized');
-    };
-
-  const onBodyClick = (() => {
-    let action: undefined | (() => void) = undefined;
-    if (onBodyClickAction === 'close') action = onClose;
-    if (onBodyClickAction === 'maximize') action = onMaximize;
-    if (onBodyClickAction === 'minimize') action = onMinimize;
+  const onBodyClick: Function | undefined = (() => {
+    let action;
+    if (onBodyClickAction === 'close') action = handleClose;
+    if (onBodyClickAction === 'maximize') action = handleMaximize;
+    if (onBodyClickAction === 'minimize') action = handleMinimize;
     return action;
   })();
 
@@ -73,26 +66,28 @@ const Shell = ({
       {...props}
       ref={shellRef}
       className={cn(styles.shell, props.className, {
-        [styles.maximized]: maximized,
+        // maximize only if there's not custom function for maximizing
+        [styles.maximized]: !onMaximize && maximized,
         [styles.mainShell]: mainShell,
         [styles.noHr]: noHr,
       })}
       style={{
         ...props.style,
-        ...(maximized && {
-          maxWidth: maxShellWidth,
-          maxHeight: '100vh',
-          overflow: 'auto',
-        }),
+        ...(!onMaximize &&
+          maximized && {
+            maxWidth: maxShellWidth,
+            maxHeight: '100vh',
+            overflow: 'auto',
+          }),
       }}
     >
       {/* TITLE BAR */}
       <ShellTitle
         mainShell={mainShell}
         noHr={noHr}
-        onClose={onClose}
-        onMaximize={onMaximize}
-        onMinimize={onMinimize}
+        onClose={closeable || onClose ? handleClose : undefined}
+        onMaximize={maximizeable || onMaximize ? handleMaximize : undefined}
+        onMinimize={minimizeable || onMinimize ? handleMinimize : undefined}
         maximized={maximized}
         shellTitle={shellTitle}
       />
@@ -112,7 +107,10 @@ const Shell = ({
             (bodyProps.onClick && bodyProps.onClick(e)) ||
             (onBodyClick && onBodyClick()))
         }
-        className={cn(styles.body, bodyProps?.className)}
+        // minimize only if there's not custom function for minimizing
+        className={cn(styles.body, bodyProps?.className, {
+          minimized: !onMinimize && minimized,
+        })}
         style={{ ...(noPadding && { padding: 0 }), ...bodyProps?.style }}
       >
         {children}

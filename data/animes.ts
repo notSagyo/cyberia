@@ -116,10 +116,12 @@ const getAnimes = (provider: AnimeProvidersNames) => {
   return animes;
 }
 
+// ?TODO: this broke dev mode, add again in the future:
+//? satisfies Partial<Record<AnimeProvidersNames, IAnime[]>>
 const animes = {
   gogoanime: getAnimes('gogoanime'),
   zoro: getAnimes('zoro'),
   get default() { return this[animeProvider] || [] },
-} satisfies Partial<Record<AnimeProvidersNames, IAnime[]>>
+};
 
 export default animes;

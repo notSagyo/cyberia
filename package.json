@@ -15,7 +15,7 @@
     "@types/video.js": "^7.3.49",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
-    "next": "13.0.0",
+    "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-player": "^2.11.0",

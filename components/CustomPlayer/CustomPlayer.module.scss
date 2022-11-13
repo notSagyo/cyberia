@@ -7,6 +7,7 @@ $color-slider: darkgray;
 $track-height: 5px;
 
 .shellBody { padding: $spacing-xs; }
+.playerWrapper { overflow: hidden; }
 
 .controls {
   display: flex;

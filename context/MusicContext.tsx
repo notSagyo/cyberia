@@ -8,6 +8,8 @@ interface IMusicContext {
   setSongUrl: SetState<string>;
   songTitle: string;
   setSongTitle: SetState<string>;
+  enabled: boolean;
+  setEnabled: SetState<boolean>;
 }
 
 const MusicContext = createContext<Record<string, never> | IMusicContext>({});
@@ -23,6 +25,7 @@ export const MusicContextProvider = ({
 }: React.HTMLAttributes<HTMLElement>) => {
   const [songUrl, setSongUrl] = useState<string>(songs[0].url);
   const [songTitle, setSongTitle] = useState<string>(songs[0].title);
+  const [enabled, setEnabled] = useState(true);
 
   return (
     <MusicContext.Provider
@@ -31,9 +34,11 @@ export const MusicContextProvider = ({
         setSongUrl,
         songTitle,
         setSongTitle,
+        enabled,
+        setEnabled,
       }}
     >
-      <CustomPlayerMain autoplay url={songUrl} title={songTitle} />
+      {enabled && <CustomPlayerMain autoplay url={songUrl} title={songTitle} />}
       {children}
     </MusicContext.Provider>
   );

@@ -76,10 +76,12 @@ const getMangas = (provider: MangaProvidersNames) => {
   return mangas;
 }
 
+// ?TODO: this broke dev mode, add again in the future:
+//? satisfies Partial<Record<MangaProvidersNames, IManga[]>>
 export const mangas = {
   mangadex: getMangas('mangadex'),
   mangasee123: getMangas('mangasee123'),
-  get default() { return this[mangaProvider] || [] },
-} satisfies Partial<Record<MangaProvidersNames, IManga[]>>
+  get default() { return this[mangaProvider] || [] }
+};
 
 export default mangas;
