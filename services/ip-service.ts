@@ -1,25 +1,29 @@
-import { ipapi } from '/types/ipapi';
+import { Geoiplookup } from '/types/geoiplookup';
+import { Ipapi } from '/types/ipapi';
 import { fetchUrl } from '/utils/urls';
 
 class IpService {
+  /** didn't work in production */
   ipapiUrl = 'https://ipapi.co/json/';
-  ipInfoUrl = this.ipapiUrl;
+  geoiplookupUrl = 'https://json.geoiplookup.io/';
+  ipInfoUrl = this.geoiplookupUrl;
   storageKey = 'ipInfo';
 
-  async fetchIpInfoIpapi() {
-    return await this.fetchIpInfo<ipapi>(this.ipapiUrl);
+  async getIpInfoGeoiplookup() {
+    return await this.getIpInfo<Geoiplookup>(this.geoiplookupUrl);
   }
 
   async getIpInfoIpapi() {
-    const res = await this.getIpInfo<ipapi>(this.ipapiUrl);
+    const res = await this.getIpInfo<Ipapi>(this.ipapiUrl);
     if (res && 'ip' in res) {
       return res;
     } else console.error(res);
   }
 
-  async fetchIpInfo<T>(url = this.ipInfoUrl): Promise<T | null> {
+  /** @param proxy should do the request from this app API? */
+  async fetchIpInfo<T>(url = this.ipInfoUrl, proxy = false): Promise<T | null> {
     try {
-      const data = await fetch(`${fetchUrl}/${url}`);
+      const data = await fetch(proxy ? `${fetchUrl}/${url}` : url);
       const dataJson = data.json();
       return dataJson;
     } catch (error) {
@@ -28,6 +32,7 @@ class IpService {
     }
   }
 
+  /** Tries to retrieve info from localStorage first */
   async getIpInfo<T>(url = this.ipInfoUrl): Promise<T | null> {
     const localData = this.loadIpInfoFromStorage();
     if (localData) return localData as T;

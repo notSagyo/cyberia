@@ -19,12 +19,13 @@ const CustomPlayerMain = ({ onReady, ...props }: CustomPlayerProps) => {
       if (storedSong && firstLoad) {
         p.seekTo(storedSong.time);
         // Loader for YouTube
-        if (storedSong.source === 'youtube')
+        if (storedSong.source === 'youtube') {
           p.getInternalPlayer()?.loadPlaylist(
             storedSong.url,
             storedSong.songIndex,
             storedSong.time
           );
+        }
       } else if (firstLoad) p.seekTo(MAIN_SONG_START_TIME);
       setFirstLoad(false);
     },

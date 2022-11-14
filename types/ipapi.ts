@@ -1,4 +1,4 @@
-export type ipapi = IpapiError | IpapiRes;
+export type Ipapi = IpapiError | IpapiRes;
 
 export interface IpapiRes {
   ip: string;

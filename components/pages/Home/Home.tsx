@@ -7,13 +7,13 @@ import UnderConstruction from './UnderConstruction';
 import Layout from '/components/Layout/Layout';
 import Hr from '/components/utils/Hr/Hr';
 import ipService from '/services/ip-service';
-import { IpapiRes } from '/types/ipapi';
+import { Geoiplookup } from '/types/geoiplookup';
 
 const Home = () => {
-  const [ipInfo, setIpInfo] = useState<IpapiRes>();
+  const [ipInfo, setIpInfo] = useState<Geoiplookup>();
 
   useEffect(() => {
-    ipService.getIpInfoIpapi().then((data) => {
+    ipService.getIpInfoGeoiplookup().then((data) => {
       if (data) {
         setIpInfo(data);
         ipService.saveIpInfoToStorage(JSON.stringify(data));
