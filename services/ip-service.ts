@@ -6,11 +6,15 @@ class IpService {
   ipInfoUrl = this.ipapiUrl;
   storageKey = 'ipInfo';
 
-  fetchIpInfoIpapi() {
-    return this.fetchIpInfo<ipapi>(this.ipapiUrl);
+  async fetchIpInfoIpapi() {
+    return await this.fetchIpInfo<ipapi>(this.ipapiUrl);
   }
-  getIpInfoIpapi() {
-    return this.getIpInfo<ipapi>(this.ipapiUrl);
+
+  async getIpInfoIpapi() {
+    const res = await this.getIpInfo<ipapi>(this.ipapiUrl);
+    if (res && 'ip' in res) {
+      return res;
+    } else console.error(res);
   }
 
   async fetchIpInfo<T>(url = this.ipInfoUrl): Promise<T | null> {
@@ -19,38 +23,37 @@ class IpService {
       const dataJson = data.json();
       return dataJson;
     } catch (error) {
-      console.warn(url, error);
+      console.error(url, error);
       return null;
     }
   }
 
   async getIpInfo<T>(url = this.ipInfoUrl): Promise<T | null> {
-    const localData = this.loadIpInfoLocalstorage();
+    const localData = this.loadIpInfoFromStorage();
     if (localData) return localData as T;
     console.warn(`${this.storageKey} not found on Local Storage, fetching...`);
     const data = await this.fetchIpInfo<T>(url);
-    this.saveIpInfoLocalstorage(JSON.stringify(data));
     return data;
   }
 
-  loadIpInfoLocalstorage<T>(): T | null {
+  loadIpInfoFromStorage<T>(): T | null {
     try {
       const data = localStorage.getItem(this.storageKey);
       const dataJson = (data && (JSON.parse(data) as T)) || null;
       return dataJson;
     } catch (error) {
-      console.warn(this.storageKey, error);
+      console.error(this.storageKey, error);
       return null;
     }
   }
 
-  saveIpInfoLocalstorage(data: string): boolean {
+  saveIpInfoToStorage(data: string): string | null {
     try {
       localStorage.setItem(this.storageKey, data);
-      return true;
+      return data;
     } catch (error) {
-      console.warn(this.storageKey, error);
-      return false;
+      console.error(this.storageKey, error);
+      return null;
     }
   }
 }

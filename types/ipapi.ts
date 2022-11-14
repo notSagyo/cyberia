@@ -1,4 +1,6 @@
-export interface ipapi {
+export type ipapi = IpapiError | IpapiRes;
+
+export interface IpapiRes {
   ip: string;
   network: string;
   version: string;
@@ -26,4 +28,10 @@ export interface ipapi {
   country_population: number;
   asn: string;
   org: string;
+}
+
+export interface IpapiError {
+  error: string;
+  reason: string;
+  message: string;
 }

@@ -8,6 +8,7 @@ export default async function fetchUrl(
 ) {
   const { url } = req.query;
   const parsedUrl = parseUrl(url);
+  console.log(`Requested to fetch:`, url);
   if (!parsedUrl) return res.status(400).send('Error parsing URL');
   try {
     const response = await fetch(parsedUrl);

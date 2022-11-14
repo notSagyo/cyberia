@@ -7,13 +7,18 @@ import UnderConstruction from './UnderConstruction';
 import Layout from '/components/Layout/Layout';
 import Hr from '/components/utils/Hr/Hr';
 import ipService from '/services/ip-service';
-import { ipapi } from '/types/ipapi';
+import { IpapiRes } from '/types/ipapi';
 
 const Home = () => {
-  const [ipInfo, setIpInfo] = useState<ipapi | null>(null);
+  const [ipInfo, setIpInfo] = useState<IpapiRes>();
 
   useEffect(() => {
-    ipService.getIpInfoIpapi().then((data) => setIpInfo(data));
+    ipService.getIpInfoIpapi().then((data) => {
+      if (data) {
+        setIpInfo(data);
+        ipService.saveIpInfoToStorage(JSON.stringify(data));
+      }
+    });
   }, []);
 
   return (
