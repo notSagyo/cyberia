@@ -1,3 +1,8 @@
+import { RefObject } from 'react';
+import ReactPlayer from 'react-player';
+import { storageSongKey } from './CustomPlayer';
+import { ISongStorage } from '/types/song';
+
 export const isPlaylist = (url?: any) => {
   let result = false;
   if (typeof url === 'string') result = url.toLowerCase().includes('list');
@@ -29,4 +34,28 @@ export const getPlayedString = (
 
 const padTime = (time: string | number) => {
   return String(time).padStart(2, '0');
+};
+
+export const saveSongToStorage = (
+  song: ISongStorage,
+  player: RefObject<ReactPlayer>
+) => {
+  const storageSong = song;
+  if (song.source === 'youtube' && player.current) {
+    storageSong.songIndex = player.current
+      .getInternalPlayer()
+      ?.getPlaylistIndex();
+  }
+  localStorage.setItem(storageSongKey, JSON.stringify(storageSong));
+};
+
+export const loadSongFromStorage = (): ISongStorage | null => {
+  try {
+    const storedSongJson = localStorage.getItem(storageSongKey);
+    const storedSong: ISongStorage =
+      storedSongJson && JSON.parse(storedSongJson);
+    return storedSong;
+  } catch (error) {
+    return null;
+  }
 };

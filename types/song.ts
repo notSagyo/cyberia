@@ -7,6 +7,11 @@ export interface ISong {
   res?: YtThumbnailQuality;
 }
 
+export interface ISongStorage extends ISong {
+  time: number;
+  songIndex?: number;
+}
+
 export type SongSource = 'youtube' | 'songcloud';
 
 export type YtThumbnailQuality =

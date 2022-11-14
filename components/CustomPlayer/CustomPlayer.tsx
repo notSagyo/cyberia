@@ -9,31 +9,39 @@ import IconPlay from '../Icons/IconPlay';
 import IconSound from '../Icons/IconSound';
 import Shell, { ShellProps } from '../Shell/Shell';
 import styles from './CustomPlayer.module.scss';
-import { getPlayedString, isPlaylist } from './CustomPlayerHelper';
-import { ISong, SongSource } from '/types/song';
+import {
+  getPlayedString,
+  isPlaylist,
+  saveSongToStorage,
+} from './CustomPlayerHelper';
+import { ISong } from '/types/song';
 
-const storageVolumeKey = 'ReactPlayerVolume';
+export const storageSongKey = 'react-player-song';
+const storageVolumeKey = 'react-player-volume';
+const storageMutedKey = 'react-player-muted';
 
 export interface CustomPlayerProps extends ReactPlayerProps {
   song: ISong;
   autoplay?: boolean;
+  saveToStorage?: boolean;
   initialVolume?: number;
   shellProps?: ShellProps;
+  onFirstLoad?: (player: ReactPlayer) => void;
   onSeekStart?: Function;
   onSeekChange?: Function;
   onSeekEnd?: Function;
 }
 
-// ?TODO: Load last song from ls
 /** Always import this component with next/dynamic */
 const CustomPlayer = ({
   song,
+  autoplay,
+  saveToStorage,
+  initialVolume,
   shellProps,
   onSeekStart,
   onSeekChange,
   onSeekEnd,
-  initialVolume,
-  autoplay,
   ...props
 }: CustomPlayerProps) => {
   const [playedOnce, setPlayedOnce] = useState(false);
@@ -45,7 +53,6 @@ const CustomPlayer = ({
   const [muted, setMuted] = useState(false);
   const [displayRemaining, setDisplayRemaining] = useState(false);
   const [maximized, setMaximized] = useState(false);
-  const [source] = useState<SongSource>(song.source || 'youtube');
   const playerRef = useRef<ReactPlayer>(null);
 
   // Autoplay
@@ -73,6 +80,8 @@ const CustomPlayer = ({
   const handleProgress = (state: OnProgressProps) => {
     props.onProgress && props.onProgress(state);
     if (!seeking) setPlayed(state.played);
+    if (saveToStorage && played > 0)
+      saveSongToStorage({ ...song, time: played * duration }, playerRef);
   };
 
   const handleSeekMouseDown = () => {
@@ -92,12 +101,13 @@ const CustomPlayer = ({
   };
 
   const handlePreviousTrack = () => {
-    if (source == 'youtube')
+    if (song.source == 'youtube')
       playerRef.current?.getInternalPlayer().previousVideo();
   };
 
   const handleNextTrack = () => {
-    if (source == 'youtube') playerRef.current?.getInternalPlayer().nextVideo();
+    if (song.source == 'youtube')
+      playerRef.current?.getInternalPlayer().nextVideo();
     else playerRef.current?.seekTo(0.9999);
   };
 
@@ -109,7 +119,10 @@ const CustomPlayer = ({
   };
 
   const handleMute = () => {
-    setMuted((s) => !s);
+    setMuted((s) => {
+      localStorage.setItem(storageMutedKey, String(Number(!s)));
+      return !s;
+    });
   };
 
   const handlePlay = () => {
@@ -117,10 +130,12 @@ const CustomPlayer = ({
     playerRef.current && setDuration(playerRef.current.getDuration());
   };
 
-  const handleReady = (player: ReactPlayer) => {
-    props.onReady && props.onReady(player);
+  const handleReady = (reactPlayer: ReactPlayer) => {
+    props.onReady && props.onReady(reactPlayer);
     const storageVolume = localStorage.getItem(storageVolumeKey);
+    const storageMuted = localStorage.getItem(storageMutedKey);
     storageVolume && setVolume(parseFloat(storageVolume));
+    storageMuted && setMuted(Boolean(Number(storageMuted)));
   };
 
   return (

@@ -4,20 +4,21 @@ import MusicShowcase from './MusicShowcase';
 import Hr from '/components/utils/Hr/Hr';
 import { useMusicContext } from '/context/MusicContext';
 import songs from '/data/songs';
+import { ISong } from '/types/song';
 
 const musicTags = new Set(songs.map((s) => s.tag));
 
 const Music = () => {
   const musicContext = useMusicContext();
 
-  const changeSong = (url: string, title: string) => {
-    musicContext.setSong({ url, title });
+  const changeSong = (song: ISong) => {
+    musicContext.setSong(song);
   };
 
   const onSearch = (e: SyntheticEvent) => {
     if (!e.target) return;
     const value = (e.target as HTMLInputElement).value;
-    changeSong(value, 'Custom');
+    changeSong({ url: value, title: 'Custom Track' });
   };
 
   const showcases = Array.from(musicTags).map((tag) => (
@@ -34,9 +35,7 @@ const Music = () => {
               thumbnailQuality={song?.res}
               showcaseTitle={song.title}
               imageUrl={song.imageUrl}
-              shellProps={{
-                bodyProps: { onClick: () => changeSong(song.url, song.title) },
-              }}
+              shellProps={{ bodyProps: { onClick: () => changeSong(song) } }}
             />
           ))}
       </div>

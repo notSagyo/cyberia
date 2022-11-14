@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import React, { createContext, useContext, useState } from 'react';
+import { loadSongFromStorage } from '/components/CustomPlayer/CustomPlayerHelper';
 import songs from '/data/songs';
 import { ISong } from '/types/song';
 import { SetState } from '/types/types';
@@ -22,7 +23,7 @@ const CustomPlayerMain = dynamic(
 export const MusicContextProvider = ({
   children,
 }: React.HTMLAttributes<HTMLElement>) => {
-  const [song, setSong] = useState<ISong>(songs[0]);
+  const [song, setSong] = useState(loadSongFromStorage() || songs[0]);
   const [enabled, setEnabled] = useState(true);
 
   return (
@@ -34,7 +35,7 @@ export const MusicContextProvider = ({
         setEnabled,
       }}
     >
-      {enabled && <CustomPlayerMain autoplay song={song} />}
+      {enabled && <CustomPlayerMain song={song} />}
       {children}
     </MusicContext.Provider>
   );
