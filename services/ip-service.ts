@@ -10,7 +10,7 @@ class IpService {
   storageKey = 'ipInfo';
 
   async getIpInfoGeoiplookup() {
-    return await this.getIpInfo<Geoiplookup>(this.geoiplookupUrl);
+    return await this.getIpInfo<Geoiplookup>(this.geoiplookupUrl, true);
   }
 
   async getIpInfoIpapi() {
@@ -32,12 +32,15 @@ class IpService {
     }
   }
 
-  /** Tries to retrieve info from localStorage first */
-  async getIpInfo<T>(url = this.ipInfoUrl): Promise<T | null> {
+  /**
+   * Tries to retrieve info from localStorage first
+   * @param proxy should do the request from this app API?
+   */
+  async getIpInfo<T>(url = this.ipInfoUrl, proxy = false): Promise<T | null> {
     const localData = this.loadIpInfoFromStorage();
     if (localData) return localData as T;
     console.warn(`${this.storageKey} not found on Local Storage, fetching...`);
-    const data = await this.fetchIpInfo<T>(url);
+    const data = await this.fetchIpInfo<T>(url, proxy);
     return data;
   }
 
