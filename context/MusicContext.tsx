@@ -15,7 +15,7 @@ const MusicContext = createContext<Record<string, never> | IMusicContext>({});
 export const useMusicContext = () => useContext(MusicContext);
 
 const CustomPlayerMain = dynamic(
-  () => import('../components/CustomPlayer/CustomPlayerMain'),
+  () => import('/components/CustomPlayer/CustomPlayerMain'),
   { ssr: false }
 );
 

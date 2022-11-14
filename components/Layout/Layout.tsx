@@ -28,10 +28,12 @@ const Layout = ({
   const musicContext = useMusicContext();
 
   useEffect(() => {
-    const updateDateInterval = setInterval(() => {
+    const updateDate = () => {
       setCurrentDate(getDateString());
       setCurrentTime(getTimeString());
-    }, 1 * 60 * 1000);
+    };
+    setTimeout(updateDate, 5000);
+    const updateDateInterval = setInterval(updateDate, 1 * 60 * 1000);
     return () => clearInterval(updateDateInterval);
   }, []);
 

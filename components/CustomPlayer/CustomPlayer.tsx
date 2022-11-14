@@ -12,6 +12,8 @@ import styles from './CustomPlayer.module.scss';
 import { getPlayedString, isPlaylist } from './CustomPlayerHelper';
 import { ISong, SongSource } from '/types/song';
 
+const storageVolumeKey = 'ReactPlayerVolume';
+
 export interface CustomPlayerProps extends ReactPlayerProps {
   song: ISong;
   autoplay?: boolean;
@@ -22,8 +24,7 @@ export interface CustomPlayerProps extends ReactPlayerProps {
   onSeekEnd?: Function;
 }
 
-// FIXME: Fix console play messages
-// TODO: Save volume on localStorage
+// ?TODO: Load last song from ls
 /** Always import this component with next/dynamic */
 const CustomPlayer = ({
   song,
@@ -52,7 +53,7 @@ const CustomPlayer = ({
     if (!autoplay) return;
     const audio = new Audio();
     const checkPlaying = setInterval(() => {
-      if (audio.paused) return audio.play();
+      if (audio.paused) return audio.play().catch(() => {});
       clearInterval(checkPlaying);
       setPlayedOnce(true);
       setPlaying(true);
@@ -102,7 +103,9 @@ const CustomPlayer = ({
   };
 
   const handleVolumeChange = (e: React.ChangeEvent) => {
-    setVolume(parseFloat((e.target as HTMLInputElement).value));
+    const volume = (e.target as HTMLInputElement).value;
+    localStorage.setItem(storageVolumeKey, volume);
+    setVolume(parseFloat(volume));
     setMuted(false);
   };
 
@@ -115,6 +118,12 @@ const CustomPlayer = ({
     playerRef.current && setDuration(playerRef.current.getDuration());
     // !XXX: debug log
     console.log(playerRef?.current?.getInternalPlayer());
+  };
+
+  const handleReady = (player: ReactPlayer) => {
+    props.onReady && props.onReady(player);
+    const storageVolume = localStorage.getItem(storageVolumeKey);
+    storageVolume && setVolume(parseFloat(storageVolume));
   };
 
   return (
@@ -138,6 +147,7 @@ const CustomPlayer = ({
           volume={volume}
           muted={muted}
           onProgress={handleProgress}
+          onReady={handleReady}
           onPlay={handlePlay}
         />
       </div>

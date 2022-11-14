@@ -1,5 +1,7 @@
 import { ISong } from '/types/song';
 
+export const MAIN_SONG_START_TIME = 792.7;
+
 const songs: ISong[] = [
   // First song is played by default on site visit
   {
