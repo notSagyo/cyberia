@@ -6,16 +6,15 @@ import SpookyAd from './SpookyAd';
 import UnderConstruction from './UnderConstruction';
 import Layout from '/components/Layout/Layout';
 import Hr from '/components/utils/Hr/Hr';
-import { geIpapi } from '/services/ipapi-service';
+import ipService from '/services/ip-service';
 import { ipapi } from '/types/ipapi';
 
 const Home = () => {
-  const [ip, setIp] = useState<ipapi | null>(null);
+  const [ipInfo, setIpInfo] = useState<ipapi | null>(null);
 
-  // !TODO: uncomment before production
-  // useEffect(() => {
-  //   geIpapi().then((data) => setIp(data));
-  // }, []);
+  useEffect(() => {
+    ipService.getIpInfoIpapi().then((data) => setIpInfo(data));
+  }, []);
 
   return (
     <Layout>
@@ -26,14 +25,14 @@ const Home = () => {
         {/* MAIN SIDE */}
         <main>
           <UnderConstruction />
-          {ip && (
-            <section className={styles.ipSection}>
-              <p>Welcome {ip?.ip}</p>
-              <p>
-                from ({ip?.country_name}, {ip?.region})
-              </p>
-            </section>
-          )}
+          <section className={styles.ipSection}>
+            <p>Welcome {ipInfo?.ip || 'XXX.XX.XX.XXX'}</p>
+            <p>
+              {ipInfo
+                ? `from (${ipInfo.country_name}, ${ipInfo.region})`
+                : 'from (THE_WIRED)'}
+            </p>
+          </section>
           <HomeLinkList />
         </main>
 

@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { HTMLAttributes } from 'react';
 import Anchor, { AnchorProps } from '../utils/Anchor/Anchor';
+import s from './LinkList.module.scss';
 
 interface LinkListProps extends AnchorProps {
   href: string;
@@ -17,7 +18,7 @@ const LinkListItem = ({
 }: LinkListProps) => {
   return (
     <li>
-      <Anchor {...props} className={props?.className} href={href}>
+      <Anchor {...props} className={cn(s.anchor, props?.className)} href={href}>
         <h2 className={cn('h3', titleProps?.className)}>
           {goBack && '..'}
           {children || href}

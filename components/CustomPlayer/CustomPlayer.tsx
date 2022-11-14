@@ -72,8 +72,7 @@ const CustomPlayer = ({
   // Event handlers
   const handleProgress = (state: OnProgressProps) => {
     props.onProgress && props.onProgress(state);
-    if (seeking) return;
-    setPlayed(state.played);
+    if (!seeking) setPlayed(state.played);
   };
 
   const handleSeekMouseDown = () => {
@@ -116,8 +115,6 @@ const CustomPlayer = ({
   const handlePlay = () => {
     props.onPlay && props.onPlay();
     playerRef.current && setDuration(playerRef.current.getDuration());
-    // !XXX: debug log
-    console.log(playerRef?.current?.getInternalPlayer());
   };
 
   const handleReady = (player: ReactPlayer) => {
