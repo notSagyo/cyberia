@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import Image, { ImageProps } from 'next/image';
-import { YtThumbnailQuality } from '../../../types/types';
 import Shell, { ShellProps } from '../../Shell/Shell';
 import Anchor from '../../utils/Anchor/Anchor';
-import styles from './Music.module.scss';
+import s from './Music.module.scss';
+import { YtThumbnailQuality } from '/types/song';
 
 type MusicShowcaseProps = Partial<ImageProps> & {
   videoUrl?: string;
@@ -27,20 +27,18 @@ const MusicShowcase = ({
       shellTitle={showcaseTitle}
       minimizeable={false}
       {...shellProps}
-      className={cn(styles.musicShowcaseShell, shellProps?.className)}
+      className={cn(s.showcaseShell, shellProps?.className)}
+      shellTitleProps={{ className: s.showcaseShellTitle }}
       bodyProps={{
         ...shellProps.bodyProps,
-        className: cn(
-          styles.musicShowcaseShellBody,
-          shellProps?.bodyProps?.className
-        ),
+        className: cn(s.showcaseShellBody, shellProps?.bodyProps?.className),
       }}
     >
       <Anchor>
         <Image
           alt={showcaseTitle}
           fill={true}
-          className={styles.musicShowcaseImage}
+          className={s.showcaseImage}
           {...props}
           src={
             imageUrl ||

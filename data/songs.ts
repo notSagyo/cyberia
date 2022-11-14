@@ -16,7 +16,20 @@ const songs: ISong[] = [
   {
     tag: 'Games',
     title: 'VA-11 HALL-A > Second Round',
-    url: 'https://youtu.be/H8w_Q57RQJc',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOo1KU4f3JFQ6sGsJ02oF9S8',
+    imageUrl: 'https://i.imgur.com/RIcAyf4.jpg',
+  },
+  {
+    tag: 'Games',
+    title: 'VA-11 HALL-A > Sounds from the Future',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOqFZ75hYMv9iGWSTNnEe6Xa',
+    imageUrl: 'https://i.imgur.com/sQiAdL0.jpg',
+  },
+  {
+    tag: 'Games',
+    title: 'VA-11 HALL-A > Bonus Tracks Collection',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOpG93QeJIjW3OeieDQyaLXj',
+    imageUrl: 'https://i.imgur.com/meuQ38r.jpg',
   },
   {
     tag: 'Games',
@@ -70,6 +83,12 @@ const songs: ISong[] = [
     title: 'Slowdive > Souvlaki',
     imageUrl: 'https://i.imgur.com/k5i4BFL.jpg',
     url: 'https://www.youtube.com/playlist?list=OLAK5uy_kL4-koXbPqeBxIGNoPO5d60Lb0o5cuUAA',
+  },
+  {
+    tag: 'Albums',
+    title: 'My Bloody Valentine > Loveless',
+    imageUrl: 'https://i.imgur.com/yO0qckT.jpg',
+    url: 'https://youtube.com/playlist?list=OLAK5uy_mdVxWs91qMNd9e-hT2bYOiLNBG7iAIv1g',
   },
 ];
 

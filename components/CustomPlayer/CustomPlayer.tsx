@@ -132,6 +132,7 @@ const CustomPlayer = ({
         <ReactPlayer
           {...props}
           ref={playerRef}
+          key={song.url}
           url={song.url}
           playing={playing}
           volume={volume}

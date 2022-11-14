@@ -3,14 +3,15 @@ import { useRef } from 'react';
 import styles from './Shell.module.scss';
 import { useShellControls } from './ShellHelper';
 import ShellNav from './ShellNav';
-import ShellTitle from './ShellTitle';
+import ShellTitle, { ShellTitleProps } from './ShellTitle';
 
 export const maxShellWidth = 1240;
 
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
+  mainShell?: boolean;
   // Shell title
   shellTitle?: React.ReactNode;
-  mainShell?: boolean;
+  shellTitleProps?: ShellTitleProps;
   noHr?: boolean;
   closeable?: boolean;
   maximizeable?: boolean;
@@ -44,6 +45,7 @@ const Shell = ({
   navContent,
   onBodyClickAction = null,
   bodyProps = {},
+  shellTitleProps = {},
   noPadding = false,
   ...props
 }: ShellProps) => {
@@ -90,6 +92,7 @@ const Shell = ({
         onMinimize={minimizeable || onMinimize ? handleMinimize : undefined}
         maximized={maximized}
         shellTitle={shellTitle}
+        {...shellTitleProps}
       />
 
       {/* NAVBAR */}

@@ -37,6 +37,13 @@
   transform: translateY(-50%);
 }
 
+// TODO: Add to template
+@mixin h-align {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 // Limit the amount of vertical for a text
 @mixin v-clamp($lines) {
   -webkit-line-clamp: $lines;

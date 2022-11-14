@@ -1,6 +1,7 @@
+import cn from 'classnames';
 import styles from './Shell.module.scss';
 
-interface ShellTitleProps {
+export interface ShellTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   shellTitle?: React.ReactNode;
   mainShell?: boolean;
   noHr?: boolean;
@@ -20,9 +21,10 @@ const ShellTitle = ({
   onMaximize,
   onMinimize,
   maximized,
+  ...props
 }: ShellTitleProps) => {
   return (
-    <div className={styles.title}>
+    <div {...props} className={cn(styles.title, props?.className)}>
       {mainShell && <div className={styles.hr}></div>}
       <div className={styles.titleText}>{shellTitle}</div>
       {!noHr && <div className={styles.hr}></div>}
