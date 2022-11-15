@@ -1,6 +1,5 @@
-import { Geoiplookup } from '/types/geoiplookup';
-import { Ipapi } from '/types/ipapi';
-import { fetchUrl } from '/utils/urls';
+import { Geoiplookup, Ipapi, IpRes } from '/types/ip';
+import { fetchUrl, ipUrl } from '/utils/urls';
 
 class IpService {
   /** didn't work in production */
@@ -9,21 +8,34 @@ class IpService {
   ipInfoUrl = this.geoiplookupUrl;
   storageKey = 'ipInfo';
 
-  async getIpInfoGeoiplookup() {
-    return await this.getIpInfo<Geoiplookup>(this.geoiplookupUrl, true);
+  async fecthClientIp(): Promise<string> {
+    const res = await fetch(ipUrl);
+    const resJson = (await res.json()) as IpRes | null;
+    return resJson?.ip || '';
   }
 
-  async getIpInfoIpapi() {
-    const res = await this.getIpInfo<Ipapi>(this.ipapiUrl);
+  async getInfoGeoiplookup(ip: string) {
+    const res = await this.getInfo<Geoiplookup>(ip, this.geoiplookupUrl, true);
     if (res && 'ip' in res) {
       return res;
     } else console.error(res);
   }
 
-  /** @param proxy should do the request from this app API? */
-  async fetchIpInfo<T>(url = this.ipInfoUrl, proxy = false): Promise<T | null> {
+  async getInfoIpapi(ip: string) {
+    const res = await this.getInfo<Ipapi>(ip, this.ipapiUrl, true);
+    if (res && 'ip' in res) {
+      return res;
+    } else console.error(res);
+  }
+
+  /** @param proxy should do the request from this app backend? */
+  async fetchInfo<T>(
+    ip: string,
+    url = this.ipInfoUrl,
+    proxy = false
+  ): Promise<T | null> {
     try {
-      const data = await fetch(proxy ? `${fetchUrl}/${url}` : url);
+      const data = await fetch(`${proxy ? fetchUrl + '/' : ''}${url}/${ip}`);
       const dataJson = data.json();
       return dataJson;
     } catch (error) {
@@ -34,17 +46,21 @@ class IpService {
 
   /**
    * Tries to retrieve info from localStorage first
-   * @param proxy should do the request from this app API?
+   * @param proxy should do the request from this app backend?
    */
-  async getIpInfo<T>(url = this.ipInfoUrl, proxy = false): Promise<T | null> {
-    const localData = this.loadIpInfoFromStorage();
+  async getInfo<T>(
+    ip: string,
+    url = this.ipInfoUrl,
+    proxy = false
+  ): Promise<T | null> {
+    const localData = this.loadInfoFromStorage();
     if (localData) return localData as T;
     console.warn(`${this.storageKey} not found on Local Storage, fetching...`);
-    const data = await this.fetchIpInfo<T>(url, proxy);
+    const data = await this.fetchInfo<T>(ip, url, proxy);
     return data;
   }
 
-  loadIpInfoFromStorage<T>(): T | null {
+  loadInfoFromStorage<T>(): T | null {
     try {
       const data = localStorage.getItem(this.storageKey);
       const dataJson = (data && (JSON.parse(data) as T)) || null;
@@ -55,7 +71,7 @@ class IpService {
     }
   }
 
-  saveIpInfoToStorage(data: string): string | null {
+  saveInfoToStorage(data: string): string | null {
     try {
       localStorage.setItem(this.storageKey, data);
       return data;

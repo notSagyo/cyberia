@@ -17,6 +17,7 @@ export const matrixURL = `${baseURL}/matrix`;
 
 // API
 export const apiURL = `${baseURL}/api`;
+export const ipUrl = `${apiURL}/ip`;
 export const fetchUrl = `${apiURL}/fetch`;
 export const animeInfoURL = `${apiURL}/anime`;
 export const animeSourcesURL = `${animeInfoURL}/sources`;

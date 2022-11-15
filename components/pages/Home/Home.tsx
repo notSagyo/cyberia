@@ -7,18 +7,23 @@ import UnderConstruction from './UnderConstruction';
 import Layout from '/components/Layout/Layout';
 import Hr from '/components/utils/Hr/Hr';
 import ipService from '/services/ip-service';
-import { Geoiplookup } from '/types/geoiplookup';
+import { GeoiplookupRes } from '/types/ip';
 
 const Home = () => {
-  const [ipInfo, setIpInfo] = useState<Geoiplookup>();
+  const [ipInfo, setIpInfo] = useState<GeoiplookupRes>();
 
   useEffect(() => {
-    ipService.getIpInfoGeoiplookup().then((data) => {
-      if (data) {
-        setIpInfo(data);
-        ipService.saveIpInfoToStorage(JSON.stringify(data));
+    (async () => {
+      // Fetch IP from this app API. If length > 3 (local ip) get the ip info
+      const ip = await ipService.fecthClientIp();
+      // XXX:
+      console.log(ip);
+      const info = await ipService.getInfoGeoiplookup(ip.length > 3 ? ip : '');
+      if (info) {
+        ipService.saveInfoToStorage(JSON.stringify(info));
+        setIpInfo(info);
       }
-    });
+    })();
   }, []);
 
   return (

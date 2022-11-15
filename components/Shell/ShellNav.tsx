@@ -8,10 +8,10 @@ interface ShellHeaderProps {
 const ShellNav = ({ navItems, navContent }: ShellHeaderProps) => {
   return (
     <>
-      <div className={styles.header}>
+      <nav className={styles.header}>
         {navItems && <ul>{navItems}</ul>}
         {navContent && <>{navContent}</>}
-      </div>
+      </nav>
     </>
   );
 };

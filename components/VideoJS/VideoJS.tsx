@@ -20,7 +20,6 @@ const VideoJS = ({ ...props }: VideoJsProps) => {
       if (!videoElement) return;
 
       const player = (playerRef.current = videojs(videoElement, options, () => {
-        videojs.log('player is ready');
         onReady && onReady(player);
       }));
 

@@ -6,6 +6,7 @@ export default async function fetchUrl(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  console.log(req.socket.remoteAddress);
   const { url } = req.query;
   const parsedUrl = parseUrl(url);
   console.log(`Requested to fetch:`, url);
