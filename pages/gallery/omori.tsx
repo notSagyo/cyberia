@@ -1,5 +1,6 @@
+import cn from 'classnames';
 import _ from 'lodash';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMusicContext } from '../../context/MusicContext';
 import Album from '/components/Album/Album';
 import AlbumPicture from '/components/Album/AlbumPicture';
@@ -9,10 +10,12 @@ import { omoriSong } from '/data/songs';
 import styles from '/styles/pages/omori.module.scss';
 
 const didPlaySongKey = 'did-play-omori-song';
+const didTouchCatKey = 'did-touch-cat';
 
 const OmoriPage = () => {
   const catEyesRef = useRef<HTMLDivElement>(null);
   const { setSong, setPlaying } = useMusicContext();
+  const [didTouchCat, setdidTouchCat] = useState<boolean>(false);
 
   useEffect(() => {
     // Change songs only first time visting
@@ -21,6 +24,9 @@ const OmoriPage = () => {
       setPlaying(true);
       localStorage.setItem(didPlaySongKey, 'true');
     }
+
+    // Did touch the cat this session ? OwO
+    setdidTouchCat(Boolean(Number(sessionStorage.getItem(didTouchCatKey))));
 
     // Cat eyes movement
     const moveEyes = (eyes: HTMLElement, mousePosX: number) => {
@@ -42,17 +48,28 @@ const OmoriPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleCatClick = () => {
+    if (didTouchCat) return;
+    const audio = new Audio('/sound/big-yellow-cat-scream.mp3');
+    audio.play();
+    setdidTouchCat(true);
+    window.sessionStorage.setItem('did-touch-cat', String(Number(true)));
+  };
+
   const catBody = (
     <img
       className={styles.cat}
       src="/img/big-yellow-cat-body.png"
       width={350}
-      alt=""
+      alt="big yellow cat"
     />
   );
 
   const catEyes = (
-    <div className={styles.catEyesContainer}>
+    <div
+      className={cn(styles.catEyesContainer, !didTouchCat && 'pointer')}
+      onClick={handleCatClick}
+    >
       <div className={styles.imgWrapper}>
         <div className={styles.catEyes} ref={catEyesRef}></div>
       </div>
