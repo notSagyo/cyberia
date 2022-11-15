@@ -4,8 +4,12 @@ import { loadSongFromStorage } from './CustomPlayerHelper';
 import styles from './CustomPlayerMain.module.scss';
 import CustomPlayer, {
   CustomPlayerProps,
+  storagePausedKey,
 } from '/components/CustomPlayer/CustomPlayer';
 import { MAIN_SONG_START_TIME } from '/data/songs';
+
+// If it's paused on storage then autoplay will be false
+const autoplay = !Boolean(Number(localStorage.getItem(storagePausedKey)));
 
 /** Always import this component with next/dynamic */
 const CustomPlayerMain = ({ onReady, ...props }: CustomPlayerProps) => {
@@ -25,6 +29,7 @@ const CustomPlayerMain = ({ onReady, ...props }: CustomPlayerProps) => {
             storedSong.songIndex,
             storedSong.time
           );
+          if (!autoplay) p.getInternalPlayer()?.pauseVideo();
         }
       } else if (firstLoad) p.seekTo(MAIN_SONG_START_TIME);
       setFirstLoad(false);
@@ -36,9 +41,10 @@ const CustomPlayerMain = ({ onReady, ...props }: CustomPlayerProps) => {
     <div className={styles.mainPlayerContainer}>
       <CustomPlayer
         {...props}
-        autoplay
-        saveToStorage
+        autoplay={props.playing ?? autoplay}
+        playing={props.playing}
         onReady={handleReady}
+        saveToStorage
         shellProps={{ className: styles.mainPlayerShell }}
       />
     </div>

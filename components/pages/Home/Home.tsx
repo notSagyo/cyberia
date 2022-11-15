@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      // Fetch IP from this app API. If length > 3 (local ip) get the ip info
+      // Fetch IP from this app's API. If length > 3 (local ip) get the ip info
       const ip = await ipService.fecthClientIp();
       const info = await ipService.getInfoGeoiplookup(ip.length > 3 ? ip : '');
       if (info) {
@@ -34,11 +34,11 @@ const Home = () => {
         <main>
           <UnderConstruction />
           <section className={styles.ipSection}>
-            <p>Welcome {ipInfo?.ip || 'XXX.XX.XX.XXX'}</p>
+            <p>Welcome {ipInfo?.ip || 'ANONYMOUS_USER'}</p>
             <p>
               {ipInfo
-                ? `from (${ipInfo.country_name}, ${ipInfo.region})`
-                : 'from (THE_WIRED)'}
+                ? `from [${ipInfo.country_name}, ${ipInfo.region}]`
+                : 'from [THE_WIRED]'}
             </p>
           </section>
           <HomeLinkList />

@@ -11,8 +11,6 @@ class IpService {
   async fecthClientIp(): Promise<string> {
     const res = await fetch(ipUrl);
     const resJson = (await res.json()) as IpRes | null;
-    // !XXX:
-    console.log(resJson);
     return resJson?.ip || '';
   }
 

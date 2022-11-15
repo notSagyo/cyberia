@@ -17,6 +17,7 @@ import {
 import { ISong } from '/types/song';
 
 export const storageSongKey = 'react-player-song';
+export const storagePausedKey = 'react-player-paused';
 const storageVolumeKey = 'react-player-volume';
 const storageMutedKey = 'react-player-muted';
 
@@ -128,6 +129,12 @@ const CustomPlayer = ({
   const handlePlay = () => {
     props.onPlay && props.onPlay();
     playerRef.current && setDuration(playerRef.current.getDuration());
+    saveToStorage && localStorage.setItem(storagePausedKey, String(Number(0)));
+  };
+
+  const handlePause = () => {
+    props.onPause && props.onPause();
+    saveToStorage && localStorage.setItem(storagePausedKey, String(Number(1)));
   };
 
   const handleReady = (reactPlayer: ReactPlayer) => {
@@ -161,6 +168,7 @@ const CustomPlayer = ({
           onProgress={handleProgress}
           onReady={handleReady}
           onPlay={handlePlay}
+          onPause={handlePause}
         />
       </div>
 

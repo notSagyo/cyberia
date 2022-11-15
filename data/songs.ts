@@ -68,9 +68,9 @@ const songs: ISong[] = [
   // ANIME
   {
     tag: 'Anime',
-    title: 'SEALTBELTS > COWBOY BEBOP',
-    url: 'https://youtu.be/6Hj6hPqKiS4',
-    res: 'hqdefault',
+    title: 'COWBOY BEBOP > OST',
+    url: 'https://www.youtube.com/playlist?list=PLjuzMNNpQyOqkKjgg07vzT4HSo5zf73v7',
+    imageUrl: 'https://i.imgur.com/E8RsB0y.jpg',
     source: 'youtube',
   },
   {
@@ -78,6 +78,13 @@ const songs: ISong[] = [
     title: 'Perfect Blue > OST',
     url: 'https://youtu.be/KmBG4UV48X8',
     imageUrl: 'https://i.imgur.com/VhQ3qRk.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Anime',
+    title: 'Madoka Magica > OST',
+    url: 'https://www.youtube.com/watch?v=bzlHPlq8hIs&list=PLjuzMNNpQyOrwQnGLE9UHy7JPsv093h9l',
+    imageUrl: 'https://i.imgur.com/AGkU6bG.jpg',
     source: 'youtube',
   },
   {
