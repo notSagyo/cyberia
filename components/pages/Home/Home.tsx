@@ -16,8 +16,6 @@ const Home = () => {
     (async () => {
       // Fetch IP from this app API. If length > 3 (local ip) get the ip info
       const ip = await ipService.fecthClientIp();
-      // XXX:
-      console.log(ip);
       const info = await ipService.getInfoGeoiplookup(ip.length > 3 ? ip : '');
       if (info) {
         ipService.saveInfoToStorage(JSON.stringify(info));
