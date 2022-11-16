@@ -10,16 +10,16 @@ import { galleryURL } from '/utils/urls';
 interface AlbumProps extends React.HTMLAttributes<HTMLDivElement> {
   images: IAlbumImage[];
   albumTitle?: string;
-  photoWidth?: number | string;
+  imageWidth?: number | string;
   // Shell
   shellProps?: ShellProps;
   descriptionProps?: HTMLAttributes<HTMLDivElement>;
   closeable?: boolean;
   maximizeable?: boolean;
   // Inject element at position
-  putElementAtIndex?: {
+  putElementsAtIndex?: {
     element: JSX.Element;
-    position: number;
+    index: number;
     mode: 'override' | 'prepend' | 'append';
   }[];
 }
@@ -28,12 +28,12 @@ interface AlbumProps extends React.HTMLAttributes<HTMLDivElement> {
 const Album = ({
   albumTitle,
   images,
-  photoWidth = 350,
+  imageWidth = 350,
   shellProps = {},
   descriptionProps = {},
   closeable = true,
   maximizeable = false,
-  putElementAtIndex = [],
+  putElementsAtIndex = [],
   ...props
 }: AlbumProps) => {
   let albumImages: JSX.Element[] = [];
@@ -45,13 +45,13 @@ const Album = ({
         image={image}
         closeable={closeable}
         maximizeable={maximizeable}
-        photoWidth={photoWidth}
+        photoWidth={imageWidth}
         descriptionProps={descriptionProps}
         shellProps={shellProps}
       />
     );
 
-    const elemAtIndex = putElementAtIndex.find((elem) => elem.position === i);
+    const elemAtIndex = putElementsAtIndex.find((elem) => elem.index === i);
     if (elemAtIndex) {
       pictureElement = (
         <Fragment key={i}>
@@ -70,7 +70,7 @@ const Album = ({
   return (
     <>
       <LinkHeading href={galleryURL} className={styles.title} goBack>
-        {albumTitle || 'IMAGE VISUALIZER'}
+        {albumTitle || 'IMAGE_VISUALIZER'}
       </LinkHeading>
       <div {...props} className={cn(styles.body, props?.className)}>
         {albumImages}

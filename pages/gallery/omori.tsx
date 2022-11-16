@@ -97,9 +97,9 @@ const OmoriPage = () => {
         className={styles.catAlbum}
         shellProps={{ className: styles.imageShell }}
         descriptionProps={{ className: styles.description }}
-        putElementAtIndex={[
+        putElementsAtIndex={[
           // Override the image at index 1 for the picture with the cat
-          { element: pictureWithCat, mode: 'override', position: 1 },
+          { element: pictureWithCat, mode: 'override', index: 1 },
         ]}
       />
     </Layout>

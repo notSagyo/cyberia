@@ -7,14 +7,14 @@ const Va11hallaPage: NextPage = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <Album
+        albumTitle="/public/img/va-11_hall-a"
         images={albumImages}
-        photoWidth={'100%'}
+        imageWidth={'100%'}
         maximizeable
         shellProps={{
           style: { maxWidth: '48%', marginBottom: 'auto' },
           className: 'bgBlack',
         }}
-        albumTitle="/public/img/visual_experiments"
       />
     </Layout>
   );

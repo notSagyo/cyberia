@@ -29,6 +29,10 @@ const links: Link[] = [
     title: '/pages/gallery/an_omnipresence_in_wired',
   },
   {
+    href: `${galleryURL}/official-guide`,
+    title: '/pages/gallery/official_guide',
+  },
+  {
     href: `${galleryURL}/hector`,
     title: '/pages/gallery/hector',
   },

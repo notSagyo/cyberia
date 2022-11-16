@@ -6,11 +6,11 @@ const VisualExperimentsPage = () => {
   return (
     <Layout title="Gallery" className="bgStars">
       <Album
+        albumTitle="/public/img/visual_experiments"
         images={albumImages}
-        photoWidth={'100%'}
+        imageWidth={'100%'}
         maximizeable
         shellProps={{ style: { maxWidth: '48%', marginBottom: 'auto' } }}
-        albumTitle="/public/img/visual_experiments"
       />
     </Layout>
   );
