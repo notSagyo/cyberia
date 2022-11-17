@@ -33,6 +33,7 @@ export interface CustomPlayerProps extends ReactPlayerProps {
   onSeekEnd?: Function;
 }
 
+// BUG: Keeps duration in localstorage when changing songs paused
 /** Always import this component with next/dynamic */
 const CustomPlayer = ({
   song,
@@ -66,15 +67,13 @@ const CustomPlayer = ({
       setPlayedOnce(true);
       setPlaying(true);
       audio.remove();
-    }, 500);
+    }, 250);
     return () => clearInterval(checkPlaying);
   }, [autoplay]);
 
   // Listen to playing prop changes
   useEffect(() => {
-    if (props.playing == null) return;
-    if (autoplay && playedOnce) setPlaying(props.playing);
-    if (!autoplay) setPlaying(props.playing);
+    if (props.playing != null) setPlaying(props.playing);
   }, [autoplay, playedOnce, props.playing]);
 
   // Event handlers
