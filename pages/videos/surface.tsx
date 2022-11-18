@@ -4,7 +4,15 @@ import LinkHeading from '/components/LinkHeading/LinkHeading';
 import YtVideo from '/components/YtVideo/YtVideo';
 import { surfaceURL, videosURL } from '/utils/urls';
 
-const videosId = ['zW_Z6f4u5pw', 'aj13Y_H6lDo', 'wpTJDkqYIDc', '9vz06QO3UkQ'];
+const videos: { id: string; title?: string; playlist?: boolean }[] = [
+  { id: 'zW_Z6f4u5pw' },
+  { id: 'aj13Y_H6lDo' },
+  { id: '9vz06QO3UkQ' },
+  { id: 'wpTJDkqYIDc' },
+  { id: 'PLjuzMNNpQyOo-Wye9kSB4G2YW64lR7uzV', playlist: true },
+  { id: '6VMRAGxjOoA', title: '6VMRAGxjOoA.avi' },
+  { id: '-7o5-xcvCBc' },
+];
 
 const surfacePage: NextPage = () => {
   return (
@@ -12,12 +20,16 @@ const surfacePage: NextPage = () => {
       <LinkHeading href={videosURL} goBack>
         {surfaceURL}
       </LinkHeading>
-      {videosId.map((url, i) => (
+      {videos.map((vid, i) => (
         <YtVideo
-          urlId={url}
-          title={url + '.mp4'}
+          urlId={vid.id}
+          title={vid.title || vid.id + '.mp4'}
+          playlist={vid.playlist}
           key={i}
-          shellProps={{ style: { marginTop: 32 } }}
+          shellProps={{
+            style: { marginTop: 32 },
+            shellTitleProps: { style: { maxWidth: 560 } },
+          }}
         />
       ))}
     </Layout>

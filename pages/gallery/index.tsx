@@ -46,6 +46,7 @@ const links: Link[] = [
   },
 ];
 
+// TODO: Add all lain artwork magazines
 const GalleryPage = () => {
   return (
     <Layout title="Gallery" className="bgStars">
