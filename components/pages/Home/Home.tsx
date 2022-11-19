@@ -33,6 +33,7 @@ const Home = () => {
         {/* MAIN SIDE */}
         <main>
           <UnderConstruction />
+          <img src="/img/open-24h.gif" width={200} alt="open 24 hours" />
           <section className={styles.ipSection}>
             <p>Welcome {ipInfo?.ip || 'ANONYMOUS_USER'}</p>
             <p>

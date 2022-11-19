@@ -15,7 +15,7 @@ const Document = () => {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body className="crt">
         <Main />
         <NextScript />
       </body>

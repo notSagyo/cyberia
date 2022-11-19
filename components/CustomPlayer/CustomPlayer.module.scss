@@ -6,7 +6,11 @@ $color-control: white;
 $color-slider: darkgray;
 $track-height: 5px;
 
-.shellBody { padding: $spacing-xs; }
+.shellBody {
+  padding: $spacing-xs;
+  min-width: 22.5rem;
+}
+
 .playerWrapper { overflow: hidden; }
 
 .controls {

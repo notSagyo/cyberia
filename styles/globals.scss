@@ -18,7 +18,7 @@ body {
 }
 
 // CRT Effect: http://aleclownes.com/2017/02/01/crt-display.html
-body::after {
+.crt::after {
   content: ' ';
   display: block;
   position: fixed;
