@@ -1,6 +1,5 @@
 import s from './Bday.module.scss';
-import DraggableShell from '/components/Shell/DraggableShell';
-import { ShellProps } from '/components/Shell/Shell';
+import Shell, { ShellProps } from '/components/Shell/Shell';
 
 interface HotaruWindowProps extends ShellProps {
   /* props */
@@ -9,7 +8,7 @@ interface HotaruWindowProps extends ShellProps {
 const HotaruWindow = ({ ...props }: HotaruWindowProps) => {
   return (
     <div className={s.hotaruWindowWrapper}>
-      <DraggableShell
+      <Shell
         noPadding
         minimizeable={false}
         className={s.hotaruWindow}
@@ -20,7 +19,7 @@ const HotaruWindow = ({ ...props }: HotaruWindowProps) => {
           src="https://i.imgur.com/jFQrYt6.jpg"
           alt="sailor saturn with and cake"
         />
-      </DraggableShell>
+      </Shell>
     </div>
   );
 };

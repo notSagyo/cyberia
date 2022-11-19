@@ -3,3 +3,14 @@
 .ipSection {
   margin: $spacing-sm 0;
 }
+
+.crtInputWrapper {
+  align-items: center;
+  gap: $spacing-sm;
+  margin: $spacing-md 0;
+
+  label {
+    margin: 0 $spacing-sm;
+    user-select: none;
+  }
+}

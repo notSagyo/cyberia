@@ -32,7 +32,7 @@ const Layout = ({
       setCurrentDate(getDateString());
       setCurrentTime(getTimeString());
     };
-    setTimeout(updateDate, 5000);
+    setTimeout(updateDate, 2000);
     const updateDateInterval = setInterval(updateDate, 1 * 60 * 1000);
     return () => clearInterval(updateDateInterval);
   }, []);

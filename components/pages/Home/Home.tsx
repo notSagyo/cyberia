@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Banner from './Banner';
 import styles from './Home.module.scss';
 import HomeLinkList from './HomeLinkList';
@@ -6,15 +6,18 @@ import SpookyAd from './SpookyAd';
 import UnderConstruction from './UnderConstruction';
 import Layout from '/components/Layout/Layout';
 import Hr from '/components/utils/Hr/Hr';
+import { getStoredCrt, useCrtContext } from '/context/CrtContext';
 import ipService from '/services/ip-service';
 import { GeoiplookupRes } from '/types/ip';
 
 const Home = () => {
   const [ipInfo, setIpInfo] = useState<GeoiplookupRes>();
+  const crtInputRef = useRef<HTMLInputElement>(null);
+  const { setCrtEnabled } = useCrtContext();
 
   useEffect(() => {
+    // Fetch IP from this app's API. If length > 3 (local ip) get the ip info
     (async () => {
-      // Fetch IP from this app's API. If length > 3 (local ip) get the ip info
       const ip = await ipService.fecthClientIp();
       const info = await ipService.getInfoGeoiplookup(ip.length > 3 ? ip : '');
       if (info) {
@@ -22,6 +25,7 @@ const Home = () => {
         setIpInfo(info);
       }
     })();
+    crtInputRef.current && (crtInputRef.current.checked = getStoredCrt());
   }, []);
 
   return (
@@ -43,6 +47,15 @@ const Home = () => {
             </p>
           </section>
           <HomeLinkList />
+          <div className={styles.crtInputWrapper}>
+            <input
+              type="checkbox"
+              id="crt"
+              ref={crtInputRef}
+              onChange={() => setCrtEnabled(crtInputRef?.current?.checked)}
+            />
+            <label htmlFor="crt">Enable CRT effect</label>
+          </div>
         </main>
 
         {/* RIGHT SIDE */}
