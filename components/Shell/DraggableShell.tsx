@@ -38,7 +38,7 @@ const DraggableShell = ({ throttling = 15, ...props }: DraggableShellProps) => {
     <Shell
       {...props}
       ref={shellRef}
-      shellTitleProps={{
+      titleProps={{
         draggable: true,
         onDragStart: handleDragStart,
         onDrag: handleDrag,

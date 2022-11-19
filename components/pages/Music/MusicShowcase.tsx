@@ -26,18 +26,23 @@ const MusicShowcase = ({
     <Shell
       shellTitle={showcaseTitle}
       minimizeable={false}
+      noPadding
       {...shellProps}
       className={cn(s.showcaseShell, shellProps?.className)}
-      shellTitleProps={{ className: s.showcaseShellTitle }}
+      titleProps={{
+        ...shellProps.titleProps,
+        className: cn(s.showcaseShellTitle, shellProps?.titleProps?.className),
+      }}
       bodyProps={{
         ...shellProps.bodyProps,
         className: cn(s.showcaseShellBody, shellProps?.bodyProps?.className),
       }}
     >
-      <Anchor>
+      <Anchor className={s.showcaseImageWrapper}>
         <Image
           alt={showcaseTitle}
-          fill={true}
+          fill
+          sizes={'auto'}
           className={s.showcaseImage}
           {...props}
           src={

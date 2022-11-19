@@ -28,7 +28,7 @@ const surfacePage: NextPage = () => {
           key={i}
           shellProps={{
             style: { marginTop: 32 },
-            shellTitleProps: { style: { maxWidth: 560 } },
+            titleProps: { style: { maxWidth: 560 } },
           }}
         />
       ))}

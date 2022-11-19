@@ -11,7 +11,7 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   mainShell?: boolean;
   // Shell title
   shellTitle?: React.ReactNode;
-  shellTitleProps?: ShellTitleProps;
+  titleProps?: ShellTitleProps;
   noHr?: boolean;
   closeable?: boolean;
   maximizeable?: boolean;
@@ -45,7 +45,7 @@ const Shell = ({
   navContent,
   onBodyClickAction = null,
   bodyProps = {},
-  shellTitleProps = {},
+  titleProps = {},
   noPadding = false,
   ...props
 }: ShellProps) => {
@@ -92,7 +92,7 @@ const Shell = ({
         onMinimize={minimizeable || onMinimize ? handleMinimize : undefined}
         maximized={maximized}
         shellTitle={shellTitle}
-        {...shellTitleProps}
+        {...titleProps}
       />
 
       {/* NAVBAR */}

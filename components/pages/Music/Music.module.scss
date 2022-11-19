@@ -21,6 +21,12 @@ $gap-size: $spacing-md;
   max-width: $shell-size;
 }
 
+.showcaseImageWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
 .showcaseImage {
   object-fit: cover;
 }
