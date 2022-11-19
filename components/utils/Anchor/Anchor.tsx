@@ -6,11 +6,19 @@ import styles from './Anchor.module.scss';
 export interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   noDecoration?: boolean;
   noSound?: boolean;
+  noColor?: boolean;
 }
 
 const Anchor = React.forwardRef(
   (
-    { children, noDecoration = false, noSound, href, ...props }: AnchorProps,
+    {
+      children,
+      noDecoration = false,
+      noColor = false,
+      noSound,
+      href,
+      ...props
+    }: AnchorProps,
     ref: React.Ref<HTMLAnchorElement>
   ) => {
     const [hoverAudio, setHoverAudio] = useState<HTMLAudioElement | null>(null);
@@ -31,8 +39,12 @@ const Anchor = React.forwardRef(
       ...props,
       ref: ref,
       onMouseEnter: noSound ? undefined : handleMouseOver,
-      className: cn(styles.anchor, props.className),
-      style: { ...(noDecoration && { textDecoration: 'none' }) },
+      className: cn(
+        styles.anchor,
+        props.className,
+        noDecoration && styles.noDecoration,
+        noColor && styles.noColor
+      ),
     };
 
     return (

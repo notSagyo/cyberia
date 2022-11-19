@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import s from './Bday.module.scss';
+import BdayHeader from './BdayHeader';
 import HotaruWindow from './HotaruWindow';
 import { cleanup, initBday } from '/components/pages/Bday/BdayHelper';
 import Img from '/components/utils/Img/Img';
@@ -17,21 +18,10 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div {...props} className={s.bdayContainer}>
       {showHotaru && <HotaruWindow onClose={() => setShowHotaru(false)} />}
-      <div className={s.goodSide}>
+      {/* GOOD SIDE */}
+      <section className={s.goodSide}>
         {/* HEADER */}
-        <div className={cn('marquee', s.header)}>
-          <div>
-            <div
-              className={cn(s.marqueeContent, 'pointer')}
-              onClick={() => setShowHotaru(true)}
-            >
-              <Img src="/img/sailor-saturn.gif" alt="saturn" height={48} />
-              <u>☆ HAPPY BIRTHDAY / 誕生日おめでとう～！☆</u>
-              <Img src="/img/sailor-saturn.gif" alt="saturn" height={48} />
-              <span>{'<-- click me'}</span>
-            </div>
-          </div>
-        </div>
+        <BdayHeader setShowHotaru={setShowHotaru} />
         <div className={s.goodSideBody}>
           {/* LEFT SIDE */}
           <aside className={s.goodSideLeft}>
@@ -59,10 +49,11 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
             <Img src="/img/chibiusa-cloud.gif" alt="chibiusa cloud" />
           </aside>
         </div>
-      </div>
-      <div className={cn('bgMoon', s.badSide)}>
+      </section>
+      {/* BAD SIDE */}
+      <section className={cn('bgMoon', s.badSide)}>
         <canvas ref={canvas} />
-      </div>
+      </section>
     </div>
   );
 };

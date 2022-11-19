@@ -4,4 +4,7 @@
 .anchor {
   @extend c, .pointer !optional;
   width: fit-content;
+
+  &.noDecoration, &.noDecoration:hover { text-decoration: none; }
+  &.noColor { color: inherit; }
 }
