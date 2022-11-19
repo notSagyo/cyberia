@@ -6,7 +6,7 @@ import Album from '/components/Album/Album';
 import AlbumPicture from '/components/Album/AlbumPicture';
 import Layout from '/components/Layout/Layout';
 import albumImages from '/data/omori-album-images-1';
-import { omoriSong } from '/data/songs';
+import { psychWardSong } from '/data/songs';
 import styles from '/styles/pages/omori.module.scss';
 
 const didPlaySongKey = 'did-play-omori-song';
@@ -20,7 +20,7 @@ const OmoriPage = () => {
   useEffect(() => {
     // Change songs only first time visting
     if (localStorage.getItem(didPlaySongKey) !== 'true') {
-      setSong(omoriSong);
+      setSong(psychWardSong);
       setPlaying(true);
       localStorage.setItem(didPlaySongKey, 'true');
     }

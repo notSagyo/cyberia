@@ -272,4 +272,10 @@ export const omoriSong: ISong = {
   source: 'youtube',
 };
 
+export const psychWardSong: ISong = {
+  title: 'End Credits',
+  url: 'https://youtu.be/KXMtcsoLb8g',
+  source: 'youtube',
+};
+
 export default songs;
