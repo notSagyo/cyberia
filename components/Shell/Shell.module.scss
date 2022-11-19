@@ -1,4 +1,5 @@
 @use '/styles/abstracts' as *;
+@use 'sass:math';
 
 .shell {
   position: relative;
@@ -90,9 +91,17 @@
 
 .controls {
   display: flex;
+  height: 100%;
   user-select: none;
-  align-items: center;
-  gap: $spacing-md;
+
+  & > * {
+    display: flex;
+    align-items: center;
+    padding: 0 $spacing-sm;
+
+    &:first-child { padding-left: 0; }
+    &:last-child { padding-right: 0; }
+  }
 }
 
 // WITHOUT HR

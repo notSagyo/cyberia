@@ -29,13 +29,22 @@ const ShellTitle = ({
       <div className={styles.titleText}>{shellTitle}</div>
       {!noHr && <div className={styles.hr}></div>}
       <div className={styles.controls}>
-        <span onClick={onMinimize} className={onMinimize ? 'pointer' : ''}>
+        {/* MINIMIZE */}
+        <span onClick={onMinimize} className={cn(onMinimize && 'pointer')}>
           -
         </span>
-        <span onClick={onMaximize} className={onMaximize ? 'pointer' : ''}>
-          {maximized ? <span style={{ fontSize: '1rem' }}>❐</span> : '□'}
+        {/* MAXIMIZE */}
+        <span
+          onClick={onMaximize}
+          className={cn(onMaximize && 'pointer')}
+          style={
+            maximized ? { fontSize: '1rem', transform: 'translateY(7.5%)' } : {}
+          }
+        >
+          {maximized ? '❐' : '□'}
         </span>
-        <span onClick={onClose} className={onClose ? 'pointer' : ''}>
+        {/* CLOSE */}
+        <span onClick={onClose} className={cn(onClose && 'pointer')}>
           ⨯
         </span>
       </div>
