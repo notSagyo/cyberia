@@ -24,7 +24,6 @@ interface AlbumProps extends React.HTMLAttributes<HTMLDivElement> {
   }[];
 }
 
-// FIXME: Fix unique key on inserted element
 const Album = ({
   albumTitle,
   images,
@@ -54,7 +53,7 @@ const Album = ({
     const elemAtIndex = putElementsAtIndex.find((elem) => elem.index === i);
     if (elemAtIndex) {
       pictureElement = (
-        <Fragment key={i}>
+        <Fragment key={elemAtIndex.element.key}>
           {elemAtIndex.mode === 'prepend' && elemAtIndex.element}
           {elemAtIndex.mode === 'override'
             ? elemAtIndex.element

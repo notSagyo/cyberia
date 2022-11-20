@@ -25,9 +25,13 @@ const ShellTitle = ({
 }: ShellTitleProps) => {
   return (
     <div {...props} className={cn(styles.title, props?.className)}>
+      {/* LEFT HR ON MAIN SHELL */}
       {mainShell && <div className={styles.hr}></div>}
+      {/* TITLE TEXT */}
       <div className={styles.titleText}>{shellTitle}</div>
+      {/* HR */}
       {!noHr && <div className={styles.hr}></div>}
+      {/* CONTROLS */}
       <div className={styles.controls}>
         {/* MINIMIZE */}
         <span onClick={onMinimize} className={cn(onMinimize && 'pointer')}>

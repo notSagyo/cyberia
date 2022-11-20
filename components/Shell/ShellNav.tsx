@@ -1,14 +1,14 @@
 import styles from './Shell.module.scss';
 
-interface ShellHeaderProps {
+interface ShellNavProps {
   navItems?: React.ReactNode;
   navContent?: React.ReactNode;
 }
 
-const ShellNav = ({ navItems, navContent }: ShellHeaderProps) => {
+const ShellNav = ({ navItems, navContent }: ShellNavProps) => {
   return (
     <>
-      <nav className={styles.header}>
+      <nav className={styles.nav}>
         {navItems && <ul>{navItems}</ul>}
         {navContent && <>{navContent}</>}
       </nav>

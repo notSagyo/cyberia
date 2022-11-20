@@ -4,11 +4,11 @@ body {
   line-height: 1;
   letter-spacing: $font-spacing;
   font-family: $font-stack;
-  color: $foreground-color;
+  color: $foreground;
 }
 
 a {
-  color: $terciary-color;
+  color: $terciary;
   &:hover { text-decoration: underline; }
 }
 

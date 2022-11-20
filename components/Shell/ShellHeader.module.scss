@@ -1,0 +1,92 @@
+@use '/styles/abstracts' as *;
+
+// // FIXME: Fix flashing links
+.header {
+  border-bottom: solid $shell-border-width $shell-border-color;
+}
+
+.title, .nav {
+  gap: $spacing-lg;
+  height: $shell-nav-height;
+
+  display: flex;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: $fs-lg;
+  color: $shell-primary;
+  background-color: $shell-secondary;
+
+  a { color: $shell-terciary; }
+}
+
+.title {
+  @include px($spacing-md);
+
+  .titleText {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.nav {
+  @include px($spacing-lg);
+
+  ul {
+    display: flex;
+    gap: $spacing-lg;
+    height: 100%;
+  }
+
+  li {
+    position: relative;
+    height: 100%;
+
+    a {
+      display: inline-block;
+      height: 100%;
+
+      &:hover { text-decoration: none; }
+    }
+
+    &:hover::after, &:focus::after {
+      content: '♦';
+      position: absolute;
+      left: -14px;
+
+      animation: item-hover-after 0.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes item-hover-after {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(180deg); }
+}
+
+.controls {
+  display: flex;
+  height: 100%;
+  user-select: none;
+
+  & > * {
+    display: flex;
+    align-items: center;
+    padding: 0 $spacing-sm;
+
+    &:first-child { padding-left: 0; }
+    &:last-child { padding-right: 0; }
+  }
+}
+
+// HR
+.hr {
+  flex-grow: 1;
+  border-bottom: solid 2px $shell-primary;
+}
+
+.noHr {
+  .title { gap: 0; }
+  .controls { margin-left: auto; }
+}

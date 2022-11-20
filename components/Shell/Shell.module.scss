@@ -1,4 +1,5 @@
 @use '/styles/abstracts' as *;
+@use 'ShellHeader.module.scss';
 @use 'sass:math';
 
 .shell {
@@ -7,62 +8,7 @@
   flex-direction: column;
   width: fit-content;
 
-  border: solid $shell-border-width $gray;
-}
-
-.title, .header {
-  gap: $spacing-lg;
-  height: $shell-header-height;
-
-  display: flex;
-  align-items: center;
-
-  font-weight: bold;
-  font-size: $fs-lg;
-  color: $black;
-  background-color: $gray;
-
-  a { color: $black; }
-}
-
-.title {
-  @include px($spacing-md);
-
-  .titleText {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-}
-
-.header {
-  @include px($spacing-lg);
-
-  ul {
-    display: flex;
-    gap: $spacing-lg;
-    height: 100%;
-  }
-
-  li {
-    position: relative;
-    height: 100%;
-
-    a {
-      display: inline-block;
-      height: 100%;
-
-      &:hover { text-decoration: none; }
-    }
-
-    &:hover::after, &:focus::after {
-      content: '♦';
-      position: absolute;
-      left: -14px;
-
-      animation: item-hover-after 0.5s ease-in-out infinite;
-    }
-  }
+  border: solid $shell-border-width $shell-border-color;
 }
 
 .body {
@@ -75,7 +21,6 @@
   padding: $spacing-sm;
 }
 
-// MAIN SHELL
 .mainShell {
   height: 100%;
   width: 100%;
@@ -83,43 +28,10 @@
   >.body { height: 100%; }
 }
 
-// OTHER
-.hr {
-  flex-grow: 1;
-  border: solid 1px $black;
-}
-
-.controls {
-  display: flex;
-  height: 100%;
-  user-select: none;
-
-  & > * {
-    display: flex;
-    align-items: center;
-    padding: 0 $spacing-sm;
-
-    &:first-child { padding-left: 0; }
-    &:last-child { padding-right: 0; }
-  }
-}
-
-// WITHOUT HR
-.noHr {
-  .title { gap: 0; }
-  .controls { margin-left: auto; }
-}
-
-// MAXIMIZED
 .maximized {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-}
-
-@keyframes item-hover-after {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(180deg); }
 }

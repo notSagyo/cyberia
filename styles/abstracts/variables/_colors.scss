@@ -9,6 +9,18 @@ $black: black;
 $white: white;
 $yellow: yellow;
 
+$primary: $green;
+$secondary: $black;
+$terciary: $blue;
+
+$background: $secondary;
+$foreground: $primary;
+
+$shell-primary: $black;
+$shell-secondary: $gray;
+$shell-terciary: $black;
+$shell-border-color: $gray;
+
 $colors: (
   'red': $red,
   'green': $green,
@@ -19,5 +31,8 @@ $colors: (
   'gray': $gray,
   'black': $black,
   'white': $white,
-  'yellow': $yellow
+  'yellow': $yellow,
+  'primary': $primary,
+  'secondary': $secondary,
+  'terciary': $terciary
 );

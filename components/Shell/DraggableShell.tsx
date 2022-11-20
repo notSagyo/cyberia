@@ -6,6 +6,7 @@ interface DraggableShellProps extends ShellProps {
   throttling?: number;
 }
 
+// FIXME: Update to work with new shell (direct parent is no longer shell)
 const DraggableShell = ({ throttling = 15, ...props }: DraggableShellProps) => {
   const x = useRef(0);
   const y = useRef(0);

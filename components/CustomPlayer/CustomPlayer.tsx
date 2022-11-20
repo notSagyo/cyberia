@@ -33,7 +33,7 @@ export interface CustomPlayerProps extends ReactPlayerProps {
   onSeekEnd?: Function;
 }
 
-// BUG: Keeps duration in localstorage when changing songs paused
+// ?BUG: Keeps duration in localstorage when changing songs paused
 /** Always import this component with next/dynamic */
 const CustomPlayer = ({
   song,

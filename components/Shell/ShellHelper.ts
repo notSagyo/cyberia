@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-interface UseWindowControlsOptions {
+interface UseShellControlsOptions {
   shellRef?: React.RefObject<HTMLDivElement>;
   onClose?: (closed: boolean) => void;
   onMaximize?: (maximized: boolean) => void;
   onMinimize?: (minimized: boolean) => void;
 }
 
-// "value" is used to force a specific state value instead of negation
-export const useShellControls = (options?: UseWindowControlsOptions) => {
+// "value" is used to force a specific state instead of negation
+export const useShellControls = (options?: UseShellControlsOptions) => {
   const [closed, setClosed] = useState(false);
   const [maximized, setMaximized] = useState(false);
   const [minimized, setMinimized] = useState(false);

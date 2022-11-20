@@ -2,40 +2,22 @@
 @use 'typography' as *;
 @use '../functions' as f;
 
-// Custom ====================================================================//
+// Other =====================================================================//
+// Shell
+$shell-nav-height: 1.93rem; // Magic number... kinda
+$shell-border-width: 2px;
+
 $app-width: 1240px;
 $app-close-duration: 2s;
 
+$custom-player-min-width: 21rem;
+
+// Spacing ===================================================================//
 $spacing-xs: 0.25rem;
 $spacing-sm: 0.5rem;
 $spacing-md: 1rem;
 $spacing-lg: 2rem;
 $spacing-xl: 4rem;
-
-// Shell
-$shell-header-height: 2rem;
-$shell-border-width: 2px;
-
-$custom-player-min-width: 21rem;
-
-// Colors ====================================================================//
-$primary-color: black; // Good contrast against secondary
-$secondary-color: yellow; // Good contrast against primary
-$terciary-color: blue; // Accents like links, etc
-
-$background-color: colors.$black; // Page's bg, ie. the <body> tag
-$foreground-color: colors.$green; // Text, svg, etc.
-
-// Shortforms
-$primary: $primary-color;
-$secondary: $secondary-color;
-$terciary: $terciary-color;
-
-$background: $background-color;
-$foreground: $foreground-color;
-
-$bg: $background-color;
-$fg: $foreground-color;
 
 // Breakpoints ===============================================================//
 $sm: f.em(576);

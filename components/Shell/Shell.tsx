@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { useRef } from 'react';
 import styles from './Shell.module.scss';
+import ShellBody, { ShellBodyProps } from './ShellBody';
 import { useShellControls } from './ShellHelper';
 import ShellNav from './ShellNav';
 import ShellTitle, { ShellTitleProps } from './ShellTitle';
@@ -9,6 +10,7 @@ export const maxShellWidth = 1240;
 
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   mainShell?: boolean;
+  headerProps?: React.HTMLProps<HTMLDivElement>;
   // Shell title
   shellTitle?: React.ReactNode;
   titleProps?: ShellTitleProps;
@@ -23,13 +25,11 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   navItems?: React.ReactNode;
   navContent?: React.ReactNode;
   // Shell body
-  onBodyClickAction?: 'close' | 'maximize' | 'minimize' | null;
-  bodyProps?: React.HTMLProps<HTMLDivElement>;
+  onBodyClickAction?: 'close' | 'maximize' | 'minimize';
+  bodyProps?: ShellBodyProps;
   noPadding?: boolean;
 }
 
-// TODO: Move body to new component
-// TODO: Move classnames out of return
 const Shell = ({
   children,
   shellTitle,
@@ -43,7 +43,7 @@ const Shell = ({
   onMaximize,
   navItems,
   navContent,
-  onBodyClickAction = null,
+  onBodyClickAction,
   bodyProps = {},
   titleProps = {},
   noPadding = false,
@@ -54,70 +54,62 @@ const Shell = ({
   const { maximized, minimized, handleClose, handleMaximize, handleMinimize } =
     useShellControls({ onClose, onMaximize, onMinimize, shellRef });
 
-  const onBodyClick: Function | undefined = (() => {
-    let action;
+  const onBodyClick = (() => {
+    let action: Function | undefined;
     if (onBodyClickAction === 'close') action = handleClose;
     if (onBodyClickAction === 'maximize') action = handleMaximize;
     if (onBodyClickAction === 'minimize') action = handleMinimize;
     return action;
   })();
 
-  return (
-    // SHELL
-    <div
-      {...props}
-      ref={shellRef}
-      className={cn(styles.shell, props.className, {
-        // maximize only if there's not custom function for maximizing
-        [styles.maximized]: !onMaximize && maximized,
-        [styles.mainShell]: mainShell,
-        [styles.noHr]: noHr,
-      })}
-      style={{
-        ...props.style,
-        ...(!onMaximize &&
-          maximized && {
-            maxWidth: maxShellWidth,
-            maxHeight: '100vh',
-            overflow: 'auto',
-          }),
-      }}
-    >
-      {/* TITLE BAR */}
-      <ShellTitle
-        mainShell={mainShell}
-        noHr={noHr}
-        onClose={closeable || onClose ? handleClose : undefined}
-        onMaximize={maximizeable || onMaximize ? handleMaximize : undefined}
-        onMinimize={minimizeable || onMinimize ? handleMinimize : undefined}
-        maximized={maximized}
-        shellTitle={shellTitle}
-        {...titleProps}
-      />
+  const shellClasses = cn(styles.shell, props.className, {
+    // maximize only if there's not a custom function for maximizing
+    [styles.maximized]: !onMaximize && maximized,
+    [styles.mainShell]: mainShell,
+    [styles.noHr]: noHr,
+  });
 
-      {/* NAVBAR */}
-      {(navItems || navContent) && (
-        <ShellNav navContent={navContent} navItems={navItems} />
-      )}
+  const shellStyle: React.CSSProperties = {
+    ...props.style,
+    ...(!onMaximize &&
+      maximized && {
+        maxWidth: maxShellWidth,
+        maxHeight: '100vh',
+        overflow: 'auto',
+      }),
+  };
+
+  return (
+    <div {...props} ref={shellRef} className={shellClasses} style={shellStyle}>
+      {/* HEADER */}
+      <div className={styles.header}>
+        <ShellTitle
+          mainShell={mainShell}
+          noHr={noHr}
+          onClose={closeable || onClose ? handleClose : undefined}
+          onMaximize={maximizeable || onMaximize ? handleMaximize : undefined}
+          onMinimize={minimizeable || onMinimize ? handleMinimize : undefined}
+          maximized={maximized}
+          shellTitle={shellTitle}
+          {...titleProps}
+        />
+        {(navItems || navContent) && (
+          <ShellNav navContent={navContent} navItems={navItems} />
+        )}
+      </div>
 
       {/* BODY */}
-      <div
-        {...bodyProps}
+      <ShellBody
         ref={bodyRef}
-        onClick={
-          (onBodyClick || bodyProps.onClick) &&
-          ((e) =>
-            (bodyProps.onClick && bodyProps.onClick(e)) ||
-            (onBodyClick && onBodyClick()))
-        }
-        // minimize only if there's not custom function for minimizing
-        className={cn(styles.body, bodyProps?.className, {
-          minimized: !onMinimize && minimized,
-        })}
-        style={{ ...(noPadding && { padding: 0 }), ...bodyProps?.style }}
+        onClick={bodyProps.onClick}
+        onBodyClick={onBodyClick}
+        onMinimize={onMinimize}
+        noPadding={noPadding}
+        minimized={minimized}
+        {...bodyProps}
       >
         {children}
-      </div>
+      </ShellBody>
     </div>
   );
 };
