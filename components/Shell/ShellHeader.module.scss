@@ -54,15 +54,16 @@
       content: '♦';
       position: absolute;
       left: -14px;
+      z-index: 1;
 
-      animation: item-hover-after 0.5s ease-in-out infinite;
+      animation: item-hover-after 1s linear infinite;
     }
   }
 }
 
 @keyframes item-hover-after {
   from { transform: rotateY(0deg); }
-  to { transform: rotateY(180deg); }
+  to { transform: rotateY(360deg); }
 }
 
 .controls {
