@@ -49,3 +49,9 @@ export const useShellControls = (options?: UseShellControlsOptions) => {
     handleMinimize,
   };
 };
+
+export const centerDraggableShell = (shell: HTMLElement) => {
+  const clientRect = shell.getBoundingClientRect();
+  shell.style.top = `calc(50% - ${clientRect.height / 2}px)`;
+  shell.style.left = `calc(50% - ${clientRect.width / 2}px)`;
+};

@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import Shell from '../Shell/Shell';
+import DraggableShell from '../Shell/DraggableShell';
 import s from './Bartender.module.scss';
 import {
   ingredientNames,
@@ -46,7 +46,12 @@ const Bartender = () => {
   useEffect(() => setMoney(Number(localStorage.getItem('money')) || 0), []);
 
   return (
-    <Shell className="mAuto" shellTitle="BARTENDER.EXE" noPadding>
+    <DraggableShell
+      className={s.shell}
+      shellTitle="BARTENDER.EXE"
+      noPadding
+      centered
+    >
       <div className={s.board}>
         {/* $$$ MULA */}
         <div id="moneyText" className={s.moneyText} data-value={0}>
@@ -147,7 +152,7 @@ const Bartender = () => {
           alt="result drink"
         />
       </div>
-    </Shell>
+    </DraggableShell>
   );
 };
 

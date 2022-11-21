@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import styles from './Shell.module.scss';
 import ShellBody, { ShellBodyProps } from './ShellBody';
 import { useShellControls } from './ShellHelper';
@@ -11,6 +11,7 @@ export const maxShellWidth = 1240;
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   mainShell?: boolean;
   headerProps?: React.HTMLProps<HTMLDivElement>;
+  shellRef?: React.RefObject<HTMLDivElement>;
   // Shell title
   shellTitle?: React.ReactNode;
   titleProps?: ShellTitleProps;
@@ -33,6 +34,7 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
 const Shell = ({
   children,
   shellTitle,
+  shellRef,
   mainShell = false,
   noHr = false,
   closeable = true,
@@ -49,7 +51,7 @@ const Shell = ({
   noPadding = false,
   ...props
 }: ShellProps) => {
-  const shellRef = useRef<HTMLDivElement>(null);
+  shellRef = shellRef ?? useRef(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const { maximized, minimized, handleClose, handleMaximize, handleMinimize } =
     useShellControls({ onClose, onMaximize, onMinimize, shellRef });

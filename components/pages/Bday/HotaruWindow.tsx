@@ -1,25 +1,27 @@
+import Image from 'next/image';
 import s from './Bday.module.scss';
-import Shell, { ShellProps } from '/components/Shell/Shell';
+import DraggableShell, {
+  DraggableShellProps,
+} from '/components/Shell/DraggableShell';
 
-interface HotaruWindowProps extends ShellProps {
-  /* props */
-}
-
-const HotaruWindow = ({ ...props }: HotaruWindowProps) => {
+const HotaruWindow = ({ ...props }: DraggableShellProps) => {
   return (
     <div className={s.hotaruWindowWrapper}>
-      <Shell
+      <DraggableShell
         noPadding
+        centered
         minimizeable={false}
         className={s.hotaruWindow}
         shellTitle="hotaru_cake.jpg"
         {...props}
       >
-        <img
+        <Image
+          width={540}
+          height={410}
           src="https://i.imgur.com/jFQrYt6.jpg"
           alt="sailor saturn with and cake"
         />
-      </Shell>
+      </DraggableShell>
     </div>
   );
 };

@@ -221,7 +221,9 @@ $color-karmotrine: #c9f1f1;
   font-size: $fs-xl;
 }
 
-// Container =================================================================//
+// Containers ================================================================//
+.shell { height: fit-content; }
+
 .container {
   height: 100%;
   background-image: url('https://i.imgur.com/hflIOXj.jpg');
@@ -233,8 +235,8 @@ $color-karmotrine: #c9f1f1;
 .bartenderWrapper {
   display: flex;
   height: 100%;
-  overflow: auto;
-  padding: $spacing-sm;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &::before, &::after {
     content: '';
@@ -273,13 +275,13 @@ $color-karmotrine: #c9f1f1;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -2;
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -2;
 
     width: 100%;
     height: 100%;

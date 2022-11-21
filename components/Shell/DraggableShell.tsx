@@ -1,18 +1,25 @@
 import _ from 'lodash';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Shell, { ShellProps } from './Shell';
+import { centerDraggableShell } from './ShellHelper';
 
-interface DraggableShellProps extends ShellProps {
+export interface DraggableShellProps extends ShellProps {
   throttling?: number;
+  /** Will only be centered on initial render, dynamically loaded content like
+   * images without specified width and height will cause it to offset */
+  centered?: boolean;
 }
 
-// FIXME: Update to work with new shell (direct parent is no longer shell)
-const DraggableShell = ({ throttling = 15, ...props }: DraggableShellProps) => {
+const DraggableShell = ({
+  throttling = 15,
+  centered,
+  ...props
+}: DraggableShellProps) => {
+  const shellRef = useRef<HTMLDivElement>(null);
   const x = useRef(0);
   const y = useRef(0);
   const prevX = useRef(0);
   const prevY = useRef(0);
-  const shellRef = useRef(null);
 
   const handleDragStart = (e: React.DragEvent) => {
     e.dataTransfer.setDragImage(new Image(), 0, 0);
@@ -23,7 +30,8 @@ const DraggableShell = ({ throttling = 15, ...props }: DraggableShellProps) => {
   const handleDrag = useCallback(
     _.throttle((e: React.DragEvent) => {
       e.preventDefault();
-      const shell = (e.target as HTMLElement).parentNode as HTMLElement;
+      const shell = shellRef.current;
+      if (!shell) return;
       x.current = prevX.current - e.clientX;
       y.current = prevY.current - e.clientY;
       prevX.current = e.clientX;
@@ -35,10 +43,14 @@ const DraggableShell = ({ throttling = 15, ...props }: DraggableShellProps) => {
     []
   );
 
+  useEffect(() => {
+    shellRef.current && centerDraggableShell(shellRef.current);
+  }, []);
+
   return (
     <Shell
       {...props}
-      ref={shellRef}
+      shellRef={shellRef}
       titleProps={{
         draggable: true,
         onDragStart: handleDragStart,
