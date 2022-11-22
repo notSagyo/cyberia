@@ -6,6 +6,7 @@ import animes from '/data/animes';
 import { animeURL, videosURL } from '/utils/urls';
 import { toUrlikeString } from '/utils/utils';
 
+// TODO: ability to choose provider
 const AnimePage: NextPage = () => {
   return (
     <Layout>

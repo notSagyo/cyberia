@@ -11,18 +11,6 @@ const animesMap =
       gogoanime: 'serial-experiments-lain',
       zoro: 'serial-experiments-lain-503',
     }],
-    ['Code Geass Lelouch Of The Rebellion', {
-      gogoanime: 'code-geass-lelouch-of-the-rebellion',
-      zoro: 'code-geass-lelouch-of-the-rebellion-41',
-    }],
-    ['Code Geass Lelouch Of The Rebellion R2', {
-      gogoanime: '-code-geass-lelouch-of-the-rebellion-r2',
-      zoro: 'code-geass-lelouch-of-the-rebellion-r2-17',
-    }],
-    ['Cowboy Bebop', {
-      gogoanime: 'cowboy-bebop',
-      zoro: 'cowboy-bebop-27',
-    }],
     ['Ghost In The Shell', {
       gogoanime: 'ghost-in-the-shell',
       zoro: 'ghost-in-the-shell-220',
@@ -31,6 +19,10 @@ const animesMap =
       gogoanime: 'ergo-proxy',
       zoro: 'ergo-proxy-626',
     }],
+    ['Texhnolyze', {
+      gogoanime: 'texhnolyze-',
+      zoro: 'texhnolyze-908',
+    }],
     ['Neon Genesis Evangelion', {
       gogoanime: 'neon-genesis-evangelion-',
       zoro: 'neon-genesis-evangelion-209',
@@ -38,6 +30,18 @@ const animesMap =
     ['Evangelion The End Of Evangelion', {
       gogoanime: 'evangelion-the-end-of-evangelion',
       zoro: 'neon-genesis-evangelion-movie-the-end-of-evangelion-93',
+    }],
+    ['Cowboy Bebop', {
+      gogoanime: 'cowboy-bebop',
+      zoro: 'cowboy-bebop-27',
+    }],
+    ['Code Geass Lelouch Of The Rebellion', {
+      gogoanime: 'code-geass-lelouch-of-the-rebellion',
+      zoro: 'code-geass-lelouch-of-the-rebellion-41',
+    }],
+    ['Code Geass Lelouch Of The Rebellion R2', {
+      gogoanime: '-code-geass-lelouch-of-the-rebellion-r2',
+      zoro: 'code-geass-lelouch-of-the-rebellion-r2-17',
     }],
     ['Perfect Blue', {
       gogoanime: 'perfect-blue',

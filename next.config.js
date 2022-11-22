@@ -2,9 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  images: {
-    domains: ['i.imgur.com', 'uploads.mangadex.org', 'img.youtube.com'],
-  },
+  images: { domains: ['i.imgur.com', 'img.youtube.com'] },
 
   webpack: (config) => {
     config.resolve.fallback = { fs: false };

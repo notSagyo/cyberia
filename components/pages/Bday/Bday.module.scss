@@ -20,22 +20,22 @@
   gap: $spacing-sm;
 }
 
-.goodSideBody {
-  display: flex;
-  height: 100%;
-  flex: 1;
-}
-
 .goodSide {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
   padding: $spacing-md;
 
   background-color: orchid;
   background-image: url('/img/bg-flower.gif');
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
   color: purple;
+}
+
+.goodSideBody {
+  display: flex;
+  flex: 1;
+  height: 100%;
 }
 
 .goodSideCenter {
