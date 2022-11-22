@@ -12,7 +12,6 @@ export interface ShellTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   maximized?: boolean;
 }
 
-// TODO: add min width to hr
 const ShellTitle = ({
   shellTitle,
   mainShell,

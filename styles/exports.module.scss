@@ -1,0 +1,9 @@
+@use '/styles/abstracts' as *;
+
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable block-no-empty */
+/* stylelint-disable property-case */
+:export {
+  appWidth: $app-width;
+}

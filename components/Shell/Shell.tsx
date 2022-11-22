@@ -5,8 +5,7 @@ import ShellBody, { ShellBodyProps } from './ShellBody';
 import { useShellControls } from './ShellHelper';
 import ShellNav from './ShellNav';
 import ShellTitle, { ShellTitleProps } from './ShellTitle';
-
-export const maxShellWidth = 1240;
+import { maxShellWidth } from '/utils/styles-exports';
 
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   mainShell?: boolean;
