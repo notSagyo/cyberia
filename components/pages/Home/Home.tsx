@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Themes, useThemeContext } from '../../../context/ThemeContext';
 import Banner from './Banner';
 import styles from './Home.module.scss';
 import HomeLinkList from './HomeLinkList';
@@ -14,6 +15,7 @@ const Home = () => {
   const [ipInfo, setIpInfo] = useState<GeoiplookupRes>();
   const crtInputRef = useRef<HTMLInputElement>(null);
   const { setCrtEnabled } = useCrtContext();
+  const { setTheme, theme } = useThemeContext();
 
   useEffect(() => {
     // Fetch IP from this app's API. If length > 3 (local ip) get the ip info
@@ -47,7 +49,9 @@ const Home = () => {
             </p>
           </section>
           <HomeLinkList />
-          <div className={styles.crtInputWrapper}>
+
+          {/* SETTINGS */}
+          <div className={styles.inputWrapper}>
             <input
               type="checkbox"
               id="crt"
@@ -55,6 +59,19 @@ const Home = () => {
               onChange={() => setCrtEnabled(crtInputRef?.current?.checked)}
             />
             <label htmlFor="crt">Enable CRT effect</label>
+          </div>
+          <div className={styles.inputWrapper}>
+            <select
+              id="theme"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value as Themes)}
+            >
+              <option value="default">default</option>
+              <option value="blue">blue owl</option>
+              <option value="green">neo green</option>
+              <option value="pink">cotton candy</option>
+            </select>
+            <label htmlFor="theme">Theme</label>
           </div>
         </main>
 

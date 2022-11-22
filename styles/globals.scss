@@ -9,43 +9,18 @@
   box-sizing: border-box;
 }
 
-html {
+html, body, #__next, #app-wrapper {
   height: 100%;
+  width: 100%;
 }
 
 body {
-  height: 100%;
   background-color: black;
 }
 
-// CRT Effect: http://aleclownes.com/2017/02/01/crt-display.html
-.crt::after {
-  content: ' ';
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background:
-    linear-gradient(rgba(18, 16, 16, 0%) 50%, rgba(0, 0, 0, 25%) 50%),
-    linear-gradient(
-      90deg,
-      rgba(255, 0, 0, 6%),
-      rgba(0, 255, 0, 2%),
-      rgba(0, 0, 255, 6%)
-    );
-  z-index: 100;
-  background-size: 100% 3px, 4.5px 100%;
-  pointer-events: none;
-}
-
-#__next, .theme-provider {
+#app-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  width: 100%;
-  height: 100%;
 }

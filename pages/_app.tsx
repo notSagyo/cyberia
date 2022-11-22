@@ -1,16 +1,18 @@
 import type { AppProps } from 'next/app';
 import { MusicContextProvider } from '../context/MusicContext';
+import { ThemeContextProvider } from '../context/ThemeContext';
 import { CrtContextProvider } from '/context/CrtContext';
-import { ThemeContextProvider } from '/context/ThemeContext';
 import '/styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeContextProvider>
       <CrtContextProvider>
-        <MusicContextProvider>
-          <Component {...pageProps} />
-        </MusicContextProvider>
+        <div id="app-wrapper">
+          <MusicContextProvider>
+            <Component {...pageProps} />
+          </MusicContextProvider>
+        </div>
       </CrtContextProvider>
     </ThemeContextProvider>
   );

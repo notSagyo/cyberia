@@ -28,8 +28,8 @@ export const CrtContextProvider = ({
   useEffect(() => {
     if (crtEnabled != null) {
       crtEnabled
-        ? document.body.classList.add('crt')
-        : document.body.classList.remove('crt');
+        ? document.getElementById('app-wrapper')?.classList.add('crt')
+        : document.getElementById('app-wrapper')?.classList.remove('crt');
       localStorage.setItem(crtKey, String(Number(crtEnabled)));
     }
   }, [crtEnabled]);

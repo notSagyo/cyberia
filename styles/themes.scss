@@ -12,11 +12,35 @@
   --shell-secondary: #{$gray};
   --shell-terciary: #{$black};
   --shell-border-color: #{$gray};
+  // Player
+  --player-control-color: #{$white};
+  --player-control-track: #{$gray};
 }
 
 .theme-blue {
   --shell-primary: #{$blue};
   --shell-secondary: #{$black};
-  --shell-terciary: #{$blue};
-  --shell-border-color: #{$blue};
+  --shell-terciary: var(--shell-primary);
+  --shell-border-color: var(--shell-primary);
+  --player-control-color: var(--shell-primary);
+  --player-control-track: darkblue;
+}
+
+.theme-green {
+  --shell-primary: #{$green};
+  --shell-secondary: #{$black};
+  --shell-terciary: var(--shell-primary);
+  --shell-border-color: var(--shell-primary);
+  --player-control-color: var(--shell-primary);
+  --player-control-track: #{darkgreen};
+}
+
+.theme-pink {
+  --terciary: plum;
+  --shell-primary: hotpink;
+  --shell-secondary: aliceblue;
+  --shell-terciary: var(--shell-primary);
+  --shell-border-color: plum;
+  --player-control-color: var(--shell-primary);
+  --player-control-track: var(--shell-secondary);
 }

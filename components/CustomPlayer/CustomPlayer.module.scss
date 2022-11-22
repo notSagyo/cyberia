@@ -2,8 +2,6 @@
 @use '/styles/abstracts' as *;
 @use '/styles/classes/classes' as c;
 
-$color-control: white;
-$color-slider: darkgray;
 $track-height: 5px;
 
 .shellBody {
@@ -17,7 +15,7 @@ $track-height: 5px;
   display: flex;
   align-items: center;
   gap: $spacing-xs;
-  color: $color-control;
+  color: $player-control-color;
 
   .button, .slider, .played {
     @extend c, .pointer !optional;
@@ -44,7 +42,7 @@ $track-height: 5px;
     cursor: pointer;
     border-radius: 0;
     color: transparent;
-    background: $color-slider;
+    background: $player-track-color;
     border-color: transparent;
   }
 
@@ -54,7 +52,7 @@ $track-height: 5px;
     width: 8px;
     cursor: pointer;
     border-radius: 0;
-    background: $color-control;
+    background: $player-control-color;
   }
 
   input[type='range'] {
@@ -83,20 +81,20 @@ $track-height: 5px;
 
     &::-ms-fill-lower {
       border-radius: 0;
-      background: $color-slider;
+      background: $player-track-color;
     }
 
     &::-ms-fill-upper {
       border-radius: 0;
-      background: $color-slider;
+      background: $player-track-color;
     }
 
     &:focus {
       outline: none;
 
-      &::-webkit-slider-runnable-track { background: $color-slider; }
-      &::-ms-fill-lower { background: $color-slider; }
-      &::-ms-fill-upper { background: $color-slider; }
+      &::-webkit-slider-runnable-track { background: $player-track-color; }
+      &::-ms-fill-lower { background: $player-track-color; }
+      &::-ms-fill-upper { background: $player-track-color; }
     }
   }
 }
