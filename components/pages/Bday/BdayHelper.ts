@@ -48,8 +48,10 @@ const initContext = (canvas: HTMLCanvasElement) => {
 
 // Draw quotes
 const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-  // Update canvas if dimensions changed since last draw
   const rect = (canvas.parentElement as HTMLElement).getBoundingClientRect();
+  // Return if not even an N fraction of the canvas is visible
+  if (window.innerHeight - rect.top < rect.height * 0.35) return;
+  // Update canvas if dimensions changed since last draw
   if (canvas.width !== ~~rect.width || canvas.height !== ~~rect.height) {
     canvas.width = rect.width;
     canvas.height = rect.height;

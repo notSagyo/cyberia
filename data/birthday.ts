@@ -1,9 +1,9 @@
 import { colors } from '/utils/colors';
 
 export const quotesAndWeight = {
-  'THERE IS NO ESCAPE': 5,
-  'ABANDON ALL HOPE': 5,
-  'CLOSER TO DEATH': 10,
+  'THERE IS NO ESCAPE': 7,
+  'ABANDON ALL HOPE': 7,
+  'CLOSER TO DEATH': 7,
   'ITS COMING': 10,
   'RUN RUN RUN': 7,
   'FUCK FUCK': 10,
@@ -11,13 +11,13 @@ export const quotesAndWeight = {
   'FUCK YOU': 4,
   'DEAD END': 5,
   'BAD END': 5,
-  ETERNITY: 10,
+  ETERNITY: 7,
   ROTTING: 10,
   DESPAIR: 10,
   DECAY: 10,
-  ALONE: 10,
-  HELP: 10,
-  CRY: 10,
+  ALONE: 12,
+  HELP: 12,
+  CRY: 12,
   // my bloody valentine
   'WHEN YOU SLEEP': 5,
   LOVELESS: 10,
