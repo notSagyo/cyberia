@@ -33,6 +33,10 @@ const links: Link[] = [
     title: '/pages/gallery/official_guide',
   },
   {
+    href: `${galleryURL}/ultimate-fan-guide`,
+    title: '/pages/gallery/ultimate_fan_guide',
+  },
+  {
     href: `${galleryURL}/hector`,
     title: '/pages/gallery/hector',
   },
@@ -46,7 +50,6 @@ const links: Link[] = [
   },
 ];
 
-// TODO: Add all lain artwork magazines
 const GalleryPage = () => {
   return (
     <Layout title="Gallery" className="bgStars">
