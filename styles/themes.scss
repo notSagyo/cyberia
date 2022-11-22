@@ -1,0 +1,22 @@
+@use '/styles/abstracts' as *;
+
+:root, .theme-default {
+  // Colors
+  --primary: #{$green};
+  --secondary: #{$black};
+  --terciary: #{$blue};
+  --background: var(--secondary);
+  --foreground: var(--primary);
+  // Shell
+  --shell-primary: #{$black};
+  --shell-secondary: #{$gray};
+  --shell-terciary: #{$black};
+  --shell-border-color: #{$gray};
+}
+
+.theme-blue {
+  --shell-primary: #{$blue};
+  --shell-secondary: #{$black};
+  --shell-terciary: #{$blue};
+  --shell-border-color: #{$blue};
+}

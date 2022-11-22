@@ -9,17 +9,17 @@ $black: black;
 $white: white;
 $yellow: yellow;
 
-$primary: $green;
-$secondary: $black;
-$terciary: $blue;
+$primary: var(--primary);
+$secondary: var(--secondary);
+$terciary: var(--terciary);
 
-$background: $secondary;
-$foreground: $primary;
+$foreground: var(--primary);
+$background: var(--secondary);
 
-$shell-primary: $black;
-$shell-secondary: $gray;
-$shell-terciary: $black;
-$shell-border-color: $gray;
+$shell-primary: var(--shell-primary);
+$shell-secondary: var(--shell-secondary);
+$shell-terciary: var(--shell-terciary);
+$shell-border-color: var(--shell-border-color);
 
 $colors: (
   'red': $red,
