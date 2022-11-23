@@ -10,6 +10,7 @@ export const quotesAndWeight = {
   'NO HEAVEN': 10,
   'FUCK YOU': 4,
   'DEAD END': 5,
+  'NO SOUL': 7,
   'BAD END': 5,
   ETERNITY: 7,
   ROTTING: 10,

@@ -26,3 +26,13 @@
   background-size: auto 30px;
   background-image: url('/img/hr-blood.gif');
 }
+
+.hrImgBalloons {
+  @include my($spacing-sm);
+
+  min-height: 30px;
+  min-width: 300px;
+  background-repeat: round;
+  background-size: auto 30px;
+  background-image: url('/img/hr-balloons.gif');
+}

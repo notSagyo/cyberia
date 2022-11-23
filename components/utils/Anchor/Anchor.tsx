@@ -9,18 +9,8 @@ export interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   noColor?: boolean;
 }
 
-const Anchor = React.forwardRef(
-  (
-    {
-      children,
-      noDecoration = false,
-      noColor = false,
-      noSound,
-      href,
-      ...props
-    }: AnchorProps,
-    ref: React.Ref<HTMLAnchorElement>
-  ) => {
+const Anchor = React.forwardRef<HTMLAnchorElement, AnchorProps>(
+  ({ children, noDecoration, noColor, noSound, href, ...props }, ref) => {
     const [hoverAudio, setHoverAudio] = useState<HTMLAudioElement | null>(null);
 
     function handleMouseOver(e: React.MouseEvent<HTMLAnchorElement>) {
@@ -28,7 +18,7 @@ const Anchor = React.forwardRef(
       e.stopPropagation();
       hoverAudio.volume = 0.5;
       hoverAudio.currentTime = 0;
-      hoverAudio.play();
+      hoverAudio.play().catch(() => {});
     }
 
     useEffect(() => {

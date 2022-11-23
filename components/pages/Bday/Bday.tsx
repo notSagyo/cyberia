@@ -4,6 +4,7 @@ import s from './Bday.module.scss';
 import BdayHeader from './BdayHeader';
 import HotaruWindow from './HotaruWindow';
 import { cleanup, initBday } from '/components/pages/Bday/BdayHelper';
+import Hr from '/components/utils/Hr/Hr';
 import Img from '/components/utils/Img/Img';
 
 const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
@@ -30,7 +31,11 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
           </aside>
           {/* CENTER */}
           <div className={s.goodSideCenter}>
-            <Img src="/img/cake.gif" alt="cake" />
+            <div className="flex">
+              <Hr variant="Balloons" />
+              <Img src="/img/cake.gif" alt="cake" />
+              <Hr variant="Balloons" />
+            </div>
             {/* HELLO KITTY STRIPE */}
             <div className={s.kittyStripe}>
               <Img src="/img/melody-heart.webp" alt="my melody" height={115} />

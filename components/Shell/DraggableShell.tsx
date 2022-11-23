@@ -44,7 +44,7 @@ const DraggableShell = ({
   );
 
   useEffect(() => {
-    shellRef.current && centerDraggableShell(shellRef.current);
+    if (shellRef.current && centered) centerDraggableShell(shellRef.current);
   }, []);
 
   return (

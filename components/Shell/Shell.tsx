@@ -50,7 +50,7 @@ const Shell = ({
   noPadding = false,
   ...props
 }: ShellProps) => {
-  shellRef = shellRef ?? useRef(null);
+  shellRef = useRef(shellRef?.current || null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const { maximized, minimized, handleClose, handleMaximize, handleMinimize } =
     useShellControls({ onClose, onMaximize, onMinimize, shellRef });
