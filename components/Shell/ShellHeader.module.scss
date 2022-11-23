@@ -2,6 +2,7 @@
 
 .header {
   border-bottom: solid $shell-border-width $shell-border-color;
+  background: $shell-secondary;
 }
 
 .title, .nav {
@@ -14,7 +15,6 @@
   font-weight: bold;
   font-size: $fs-lg;
   color: $shell-primary;
-  background-color: $shell-secondary;
 
   a { color: $shell-terciary; }
 }

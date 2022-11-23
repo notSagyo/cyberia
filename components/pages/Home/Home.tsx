@@ -67,9 +67,11 @@ const Home = () => {
               onChange={(e) => setTheme(e.target.value as Themes)}
             >
               <option value="default">default</option>
-              <option value="blue">blue owl</option>
               <option value="green">neo green</option>
+              <option value="blue">night owl</option>
               <option value="pink">cotton candy</option>
+              <option value="red">dracula</option>
+              <option value="ivory">ivory</option>
             </select>
             <label htmlFor="theme">Theme</label>
           </div>

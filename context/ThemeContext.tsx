@@ -27,17 +27,19 @@ export const ThemeContextProvider = ({
   }, []);
 
   useEffect(() => {
-    theme && localStorage.setItem(themeKey, theme);
+    if (theme) {
+      localStorage.setItem(themeKey, theme);
+      if (document.body.className.includes('theme')) {
+        const currentTheme = document.body.className.match(/theme.+?(?= |$)/g);
+        currentTheme &&
+          document.body.classList.replace(currentTheme[0], `theme-${theme}`);
+      } else document.body.classList.add(`theme-${theme}`);
+    }
   }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div
-        className={`theme-${theme}`}
-        style={{ width: '100%', height: '100%' }}
-      >
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   );
 };

@@ -5,11 +5,13 @@
   @extend layout, .shell !optional;
 
   position: fixed;
+  left: 50%;
   width: 100%;
   height: 100%;
-  border: none;
   z-index: 10;
+
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .mainPlayerShell {

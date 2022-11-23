@@ -8,11 +8,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeContextProvider>
       <CrtContextProvider>
-        <div id="app-wrapper">
-          <MusicContextProvider>
+        <MusicContextProvider>
+          <div id="app-wrapper">
             <Component {...pageProps} />
-          </MusicContextProvider>
-        </div>
+          </div>
+        </MusicContextProvider>
       </CrtContextProvider>
     </ThemeContextProvider>
   );

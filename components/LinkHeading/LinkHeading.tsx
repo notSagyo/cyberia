@@ -16,7 +16,7 @@ const LinkHeading = ({
   ...props
 }: TitleLinkProps) => {
   return (
-    <Anchor {...props} href={href} className={cn('green', props?.className)}>
+    <Anchor {...props} href={href} className={cn('primary', props?.className)}>
       <h1 className={cn('h2', titleProps?.className)}>
         {goBack && '..'}
         {children || href}

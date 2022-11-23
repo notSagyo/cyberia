@@ -1,5 +1,6 @@
 @use '/styles/abstracts' as *;
 
+// TODO: Make backgrounds theme specific
 :root, .theme-default {
   // Colors
   --primary: #{$green};
@@ -36,11 +37,34 @@
 }
 
 .theme-pink {
-  --terciary: plum;
+  --primary: lightpink;
+  --terciary: hotpink;
   --shell-primary: hotpink;
-  --shell-secondary: aliceblue;
+  --shell-secondary: lavenderblush;
   --shell-terciary: var(--shell-primary);
   --shell-border-color: plum;
+  --player-control-color: lavenderblush;
+  --player-control-track: aliceblue;
+}
+
+.theme-red {
+  --primary: crimson;
+  --terciary: firebrick;
+  --shell-primary: crimson;
+  --shell-secondary: black;
+  --shell-terciary: crimson;
+  --shell-border-color: black;
   --player-control-color: var(--shell-primary);
+  --player-control-track: var(--shell-terciary);
+}
+
+.theme-ivory {
+  --primary: ivory;
+  --terciary: ivory;
+  --shell-primary: #{$black};
+  --shell-secondary: #{$rainbow-gradient};
+  --shell-terciary: var(--shell-primary);
+  --shell-border-color: ivory;
+  --player-control-color: var(--shell-secondary);
   --player-control-track: var(--shell-secondary);
 }
