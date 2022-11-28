@@ -5,10 +5,10 @@ interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /** Just an img wrapped in a div */
-const Img = ({ mirror, ...props }: ImgProps) => {
+const Img = ({ mirror, alt = '', ...props }: ImgProps) => {
   return (
     <div className={cn(mirror && 'mirror')}>
-      <img {...props} />
+      <img {...props} alt={alt} />
     </div>
   );
 };
