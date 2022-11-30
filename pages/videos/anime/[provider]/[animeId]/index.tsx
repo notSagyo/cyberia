@@ -5,24 +5,27 @@ import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import LinkList from '/components/LinkList/LinkList';
 import animes from '/data/animes';
+import { AnimeProvidersNames } from '/services/consumet-service';
 import { animeProviders } from '/services/consumet-service-server';
 import { animeURL } from '/utils/urls';
 import { toUrlikeString } from '/utils/utils';
 
 interface AnimeIdProps {
   animeInfo: IAnimeInfo;
+  provider: AnimeProvidersNames;
 }
 
 interface iQueryParams extends ParsedUrlQuery {
   animeId: string;
+  provider: AnimeProvidersNames;
 }
 
-const AnimeId = ({ animeInfo }: AnimeIdProps) => {
+const AnimeId = ({ animeInfo, provider }: AnimeIdProps) => {
   const animeId = animeInfo.id;
   const episodes = animeInfo.episodes || [];
 
   const animeTitle = (() => {
-    const anime = animes.default.find((anime) => anime.id == animeId);
+    const anime = animes[provider].find((anime) => anime.id == animeId);
     const title = anime?.title || anime?.id;
     return toUrlikeString(title || '');
   })();
@@ -33,7 +36,7 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
       <LinkList
         links={episodes.map((episode, i) => ({
           title: `${animeURL}/${animeTitle}/${i + 1}`,
-          href: `${animeURL}/${animeId}/${i + 1}`,
+          href: `${animeURL}/${provider}/${animeId}/${i + 1}`,
           key: episode.id,
         }))}
       />
@@ -43,15 +46,22 @@ const AnimeId = ({ animeInfo }: AnimeIdProps) => {
 
 // Static stuff ==============================================================//
 export const getStaticProps: GetStaticProps<AnimeIdProps> = async (context) => {
-  const { animeId } = context.params as iQueryParams;
-  const animeInfo = await animeProviders.default.fetchAnimeInfo(animeId);
-  return { props: { animeInfo } };
+  const { animeId, provider } = context.params as iQueryParams;
+  const animeInfo = await animeProviders[provider].fetchAnimeInfo(animeId);
+  return { props: { animeInfo, provider } };
 };
 
 export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
-  const paths = animes.default.map((anime) => ({
-    params: { animeId: anime?.id },
-  }));
+  const animeProviders = (Object.keys(animes) as AnimeProvidersNames[]).map(
+    (provider) => provider
+  );
+
+  const paths = animeProviders.flatMap((provider) =>
+    animes[provider].map((anime) => ({
+      params: { animeId: anime?.id, provider: provider },
+    }))
+  );
+
   return { paths, fallback: false };
 };
 

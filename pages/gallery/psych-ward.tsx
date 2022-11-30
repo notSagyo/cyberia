@@ -18,6 +18,7 @@ const PsychWardPage: NextPage = () => {
       musicCtx.setPlaying(true);
       localStorage.setItem(didPlaySongKey, 'true');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const lebensgefahrImages = albumImages.lebensgefahr.map((img) => (

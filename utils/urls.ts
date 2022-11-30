@@ -1,3 +1,8 @@
+import {
+  AnimeProvidersNames,
+  MangaProvidersNames,
+} from '/services/consumet-service';
+
 // LOCAL
 export const baseURL = '';
 
@@ -19,11 +24,13 @@ export const matrixURL = `${baseURL}/matrix`;
 export const apiURL = `${baseURL}/api`;
 export const ipUrl = `${apiURL}/ip`;
 export const fetchUrl = `${apiURL}/fetch`;
-export const animeInfoURL = `${apiURL}/anime`;
-export const animeSourcesURL = `${animeInfoURL}/sources`;
-export const getMangaInfoURL = (provider: string) =>
+export const animeInfoURL = (provider: AnimeProvidersNames) =>
+  `${apiURL}/anime/${provider}`;
+export const animeSourcesURL = (provider: AnimeProvidersNames) =>
+  `${animeInfoURL(provider)}/sources`;
+export const getMangaInfoURL = (provider: MangaProvidersNames) =>
   `${apiURL}/manga/${provider}`;
-export const getMangaReadURL = (provider: string) =>
+export const getMangaReadURL = (provider: MangaProvidersNames) =>
   `${getMangaInfoURL(provider)}/read`;
 
 // OTHER

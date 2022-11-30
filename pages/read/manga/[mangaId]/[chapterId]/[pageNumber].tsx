@@ -1,7 +1,4 @@
-import {
-  IMangaChapterPage,
-  IMangaInfo,
-} from '@consumet/extensions/dist/models';
+import { IMangaChapterPage, IMangaInfo } from '@consumet/extensions';
 import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -18,10 +15,85 @@ import {
 } from '/utils/urls';
 
 const MangaPage = () => {
+  const {
+    imageUrl,
+    nextImageUrl,
+    prevPageUrl,
+    prevChapterUrl,
+    nextPageUrl,
+    nextChapterUrl,
+  } = useMangaPage();
+
+  return (
+    <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
+      {/* PAGE */}
+      <Link
+        href={nextPageUrl ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'}
+        tabIndex={0}
+        legacyBehavior
+      >
+        <div className={cn(styles.pageContainer, 'pointer')}>
+          <img className={styles.pageImage} src={imageUrl} alt={'manga page'} />
+        </div>
+      </Link>
+
+      {/* CONTROLS */}
+      <div className={styles.controlsContainer}>
+        {/* PREV CHAPTER */}
+        {prevChapterUrl && (
+          <Anchor href={prevChapterUrl}>
+            <img
+              src="/img/arrow-blue-left.gif"
+              alt="previous chapter"
+              width={64}
+            />
+          </Anchor>
+        )}
+        {/* PREV PAGE */}
+        {prevPageUrl && (
+          <Anchor href={prevPageUrl}>
+            <img
+              src="/img/arrow-yellow-left.gif"
+              alt="previous page"
+              width={64}
+            />
+          </Anchor>
+        )}
+        {/* NEXT PAGE */}
+        {nextPageUrl && (
+          <Anchor href={nextPageUrl}>
+            <img src="/img/arrow-yellow-right.gif" alt="next page" width={64} />
+          </Anchor>
+        )}
+        {/* NEXTCHAPTER */}
+        {nextChapterUrl && (
+          <Anchor href={nextChapterUrl}>
+            <img
+              src="/img/arrow-blue-right.gif"
+              alt="next chapter"
+              width={64}
+            />
+          </Anchor>
+        )}
+      </div>
+
+      {/* PRELOAD NEXT IMAGE */}
+      {nextPageUrl && (
+        <img
+          className={styles.nextPageImage}
+          src={nextImageUrl}
+          alt={'hidden'}
+        />
+      )}
+    </Layout>
+  );
+};
+
+const useMangaPage = () => {
   const [chapterPages, setChapterPages] = useState<IMangaChapterPage[]>([]);
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo>();
-  const query = useRouter().query;
   const router = useRouter();
+  const query = router.query;
 
   // Manga info
   const mangaId = String(query.mangaId || '');
@@ -90,69 +162,22 @@ const MangaPage = () => {
     return () => document.removeEventListener('keydown', keyDownHandler);
   }, [nextChapterUrl, nextPageUrl, prevChapterUrl, prevPageUrl, router]);
 
-  return (
-    <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
-      {/* PAGE */}
-      <Link
-        href={nextPageUrl ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'}
-        tabIndex={0}
-        legacyBehavior
-      >
-        <div className={cn(styles.pageContainer, 'pointer')}>
-          <img className={styles.pageImage} src={imageUrl} alt={'manga page'} />
-        </div>
-      </Link>
-
-      {/* CONTROLS */}
-      <div className={styles.controlsContainer}>
-        {/* PREV CHAPTER */}
-        {prevChapterUrl && (
-          <Anchor href={prevChapterUrl}>
-            <img
-              src="/img/arrow-blue-left.gif"
-              alt="previous chapter"
-              width={64}
-            />
-          </Anchor>
-        )}
-        {/* PREV PAGE */}
-        {prevPageUrl && (
-          <Anchor href={prevPageUrl}>
-            <img
-              src="/img/arrow-yellow-left.gif"
-              alt="previous page"
-              width={64}
-            />
-          </Anchor>
-        )}
-        {/* NEXT PAGE */}
-        {nextPageUrl && (
-          <Anchor href={nextPageUrl}>
-            <img src="/img/arrow-yellow-right.gif" alt="next page" width={64} />
-          </Anchor>
-        )}
-        {/* NEXTCHAPTER */}
-        {nextChapterUrl && (
-          <Anchor href={nextChapterUrl}>
-            <img
-              src="/img/arrow-blue-right.gif"
-              alt="next chapter"
-              width={64}
-            />
-          </Anchor>
-        )}
-      </div>
-
-      {/* PRELOAD NEXT IMAGE */}
-      {nextPageUrl && (
-        <img
-          className={styles.nextPageImage}
-          src={nextImageUrl}
-          alt={'hidden'}
-        />
-      )}
-    </Layout>
-  );
+  return {
+    mangaId,
+    mangaInfo,
+    chapterId,
+    pageNumber,
+    chapterPages,
+    chapterLength,
+    imageUrl,
+    prevPageUrl,
+    prevChapter,
+    prevChapterUrl,
+    nextPageUrl,
+    nextChapter,
+    nextChapterUrl,
+    nextImageUrl,
+  };
 };
 
 export default MangaPage;

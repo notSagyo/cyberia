@@ -27,6 +27,7 @@ const DraggableShell = ({
     prevY.current = e.clientY;
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleDrag = useCallback(
     _.throttle((e: React.DragEvent) => {
       e.preventDefault();
@@ -40,11 +41,12 @@ const DraggableShell = ({
       shell.style.top = shell.offsetTop - y.current + 'px';
       shell.style.left = shell.offsetLeft - x.current + 'px';
     }, throttling),
-    []
+    [throttling]
   );
 
   useEffect(() => {
     if (shellRef.current && centered) centerDraggableShell(shellRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

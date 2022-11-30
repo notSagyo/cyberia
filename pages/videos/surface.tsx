@@ -8,7 +8,6 @@ const videos: { id: string; title?: string; playlist?: boolean }[] = [
   { id: 'zW_Z6f4u5pw' },
   { id: 'aj13Y_H6lDo' },
   { id: '9vz06QO3UkQ' },
-  { id: 'wpTJDkqYIDc' },
   { id: 'PLjuzMNNpQyOo-Wye9kSB4G2YW64lR7uzV', playlist: true },
   { id: '6VMRAGxjOoA', title: '6VMRAGxjOoA.avi' },
   { id: '-7o5-xcvCBc' },

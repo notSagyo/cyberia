@@ -1,6 +1,6 @@
 import { ISource } from '@consumet/extensions/dist/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { animeProvider } from '/services/consumet-service';
+import { AnimeProvidersNames } from '/services/consumet-service';
 import { animeProviders } from '/services/consumet-service-server';
 
 type Data = ISource | string;
@@ -9,14 +9,14 @@ export default async function getEpisodeSources(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { episodeId } = req.query;
-  console.log(`Requested to (${animeProvider}) episodeId (${episodeId})`);
-  if (typeof episodeId !== 'string')
+  const { episodeId, provider } = req.query;
+  console.log(`Requested to (${provider}) episodeId (${episodeId})`);
+  if (typeof episodeId !== 'string' || typeof provider !== 'string')
     return res.status(400).send('Error parsing episodeId');
   try {
-    const animeSources = await animeProviders.default.fetchEpisodeSources(
-      episodeId
-    );
+    const animeSources = await animeProviders[
+      provider as AnimeProvidersNames
+    ].fetchEpisodeSources(episodeId);
     console.log(`Request complete episodeId (${episodeId})`);
     if (animeSources.sources.length === 0) {
       console.log('Sources not found for episodeId:', episodeId);
