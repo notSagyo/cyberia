@@ -1,6 +1,6 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { animeProvider, AnimeProvidersNames } from '/services/consumet-service';
+import { AnimeProvidersNames } from '/services/consumet-service';
 import { animeProviders } from '/services/consumet-service-server';
 
 type Data = IAnimeInfo | string;
@@ -10,7 +10,7 @@ export default async function getAnimeInfo(
   res: NextApiResponse<Data>
 ) {
   const { animeId, provider } = req.query;
-  console.log(`Requested to (${animeProvider}) animeId (${animeId})`);
+  console.log(`Requested to (${provider}) animeId (${animeId})`);
 
   if (typeof animeId !== 'string' || typeof provider !== 'string')
     return res.status(400).send('Error parsing animeId');

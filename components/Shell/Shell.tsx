@@ -33,7 +33,6 @@ export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
 const Shell = ({
   children,
   shellTitle,
-  shellRef,
   mainShell = false,
   noHr = false,
   closeable = true,
@@ -50,7 +49,8 @@ const Shell = ({
   noPadding = false,
   ...props
 }: ShellProps) => {
-  shellRef = useRef(shellRef?.current || null);
+  const innerShellRef = useRef<HTMLDivElement>(null);
+  const shellRef = props.shellRef ?? innerShellRef;
   const bodyRef = useRef<HTMLDivElement>(null);
   const { maximized, minimized, handleClose, handleMaximize, handleMinimize } =
     useShellControls({ onClose, onMaximize, onMinimize, shellRef });
