@@ -30,8 +30,7 @@ const VideoJS = ({ ...props }: VideoJsProps) => {
       // player.autoplay(options.autoplay);
       // player.src(options.sources);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options, videoRef]);
+  }, [onReady, options]);
 
   // Dispose the Video.js player when the functional component unmounts
   React.useEffect(() => {

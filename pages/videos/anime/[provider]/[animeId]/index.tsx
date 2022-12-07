@@ -31,7 +31,7 @@ const AnimeId = ({ animeInfo, provider }: AnimeIdProps) => {
   })();
 
   return (
-    <Layout title="Videos">
+    <Layout title="Anime">
       <LinkHeading href={animeURL}>{`..${animeURL}/${animeTitle}`}</LinkHeading>
       <LinkList
         links={episodes.map((episode, i) => ({

@@ -35,9 +35,7 @@ const AnimeVideo = ({
         style={{ paddingBottom: aspectRatio * 100 + '%' }}
       >
         <div className={styles.iframeWrapper}>
-          {children ? (
-            children
-          ) : (
+          {children ?? (
             <iframe
               scrolling="no"
               id="videoIframe"
@@ -46,10 +44,7 @@ const AnimeVideo = ({
               allowFullScreen
               width={'100%'}
               height={'100%'}
-              style={{
-                display: 'block',
-                overflow: 'hidden',
-              }}
+              style={{ display: 'block', overflow: 'hidden' }}
             ></iframe>
           )}
         </div>

@@ -146,14 +146,14 @@ const songs: ISong[] = [
   {
     tag: 'Anime',
     title: 'Devilman Crybaby > OST',
-    url: 'https://youtube.com/playlist?list=OLAK5uy_lPmRxtxp5_nE_qX-3vUHoGf2sFeGfB_9Q',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOo7cvT_428m-d_W2oryuUyu',
     imageUrl: 'https://i.imgur.com/olATfNr.jpg',
     source: 'youtube',
   },
   {
     tag: 'Anime',
     title: 'Kimi no Na wa > OST',
-    url: 'https://youtube.com/playlist?list=OLAK5uy_lXnKybn2GDpPDNEj0f46wloMgt8CHqkVE',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOqr-EVaHQ9cWmcGUMBzz5Hr',
     imageUrl: 'https://i.imgur.com/B8eV12X.jpg',
     source: 'youtube',
   },

@@ -12,32 +12,37 @@ import LinkHeading from '/components/LinkHeading/LinkHeading';
 import Anchor from '/components/utils/Anchor/Anchor';
 import { AnimeProvidersNames } from '/services/consumet-service';
 import styles from '/styles/pages/anime.module.scss';
-import { animeInfoURL, animeSourcesURL, animeURL } from '/utils/urls';
+import {
+  animeURL,
+  getAnimeEpisodeURL,
+  getAnimeInfoURL,
+  getAnimeSourcesURL,
+} from '/utils/urls';
 
 const fetchAnimeInfo = async (
   animeId: string,
   provider: AnimeProvidersNames
 ): Promise<IAnimeInfo | undefined> => {
-  if (animeId && provider)
-    return fetch(`${animeInfoURL(provider)}/${animeId}`).then((res) =>
-      res.json()
-    );
+  return fetch(`${getAnimeInfoURL(provider)}/${animeId}`).then((res) =>
+    res.json()
+  );
 };
 
 const fetchSources = async (
   episodeId: string,
   provider: AnimeProvidersNames
 ): Promise<ISource | undefined> => {
-  if (episodeId && provider)
-    return fetch(`${animeSourcesURL(provider)}/${episodeId}`).then((res) =>
-      res.json()
-    );
+  return fetch(`${getAnimeSourcesURL(provider)}/${episodeId}`).then((res) =>
+    res.json()
+  );
 };
 
 const EpisodePage: NextPage = () => {
+  const router = useRouter();
   const {
     provider,
     animeId,
+    animeInfo,
     episodeId,
     episodeUrl,
     nextEpisodeUrl,
@@ -62,27 +67,55 @@ const EpisodePage: NextPage = () => {
         shellProps={{ className: styles.videoShell }}
       />
 
-      {/* ARROWS */}
-      <div className={styles.arrowsContainer}>
-        {prevEpisodeUrl && (
-          <Anchor href={prevEpisodeUrl}>
-            <img
-              src="/img/arrow-yellow-left.gif"
-              alt="previous page"
-              width={64}
-            />
-          </Anchor>
-        )}
-        {nextEpisodeUrl && (
-          <Anchor href={nextEpisodeUrl}>
-            <img
-              src="/img/arrow-yellow-right.gif"
-              alt="previous page"
-              width={64}
-            />
-          </Anchor>
-        )}
-      </div>
+      {/* CONTROLS show only after episode is loaded */}
+      {episodeUrl && (
+        <>
+          {/* EPISODE SELECT */}
+          {animeInfo && (
+            <div className={styles.selectContainer}>
+              <select
+                defaultValue={'episode'}
+                onChange={(e) =>
+                  router.push(
+                    getAnimeEpisodeURL(provider, animeId, e.target.value)
+                  )
+                }
+              >
+                <option value="episode" disabled>
+                  episode
+                </option>
+                {animeInfo.episodes?.map((_, i) => (
+                  <option value={i + 1} key={i}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* ARROWS */}
+          <div className={styles.arrowsContainer}>
+            {prevEpisodeUrl && episodeUrl && (
+              <Anchor href={prevEpisodeUrl}>
+                <img
+                  src="/img/arrow-yellow-left.gif"
+                  alt="previous page"
+                  width={64}
+                />
+              </Anchor>
+            )}
+            {nextEpisodeUrl && episodeUrl && (
+              <Anchor href={nextEpisodeUrl}>
+                <img
+                  src="/img/arrow-yellow-right.gif"
+                  alt="previous page"
+                  width={64}
+                />
+              </Anchor>
+            )}
+          </div>
+        </>
+      )}
     </Layout>
   );
 };
@@ -99,19 +132,20 @@ const useEpisode = () => {
   const prevEpisodeUrl =
     animeInfo &&
     parseInt(episodeId) - 1 > 0 &&
-    `${animeURL}/${animeInfo.id}/${parseInt(episodeId) - 1}`;
+    getAnimeEpisodeURL(provider, animeInfo.id, String(parseInt(episodeId) - 1));
   const nextEpisodeUrl =
     animeInfo &&
     parseInt(episodeId) + 1 < episodeCount &&
-    `${animeURL}/${animeInfo.id}/${parseInt(episodeId) + 1}`;
+    getAnimeEpisodeURL(provider, animeInfo.id, String(parseInt(episodeId) + 1));
 
   // Fetch anime and episode data
   useEffect(() => {
-    setSource({ sources: [] });
-    setEpisodeUrl('');
+    if (!animeId || !episodeId || !provider) return;
     (async () => {
       try {
-        const info = await fetchAnimeInfo(animeId, provider);
+        setSource({ sources: [] });
+        setEpisodeUrl('');
+        const info = animeInfo ?? (await fetchAnimeInfo(animeId, provider));
         const sources = await fetchSources(
           info?.episodes?.[parseInt(episodeId) - 1].id || '',
           provider
@@ -128,7 +162,7 @@ const useEpisode = () => {
         console.error(err);
       }
     })();
-  }, [animeId, episodeId, provider]);
+  }, [animeId, animeInfo, episodeId, provider]);
 
   return {
     provider,

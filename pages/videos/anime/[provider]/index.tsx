@@ -18,7 +18,7 @@ interface iQueryParams extends ParsedUrlQuery {
 
 const ProviderPage = ({ provider }: ProviderPageProps) => {
   return (
-    <Layout>
+    <Layout title="Anime">
       <LinkHeading href={videosURL}>..{animeURL}</LinkHeading>
       <LinkList
         links={animes[provider].map((anime) => {

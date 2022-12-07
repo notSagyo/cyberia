@@ -8,6 +8,13 @@ export const baseURL = '';
 
 export const videosURL = `${baseURL}/videos`;
 export const animeURL = `${videosURL}/anime`;
+export const getAnimeProviderURL = (provider: AnimeProvidersNames) =>
+  `${animeURL}/${provider}`;
+export const getAnimeEpisodeURL = (
+  provider: AnimeProvidersNames,
+  animeId: string,
+  episodeId: string
+) => `${getAnimeProviderURL(provider)}/${animeId}/${episodeId}`;
 export const surfaceURL = `${videosURL}/surface`;
 
 export const readURL = `${baseURL}/read`;
@@ -24,10 +31,10 @@ export const matrixURL = `${baseURL}/matrix`;
 export const apiURL = `${baseURL}/api`;
 export const ipUrl = `${apiURL}/ip`;
 export const fetchUrl = `${apiURL}/fetch`;
-export const animeInfoURL = (provider: AnimeProvidersNames) =>
+export const getAnimeInfoURL = (provider: AnimeProvidersNames) =>
   `${apiURL}/anime/${provider}`;
-export const animeSourcesURL = (provider: AnimeProvidersNames) =>
-  `${animeInfoURL(provider)}/sources`;
+export const getAnimeSourcesURL = (provider: AnimeProvidersNames) =>
+  `${getAnimeInfoURL(provider)}/sources`;
 export const getMangaInfoURL = (provider: MangaProvidersNames) =>
   `${apiURL}/manga/${provider}`;
 export const getMangaReadURL = (provider: MangaProvidersNames) =>
