@@ -9,15 +9,11 @@ import styles from '/styles/pages/psych-ward.module.scss';
 const didPlaySongKey = 'did-play-ward-song';
 
 const PsychWardPage: NextPage = () => {
-  const musicCtx = useMusicContext();
+  const { playOnce } = useMusicContext();
 
   useEffect(() => {
     // Change songs only first time visting
-    if (localStorage.getItem(didPlaySongKey) !== 'true') {
-      musicCtx.setSong(psychWardSong);
-      musicCtx.setPlaying(true);
-      localStorage.setItem(didPlaySongKey, 'true');
-    }
+    playOnce(psychWardSong, didPlaySongKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

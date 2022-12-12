@@ -3,9 +3,14 @@ import {
   MangaProvidersNames,
 } from '/services/consumet-service';
 
-// LOCAL
+// LOCAL =====================================================================//
 export const baseURL = '';
 
+// GALLERY
+export const galleryURL = `${baseURL}/gallery`;
+export const hectorURL = `${galleryURL}/hector`;
+
+// VIDEOS
 export const videosURL = `${baseURL}/videos`;
 export const animeURL = `${videosURL}/anime`;
 export const getAnimeProviderURL = (provider: AnimeProvidersNames) =>
@@ -17,17 +22,18 @@ export const getAnimeEpisodeURL = (
 ) => `${getAnimeProviderURL(provider)}/${animeId}/${episodeId}`;
 export const surfaceURL = `${videosURL}/surface`;
 
+// READ
 export const readURL = `${baseURL}/read`;
 export const mangaURL = `${readURL}/manga`;
 
-export const galleryURL = `${baseURL}/gallery`;
+// STUFF
+export const bdayURL = `${baseURL}/bday`;
 export const fortuneURL = `${baseURL}/fortune`;
-export const hectorURL = `${galleryURL}/hector`;
 export const bartenderURL = `${baseURL}/bartender`;
 export const getMeOutURL = `${baseURL}/getmeout`;
 export const matrixURL = `${baseURL}/matrix`;
 
-// API
+// API =======================================================================//
 export const apiURL = `${baseURL}/api`;
 export const ipUrl = `${apiURL}/ip`;
 export const fetchUrl = `${apiURL}/fetch`;
@@ -40,5 +46,5 @@ export const getMangaInfoURL = (provider: MangaProvidersNames) =>
 export const getMangaReadURL = (provider: MangaProvidersNames) =>
   `${getMangaInfoURL(provider)}/read`;
 
-// OTHER
+// OTHER =====================================================================//
 export const corsProxy = 'https://cors.proxy.consumet.org/';

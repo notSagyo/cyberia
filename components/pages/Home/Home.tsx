@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Themes, useThemeContext } from '../../../context/ThemeContext';
+import Aside from './Aside';
 import Banner from './Banner';
 import styles from './Home.module.scss';
 import HomeLinkList from './HomeLinkList';
-import SpookyAd from './SpookyAd';
 import UnderConstruction from './UnderConstruction';
 import Layout from '/components/Layout/Layout';
 import Hr from '/components/utils/Hr/Hr';
@@ -78,7 +78,7 @@ const Home = () => {
         </main>
 
         {/* RIGHT SIDE */}
-        <SpookyAd />
+        <Aside />
       </div>
     </Layout>
   );

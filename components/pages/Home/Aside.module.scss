@@ -1,0 +1,94 @@
+@use '/styles/abstracts' as *;
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-left: auto;
+}
+
+.spooky {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: fit-content;
+  width: 256px;
+  padding: $spacing-sm 0;
+  border: brown solid 1px;
+
+  background-image: url('/img/halloween-mansion.png');
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.spookyHeader {
+  display: flex;
+  justify-content: space-around;
+
+  width: 100%;
+}
+
+.spookySpotlight {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  height: 350px;
+
+  color: $orange;
+  font-family: Norican, Times, serif;
+  font-size: 42px;
+  font-weight: 900;
+  text-shadow: 0 0 10px black;
+
+  div:first-of-type { margin-top: -50px; }
+  div:last-of-type { margin-top: 50px; }
+}
+
+.bday {
+  position: relative;
+  padding: $spacing-xs;
+  border: hotpink double 6px;
+
+  color: hotpink;
+  font-family: cursive;
+  font-weight: bold;
+
+  background-color: lavenderblush;
+
+  .cake {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 0.15rem;
+  }
+
+  .text {
+    &::before, &::after {
+      content: 'IT\'S';
+      display: block;
+      height: $fs-md;
+    }
+
+    &::before { animation: bday-before 5s linear infinite; }
+    &::after { animation: bday-after 5s linear infinite; }
+  }
+}
+
+@keyframes bday-before {
+  0%, 19.99% { content: 'IT\'S'; }
+  20%, 39.99% { content: ''; }
+  40%, 60% { content: 'BIRTHDAY'; }
+  80%, 100% { content: 'HAPPY'; }
+}
+
+@keyframes bday-after {
+  0%, 19.99% { content: ''; }
+  20%, 39.99% { content: 'YOUR'; }
+  40%, 79.99% { content: ''; }
+  80%, 100% { content: 'BIRTHDAY!'; }
+}

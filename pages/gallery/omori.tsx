@@ -14,16 +14,12 @@ const didTouchCatKey = 'did-touch-cat';
 
 const OmoriPage = () => {
   const catEyesRef = useRef<HTMLDivElement>(null);
-  const { setSong, setPlaying } = useMusicContext();
+  const { playOnce } = useMusicContext();
   const [didTouchCat, setdidTouchCat] = useState<boolean>(false);
 
   useEffect(() => {
     // Change songs only first time visting
-    if (localStorage.getItem(didPlaySongKey) !== 'true') {
-      setSong(omoriSong);
-      setPlaying(true);
-      localStorage.setItem(didPlaySongKey, 'true');
-    }
+    playOnce(omoriSong, didPlaySongKey);
 
     // Did touch the cat this session ? OwO
     setdidTouchCat(Boolean(Number(sessionStorage.getItem(didTouchCatKey))));

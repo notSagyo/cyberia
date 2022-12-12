@@ -5,7 +5,7 @@ import LinkHeading from '/components/LinkHeading/LinkHeading';
 import LinkList from '/components/LinkList/LinkList';
 import animes from '/data/animes';
 import { AnimeProvidersNames } from '/services/consumet-service';
-import { animeURL, videosURL } from '/utils/urls';
+import { animeURL, bdayURL } from '/utils/urls';
 import { toUrlikeString } from '/utils/utils';
 
 interface ProviderPageProps {
@@ -19,7 +19,7 @@ interface iQueryParams extends ParsedUrlQuery {
 const ProviderPage = ({ provider }: ProviderPageProps) => {
   return (
     <Layout title="Anime">
-      <LinkHeading href={videosURL}>..{animeURL}</LinkHeading>
+      <LinkHeading href={bdayURL}>..{animeURL}</LinkHeading>
       <LinkList
         links={animes[provider].map((anime) => {
           const title = anime.title || anime.id;

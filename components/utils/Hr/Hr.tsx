@@ -2,7 +2,7 @@ import cn from 'classnames';
 import styles from './Hr.module.scss';
 
 interface HrProps extends React.HTMLProps<HTMLDivElement> {
-  variant: 'Blood' | 'Blue' | 'Fire' | 'Balloons';
+  variant: 'Blood' | 'Blue' | 'Fire';
 }
 
 const Hr = ({ variant, ...props }: HrProps) => {
