@@ -1,5 +1,3 @@
-import cn from 'classnames';
-
 interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   mirror?: boolean;
 }
@@ -7,7 +5,7 @@ interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 /** Just an img wrapped in a div */
 const Img = ({ mirror, alt = '', ...props }: ImgProps) => {
   return (
-    <div className={cn(mirror && 'mirror')}>
+    <div className={mirror ? 'mirror' : undefined}>
       <img {...props} alt={alt} />
     </div>
   );

@@ -2,18 +2,28 @@ import cn from 'classnames';
 import styles from './Aside.module.scss';
 import Anchor from '/components/utils/Anchor/Anchor';
 import Img from '/components/utils/Img/Img';
+import { birthday } from '/data/birthday';
 import { bdayURL } from '/utils/urls';
+
+const isBirthday = (() => {
+  const date = new Date();
+  const today = { day: date.getDate(), month: date.getMonth() + 1 };
+  return today.day === birthday.day && today.month === birthday.month;
+})();
 
 const Aside = ({ ...props }: React.HTMLAttributes<HTMLElement>) => {
   return (
     <aside {...props} className={cn(styles.aside, props.className)}>
       {/* BIRTHDAY */}
-      <div className={styles.bday}>
-        <Anchor href={bdayURL} noColor noDecoration>
-          <div className={styles.text} />
-          <Img className={styles.cake} src="img/cake.gif" alt="cake" />
-        </Anchor>
-      </div>
+      {isBirthday && (
+        <div className={styles.bday}>
+          <Anchor href={bdayURL} noColor noDecoration>
+            <div className={styles.text} />
+            <Img className={styles.cake} src="img/cake.gif" alt="cake" />
+          </Anchor>
+        </div>
+      )}
+
       {/* SPOOKY AD */}
       <div className={styles.spooky}>
         <div className={styles.spookyHeader}>

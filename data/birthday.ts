@@ -1,5 +1,10 @@
 import { colors } from '/utils/colors';
 
+export const birthday = {
+  day: 14,
+  month: 1,
+};
+
 export const quotesAndWeight = {
   'THERE IS NO ESCAPE': 7,
   'ABANDON ALL HOPE': 7,
@@ -36,5 +41,3 @@ export const colorsAndWeight = {
   white: 350,
   black: 125,
 } satisfies Partial<Record<keyof typeof colors, number>>;
-
-export default quotesAndWeight;
