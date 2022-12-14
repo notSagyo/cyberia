@@ -10,7 +10,7 @@ import { maxShellWidth } from '/utils/styles-exports';
 export interface ShellProps extends React.HTMLProps<HTMLDivElement> {
   mainShell?: boolean;
   headerProps?: React.HTMLProps<HTMLDivElement>;
-  shellRef?: React.RefObject<HTMLDivElement>;
+  shellref?: React.RefObject<HTMLDivElement>;
   // Shell title
   shellTitle?: React.ReactNode;
   titleProps?: ShellTitleProps;
@@ -50,10 +50,10 @@ const Shell = ({
   ...props
 }: ShellProps) => {
   const innerShellRef = useRef<HTMLDivElement>(null);
-  const shellRef = props.shellRef ?? innerShellRef;
+  const shellref = props.shellref ?? innerShellRef;
   const bodyRef = useRef<HTMLDivElement>(null);
   const { maximized, minimized, handleClose, handleMaximize, handleMinimize } =
-    useShellControls({ onClose, onMaximize, onMinimize, shellRef });
+    useShellControls({ onClose, onMaximize, onMinimize, shellref });
 
   const onBodyClick = (() => {
     let action: Function | undefined;
@@ -81,7 +81,7 @@ const Shell = ({
   };
 
   return (
-    <div {...props} ref={shellRef} className={shellClasses} style={shellStyle}>
+    <div {...props} ref={shellref} className={shellClasses} style={shellStyle}>
       {/* HEADER */}
       <div className={styles.header}>
         <ShellTitle

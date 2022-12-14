@@ -52,7 +52,7 @@ const DraggableShell = ({
   return (
     <Shell
       {...props}
-      shellRef={shellRef}
+      shellref={shellRef}
       titleProps={{
         draggable: true,
         onDragStart: handleDragStart,

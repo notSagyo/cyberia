@@ -182,6 +182,20 @@ const songs: ISong[] = [
   },
   {
     tag: 'Albums',
+    title: 'My Chemical Romance > Three Cheers For Sweet Revenge',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoUoPhJ7v7ewY3ql6pcYM0s',
+    imageUrl: 'https://i.imgur.com/Q96OYZD.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Paramore > All We Know Is Falling',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoDyCvlhoN3IFv4RCbg0l5Q',
+    imageUrl: 'https://i.imgur.com/w7bHdHr.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
     title: 'Deftones > Around the Fur',
     url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOrLious_jljOsG-cpiZOsqC',
     imageUrl: 'https://i.imgur.com/EymxFtW.jpg',
@@ -199,7 +213,7 @@ const songs: ISong[] = [
     tag: 'DA-N N1-E',
     title: 'Various Artists > falling in love again',
     url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOrxzkfZfAjiQC0WPHbA5jxv',
-    imageUrl: 'https://i.imgur.com/30EgNFR.jpg',
+    imageUrl: 'https://i.imgur.com/SfG9gNE.jpg',
     source: 'youtube',
   },
   {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface UseShellControlsOptions {
-  shellRef?: React.RefObject<HTMLDivElement>;
+  shellref?: React.RefObject<HTMLDivElement>;
   onClose?: (closed: boolean) => void;
   onMaximize?: (maximized: boolean) => void;
   onMinimize?: (minimized: boolean) => void;
@@ -17,7 +17,7 @@ export const useShellControls = (options?: UseShellControlsOptions) => {
     setClosed((prev) => {
       const newClosed = typeof value === 'boolean' ? value : !prev;
       if (options?.onClose) options.onClose(newClosed);
-      else options?.shellRef?.current?.remove();
+      else options?.shellref?.current?.remove();
       return newClosed;
     });
   };
