@@ -49,7 +49,8 @@ const mangasMap =
     }],
     ['Berserk', {
       mangadex: '801513ba-a712-498c-8f57-cae55b38cc92',
-      mangasee123: 'Berserk',
+      // TODO: manga pages' image links are wrong
+      // mangasee123: 'Berserk',
     }],
     ['Neon Genesis Evangelion', {
       mangasee123: 'Neon-Genesis-Evangelion',
