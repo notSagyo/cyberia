@@ -27,11 +27,13 @@ export const readURL = `${baseURL}/read`;
 export const mangaURL = `${readURL}/manga`;
 
 // STUFF
+export const stuffURL = `${baseURL}/stuff`;
 export const bdayURL = `${baseURL}/bday`;
 export const fortuneURL = `${baseURL}/fortune`;
 export const bartenderURL = `${baseURL}/bartender`;
 export const getMeOutURL = `${baseURL}/getmeout`;
 export const matrixURL = `${baseURL}/matrix`;
+export const citiesURL = `${baseURL}/cities`;
 
 // API =======================================================================//
 export const apiURL = `${baseURL}/api`;

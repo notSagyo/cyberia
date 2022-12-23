@@ -77,7 +77,7 @@ const getMangas = (provider: MangaProvidersNames) => {
   return mangas;
 }
 
-// ?TODO: this broke dev mode, add again in the future:
+// ?FIXME: this broke dev mode, add again in the future:
 //? satisfies Partial<Record<MangaProvidersNames, IManga[]>>
 export const mangas = {
   mangadex: getMangas('mangadex'),

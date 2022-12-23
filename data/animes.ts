@@ -120,7 +120,7 @@ const getAnimes = (provider: AnimeProvidersNames) => {
   return animes;
 }
 
-// ?TODO: this broke dev mode, add again in the future:
+// ?FIXME: this broke dev mode, add again in the future:
 //? satisfies Partial<Record<AnimeProvidersNames, IAnime[]>>
 const animes = {
   gogoanime: getAnimes('gogoanime'),

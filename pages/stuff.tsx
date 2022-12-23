@@ -2,6 +2,7 @@ import Layout from '/components/Layout/Layout';
 import LinkList, { Link } from '/components/LinkList/LinkList';
 import {
   bartenderURL,
+  citiesURL,
   fortuneURL,
   getMeOutURL,
   hectorURL,
@@ -14,6 +15,7 @@ const links: Link[] = [
   { href: fortuneURL },
   { href: matrixURL },
   { href: getMeOutURL },
+  { href: citiesURL },
 ];
 
 const StuffPage = () => {

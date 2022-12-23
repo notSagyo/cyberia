@@ -158,7 +158,6 @@ const songs: ISong[] = [
     source: 'youtube',
   },
   // ALBUMS
-  // !TODO: Paramore
   {
     tag: 'Albums',
     title: 'Slowdive > Souvlaki',

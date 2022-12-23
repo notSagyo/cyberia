@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { loadSongFromStorage } from '/components/CustomPlayer/CustomPlayerHelper';
 import songs from '/data/songs';
 import { ISong } from '/types/song';
@@ -32,17 +32,12 @@ export const MusicContextProvider = ({
   const [playing, setPlaying] = useState<boolean | undefined>();
 
   const playOnce = (song: ISong, storageKey: string) => {
-    console.log(playing);
     if (localStorage.getItem(storageKey) !== 'true') {
       setSong(song);
       setPlaying(true);
       localStorage.setItem(storageKey, 'true');
     }
   };
-
-  useEffect(() => {
-    console.log(playing);
-  }, [playing]);
 
   return (
     <MusicContext.Provider
