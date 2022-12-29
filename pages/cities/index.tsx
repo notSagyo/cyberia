@@ -21,17 +21,17 @@ const CitiesPage: NextPage = () => {
 };
 
 const links = [
+  // LAIN
   'https:/mebious.neocities.org/Layer/Wierd.html',
   'https:/fauux.neocities.org/',
-
+  // SAILOR MOON
   'https:/sailorsaturn.neocities.org/',
   'https:/squaredog.neocities.org/usagi-detail.html',
-
+  // RANDOM SHIT
   'https:/ghastlyghosties.neocities.org/',
   'https:/sparklelollipop.neocities.org/',
-
   'https:/nyaa.neocities.org/',
-
+  // OTHER
   'https:/districts.neocities.org/',
 ];
 
