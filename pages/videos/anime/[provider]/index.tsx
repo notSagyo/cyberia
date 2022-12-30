@@ -6,7 +6,6 @@ import LinkList from '/components/LinkList/LinkList';
 import animes from '/data/animes';
 import { AnimeProvidersNames } from '/services/consumet-service';
 import { animeURL, videosURL } from '/utils/urls';
-import { toUrlikeString } from '/utils/utils';
 
 interface ProviderPageProps {
   provider: AnimeProvidersNames;
@@ -22,11 +21,10 @@ const ProviderPage = ({ provider }: ProviderPageProps) => {
       <LinkHeading href={videosURL}>..{animeURL}</LinkHeading>
       <LinkList
         links={animes[provider].map((anime) => {
-          const title = anime.localId || anime.remoteId;
           return {
-            href: `${animeURL}/${provider}/${anime.remoteId}`,
-            title: `/pages${animeURL}/${toUrlikeString(title)}`,
-            key: anime.remoteId,
+            href: `${animeURL}/${provider}/${anime.localId}`,
+            title: `/pages${animeURL}/${anime.localId}`,
+            key: anime.localId,
           };
         })}
       />

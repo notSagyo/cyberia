@@ -10,7 +10,6 @@ import AnimeVideoJS from '/components/AnimeVideo/AnimeVideoJS';
 import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import Anchor from '/components/utils/Anchor/Anchor';
-import animes from '/data/animes';
 import animeService from '/services/anime-service';
 import { AnimeProvidersNames } from '/services/consumet-service';
 import styles from '/styles/pages/anime.module.scss';
@@ -109,7 +108,7 @@ const useEpisode = () => {
     episodeId: string;
     provider: AnimeProvidersNames;
   };
-  const remoteId = animes[provider]?.find((anime) => anime.localId)?.remoteId;
+  const remoteId = animeService.localIdToRemoteId(animeId, provider);
 
   // Episode navigation
   const episodeCount = animeInfo?.totalEpisodes || 1;
