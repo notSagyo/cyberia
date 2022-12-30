@@ -10,20 +10,20 @@ import {
   MangaProvidersNames,
 } from './consumet-service';
 
-// Manga =====================================================================//
-export const mangaProviders: Record<MangaProvidersNames, MangaParser> = {
-  mangadex: new MangaDex(),
-  mangasee123: new Mangasee123(),
-  get default() {
-    return this[mangaProvider];
-  },
-};
-
 // Anime =====================================================================//
 export const animeProviders: Record<AnimeProvidersNames, AnimeParser> = {
   gogoanime: new Gogoanime(),
   zoro: new Zoro(),
   get default() {
     return this[animeProvider];
+  },
+};
+
+// Manga =====================================================================//
+export const mangaProviders: Record<MangaProvidersNames, MangaParser> = {
+  mangadex: new MangaDex(),
+  mangasee123: new Mangasee123(),
+  get default() {
+    return this[mangaProvider];
   },
 };

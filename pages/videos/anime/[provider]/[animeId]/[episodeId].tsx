@@ -10,32 +10,11 @@ import AnimeVideoJS from '/components/AnimeVideo/AnimeVideoJS';
 import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import Anchor from '/components/utils/Anchor/Anchor';
+import animes from '/data/animes';
+import animeService from '/services/anime-service';
 import { AnimeProvidersNames } from '/services/consumet-service';
 import styles from '/styles/pages/anime.module.scss';
-import {
-  animeURL,
-  getAnimeEpisodeURL,
-  getAnimeInfoURL,
-  getAnimeSourcesURL,
-} from '/utils/urls';
-
-const fetchAnimeInfo = async (
-  animeId: string,
-  provider: AnimeProvidersNames
-): Promise<IAnimeInfo | undefined> => {
-  return fetch(`${getAnimeInfoURL(provider)}/${animeId}`).then((res) =>
-    res.json()
-  );
-};
-
-const fetchSources = async (
-  episodeId: string,
-  provider: AnimeProvidersNames
-): Promise<ISource | undefined> => {
-  return fetch(`${getAnimeSourcesURL(provider)}/${episodeId}`).then((res) =>
-    res.json()
-  );
-};
+import { animeURL, getAnimeEpisodeURL } from '/utils/urls';
 
 const EpisodePage: NextPage = () => {
   const router = useRouter();
@@ -67,7 +46,7 @@ const EpisodePage: NextPage = () => {
         shellProps={{ className: styles.videoShell }}
       />
 
-      {/* CONTROLS show only after episode is loaded */}
+      {/* CONTROLS, show only after episode is loaded */}
       {episodeUrl && (
         <>
           {/* EPISODE SELECT */}
@@ -121,13 +100,18 @@ const EpisodePage: NextPage = () => {
 };
 
 const useEpisode = () => {
-  const { animeId, episodeId } = useRouter().query as Record<string, string>;
   const [animeInfo, setAnimeInfo] = useState<IAnimeInfo>();
   const [source, setSource] = useState<ISource>({ sources: [] });
   const [episodeUrl, setEpisodeUrl] = useState<string>('');
   const [subtitles, setSubtitles] = useState<ISubtitle[]>([]);
-  const provider = useRouter().query.provider as AnimeProvidersNames;
+  const { animeId, episodeId, provider } = useRouter().query as {
+    animeId: string;
+    episodeId: string;
+    provider: AnimeProvidersNames;
+  };
+  const remoteId = animes[provider]?.find((anime) => anime.localId)?.remoteId;
 
+  // Episode navigation
   const episodeCount = animeInfo?.totalEpisodes || 1;
   const prevEpisodeUrl =
     animeInfo &&
@@ -140,13 +124,17 @@ const useEpisode = () => {
 
   // Fetch anime and episode data
   useEffect(() => {
-    if (!animeId || !episodeId || !provider) return;
+    if (!remoteId || !episodeId || !provider) return;
     (async () => {
       try {
+        // Set empty to ensure reload
         setSource({ sources: [] });
         setEpisodeUrl('');
-        const info = animeInfo ?? (await fetchAnimeInfo(animeId, provider));
-        const sources = await fetchSources(
+
+        // Fetch data
+        const info =
+          animeInfo ?? (await animeService.fetchInfo(remoteId, provider));
+        const sources = await animeService.fetchSources(
           info?.episodes?.[parseInt(episodeId) - 1].id || '',
           provider
         );
@@ -154,6 +142,8 @@ const useEpisode = () => {
         const url = sources.sources.find(
           (src) => src.quality === 'auto' || src.quality === 'default'
         )?.url;
+
+        // Set new values
         setAnimeInfo(info);
         setSource(sources);
         setEpisodeUrl(url || sources.sources?.[0].url || '');
@@ -162,7 +152,7 @@ const useEpisode = () => {
         console.error(err);
       }
     })();
-  }, [animeId, animeInfo, episodeId, provider]);
+  }, [remoteId, animeInfo, episodeId, provider]);
 
   return {
     provider,

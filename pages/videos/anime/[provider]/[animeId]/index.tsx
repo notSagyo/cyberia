@@ -25,8 +25,8 @@ const AnimeId = ({ animeInfo, provider }: AnimeIdProps) => {
   const episodes = animeInfo.episodes || [];
 
   const animeTitle = (() => {
-    const anime = animes[provider].find((anime) => anime.id == animeId);
-    const title = anime?.title || anime?.id;
+    const anime = animes[provider].find((anime) => anime.remoteId == animeId);
+    const title = anime?.localId || anime?.remoteId;
     return toUrlikeString(title || '');
   })();
 
@@ -58,7 +58,7 @@ export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
 
   const paths = animeProviders.flatMap((provider) =>
     animes[provider].map((anime) => ({
-      params: { animeId: anime?.id, provider: provider },
+      params: { animeId: anime?.remoteId, provider: provider },
     }))
   );
 

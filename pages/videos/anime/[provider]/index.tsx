@@ -22,11 +22,11 @@ const ProviderPage = ({ provider }: ProviderPageProps) => {
       <LinkHeading href={bdayURL}>..{animeURL}</LinkHeading>
       <LinkList
         links={animes[provider].map((anime) => {
-          const title = anime.title || anime.id;
+          const title = anime.localId || anime.remoteId;
           return {
-            href: `${animeURL}/${provider}/${anime.id}`,
+            href: `${animeURL}/${provider}/${anime.remoteId}`,
             title: `/pages${animeURL}/${toUrlikeString(title)}`,
-            key: anime.id,
+            key: anime.remoteId,
           };
         })}
       />

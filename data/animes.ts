@@ -1,112 +1,112 @@
 import { animeProvider, AnimeProvidersNames } from "/services/consumet-service";
 
 interface IAnime {
-  id: string;
-  title?: string;
+  remoteId: string;
+  localId: string;
 }
 
 const animesMap =
   new Map<string, Partial<Record<AnimeProvidersNames, string>>>([
-    ['Serial Experiments Lain', {
+    ['serial_experiments_lain', {
       gogoanime: 'serial-experiments-lain',
       zoro: 'serial-experiments-lain-503',
     }],
-    ['Ghost In The Shell', {
+    ['ghost_in_the_shell', {
       gogoanime: 'ghost-in-the-shell',
       zoro: 'ghost-in-the-shell-220',
     }],
-    ['Ergo Proxy', {
+    ['ergo_proxy', {
       gogoanime: 'ergo-proxy',
       zoro: 'ergo-proxy-626',
     }],
-    ['Texhnolyze', {
+    ['texhnolyze', {
       gogoanime: 'texhnolyze-',
       zoro: 'texhnolyze-908',
     }],
-    ['Neon Genesis Evangelion', {
+    ['neon_genesis_evangelion', {
       gogoanime: 'neon-genesis-evangelion-',
       zoro: 'neon-genesis-evangelion-209',
     }],
-    ['Evangelion The End Of Evangelion', {
+    ['evangelion_the_end_of_evangelion', {
       gogoanime: 'evangelion-the-end-of-evangelion',
       zoro: 'neon-genesis-evangelion-movie-the-end-of-evangelion-93',
     }],
-    ['Cowboy Bebop', {
+    ['cowboy_bebop', {
       gogoanime: 'cowboy-bebop',
       zoro: 'cowboy-bebop-27',
     }],
-    ['Code Geass Lelouch Of The Rebellion', {
+    ['code_geass_lelouch_of_the_rebellion', {
       gogoanime: 'code-geass-lelouch-of-the-rebellion',
       zoro: 'code-geass-lelouch-of-the-rebellion-41',
     }],
-    ['Code Geass Lelouch Of The Rebellion R2', {
+    ['code_geass_lelouch_of_the_rebellion_r2', {
       gogoanime: '-code-geass-lelouch-of-the-rebellion-r2',
       zoro: 'code-geass-lelouch-of-the-rebellion-r2-17',
     }],
-    ['Perfect Blue', {
+    ['perfect_blue', {
       gogoanime: 'perfect-blue',
       zoro: 'perfect-blue-127',
     }],
-    ['Psycho Pass', {
+    ['psycho_pass', {
       gogoanime: 'psycho-pass',
       zoro: 'psycho-pass-158',
     }],
-    ['Psycho Pass 2', {
+    ['psycho_pass_2', {
       gogoanime: 'psycho-pass-2',
       zoro: 'psycho-pass-2-1774',
     }],
-    ['Psycho Pass 3', {
+    ['psycho_pass_3', {
       gogoanime: 'psycho-pass-3',
       zoro: 'psycho-pass-3-1360',
     }],
-    ['Steins;Gate', {
+    ['steins_gate', {
       gogoanime: 'steinsgate',
       zoro: 'steinsgate-3',
     }],
-    ['Steins;Gate 0', {
+    ['steins_gate_0', {
       gogoanime: 'steinsgate-0',
       zoro: 'steinsgate-0-92',
     }],
-    ['Akira', {
+    ['akira', {
       gogoanime: 'akira',
       zoro: 'akira-337',
     }],
-    ['Blame', {
+    ['blame', {
       gogoanime: 'blame',
       zoro: 'blame-movie-2863',
     }],
-    ['Claymore', {
+    ['claymore', {
       gogoanime: 'claymore',
       zoro: 'claymore-844',
     }],
-    ['Devilman Crybaby', {
+    ['devilman_crybaby', {
       gogoanime: 'devilman-crybaby',
       zoro: 'devilman-crybaby-702',
     }],
-    ['Sailor Moon', {
+    ['sailor_moon', {
       gogoanime: 'sailor-moon-',
       zoro: 'sailor-moon-1067',
     }],
-    ['Sailor Moon R', {
+    ['sailor_moon_r', {
       gogoanime: 'sailor-moon-r',
       zoro: 'sailor-moon-r-1057',
     }],
-    ['Sailor Moon S', {
+    ['sailor_moon_s', {
       gogoanime: 'sailor-moon-s',
       zoro: 'sailor-moon-s-720',
     }],
-    ['Sailor Moon Supers', {
+    ['sailor_moon_supers', {
       gogoanime: 'sailor-moon-supers',
       zoro: 'sailor-moon-supers-1308',
     }],
-    ['Sailor Moon Sailor Stars', {
+    ['sailor_moon_sailor_stars', {
       gogoanime: 'bishoujo-senshi-sailor-moon-sailor-stars',
       zoro: 'sailor-moon-sailor-stars-643',
     }],
-    ['Sailor moong Crystal Stars', {
+    ['sailor_moong_crystal_stars', {
       zoro: 'sailor-moon-sailor-stars-643',
     }],
-    ['Monster', {
+    ['monster', {
       gogoanime: 'monster',
       zoro: 'monster-37',
     }],
@@ -115,7 +115,7 @@ const animesMap =
 const getAnimes = (provider: AnimeProvidersNames) => {
   const animes: IAnime[] = [];
   animesMap.forEach((v, k) => {
-    v[provider] && animes.push({ title: k, id: v[provider] as string})
+    v[provider] && animes.push({ localId: k, remoteId: v[provider] as string})
   })
   return animes;
 }
