@@ -7,7 +7,7 @@ import Layout from '/components/Layout/Layout';
 const FramePage: NextPage = ({}: HTMLAttributes<HTMLElement>) => {
   const router = useRouter();
   const { url } = router.query;
-  const parsedUrl = isArray(url) ? url.join('/') : '';
+  const parsedUrl = isArray(url) ? 'https://' + url.join('/') : '';
 
   return (
     <Layout noPadding>

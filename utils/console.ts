@@ -6,6 +6,7 @@ interface logRequestParams {
   source: unknown;
   status: 'start' | 'complete';
 }
+
 export const logRequest = ({
   content,
   contentType,

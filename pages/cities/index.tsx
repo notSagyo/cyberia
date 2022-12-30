@@ -12,7 +12,7 @@ const CitiesPage: NextPage = () => {
       </LinkHeading>
       <LinkList
         links={links.map((link) => ({
-          title: link,
+          title: `https://${link}`,
           href: `${citiesURL}/${link}`,
         }))}
       />
@@ -22,17 +22,17 @@ const CitiesPage: NextPage = () => {
 
 const links = [
   // LAIN
-  'https:/mebious.neocities.org/Layer/Wierd.html',
-  'https:/fauux.neocities.org/',
+  'mebious.neocities.org/Layer/Wierd.html',
+  'fauux.neocities.org/',
   // SAILOR MOON
-  'https:/sailorsaturn.neocities.org/',
-  'https:/squaredog.neocities.org/usagi-detail.html',
+  'sailorsaturn.neocities.org/',
+  'squaredog.neocities.org/usagi-detail.html',
   // RANDOM SHIT
-  'https:/ghastlyghosties.neocities.org/',
-  'https:/sparklelollipop.neocities.org/',
-  'https:/nyaa.neocities.org/',
+  'ghastlyghosties.neocities.org/',
+  'sparklelollipop.neocities.org/',
+  'nyaa.neocities.org/',
   // OTHER
-  'https:/districts.neocities.org/',
+  'districts.neocities.org/',
 ];
 
 export default CitiesPage;
