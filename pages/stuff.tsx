@@ -20,7 +20,7 @@ const links: Link[] = [
 
 const StuffPage = () => {
   return (
-    <Layout>
+    <Layout title="Stuff">
       <h1 className="h1">STUFF</h1>
       <LinkList links={links} />
     </Layout>

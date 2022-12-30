@@ -4,7 +4,7 @@ import Layout from '/components/Layout/Layout';
 
 const BartenderPage = () => {
   return (
-    <Layout noPadding title="bartender.exe">
+    <Layout title="bartender.exe" noPadding>
       <BartenderContainer>
         <Bartender />
       </BartenderContainer>

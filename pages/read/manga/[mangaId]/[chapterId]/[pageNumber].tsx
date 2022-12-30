@@ -16,6 +16,9 @@ import {
 
 const MangaPage = () => {
   const {
+    mangaId,
+    chapterId,
+    pageNumber,
     imageUrl,
     nextImageUrl,
     prevPageUrl,
@@ -25,7 +28,11 @@ const MangaPage = () => {
   } = useMangaPage();
 
   return (
-    <Layout className="bgSpace" bodyProps={{ id: 'scrollTarget' }}>
+    <Layout
+      title={`${chapterId}/${pageNumber}`}
+      className="bgSpace"
+      bodyProps={{ id: 'scrollTarget' }}
+    >
       {/* PAGE */}
       <Link
         href={nextPageUrl ? nextPageUrl : nextChapterUrl ? nextChapterUrl : '#'}

@@ -5,7 +5,7 @@ import albumImages from '/data/an-omnipresence-in-wired';
 
 const AnOmnipresenceInWiredPage: NextPage = () => {
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="an_omnipresence_in_wired" className="bgStars">
       <Album
         albumTitle="/public/img/an_omnipresence_in_wired"
         images={albumImages}

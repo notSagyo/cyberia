@@ -4,7 +4,7 @@ import albumImages from '/data/visual-experiments-album-images';
 
 const VisualExperimentsPage = () => {
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="visual_experiments" className="bgStars">
       <Album
         albumTitle="/public/img/visual_experiments"
         images={albumImages}

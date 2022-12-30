@@ -5,7 +5,7 @@ import albumImages from '/data/va11halla-album-images';
 
 const Va11hallaPage: NextPage = () => {
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="va-11_hall-a" className="bgStars">
       <Album
         albumTitle="/public/img/va-11_hall-a"
         images={albumImages}

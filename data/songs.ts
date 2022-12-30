@@ -188,9 +188,23 @@ const songs: ISong[] = [
   },
   {
     tag: 'Albums',
+    title: 'Poppy > I Disagree',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOpWh6JAXYyb24PxKvqO9ccu',
+    imageUrl: 'https://i.imgur.com/zV3Ewf7.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
     title: 'Paramore > All We Know Is Falling',
     url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoDyCvlhoN3IFv4RCbg0l5Q',
     imageUrl: 'https://i.imgur.com/w7bHdHr.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Hayley Williams > Petals For Armor',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoN8DV-JaejzO7g9abyKHwF',
+    imageUrl: 'https://i.imgur.com/h9vAfjd.jpg',
     source: 'youtube',
   },
   {

@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import YtVideo from '/components/YtVideo/YtVideo';
-import { bdayURL, surfaceURL } from '/utils/urls';
+import { surfaceURL, videosURL } from '/utils/urls';
 
 const ytVideos: { id: string; title?: string; playlist?: boolean }[] = [
   { id: 'zW_Z6f4u5pw' },
@@ -16,8 +16,8 @@ const ytVideos: { id: string; title?: string; playlist?: boolean }[] = [
 
 const surfacePage: NextPage = () => {
   return (
-    <Layout>
-      <LinkHeading href={bdayURL} goBack>
+    <Layout title="Surface">
+      <LinkHeading href={videosURL} goBack>
         {surfaceURL}
       </LinkHeading>
       {ytVideos.map((vid, i) => (

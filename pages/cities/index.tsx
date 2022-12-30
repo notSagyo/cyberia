@@ -6,7 +6,7 @@ import { citiesURL, stuffURL } from '/utils/urls';
 
 const CitiesPage: NextPage = () => {
   return (
-    <Layout>
+    <Layout title="Cities">
       <LinkHeading href={stuffURL} goBack>
         {citiesURL}
       </LinkHeading>

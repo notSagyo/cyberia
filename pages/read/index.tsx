@@ -6,7 +6,7 @@ import { toUrlikeString } from '/utils/utils';
 
 const ReadPage = () => {
   return (
-    <Layout>
+    <Layout title="Read">
       <h1 className="h1">READ</h1>
       <LinkList
         links={mangas.default.map((manga) => ({

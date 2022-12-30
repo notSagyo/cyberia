@@ -5,7 +5,7 @@ import albumImages from '/data/ultimate-fan-guide';
 
 const UltimateFanGuidePage: NextPage = () => {
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="ultimate_fan_guide" className="bgStars">
       <Album
         albumTitle="/public/img/ultimate_fan_guide"
         images={albumImages}

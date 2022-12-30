@@ -5,24 +5,24 @@ import { fortuneQuotes } from '/data/quotes';
 
 const unusedQuotes = [...fortuneQuotes];
 
+const getRandomQuote = () => {
+  if (unusedQuotes.length <= 0) unusedQuotes.push(...fortuneQuotes);
+  const randomQuoteIndex = Math.floor(Math.random() * unusedQuotes.length);
+  const randomQuote = unusedQuotes[randomQuoteIndex].split('/');
+  unusedQuotes.splice(randomQuoteIndex, 1);
+  return randomQuote;
+};
+
 const FortunePage = () => {
   // Quotes are an array of strings where each elem is a new line
   const [randomQuote, setRandomQuote] = useState<string[]>([]);
 
-  const getRandomQuote = () => {
-    if (unusedQuotes.length <= 0) unusedQuotes.push(...fortuneQuotes);
-    const randomQuoteIndex = Math.floor(Math.random() * unusedQuotes.length);
-    const randomQuote = unusedQuotes[randomQuoteIndex].split('/');
-    unusedQuotes.splice(randomQuoteIndex, 1);
-    setRandomQuote(randomQuote);
-  };
-
-  useEffect(() => getRandomQuote(), []);
+  useEffect(() => setRandomQuote(getRandomQuote()), []);
 
   return (
     <Layout
       noPadding
-      title="fortune_teller"
+      title="fortune_teller.exe"
       className="bgSpace"
       bodyProps={{ className: 'center' }}
     >
@@ -32,7 +32,9 @@ const FortunePage = () => {
         </h2>
       ))}
       <br />
-      <Anchor onClick={getRandomQuote}>TRY AGAIN</Anchor>
+      <Anchor onClick={() => setRandomQuote(getRandomQuote())}>
+        TRY AGAIN
+      </Anchor>
     </Layout>
   );
 };

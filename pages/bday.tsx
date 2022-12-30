@@ -4,7 +4,7 @@ import Bday from '/components/pages/Bday/Bday';
 
 const BdayPage: NextPage = () => {
   return (
-    <Layout noPadding>
+    <Layout title="~Happy★Birthday~!" noPadding>
       <Bday />
     </Layout>
   );

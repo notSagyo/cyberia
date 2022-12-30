@@ -4,7 +4,7 @@ import Matrix from '/components/pages/Matrix/Matrix';
 
 const MatrixPage: NextPage = () => {
   return (
-    <Layout noPadding className="bgBlack">
+    <Layout title="matrix.exe" noPadding className="bgBlack">
       <Matrix />
     </Layout>
   );

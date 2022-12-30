@@ -5,7 +5,7 @@ import styles from '/styles/pages/omori.module.scss';
 
 const Omori4Page = () => {
   return (
-    <Layout title="Gallery" className={styles.bgGlitched}>
+    <Layout title="omori4" className={styles.bgGlitched}>
       <Album
         albumTitle="/public/img/omori/4"
         images={albumImages}

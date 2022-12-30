@@ -16,7 +16,7 @@ const OfficialGuidePage: NextPage = () => {
   );
 
   return (
-    <Layout title="Gallery" className="bgStars">
+    <Layout title="official_guide" className="bgStars">
       <Album
         albumTitle="/public/img/official_guide"
         images={albumImages}

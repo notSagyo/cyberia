@@ -86,7 +86,7 @@ const OmoriPage = () => {
   );
 
   return (
-    <Layout title="Gallery" className="bgOmori">
+    <Layout title="omori" className="bgOmori">
       <Album
         albumTitle="/public/img/omori"
         images={albumImages}

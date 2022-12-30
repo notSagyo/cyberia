@@ -26,7 +26,11 @@ const PsychWardPage: NextPage = () => {
     />
   ));
 
-  return <Layout className="bgBlack">{lebensgefahrImages}</Layout>;
+  return (
+    <Layout title="psych_ward" className="bgBlack">
+      {lebensgefahrImages}
+    </Layout>
+  );
 };
 
 export default PsychWardPage;

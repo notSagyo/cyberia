@@ -10,7 +10,7 @@ const FramePage: NextPage = ({}: HTMLAttributes<HTMLElement>) => {
   const parsedUrl = isArray(url) ? 'https://' + url.join('/') : '';
 
   return (
-    <Layout noPadding>
+    <Layout title="Cities" noPadding>
       <iframe src={parsedUrl} width={'100%'} height={'100%'} />
     </Layout>
   );

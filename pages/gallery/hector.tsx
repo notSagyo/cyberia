@@ -4,7 +4,7 @@ import hector from '/data/hector-html';
 
 const HectorPage = () => {
   return (
-    <Layout className="bgStars">
+    <Layout title="hector" className="bgStars">
       <h1>HECTOR</h1>
       <div
         style={{

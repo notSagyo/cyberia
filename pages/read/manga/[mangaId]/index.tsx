@@ -26,7 +26,7 @@ const MangaIdPage = ({ mangaInfo }: MangaIdProps) => {
   );
 
   return (
-    <Layout>
+    <Layout title={mangaId}>
       <LinkHeading href={`${readURL}`} goBack>
         {mangaURL}/{mangaName}
       </LinkHeading>

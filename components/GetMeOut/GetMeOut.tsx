@@ -18,7 +18,7 @@ const GetMeOut = ({ src }: { src: string }) => {
   }, []);
 
   return (
-    <Layout shellTitle="GET ME OUT">
+    <Layout title="GET ME OUT" shellTitle="GET ME OUT">
       {frame}
       <Anchor id="getMeOut" href={getMeOutURL}>
         GET ME OUT
