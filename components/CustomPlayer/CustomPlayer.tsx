@@ -126,14 +126,21 @@ const CustomPlayer = ({
   };
 
   const handlePlay = () => {
+    setPlaying(true);
     props.onPlay && props.onPlay();
     playerRef.current && setDuration(playerRef.current.getDuration());
     saveToStorage && localStorage.setItem(storagePausedKey, String(Number(0)));
   };
 
   const handlePause = () => {
+    setPlaying(false);
     props.onPause && props.onPause();
     saveToStorage && localStorage.setItem(storagePausedKey, String(Number(1)));
+  };
+
+  const handlePlayPause = () => {
+    if (playing) handlePause();
+    else handlePlay();
   };
 
   const handleReady = (reactPlayer: ReactPlayer) => {
@@ -180,7 +187,7 @@ const CustomPlayer = ({
           </div>
         )}
         {/* PLAY / PAUSE */}
-        <div className={styles.button} onClick={() => setPlaying((s) => !s)}>
+        <div className={styles.button} onClick={handlePlayPause}>
           {playing ? <IconPause /> : <IconPlay />}
         </div>
         {/* NEXT SONG */}
