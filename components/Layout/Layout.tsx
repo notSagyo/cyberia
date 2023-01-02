@@ -45,10 +45,19 @@ const Layout = ({
         <meta name="description" content={description || 'bad end'} />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
+        {/* Facebook Meta Tags */}
         <meta property="og:title" content="Cyberia" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://cyberia.wtf" />
         <meta property="og:image" content="https://i.imgur.com/xPqwqaM.jpg" />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="cyberia.wtf" />
+        <meta property="twitter:url" content="https://cyberia.wtf" />
+        <meta name="twitter:title" content="Cyberia" />
+        <meta name="twitter:description" content="bad end" />
+        <meta name="twitter:image" content="https://i.imgur.com/xPqwqaM.jpg" />
 
         {headChildren}
       </Head>
