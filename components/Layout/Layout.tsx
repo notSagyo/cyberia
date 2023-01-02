@@ -44,6 +44,12 @@ const Layout = ({
         <title>{title ? `${title} | Cyberia` : 'Cyberia'}</title>
         <meta name="description" content={description || 'bad end'} />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+        <meta property="og:title" content="Cyberia" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cyberia.wtf" />
+        <meta property="og:image" content="https://i.imgur.com/xPqwqaM.jpg" />
+
         {headChildren}
       </Head>
 
