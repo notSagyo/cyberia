@@ -30,7 +30,11 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
           </aside>
           {/* CENTER */}
           <div className={s.goodSideCenter}>
-            <Img src="/img/cake.gif" alt="cake" />
+            <div className={s.cakeRow}>
+              <Img src="/img/hr-sweet.webp" alt="cake" />
+              <Img src="/img/cake.gif" alt="cake" />
+              <Img src="/img/hr-sweet.webp" alt="cake" />
+            </div>
             {/* HELLO KITTY STRIPE */}
             <div className={s.kittyStripe}>
               <Img src="/img/melody-heart.webp" alt="my melody" height={115} />
@@ -47,6 +51,13 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
           {/* RIGHT SIDE */}
           <aside className={s.goodSideRight}>
             <Img src="/img/chibiusa-cloud.gif" alt="chibiusa cloud" />
+            <Img
+              src="/img/eternal-banana.webp"
+              alt="eternal banana"
+              title="ETERNAL BANANA"
+              className={cn('pointer', s.eternalBanana)}
+              mirror
+            />
           </aside>
         </div>
       </section>
