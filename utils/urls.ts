@@ -29,16 +29,17 @@ export const mangaURL = `${readURL}/manga`;
 // STUFF
 export const stuffURL = `${baseURL}/stuff`;
 export const bdayURL = `${baseURL}/bday`;
-export const fortuneURL = `${baseURL}/fortune`;
 export const bartenderURL = `${baseURL}/bartender`;
+export const citiesURL = `${baseURL}/cities`;
+export const fortuneURL = `${baseURL}/fortune`;
 export const getMeOutURL = `${baseURL}/getmeout`;
 export const matrixURL = `${baseURL}/matrix`;
-export const citiesURL = `${baseURL}/cities`;
+export const weirdURL = `${baseURL}/weird`;
 
 // API =======================================================================//
 export const apiURL = `${baseURL}/api`;
-export const ipUrl = `${apiURL}/ip`;
-export const fetchUrl = `${apiURL}/fetch`;
+export const ipURL = `${apiURL}/ip`;
+export const fetchURL = `${apiURL}/fetch`;
 export const getAnimeInfoURL = (provider: AnimeProvidersNames) =>
   `${apiURL}/anime/${provider}`;
 export const getAnimeSourcesURL = (provider: AnimeProvidersNames) =>

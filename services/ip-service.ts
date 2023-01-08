@@ -1,5 +1,5 @@
 import { Geoiplookup, Ipapi, IpRes } from '/types/ip';
-import { fetchUrl, ipUrl } from '/utils/urls';
+import { fetchURL, ipURL } from '/utils/urls';
 
 class IpService {
   /** didn't work in production */
@@ -9,7 +9,7 @@ class IpService {
   storageKey = 'ipInfo';
 
   async fecthClientIp(): Promise<string> {
-    const res = await fetch(ipUrl);
+    const res = await fetch(ipURL);
     const resJson = (await res.json()) as IpRes | null;
     return resJson?.ip || '';
   }
@@ -35,7 +35,7 @@ class IpService {
     proxy = false
   ): Promise<T | null> {
     try {
-      const data = await fetch(`${proxy ? fetchUrl + '/' : ''}${url}/${ip}`);
+      const data = await fetch(`${proxy ? fetchURL + '/' : ''}${url}/${ip}`);
       const dataJson = data.json();
       return dataJson;
     } catch (error) {
@@ -45,7 +45,7 @@ class IpService {
   }
 
   /**
-   * Tries to retrieve info from localStorage first
+   * Tries to retrieve info from sessionStorage first
    * @param proxy should do the request from this app backend?
    */
   async getInfo<T>(
@@ -55,14 +55,14 @@ class IpService {
   ): Promise<T | null> {
     const localData = this.loadInfoFromStorage();
     if (localData) return localData as T;
-    console.warn(`${this.storageKey} not found on Local Storage, fetching...`);
+    console.warn(`${this.storageKey} not found on sessionStorage, fetching...`);
     const data = await this.fetchInfo<T>(ip, url, proxy);
     return data;
   }
 
   loadInfoFromStorage<T>(): T | null {
     try {
-      const data = localStorage.getItem(this.storageKey);
+      const data = sessionStorage.getItem(this.storageKey);
       const dataJson = (data && (JSON.parse(data) as T)) || null;
       return dataJson;
     } catch (error) {
@@ -73,7 +73,7 @@ class IpService {
 
   saveInfoToStorage(data: string): string | null {
     try {
-      localStorage.setItem(this.storageKey, data);
+      sessionStorage.setItem(this.storageKey, data);
       return data;
     } catch (error) {
       console.error(this.storageKey, error);
