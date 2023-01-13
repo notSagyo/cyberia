@@ -216,9 +216,9 @@ const songs: ISong[] = [
   },
   {
     tag: 'Albums',
-    title: 'Deftones > Around the Fur',
-    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOrLious_jljOsG-cpiZOsqC',
-    imageUrl: 'https://i.imgur.com/EymxFtW.jpg',
+    title: 'blink-182 > Take Off Your Pants And Jacket',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOrNEIIX5G-Hsdn85VYaDs4W',
+    imageUrl: 'https://i.imgur.com/jgbNSa3.jpg',
     source: 'youtube',
   },
   {
@@ -226,6 +226,20 @@ const songs: ISong[] = [
     title: 'Teen Suicide > dc snuff fim / waste yrself',
     url: 'https://youtube.com/playlist?list=PLxwHtUHlFZ5HZxZtA9EWkAOrA8DFz1Qbx',
     imageUrl: 'https://i.imgur.com/6OngxQw.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Deftones > Around the Fur',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOrLious_jljOsG-cpiZOsqC',
+    imageUrl: 'https://i.imgur.com/EymxFtW.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Scott Pilgrim Vs. The World > OST',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoVFtmZjfW1d5-Augs4sT8r',
+    imageUrl: 'https://i.imgur.com/nS0s4Ou.jpg',
     source: 'youtube',
   },
   // DANNIE

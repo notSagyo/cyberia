@@ -35,6 +35,8 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
               <Img src="/img/cake.gif" alt="cake" />
               <Img src="/img/hr-sweet.webp" alt="cake" />
             </div>
+            {/* MAIN TEXT */}
+            <h1 className={s.title}>★·.·´¯`·.·★ HAPPY BIRTHDAY ★·.·´¯`·.·★</h1>
             {/* HELLO KITTY STRIPE */}
             <div className={s.kittyStripe}>
               <Img src="/img/melody-heart.webp" alt="my melody" height={115} />
@@ -45,7 +47,6 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
               <Img src="/img/kitty-balloons.gif" alt="kitty balloons" />
               <Img src="/img/kuromi.webp" alt="kuromi" mirror />
             </div>
-            <h1 className={s.title}>★·.·´¯`·.·★ HAPPY BIRTHDAY ★·.·´¯`·.·★</h1>
             <Img src="/img/tfm.png" alt="transformice marry" />
           </div>
           {/* RIGHT SIDE */}

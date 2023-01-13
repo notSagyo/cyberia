@@ -24,18 +24,32 @@ const links = [
   // LAIN
   'mebious.neocities.org/Layer/Wierd.html',
   'fauux.neocities.org/',
+  'blackwings.neocities.org/',
+  'lainzine.org/',
   // SAILOR MOON
   'sailorsaturn.neocities.org/',
-  'squaredog.neocities.org/usagi-detail.html',
+  'squaredog.neocities.org/',
   // RANDOM SHIT
-  'sparklelollipop.neocities.org/',
-  'nyaa.neocities.org/',
+  'vomitboyz.neocities.org/',
+  'youthculture2000.com/',
+  'hotlinecafe.com/',
+  'psychicnewborn.neocities.org/',
   // PERSONAL
-  'shishka.neocities.org/',
+  'mrdoob.neocities.org/',
+  'nyaa.neocities.org/',
   'cinni.net/',
+  'uhmm-mo.neocities.org/home',
+  'flatlinepsalms.neocities.org/',
+  'shishka.neocities.org/',
+  'kry.pt/',
+  'sparklelollipop.neocities.org/',
+  'dannarchy.com/',
+  'rvklein.me/',
+  'sanhyo.neocities.org/',
   // OTHER
   'districts.neocities.org/',
   'gifcities.org/',
+  'lainchan.org/',
 ];
 
 export default CitiesPage;
