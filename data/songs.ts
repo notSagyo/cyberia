@@ -202,9 +202,16 @@ const songs: ISong[] = [
   },
   {
     tag: 'Albums',
-    title: 'Hayley Williams > Petals For Armor',
-    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoN8DV-JaejzO7g9abyKHwF',
-    imageUrl: 'https://i.imgur.com/h9vAfjd.jpg',
+    title: 'Hayley Williams > FLOWERS for VASES / descansos',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOqJYqnQHpkYNT53m24AFgnl',
+    imageUrl: 'https://i.imgur.com/hELp3SZ.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Pierce The Veil > A Flair For The Dramatic',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOo3MOCFciOVTICw7YFPOEzA',
+    imageUrl: 'https://i.imgur.com/EaZclzl.jpg',
     source: 'youtube',
   },
   {

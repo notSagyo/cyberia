@@ -28,11 +28,14 @@ const links = [
   'sailorsaturn.neocities.org/',
   'squaredog.neocities.org/usagi-detail.html',
   // RANDOM SHIT
-  'ghastlyghosties.neocities.org/',
   'sparklelollipop.neocities.org/',
   'nyaa.neocities.org/',
+  // PERSONAL
+  'shishka.neocities.org/',
+  'cinni.net/',
   // OTHER
   'districts.neocities.org/',
+  'gifcities.org/',
 ];
 
 export default CitiesPage;

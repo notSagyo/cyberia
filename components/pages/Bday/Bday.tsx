@@ -55,7 +55,7 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
               src="/img/eternal-banana.webp"
               alt="eternal banana"
               title="ETERNAL BANANA"
-              className={cn('pointer', s.eternalBanana)}
+              className={cn('help', s.eternalBanana)}
               mirror
             />
           </aside>
