@@ -18,7 +18,7 @@ interface LayoutProps extends ShellProps {
 const Layout = ({
   children,
   title,
-  description,
+  description = "No matter where you go, everyone's connected...",
   headChildren,
   ...props
 }: LayoutProps) => {
@@ -42,12 +42,7 @@ const Layout = ({
       {/* PAGE HEAD ======================================================== */}
       <Head>
         <title>{title ? `${title} | Cyberia` : 'Cyberia'}</title>
-        <meta
-          name="description"
-          content={
-            description || "No matter where you go, everyone's connected..."
-          }
-        />
+        <meta name="description" content={description} />
         <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
         {/* Facebook Meta Tags */}
@@ -61,7 +56,7 @@ const Layout = ({
         <meta property="twitter:domain" content="cyberia.wtf" />
         <meta property="twitter:url" content="https://cyberia.wtf" />
         <meta name="twitter:title" content="Cyberia" />
-        <meta name="twitter:description" content="bad end" />
+        <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="https://i.imgur.com/xPqwqaM.jpg" />
 
         {headChildren}
