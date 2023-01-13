@@ -30,7 +30,13 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
           </aside>
           {/* CENTER */}
           <div className={s.goodSideCenter}>
-            <Img src="/img/cake.gif" alt="cake" />
+            <div className={s.cakeRow}>
+              <Img src="/img/hr-sweet.webp" alt="cake" />
+              <Img src="/img/cake.gif" alt="cake" />
+              <Img src="/img/hr-sweet.webp" alt="cake" />
+            </div>
+            {/* MAIN TEXT */}
+            <h1 className={s.title}>★·.·´¯`·.·★ HAPPY BIRTHDAY ★·.·´¯`·.·★</h1>
             {/* HELLO KITTY STRIPE */}
             <div className={s.kittyStripe}>
               <Img src="/img/melody-heart.webp" alt="my melody" height={115} />
@@ -41,12 +47,18 @@ const Bday = ({ ...props }: React.HTMLAttributes<HTMLDivElement>) => {
               <Img src="/img/kitty-balloons.gif" alt="kitty balloons" />
               <Img src="/img/kuromi.webp" alt="kuromi" mirror />
             </div>
-            <h1 className={s.title}>★·.·´¯`·.·★ HAPPY BIRTHDAY ★·.·´¯`·.·★</h1>
             <Img src="/img/tfm.png" alt="transformice marry" />
           </div>
           {/* RIGHT SIDE */}
           <aside className={s.goodSideRight}>
             <Img src="/img/chibiusa-cloud.gif" alt="chibiusa cloud" />
+            <Img
+              src="/img/eternal-banana.webp"
+              alt="eternal banana"
+              title="ETERNAL BANANA"
+              className={cn('help', s.eternalBanana)}
+              mirror
+            />
           </aside>
         </div>
       </section>

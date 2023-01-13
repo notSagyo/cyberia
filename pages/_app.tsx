@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeContextProvider>
       <CrtContextProvider>
         <MusicContextProvider>
-          <div id="app-wrapper">
+          <div id="app-wrapper" className="crt">
             <Component {...pageProps} />
           </div>
         </MusicContextProvider>

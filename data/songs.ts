@@ -202,9 +202,30 @@ const songs: ISong[] = [
   },
   {
     tag: 'Albums',
-    title: 'Hayley Williams > Petals For Armor',
-    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoN8DV-JaejzO7g9abyKHwF',
-    imageUrl: 'https://i.imgur.com/h9vAfjd.jpg',
+    title: 'Hayley Williams > FLOWERS for VASES / descansos',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOqJYqnQHpkYNT53m24AFgnl',
+    imageUrl: 'https://i.imgur.com/hELp3SZ.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Pierce The Veil > A Flair For The Dramatic',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOo3MOCFciOVTICw7YFPOEzA',
+    imageUrl: 'https://i.imgur.com/EaZclzl.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'blink-182 > Take Off Your Pants And Jacket',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOrNEIIX5G-Hsdn85VYaDs4W',
+    imageUrl: 'https://i.imgur.com/jgbNSa3.jpg',
+    source: 'youtube',
+  },
+  {
+    tag: 'Albums',
+    title: 'Teen Suicide > dc snuff fim / waste yrself',
+    url: 'https://youtube.com/playlist?list=PLxwHtUHlFZ5HZxZtA9EWkAOrA8DFz1Qbx',
+    imageUrl: 'https://i.imgur.com/6OngxQw.jpg',
     source: 'youtube',
   },
   {
@@ -216,9 +237,9 @@ const songs: ISong[] = [
   },
   {
     tag: 'Albums',
-    title: 'Teen Suicide > dc snuff fim / waste yrself',
-    url: 'https://youtube.com/playlist?list=PLxwHtUHlFZ5HZxZtA9EWkAOrA8DFz1Qbx',
-    imageUrl: 'https://i.imgur.com/6OngxQw.jpg',
+    title: 'Scott Pilgrim Vs. The World > OST',
+    url: 'https://youtube.com/playlist?list=PLjuzMNNpQyOoVFtmZjfW1d5-Augs4sT8r',
+    imageUrl: 'https://i.imgur.com/nS0s4Ou.jpg',
     source: 'youtube',
   },
   // DANNIE

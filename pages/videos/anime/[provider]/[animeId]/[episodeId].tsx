@@ -1,11 +1,13 @@
 import {
   IAnimeInfo,
+  IEpisodeServer,
   ISource,
   ISubtitle,
 } from '@consumet/extensions/dist/models';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import AnimeVideo from '/components/AnimeVideo/AnimeVideo';
 import AnimeVideoJS from '/components/AnimeVideo/AnimeVideoJS';
 import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
@@ -14,6 +16,9 @@ import animeService from '/services/anime-service';
 import { AnimeProvidersNames } from '/services/consumet-service';
 import styles from '/styles/pages/anime.module.scss';
 import { animeURL, getAnimeEpisodeURL } from '/utils/urls';
+
+// Use custom player? Else iframe with provider's server
+const withVideoJS = false;
 
 const EpisodePage: NextPage = () => {
   const router = useRouter();
@@ -37,13 +42,21 @@ const EpisodePage: NextPage = () => {
       </LinkHeading>
 
       {/* VIDEO */}
-      <AnimeVideoJS
-        url={episodeUrl}
-        videoTitle={`${animeId}-${episodeId}.mp4`}
-        sources={source.sources}
-        tracks={subtitles}
-        shellProps={{ className: styles.videoShell }}
-      />
+      {withVideoJS ? (
+        <AnimeVideoJS
+          url={episodeUrl}
+          videoTitle={`${animeId}-${episodeId}.mp4`}
+          sources={source.sources}
+          tracks={subtitles}
+          shellProps={{ className: styles.videoShell }}
+        />
+      ) : (
+        <AnimeVideo
+          url={episodeUrl}
+          videoTitle={`${animeId}-${episodeId}.mp4`}
+          className={styles.videoShell}
+        />
+      )}
 
       {/* CONTROLS, show only after episode is loaded */}
       {episodeUrl && (
@@ -101,6 +114,7 @@ const EpisodePage: NextPage = () => {
 const useEpisode = () => {
   const [animeInfo, setAnimeInfo] = useState<IAnimeInfo>();
   const [source, setSource] = useState<ISource>({ sources: [] });
+  const [servers, setServers] = useState<IEpisodeServer[]>([]);
   const [episodeUrl, setEpisodeUrl] = useState<string>('');
   const [subtitles, setSubtitles] = useState<ISubtitle[]>([]);
   const { animeId, episodeId, provider } = useRouter().query as {
@@ -108,7 +122,7 @@ const useEpisode = () => {
     episodeId: string;
     provider: AnimeProvidersNames;
   };
-  const remoteId = animeService.localIdToRemoteId(animeId, provider);
+  const remoteAnimeId = animeService.localIdToRemoteId(animeId, provider);
 
   // Episode navigation
   const episodeCount = animeInfo?.totalEpisodes || 1;
@@ -123,35 +137,59 @@ const useEpisode = () => {
 
   // Fetch anime and episode data
   useEffect(() => {
-    if (!remoteId || !episodeId || !provider) return;
+    if (!remoteAnimeId || !episodeId || !provider) return;
     (async () => {
       try {
         // Set empty to ensure reload
         setSource({ sources: [] });
+        setServers([]);
         setEpisodeUrl('');
 
-        // Fetch data
+        // Fetch info
         const info =
-          animeInfo ?? (await animeService.fetchInfo(remoteId, provider));
-        const sources = await animeService.fetchSources(
-          info?.episodes?.[parseInt(episodeId) - 1].id || '',
-          provider
-        );
-        if (!info || !sources) throw new Error('Error fetching data');
-        const url = sources.sources.find(
-          (src) => src.quality === 'auto' || src.quality === 'default'
-        )?.url;
+          animeInfo ?? (await animeService.fetchInfo(remoteAnimeId, provider));
+        const remoteEpisodeId = info?.episodes?.[parseInt(episodeId) - 1].id;
 
-        // Set new values
+        // Fetch sources
+        if (withVideoJS) {
+          const sources = await animeService.fetchEpisodeSources(
+            remoteEpisodeId || '',
+            provider
+          );
+          if (!info || !sources) throw new Error('Error fetching data');
+
+          const url =
+            sources.sources.find(
+              (src) => src.quality === 'auto' || src.quality === 'default'
+            )?.url || sources.sources?.[0].url;
+
+          // Set data
+          setEpisodeUrl(url || '');
+          setSource(sources);
+          sources.subtitles && setSubtitles(sources.subtitles);
+        }
+        // Fetch servers
+        else {
+          const servers = await animeService.fetchEpisodeServers(
+            remoteEpisodeId || '',
+            provider
+          );
+          if (!info || !servers) throw new Error('Error fetching data');
+
+          const url =
+            servers.find((server) => server.name === 'Vidstreaming')?.url ||
+            servers[0]?.url;
+
+          // Set data
+          setEpisodeUrl(url || '');
+          setServers(servers);
+        }
         setAnimeInfo(info);
-        setSource(sources);
-        setEpisodeUrl(url || sources.sources?.[0].url || '');
-        sources.subtitles && setSubtitles(sources.subtitles);
       } catch (err) {
         console.error(err);
       }
     })();
-  }, [remoteId, animeInfo, episodeId, provider]);
+  }, [remoteAnimeId, animeInfo, episodeId, provider]);
 
   return {
     provider,
@@ -163,6 +201,7 @@ const useEpisode = () => {
     prevEpisodeUrl,
     nextEpisodeUrl,
     source,
+    servers,
     subtitles,
   };
 };

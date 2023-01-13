@@ -42,8 +42,13 @@ const Layout = ({
       {/* PAGE HEAD ======================================================== */}
       <Head>
         <title>{title ? `${title} | Cyberia` : 'Cyberia'}</title>
-        <meta name="description" content={description || 'bad end'} />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <meta
+          name="description"
+          content={
+            description || "No matter where you go, everyone's connected..."
+          }
+        />
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
         {/* Facebook Meta Tags */}
         <meta property="og:title" content="Cyberia" />

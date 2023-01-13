@@ -75,6 +75,9 @@ const Home = () => {
             </select>
             <label htmlFor="theme">Theme</label>
           </div>
+          <noscript className={styles.inputWrapper}>
+            To enjoy the {"site's"} full experience please enable JavaScript.
+          </noscript>
         </main>
 
         {/* RIGHT SIDE */}
