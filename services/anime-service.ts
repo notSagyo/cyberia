@@ -1,7 +1,11 @@
-import { IAnimeInfo, ISource } from '@consumet/extensions';
+import { IAnimeInfo, IEpisodeServer, ISource } from '@consumet/extensions';
 import { AnimeProvidersNames } from './consumet-service';
 import animes from '/data/animes';
-import { getAnimeInfoURL, getAnimeSourcesURL } from '/utils/urls';
+import {
+  getAnimeInfoURL,
+  getAnimeServersURL,
+  getAnimeSourcesURL,
+} from '/utils/urls';
 
 class AnimeService {
   localIdToRemoteId(
@@ -23,11 +27,20 @@ class AnimeService {
     );
   }
 
-  async fetchSources(
+  async fetchEpisodeSources(
     episodeId: string,
     provider: AnimeProvidersNames
   ): Promise<ISource | undefined> {
     return fetch(`${getAnimeSourcesURL(provider)}/${episodeId}`).then((res) =>
+      res.json()
+    );
+  }
+
+  async fetchEpisodeServers(
+    episodeId: string,
+    provider: AnimeProvidersNames
+  ): Promise<IEpisodeServer[] | undefined> {
+    return fetch(`${getAnimeServersURL(provider)}/${episodeId}`).then((res) =>
       res.json()
     );
   }

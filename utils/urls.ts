@@ -44,6 +44,8 @@ export const getAnimeInfoURL = (provider: AnimeProvidersNames) =>
   `${apiURL}/anime/${provider}`;
 export const getAnimeSourcesURL = (provider: AnimeProvidersNames) =>
   `${getAnimeInfoURL(provider)}/sources`;
+export const getAnimeServersURL = (provider: AnimeProvidersNames) =>
+  `${getAnimeInfoURL(provider)}/servers`;
 export const getMangaInfoURL = (provider: MangaProvidersNames) =>
   `${apiURL}/manga/${provider}`;
 export const getMangaReadURL = (provider: MangaProvidersNames) =>

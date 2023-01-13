@@ -3,14 +3,14 @@ import Shell, { ShellProps } from '../Shell/Shell';
 import styles from './AnimeVideo.module.scss';
 
 export interface AnimeVideoProps extends ShellProps {
-  episodeUrl?: string;
+  url?: string;
   videoTitle?: string;
   shellWidth?: string | number;
   aspectRatio?: number;
 }
 
 const AnimeVideo = ({
-  episodeUrl,
+  url,
   videoTitle,
   shellWidth = 800,
   aspectRatio = 0.5625,
@@ -39,7 +39,7 @@ const AnimeVideo = ({
             <iframe
               scrolling="no"
               id="videoIframe"
-              src={episodeUrl}
+              src={url}
               frameBorder="0"
               allowFullScreen
               width={'100%'}
