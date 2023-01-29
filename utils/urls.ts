@@ -52,4 +52,4 @@ export const getMangaReadURL = (provider: MangaProvidersNames) =>
   `${getMangaInfoURL(provider)}/read`;
 
 // OTHER =====================================================================//
-export const corsProxy = 'https://cors.proxy.consumet.org/';
+export const corsProxy = 'https://cors.consumet.stream/';
