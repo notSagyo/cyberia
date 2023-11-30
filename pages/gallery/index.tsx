@@ -44,10 +44,11 @@ const links: Link[] = [
     href: `${galleryURL}/va-11_hall-a`,
     title: '/pages/gallery/va-11_hall-a',
   },
-  {
-    href: `${galleryURL}/psych-ward`,
-    title: '/pages/gallery/psych_ward',
-  },
+  // ?TODO: Enable
+  // {
+  //   href: `${galleryURL}/psych-ward`,
+  //   title: '/pages/gallery/psych_ward',
+  // },
 ];
 
 const GalleryPage = () => {

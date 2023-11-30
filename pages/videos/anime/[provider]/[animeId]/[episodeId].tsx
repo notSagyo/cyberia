@@ -68,7 +68,7 @@ const EpisodePage: NextPage = () => {
                 defaultValue={'episode'}
                 onChange={(e) =>
                   router.push(
-                    getAnimeEpisodeURL(provider, animeId, e.target.value)
+                    getAnimeEpisodeURL(provider, animeId, e.target.value),
                   )
                 }
               >
@@ -154,13 +154,13 @@ const useEpisode = () => {
         if (withVideoJS) {
           const sources = await animeService.fetchEpisodeSources(
             remoteEpisodeId || '',
-            provider
+            provider,
           );
           if (!info || !sources) throw new Error('Error fetching data');
 
           const url =
             sources.sources.find(
-              (src) => src.quality === 'auto' || src.quality === 'default'
+              (src) => src.quality === 'auto' || src.quality === 'default',
             )?.url || sources.sources?.[0].url;
 
           // Set data
@@ -172,7 +172,7 @@ const useEpisode = () => {
         else {
           const servers = await animeService.fetchEpisodeServers(
             remoteEpisodeId || '',
-            provider
+            provider,
           );
           if (!info || !servers) throw new Error('Error fetching data');
 

@@ -18,7 +18,7 @@ export const getAnimeProviderURL = (provider: AnimeProvidersNames) =>
 export const getAnimeEpisodeURL = (
   provider: AnimeProvidersNames,
   animeId: string,
-  episodeId: string
+  episodeId: string,
 ) => `${getAnimeProviderURL(provider)}/${animeId}/${episodeId}`;
 export const surfaceURL = `${videosURL}/surface`;
 
@@ -52,4 +52,4 @@ export const getMangaReadURL = (provider: MangaProvidersNames) =>
   `${getMangaInfoURL(provider)}/read`;
 
 // OTHER =====================================================================//
-export const corsProxy = 'https://cors.consumet.stream/';
+export const corsProxy = '';
