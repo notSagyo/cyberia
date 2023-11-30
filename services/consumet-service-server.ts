@@ -12,19 +12,19 @@ class Gogoanime extends ANIME.Gogoanime {
 }
 
 // Anime =====================================================================//
-export const animeProviders: Record<AnimeProvidersNames, AnimeParser> = {
+export const animeProviders = {
   gogoanime: new Gogoanime(),
   zoro: new ANIME.Zoro(),
   get default() {
     return this[animeProvider];
   },
-};
+} satisfies Record<AnimeProvidersNames, AnimeParser>;
 // Manga =====================================================================//
 
-export const mangaProviders: Record<MangaProvidersNames, MangaParser> = {
+export const mangaProviders = {
   mangadex: new MANGA.MangaDex(),
   mangasee123: new MANGA.Mangasee123(),
   get default() {
     return this[mangaProvider];
   },
-};
+} satisfies Record<MangaProvidersNames, MangaParser>;

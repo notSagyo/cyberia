@@ -1,63 +1,43 @@
 import { IAnimeInfo } from '@consumet/extensions/dist/models';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import LinkList from '/components/LinkList/LinkList';
-import animes from '/data/animes';
 import animeService from '/services/anime-service';
-import { AnimeProvidersNames } from '/services/consumet-service';
 import { animeProviders } from '/services/consumet-service-server';
 import { animeURL } from '/utils/urls';
 
-interface AnimeIdProps {
-  animeId: string;
-  animeInfo: IAnimeInfo;
-  provider: AnimeProvidersNames;
-}
+const AnimeId = () => {
+  const [animeInfo, setAnimeInfo] = useState<IAnimeInfo | null>(null);
+  const { provider, animeId } = useRouter().query;
 
-interface iQueryParams extends ParsedUrlQuery {
-  animeId: string;
-  provider: AnimeProvidersNames;
-}
+  useEffect(() => {
+    animeProviders.gogoanime
+      .fetchAnimeInfo(animeService.localIdToRemoteId(String(animeId)))
+      .then((res) => setAnimeInfo(res))
+      .catch((err) => console.error(err));
+  }, [provider, animeId]);
 
-const AnimeId = ({ animeId, animeInfo, provider }: AnimeIdProps) => {
-  const episodes = animeInfo.episodes || [];
+  const episodes = animeInfo?.episodes || [];
 
   return (
     <Layout title="Anime">
       <LinkHeading href={animeURL}>{`..${animeURL}/${animeId}`}</LinkHeading>
-      <LinkList
-        links={episodes.map((episode, i) => ({
-          title: `${animeURL}/${animeId}/${i + 1}`,
-          href: `${animeURL}/${provider}/${animeId}/${i + 1}`,
-          key: episode.id,
-        }))}
-      />
+      {animeInfo ? (
+        <LinkList
+          links={episodes.map((episode, i) => ({
+            title: `${animeURL}/${animeId}/${i + 1}`,
+            href: `${animeURL}/${provider}/${animeId}/${i + 1}`,
+            key: episode.id,
+          }))}
+        />
+      ) : (
+        <Image src="/img/loading.gif" alt="loading" width={384} height={51} />
+      )}
     </Layout>
   );
-};
-
-// Static stuff ==============================================================//
-export const getStaticProps: GetStaticProps<AnimeIdProps> = async (context) => {
-  const { animeId, provider } = context.params as iQueryParams;
-  const remoteId = animeService.localIdToRemoteId(animeId, provider);
-  const animeInfo = await animeProviders[provider].fetchAnimeInfo(remoteId);
-  return { props: { provider, animeId, animeInfo } };
-};
-
-export const getStaticPaths: GetStaticPaths<iQueryParams> = async () => {
-  const animeProviders = (Object.keys(animes) as AnimeProvidersNames[]).map(
-    (provider) => provider
-  );
-
-  const paths = animeProviders.flatMap((provider) =>
-    animes[provider].map((anime) => ({
-      params: { provider: provider, animeId: anime?.localId },
-    }))
-  );
-
-  return { paths, fallback: false };
 };
 
 export default AnimeId;
