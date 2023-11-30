@@ -1,5 +1,8 @@
-import { ANIME, MANGA } from '@consumet/extensions';
 import { AnimeParser, MangaParser } from '@consumet/extensions/dist/models';
+import ConsumetGogoanime from '@consumet/extensions/dist/providers/anime/gogoanime';
+import Zoro from '@consumet/extensions/dist/providers/anime/zoro';
+import MangaDex from '@consumet/extensions/dist/providers/manga/mangadex';
+import Mangasee123 from '@consumet/extensions/dist/providers/manga/mangasee123';
 import {
   AnimeProvidersNames,
   MangaProvidersNames,
@@ -7,14 +10,14 @@ import {
   mangaProvider,
 } from './consumet-service';
 
-class Gogoanime extends ANIME.Gogoanime {
+class Gogoanime extends ConsumetGogoanime {
   baseUrl = 'https://anitaku.to';
 }
 
 // Anime =====================================================================//
 export const animeProviders = {
   gogoanime: new Gogoanime(),
-  zoro: new ANIME.Zoro(),
+  zoro: new Zoro(),
   get default() {
     return this[animeProvider];
   },
@@ -22,8 +25,8 @@ export const animeProviders = {
 // Manga =====================================================================//
 
 export const mangaProviders = {
-  mangadex: new MANGA.MangaDex(),
-  mangasee123: new MANGA.Mangasee123(),
+  mangadex: new MangaDex(),
+  mangasee123: new Mangasee123(),
   get default() {
     return this[mangaProvider];
   },
