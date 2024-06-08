@@ -12,6 +12,7 @@ import { toUrlikeString } from '/utils/utils';
 
 const MangaIdPage = () => {
   const [mangaInfo, setMangaInfo] = useState<IMangaInfo | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   let { mangaId: mangaIdParam } = useRouter().query;
   const mangaId = mangaIdParam?.toString();
 
@@ -19,7 +20,8 @@ const MangaIdPage = () => {
     mangaId &&
       getMangaInfo(mangaId)
         .then((res) => setMangaInfo(res))
-        .catch((err) => console.error(err));
+        .catch((err) => console.error(err))
+        .finally(() => setLoading(false));
   }, [mangaId]);
 
   const chapters = mangaInfo?.chapters || [];
@@ -44,8 +46,15 @@ const MangaIdPage = () => {
             key: chapter.id,
           }))}
         />
-      ) : (
+      ) : loading ? (
         <Image src="/img/loading.gif" alt="loading" width={384} height={51} />
+      ) : (
+        <Image
+          src="/img/temporarily.gif"
+          alt="loading"
+          width={384}
+          height={51}
+        />
       )}
     </Layout>
   );

@@ -48,8 +48,8 @@ const links = [
   'sanhyo.neocities.org/',
   // OTHER
   'districts.neocities.org/',
-  'gifcities.org/',
   'lainchan.org/',
+  'gifcities.org/',
 ];
 
 export default CitiesPage;

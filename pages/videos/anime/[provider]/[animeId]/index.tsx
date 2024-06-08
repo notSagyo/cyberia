@@ -11,13 +11,15 @@ import { animeURL } from '/utils/urls';
 
 const AnimeId = () => {
   const [animeInfo, setAnimeInfo] = useState<IAnimeInfo | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const { provider, animeId } = useRouter().query;
 
   useEffect(() => {
     animeProviders.gogoanime
       .fetchAnimeInfo(animeService.localIdToRemoteId(String(animeId)))
       .then((res) => setAnimeInfo(res))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, [provider, animeId]);
 
   const episodes = animeInfo?.episodes || [];
@@ -33,8 +35,15 @@ const AnimeId = () => {
             key: episode.id,
           }))}
         />
-      ) : (
+      ) : loading ? (
         <Image src="/img/loading.gif" alt="loading" width={384} height={51} />
+      ) : (
+        <Image
+          src="/img/temporarily.gif"
+          alt="loading"
+          width={384}
+          height={51}
+        />
       )}
     </Layout>
   );
