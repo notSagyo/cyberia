@@ -6,7 +6,7 @@ import Layout from '/components/Layout/Layout';
 import LinkHeading from '/components/LinkHeading/LinkHeading';
 import LinkList from '/components/LinkList/LinkList';
 import animeService from '/services/anime-service';
-import { animeProviders } from '/services/consumet-service-server';
+import { AnimeProvidersNames } from '/services/consumet-service';
 import { animeURL } from '/utils/urls';
 
 const AnimeId = () => {
@@ -15,11 +15,15 @@ const AnimeId = () => {
   const { provider, animeId } = useRouter().query;
 
   useEffect(() => {
-    animeProviders.gogoanime
-      .fetchAnimeInfo(animeService.localIdToRemoteId(String(animeId)))
-      .then((res) => setAnimeInfo(res))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+    provider &&
+      animeService
+        .fetchInfo(
+          animeService.localIdToRemoteId(String(animeId)),
+          provider as AnimeProvidersNames,
+        )
+        .then((res) => res && setAnimeInfo(res))
+        .catch((err) => console.error(err))
+        .finally(() => setLoading(false));
   }, [provider, animeId]);
 
   const episodes = animeInfo?.episodes || [];

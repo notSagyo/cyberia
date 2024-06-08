@@ -189,7 +189,7 @@ const useEpisode = () => {
         console.error(err);
       }
     })();
-  }, [remoteAnimeId, animeInfo, episodeId, provider]);
+  }, [remoteAnimeId, episodeId, provider]);
 
   return {
     provider,

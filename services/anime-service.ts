@@ -1,5 +1,5 @@
 import { IAnimeInfo, IEpisodeServer, ISource } from '@consumet/extensions';
-import { AnimeProvidersNames } from './consumet-service';
+import { AnimeProvidersNames, animeProvider } from './consumet-service';
 import animes from '/data/animes';
 import {
   getAnimeInfoURL,
@@ -10,7 +10,7 @@ import {
 class AnimeService {
   localIdToRemoteId(
     localId: string,
-    provider: AnimeProvidersNames = 'default'
+    provider: AnimeProvidersNames = 'default',
   ): string {
     return (
       animes[provider].find((anime) => anime.localId === localId)?.remoteId ||
@@ -20,28 +20,28 @@ class AnimeService {
 
   async fetchInfo(
     animeId: string,
-    provider: AnimeProvidersNames
+    provider: AnimeProvidersNames = animeProvider,
   ): Promise<IAnimeInfo | undefined> {
-    return fetch(`${getAnimeInfoURL(provider)}/${animeId}`).then((res) =>
-      res.json()
-    );
+    return fetch(`${getAnimeInfoURL(provider)}/${animeId}`).then((res) => {
+      return res.json();
+    });
   }
 
   async fetchEpisodeSources(
     episodeId: string,
-    provider: AnimeProvidersNames
+    provider: AnimeProvidersNames,
   ): Promise<ISource | undefined> {
     return fetch(`${getAnimeSourcesURL(provider)}/${episodeId}`).then((res) =>
-      res.json()
+      res.json(),
     );
   }
 
   async fetchEpisodeServers(
     episodeId: string,
-    provider: AnimeProvidersNames
+    provider: AnimeProvidersNames,
   ): Promise<IEpisodeServer[] | undefined> {
     return fetch(`${getAnimeServersURL(provider)}/${episodeId}`).then((res) =>
-      res.json()
+      res.json(),
     );
   }
 }
