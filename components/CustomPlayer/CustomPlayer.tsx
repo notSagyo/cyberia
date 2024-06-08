@@ -145,10 +145,10 @@ const CustomPlayer = ({
 
   const handleReady = (reactPlayer: ReactPlayer) => {
     props.onReady && props.onReady(reactPlayer);
-    const storageVolume = localStorage.getItem(storageVolumeKey) || "0.25";
+    const storageVolume = localStorage.getItem(storageVolumeKey);
     const storageMuted = localStorage.getItem(storageMutedKey);
     storageMuted && setMuted(Boolean(Number(storageMuted)));
-    setVolume(parseFloat(storageVolume));
+    storageVolume && setVolume(parseFloat(storageVolume));
   };
 
   return (

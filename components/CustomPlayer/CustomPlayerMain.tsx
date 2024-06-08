@@ -29,7 +29,7 @@ const CustomPlayerMain = ({ onReady, ...props }: CustomPlayerProps) => {
       } else if (firstLoad) player.seekTo(MAIN_SONG_START_TIME);
       firstLoad = false;
     },
-    [onReady]
+    [onReady],
   );
 
   return (
@@ -39,6 +39,7 @@ const CustomPlayerMain = ({ onReady, ...props }: CustomPlayerProps) => {
         autoplay={props.playing ?? autoplay}
         playing={props.playing}
         onReady={handleReady}
+        initialVolume={0.25}
         saveToStorage
         shellProps={{ className: styles.mainPlayerShell }}
       />
